@@ -21,17 +21,13 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-tag"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nomor MSISDN</label>
 								<input required type="text" id="nomor_msisdn" name="nomor_msisdn" class="form-control" placeholder="Nomor MSISDN">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-tag"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nomor ICCID</label>
 								<input required type="text" id="nomor_iccid" name="nomor_iccid" class="form-control" placeholder="Nomor ICCID">
 							</div>
 
@@ -42,10 +38,8 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-tag"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Alokasi</label>
 								<input required type="text" id="alokasi" name="alokasi" class="form-control" placeholder="Alokasi">
 							</div>
 
@@ -58,10 +52,8 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cogs"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 						</div>
@@ -105,18 +97,14 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-tag"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nomor MSISDN</label>
 								<input required type="hidden" id="e_id" name="e_id" class="form-control" placeholder="Nomor MSISDN">
 								<input required type="text" id="e_nomor_msisdn" name="e_nomor_msisdn" class="form-control" placeholder="Nomor MSISDN">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-tag"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nomor ICCID</label>
 								<input required type="text" id="e_nomor_iccid" name="e_nomor_iccid" class="form-control" placeholder="Nomor ICCID">
 							</div>
 
@@ -127,10 +115,8 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-tag"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Alokasi</label>
 								<input required type="text" id="e_alokasi" name="e_alokasi" class="form-control" placeholder="Alokasi">
 							</div>
 
@@ -143,10 +129,8 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cogs"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="e_keterangan" name="e_keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 							<!-- /.card-body -->

@@ -21,24 +21,18 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nama Quota</label>
 								<input required type="text" id="nama" name="nama" class="form-control" placeholder="Nama Quota">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-map-signs"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Besar Quota</label>
 								<input type="text" id="besar_quota" name="besar_quota" class="form-control" placeholder="Besar Quota">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cogs"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 
@@ -83,24 +77,18 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nama Quota</label>
 								<input required type="text" id="e_nama" name="e_nama" class="form-control" placeholder="Nama Quota">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-map-signs"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Besar Quota</label>
 								<input type="text" id="e_besar_quota" name="e_besar_quota" class="form-control" placeholder="Besar Quota">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cogs"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="e_keterangan" name="e_keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 

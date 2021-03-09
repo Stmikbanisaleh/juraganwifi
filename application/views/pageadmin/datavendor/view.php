@@ -11,22 +11,16 @@
 							</button>
 						</div>
 						<div class="card-body">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nama Vendor</label>
 								<input required type="text" id="nama" name="nama" class="form-control" placeholder="Nama Vendor">
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-home"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Alamat</label>
 								<textarea type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat"></textarea>
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-phone"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Telephone</label>
 								<input required type="text" id="telp" name="telp" class="form-control" placeholder="Telephone">
 							</div>
 							<div class="form-group">
@@ -38,44 +32,32 @@
 									<?php } ?>
 								</select>
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nama PIC</label>
 								<input required type="text" id="nmpic" name="nmpic" class="form-control" placeholder="Nama PIC Vendor">
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-phone"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Telp PIC Vendor</label>
 								<input required type="text" id="telppic" name="telppic" class="form-control" placeholder="Telp PIC Vendor">
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-envelope"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Email PIC Vendor</label>
 								<input type="email" id="emailpic" name="emailpic" class="form-control" placeholder="Email PIC Vendor">
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-globe"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Alamat Website</label>
 								<input type="text" id="website" name="website" class="form-control" placeholder="Alamat Website">
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-address-card"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nomor NPWP</label>
 								<input type="text" id="npwp" name="npwp" class="form-control" placeholder="Nomor NPWP">
 							</div>
 							<div class="form-group">
 								<label>Upload NPWP</label>
 								<input type="file" id="filenpwp" name="filenpwp" class="form-control" placeholder="Nomor NPWP">
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cog"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 						</div>
@@ -108,23 +90,17 @@
 							</button>
 						</div>
 						<div class="card-body">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nama Vendor</label>
 								<input required type="hidden" id="e_id" name="e_id" >
 								<input required type="text" id="e_nama" name="e_nama" class="form-control" placeholder="Nama Vendor">
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-home"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Alamat</label>
 								<textarea type="text" id="e_alamat" name="e_alamat" class="form-control" placeholder="Alamat"></textarea>
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-phone"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Telephone</label>
 								<input required type="text" id="e_telp" name="e_telp" class="form-control" placeholder="Telephone">
 							</div>
 							<div class="form-group">
@@ -136,44 +112,32 @@
 									<?php } ?>
 								</select>
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nama PIC Vendor</label>
 								<input required type="text" id="e_nmpic" name="e_nmpic" class="form-control" placeholder="Nama PIC Vendor">
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-phone"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Telp PIC Vendor</label>
 								<input required type="text" id="e_telppic" name="e_telppic" class="form-control" placeholder="Telp PIC Vendor">
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-envelope"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Email PIC Vendor</label>
 								<input type="email" id="e_emailpic" name="e_emailpic" class="form-control" placeholder="Email PIC Vendor">
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-globe"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Alamat Website</label>
 								<input type="text" id="e_website" name="e_website" class="form-control" placeholder="Alamat Website">
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-address-card"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nomor NPWP</label>
 								<input type="text" id="e_npwp" name="e_npwp" class="form-control" placeholder="Nomor NPWP">
 							</div>
 							<div class="form-group">
 								<label>Upload NPWP</label>
 								<input type="file" id="e_filenpwp" name="e_filenpwp" class="form-control" placeholder="Nomor NPWP">
 							</div>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cog"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="e_keterangan" name="e_keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 						</div>

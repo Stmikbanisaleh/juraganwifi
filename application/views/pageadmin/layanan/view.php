@@ -11,17 +11,13 @@
 							</button>
 						</div>
 						<div class="card-body">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nama Layanan</label>
 								<input required type="text" id="nama" name="nama" class="form-control" placeholder="Nama Layanan">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-address-card"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Harga</label>
 								<input required type="text" id="harga" name="harga" class="form-control" placeholder="Harga">
 								<input type="hidden" id="harga_v" name="harga_v">
 								<script language="JavaScript">
@@ -62,10 +58,8 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-book"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="description" name="description" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 
@@ -101,18 +95,14 @@
 							</button>
 						</div>
 						<div class="card-body">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nama Layanan</label>
 								<input required type="hidden" id="e_id" name="e_id" class="form-control">
 								<input required type="text" id="e_nama" name="e_nama" class="form-control" placeholder="Nama Layanan">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-address-card"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Harga</label>
 								<input required type="text" id="e_harga" name="e_harga" class="form-control" placeholder="Harga">
 								<input type="hidden" id="e_harga_v" name="e_harga_v">
 								<script language="JavaScript">
@@ -144,10 +134,8 @@
 								</script>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-book"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="e_description" name="e_description" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 

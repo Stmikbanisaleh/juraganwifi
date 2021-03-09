@@ -57,10 +57,78 @@ class Dashboard extends CI_Controller
         }
     }
 
-    public function logout()
+	public function updatepassword()
+	{
+		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+			$data_id = array(
+				'email'  => $this->session->userdata('email')
+			);
+			$password = md5($this->input->post('password'));
+			$password = hash("sha512", $password);
+
+			$password2 = md5($this->input->post('passwordconfirm'));
+			$password2 = hash("sha512", $password2);
+			if ($password == $password2) {
+
+				$data = array(
+					'password'  => $password,
+					'updatedAt' => date('Y-m-d H:i:s'),
+					'updatedBy' => $this->session->userdata('name'),
+				);
+				$action = $this->model_dashboard->update($data_id, $data, 'user');
+				echo json_encode($action);
+			} else {
+				echo json_encode(400);
+			}
+		} else {
+			$this->load->view('pageadmin/login'); //Memanggil function render_view
+		}
+	}
+	
+	public function notification()
+	{
+		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+			if ($this->input->post('view') != '') {
+				$this->db->query("UPDATE status_log SET is_read = 1 WHERE is_read = 0");
+			}
+			$data = $this->db->query("Select a.*,b.airwaybill  from status_log a join pengiriman b on a.id_pengiriman = b.id order by a.createdAt desc limit 10")->result_array();
+			$output = '';
+			$status = '';
+
+			if ($data != null) {
+				foreach ($data as $value) {
+					if ($value['status'] == 0) {
+						$text = "No Airway Bill <b>" . $value['airwaybill'] . "</b> <br>Pengiriman Sedang di Packing ";
+					} else if ($value['status'] == 1) {
+						$text = "No Airway Bill  <b>" . $value['airwaybill'] . "</b> <br> Pengiriman Sedang di Dalam Perjalanan ";
+					} else {
+						$text = "No Airway Bill  <b>" . $value['airwaybill'] . "</b> <br> Pengiriman Telah Sampai ";
+					}
+					$output .= '
+				<div class="dropdown-divider"></div>
+				<a href=' . base_url() . "administrator/pengiriman/detail?id=$value[id_pengiriman]" . ' class="dropdown-item">
+					<i>' . $text . '</i> 
+				</a>';
+				}
+			} else {
+				$output .= '
+				<li><a href="#" class="text-bold text-italic">Notification Not Found</a></li>';
+			}
+			$count = $this->db->query("select count(id) as count from status_log where is_read = 0")->result_array();
+			$data = array(
+				'notification' => $output,
+				'unseen_notification'  => $count[0]['count']
+			);
+			echo json_encode($data);
+		} else {
+			$this->load->view('pageadmin/login'); //Memanggil function render_view
+		}
+	}
+
+	public function logout()
     {
         $this->session->sess_destroy();
-        redirect('administrator/dashboard/index');
+        redirect('dashboard/index');
     }
 
     public function forgot_password()

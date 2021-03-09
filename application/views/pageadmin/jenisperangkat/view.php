@@ -11,17 +11,13 @@
 							</button>
 						</div>
 						<div class="card-body">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Jenis Perangkat</label>
 								<input required type="text" id="nama" name="nama" class="form-control" placeholder="Jenis Perangkat">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cog"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 
@@ -55,18 +51,14 @@
 							</button>
 						</div>
 						<div class="card-body">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
-								<input required type="hidden" id="e_id" name="e_id" >
+							<div class="form-group">
+								<label>Jenis Perangkat</label>
+								<input required type="hidden" id="e_id" name="e_id">
 								<input required type="text" id="e_nama" name="e_nama" class="form-control" placeholder="Jenis Perangkat">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cog"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Jenis Perangkat</label>
 								<textarea type="text" id="e_keterangan" name="e_keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 
@@ -96,8 +88,7 @@
 		</div>
 		<br>
 		<div class="col-sm-2">
-			<button href="#modalTambah" type="button" role="button" data-toggle="modal"
-			 class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Jenis Perangkat</button>
+			<button href="#modalTambah" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Jenis Perangkat</button>
 		</div>
 		<br>
 		<div class="card-body p-0">
@@ -112,12 +103,6 @@
 						</th>
 						<th class="text-center">
 							Keterangan
-						</th>
-						<th class="text-center">
-							Created By
-						</th>
-						<th class="text-center">
-							Created Date
 						</th>
 						<th style="width: 16%" class="text-center">
 							Action
@@ -173,7 +158,7 @@
 							show_data();
 							$('#modalTambah').modal('hide');
 						} else if (response == 401) {
-                            swalIdDouble();
+							swalIdDouble();
 						} else {
 							swalInputFailed("Data Duplicate");
 						}
@@ -233,8 +218,6 @@
 						'<td class="text-left">' + no + '</td>' +
 						'<td class="text-left">' + data[i].nama + '</td>' +
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
-						'<td class="text-left">' + data[i].createdBy + '</td>' +
-						'<td class="text-left">' + data[i].createdAt + '</td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +
@@ -285,10 +268,10 @@
 	});
 
 	if ($("#formEdit").length > 0) {
-        $("#formEdit").validate({
-            errorClass: "my-error-class",
-            validClass: "my-valid-class",
-            rules: {
+		$("#formEdit").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			rules: {
 				e_nama: {
 					required: true
 				},
@@ -297,8 +280,8 @@
 					required: true
 				},
 
-            },
-            messages: {
+			},
+			messages: {
 				e_nama: {
 					required: "Nama Jenis Perangkat harus diisi!"
 				},
@@ -307,32 +290,32 @@
 					required: "Keterangan harus diisi!"
 				},
 
-            },
-            submitHandler: function(form) {
-                $('#btn_edit').html('Sending..');
-                $.ajax({
-                    url: "<?php echo base_url('administrator/jenis_perangkat/update') ?>",
-                    type: "POST",
-                    data: $('#formEdit').serialize(),
-                    dataType: "json",
-                    success: function(response) {
-                        $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
-                            'Ubah');
-                        if (response == true) {
-                            document.getElementById("formEdit").reset();
-                            swalEditSuccess();
-                            show_data();
-                            $('#modalEdit').modal('hide');
-                        } else if (response == 401) {
-                            swalIdDouble();
-                        } else {
-                            swalEditFailed();
-                        }
-                    }
-                });
-            }
-        })
-    }
+			},
+			submitHandler: function(form) {
+				$('#btn_edit').html('Sending..');
+				$.ajax({
+					url: "<?php echo base_url('administrator/jenis_perangkat/update') ?>",
+					type: "POST",
+					data: $('#formEdit').serialize(),
+					dataType: "json",
+					success: function(response) {
+						$('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
+							'Ubah');
+						if (response == true) {
+							document.getElementById("formEdit").reset();
+							swalEditSuccess();
+							show_data();
+							$('#modalEdit').modal('hide');
+						} else if (response == 401) {
+							swalIdDouble();
+						} else {
+							swalEditFailed();
+						}
+					}
+				});
+			}
+		})
+	}
 
 	$(document).ready(function() {
 		show_data();

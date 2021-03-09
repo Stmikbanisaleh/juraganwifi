@@ -11,10 +11,8 @@
 							</button>
 						</div>
 						<div class="card-body">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Kode ODC</label>
 								<input required type="text" id="nama" name="nama" class="form-control" placeholder="Kode ODC">
 							</div>
 
@@ -28,24 +26,18 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-map-signs"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nomor Tiang</label>
 								<input type="text" id="nomor_tiang" name="nomor_tiang" class="form-control" placeholder="Nomor Tiang">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Titik Kordinat</label>
 								<input type="text" id="kordinat" name="kordinat" class="form-control" placeholder="Titik Kordinat"></input>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-project-diagram"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Jumlah Port</label>
 								<input type="number" id="jumlah_port" name="jumlah_port" class="form-control" placeholder="Jumlah Port"></input>
 							</div>
 
@@ -54,10 +46,8 @@
 								<input type="file" id="dokumen" name="dokumen" class="form-control" placeholder=""></input>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cogs"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="Keterangan" name="Keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 
@@ -91,10 +81,8 @@
 							</button>
 						</div>
 						<div class="card-body">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Kode ODC</label>
 								<input type="hidden" id="e_id" name="e_id" class="form-control" placeholder="Kode ODC">
 								<input required type="text" id="e_nama" name="e_nama" class="form-control" placeholder="Kode ODC">
 							</div>
@@ -109,24 +97,18 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-map-signs"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nomor Tiang</label>
 								<input type="text" id="e_nomor_tiang" name="e_nomor_tiang" class="form-control" placeholder="Nomor Tiang">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Titik Kordinat</label>
 								<input type="text" id="e_kordinat" name="e_kordinat" class="form-control" placeholder="Titik Kordinat"></input>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-project-diagram"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Jumlah Port</label>
 								<input type="number" id="e_jumlah_port" name="e_jumlah_port" class="form-control" placeholder="Jumlah Port"></input>
 							</div>
 
@@ -135,10 +117,8 @@
 								<input type="file" id="e_dokumen" name="e_dokumen" class="form-control" placeholder=""></input>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cogs"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="e_Keterangan" name="e_Keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 

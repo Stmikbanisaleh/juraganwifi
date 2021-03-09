@@ -36,7 +36,15 @@
   					<a href="<?php echo base_url() . 'administrator/customer'; ?>" class="nav-link">
   						<i class="nav-icon fas fa-users"></i>
   						<p>
-  							Daftar Customer
+  							Daftar Pelanggan RT/RW Net
+  						</p>
+  					</a>
+  				</li>
+				  <li class="nav-item has-treeview">
+  					<a href="<?php echo base_url() . 'administrator/datavoip'; ?>" class="nav-link">
+  						<i class="nav-icon fas fa-users"></i>
+  						<p>
+  							Daftar Pelanggan VOIP
   						</p>
   					</a>
   				</li>
@@ -218,7 +226,7 @@
   				<li class="nav-header">WILAYAH</li>
   				<li class="nav-item has-treeview">
   					<a href="#" class="nav-link">
-  						<i class="nav-icon fas fa-chart-pie"></i>
+  						<i class="nav-icon fas fa-map-signs"></i>
   						<p>
   							DATA WILAYAH
   							<i class="right fas fa-angle-left"></i>
@@ -231,18 +239,12 @@
   								<p>Master Data Wilayah</p>
   							</a>
   						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/rt'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Detail Wilayah</p>
-  							</a>
-  						</li>
   					</ul>
   				</li>
   				<li class="nav-header">GSM</li>
   				<li class="nav-item has-treeview">
   					<a href="#" class="nav-link">
-  						<i class="nav-icon fas fa-chart-pie"></i>
+  						<i class="nav-icon fas fa-mobile-alt"></i>
   						<p>
   							DATA GSM
   							<i class="right fas fa-angle-left"></i>
@@ -267,7 +269,7 @@
   				<li class="nav-header">VENDOR</li>
   				<li class="nav-item has-treeview">
   					<a href="#" class="nav-link">
-  						<i class="nav-icon fas fa-chart-pie"></i>
+  						<i class="nav-icon fas fa-satellite-dish"></i>
   						<p>
   							DATA VENDOR
   							<i class="right fas fa-angle-left"></i>
@@ -298,7 +300,7 @@
   				<li class="nav-header">ALFAMIDI</li>
   				<li class="nav-item has-treeview">
   					<a href="#" class="nav-link">
-  						<i class="nav-icon fas fa-chart-pie"></i>
+  						<i class="nav-icon fas fa-store-alt"></i>
   						<p>
   							DATA MIDI
   							<i class="right fas fa-angle-left"></i>
@@ -323,7 +325,7 @@
   				<li class="nav-header">INVENTORI</li>
   				<li class="nav-item has-treeview">
   					<a href="#" class="nav-link">
-  						<i class="nav-icon fas fa-cogs"></i>
+  						<i class="nav-icon fas fa-warehouse"></i>
   						<p>
   							Inventori
   							<i class="fas fa-angle-left right"></i>

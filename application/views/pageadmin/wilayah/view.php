@@ -15,58 +15,40 @@
 								<div class="card-body">
 									<b>DATA WILAYAH</b>
 									<hr>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Kode Wilayah</label>
 										<input required type="text" id="kode" name="kode" class="form-control" placeholder="Kode Wilayah">
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-map-signs"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Nama Wilayah</label>
 										<input required type="text" id="nama" name="nama" class="form-control" placeholder="Nama Wilayah">
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-home"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Alamat Wilayah</label>
 										<textarea type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat Wilayah"></textarea>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-file-alt"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Nomor MOU</label>
 										<input type="text" id="mou" name="mou" class="form-control" placeholder="Nomor MOU"></input>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-map-marked"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Titik Kordinat</label>
 										<input type="text" id="kordinat" name="kordinat" class="form-control" placeholder="Titik Kordinat"></input>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-address-card"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Nama PIC Wilayah</label>
 										<input type="text" id="pic" name="pic" class="form-control" placeholder="Nama PIC Wilayah"></input>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-users"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Jumlah Kepala Keluarga</label>
 										<input type="number" id="jumlahkepalakeluarga" name="jumlahkepalakeluarga" class="form-control" placeholder="Jumlah Kepala Keluarga"></input>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-home"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Nama Ketua RW</label>
 										<input type="text" id="rw" name="rw" class="form-control" placeholder="Nama Ketua RW"></input>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-phone"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Telp Ketua RW</label>
 										<input type="text" id="telprw" name="telprw" class="form-control" placeholder="Telp Ketua RW"></input>
 									</div>
 								</div>
@@ -75,28 +57,20 @@
 								<div class="card-body">
 									<b>PERANGKAT</b>
 									<hr>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-cog"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Jumlah Tiang Mandiri</label>
 										<input type="number" id="tiangmandiri" name="tiangmandiri" class="form-control" placeholder="Jumlah Tiang Mandiri">
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-cog"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Jumlah Tiang Non Mandiri</label>
 										<input type="number" id="tiangnonmandiri" name="tiangnonmandiri" class="form-control" placeholder="Jumlah Tiang Non Mandiri">
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-cogs"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Jumlah ODC</label>
 										<input type="number" id="odc" name="odc" class="form-control" placeholder="Jumlah ODC"></input>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-cogs"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Jumlah ODP</label>
 										<input type="number" id="odp" name="odp" class="form-control" placeholder="Jumlah ODP"></input>
 									</div>
 									<div class="form-group">
@@ -108,10 +82,8 @@
 											<?php } ?>
 										</select>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-charging-station"></i></span>
-										</div>
+									<div class="form-group">
+										<label>ID Pelanggan PLN</label>
 										<input type="number" id="idpelangganpln" name="idpelangganpln" class="form-control" placeholder="ID Pelanggan PLN"></input>
 									</div>
 									<div class="form-group">
@@ -123,10 +95,8 @@
 											<?php } ?>
 										</select>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-cog"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Keterangan</label>
 										<textarea type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Keterangan"></textarea>
 									</div>
 									<div class="form-group">
@@ -169,59 +139,41 @@
 								<div class="card-body">
 									<b>DATA WILAYAH</b>
 									<hr>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Kode Wilayah</label>
 										<input required type="hidden" id="e_id" name="e_id" class="form-control" placeholder="Kode Wilayah">
 										<input required type="text" id="e_kode" name="e_kode" class="form-control" placeholder="Kode Wilayah">
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-map-signs"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Nama WIlayah</label>
 										<input required type="text" id="e_nama" name="e_nama" class="form-control" placeholder="Nama Wilayah">
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-home"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Alamat Wilayah</label>
 										<textarea type="text" id="e_alamat" name="e_alamat" class="form-control" placeholder="Alamat Wilayah"></textarea>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-file-alt"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Nomor MOU</label>
 										<input type="text" id="e_mou" name="e_mou" class="form-control" placeholder="Nomor MOU"></input>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-map-marked"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Titik Kordinat</label>
 										<input type="text" id="e_kordinat" name="e_kordinat" class="form-control" placeholder="Titik Kordinat"></input>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-address-card"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Nama PIC Wilayah</label>
 										<input type="text" id="e_pic" name="e_pic" class="form-control" placeholder="Nama PIC Wilayah"></input>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-users"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Jumlah Kepala Keluarga</label>
 										<input type="number" id="e_jumlahkepalakeluarga" name="e_jumlahkepalakeluarga" class="form-control" placeholder="Jumlah Kepala Keluarga"></input>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-home"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Nama Ketua RW</label>
 										<input type="text" id="e_rw" name="e_rw" class="form-control" placeholder="Nama Ketua RW"></input>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-phone"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Telp Ketua RW</label>
 										<input type="text" id="e_telprw" name="e_telprw" class="form-control" placeholder="Telp Ketua RW"></input>
 									</div>
 								</div>
@@ -230,28 +182,20 @@
 								<div class="card-body">
 									<b>PERANGKAT</b>
 									<hr>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-cog"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Jumlah Tiang Mandiri</label>
 										<input type="number" id="e_tiangmandiri" name="e_tiangmandiri" class="form-control" placeholder="Jumlah Tiang Mandiri">
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-cog"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Jumlah Tiang Non Mandiri</label>
 										<input type="number" id="e_tiangnonmandiri" name="e_tiangnonmandiri" class="form-control" placeholder="Jumlah Tiang Non Mandiri">
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-cogs"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Jumlah ODC</label>
 										<input type="number" id="e_odc" name="e_odc" class="form-control" placeholder="Jumlah ODC"></input>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-cogs"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Jumlah ODP</label>
 										<input type="number" id="e_odp" name="e_odp" class="form-control" placeholder="Jumlah ODP"></input>
 									</div>
 									<div class="form-group">
@@ -263,10 +207,8 @@
 											<?php } ?>
 										</select>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-charging-station"></i></span>
-										</div>
+									<div class="form-group">
+										<label>ID Pelanggan PLN</label>
 										<input type="number" id="e_idpelangganpln" name="e_idpelangganpln" class="form-control" placeholder="ID Pelanggan PLN"></input>
 									</div>
 									<div class="form-group">
@@ -278,10 +220,8 @@
 											<?php } ?>
 										</select>
 									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-cog"></i></span>
-										</div>
+									<div class="form-group">
+										<label>Keterangan</label>
 										<textarea type="text" id="e_keterangan" name="e_keterangan" class="form-control" placeholder="Keterangan"></textarea>
 									</div>
 									<div class="form-group">

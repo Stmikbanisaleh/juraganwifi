@@ -10,6 +10,7 @@
   <!-- Font Awesome -->
 	<link rel="stylesheet" href="<?= base_url() ?>assets/adminlte/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
+	<link rel="icon" href="<?= base_url() ?>assets/website/Xcode.png" type="image/icon type">
   <link rel="stylesheet" href="<?= base_url() ?>assets/adminlte/dist/css/ionicons.min.css">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">

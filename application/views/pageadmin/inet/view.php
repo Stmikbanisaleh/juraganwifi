@@ -21,38 +21,28 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-tags"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nomor PSTN</label>
 								<input type="text" id="nomor_pstn" name="nomor_pstn" class="form-control" placeholder="Nomor PSTN"></input>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-tags"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nomor INET</label>
 								<input type="text" id="nomor_inet" name="nomor_inet" class="form-control" placeholder="Nomor INET"></input>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-tags"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Password INET</label>
 								<input type="text" id="password_inet" name="password_inet" class="form-control" placeholder="Password INET"></input>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-truck-loading"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Kapasitas</label>
 								<input type="text" id="kapasitas" name="kapasitas" class="form-control" placeholder="Kapasitas"></input>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Alokasi</label>
 								<input type="text" id="alokasi" name="alokasi" class="form-control" placeholder="Alokasi"></input>
 							</div>
 
@@ -65,10 +55,8 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cog"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 
@@ -112,39 +100,29 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-tags"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nomor PSTN</label>
 								<input type="hidden" id="e_id" name="e_id" ></input>
 								<input type="text" id="e_nomor_pstn" name="e_nomor_pstn" class="form-control" placeholder="Nomor PSTN"></input>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-tags"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nomor INET</label>
 								<input type="text" id="e_nomor_inet" name="e_nomor_inet" class="form-control" placeholder="Nomor INET"></input>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-tags"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Password INET</label>
 								<input type="text" id="e_password_inet" name="e_password_inet" class="form-control" placeholder="Password INET"></input>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-truck-loading"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Kapasitas</label>
 								<input type="text" id="e_kapasitas" name="e_kapasitas" class="form-control" placeholder="Kapasitas"></input>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Alokasi</label>
 								<input type="text" id="e_alokasi" name="e_alokasi" class="form-control" placeholder="Alokasi"></input>
 							</div>
 
@@ -157,10 +135,8 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cog"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="e_keterangan" name="e_keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 

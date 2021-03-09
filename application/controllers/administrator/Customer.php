@@ -18,10 +18,29 @@ class Customer extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+			$mymerek = $this->model_customer->viewOrdering('merek_perangkat','id','desc')->result_array();
+			$myjenisperangkat = $this->model_customer->viewOrdering('jenis_perangkat','id','desc')->result_array();
+			$myjenislayanan = $this->model_customer->viewOrdering('package_item','id','desc')->result_array();
+			$mymediakoneksi = $this->model_customer->viewOrdering('media_koneksi','id','desc')->result_array();
+			$myjenisip = $this->model_customer->viewOrdering('jenis_ipaddress','id','desc')->result_array();
+			$myjenistempat = $this->model_customer->viewOrdering('jenis_tempat','id','desc')->result_array();
+			$mywilayah = $this->model_customer->viewOrdering('wilayah','id','desc')->result_array();
+			$mystatuskepemilikan = $this->model_customer->viewOrdering('jenis_kepemilikan','id','desc')->result_array();
+			$mystatuskepemilikanperangkat = $this->model_customer->viewOrdering('jenis_kepemilikan_perangkat','id','desc')->result_array();
+
 			$data = array(
 				'page_content'      => '../pageadmin/customer/view',
 				'ribbon'            => '<li class="active">Customer</li>',
 				'page_name'         => 'Customer',
+				'myjenisperangkat'	=> $myjenisperangkat,
+				'mymerek'			=> $mymerek,
+				'myjenislayanan'	=> $myjenislayanan,
+				'mymediakoneksi'	=> $mymediakoneksi,
+				'myjenisip'			=> $myjenisip,
+				'myjenistempat'		=> $myjenistempat,
+				'mywilayah'			=> $mywilayah,
+				'mystatuskepemilikan'	=>$mystatuskepemilikan,
+				'mystatuskepemilikanperangkat'	=> $mystatuskepemilikanperangkat
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
@@ -32,7 +51,7 @@ class Customer extends CI_Controller
 	public function tampil()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
-			$my_data = $this->model_customer->viewOrdering('customer','id','desc')->result_array();
+			$my_data = $this->model_customer->viewOrderingCustom()->result_array();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pageadmin/login'); //Memanggil function render_view
@@ -42,25 +61,109 @@ class Customer extends CI_Controller
 	public function update()
 	{
 		$data_id = array(
-			'idsaldo'  => $this->input->post('e_id')
+			'id'  => $this->input->post('e_id')
 		);
 		$data = array(
-			'TotalTagihan'  => $this->input->post('e_tot_tagihan_v'),
-			'Bayar'  => $this->input->post('e_bayar_v'),
-			'Sisa'  => $this->input->post('e_sisa_v'),
-			'tipe_generate'  => 'N',
+			'name'  => $this->input->post('e_nama'),
+			'no_ktp'  => $this->input->post('e_ktp'),
+			'email'  => $this->input->post('e_email'),
+			'no_services'  => $this->input->post('e_nomor_layanan'),
+			'no_wa'  => $this->input->post('e_telp'),
+			'address'  => $this->input->post('e_alamat'),
+			'panjang_kabel'  => $this->input->post('e_panjangkabel'),
+			'odp'  => $this->input->post('e_odp'),
+			'olt'  => $this->input->post('e_olt'),
+			'jenis_perangkat'  => $this->input->post('e_jenisperangkat'),
+			'merek_perangkat'  => $this->input->post('e_merekperangkat'),
+			'serial_number'  => $this->input->post('e_serialnumber'),
+			'mac_address'  => $this->input->post('e_macaddress'),
+			'jenis_layanan'  => $this->input->post('e_jenislayanan'),
+			'media_koneksi'  => $this->input->post('e_mediakoneksi'),
+			'tgl_registrasi'  => $this->input->post('e_tglregistrasi'),
+			'usernamepoe'  => $this->input->post('e_usernamepoe'),
+			'p_ppoe'  => $this->input->post('e_p_ppoe'),
+			'kepemilikan_perangkat'  => $this->input->post('e_kepemilikanperangkat'),
+			'jenis_ipaddress'  => $this->input->post('e_jenisipaddress'),
+			'tgl_aktivasi'  => $this->input->post('e_tglaktivasi'),
+			'wilayah'  => $this->input->post('e_wilayah'),
+			'jenis_tempat'  => $this->input->post('e_jenistempat'),
+			'kepemilikan_tempat'  => $this->input->post('e_kepemilikantempat'),
+			'nama_teknisi'  => $this->input->post('e_nama_teknisi'),
+			'keterangan'  => $this->input->post('e_keterangan'),
 			'updatedAt' => date('Y-m-d H:i:s'),
+			'updatedBy'	=> $this->session->userdata('name')
 		);
-		$action = $this->model_tunggakan->update($data_id, $data, 'saldopembayaran_sekolah');
+		$action = $this->model_customer->update($data_id, $data, 'customer');
 		echo json_encode($action);
 	}
 
 	public function tampil_byid()
 	{
 		$data = array(
-			'idsaldo'  => $this->input->post('id'),
+			'id'  => $this->input->post('id'),
 		);
-		$my_data = $this->model_tunggakan->view_where('saldopembayaran_sekolah', $data)->result();
+		$my_data = $this->model_customer->view_where('customer', $data)->result();
 		echo json_encode($my_data);
 	}
+
+	public function simpan()
+    {
+        if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+
+            $data = array(
+                'name'  => $this->input->post('nama'),
+				'no_ktp'  => $this->input->post('ktp'),
+				'email'  => $this->input->post('email'),
+				'no_services'  => $this->input->post('nomor_layanan'),
+				'no_wa'  => $this->input->post('telp'),
+				'address'  => $this->input->post('alamat'),
+				'panjang_kabel'  => $this->input->post('panjangkabel'),
+				'odp'  => $this->input->post('odp'),
+				'olt'  => $this->input->post('olt'),
+				'jenis_perangkat'  => $this->input->post('jenisperangkat'),
+				'merek_perangkat'  => $this->input->post('merekperangkat'),
+				'serial_number'  => $this->input->post('serialnumber'),
+				'mac_address'  => $this->input->post('macaddress'),
+				'jenis_layanan'  => $this->input->post('jenislayanan'),
+				'media_koneksi'  => $this->input->post('mediakoneksi'),
+				'tgl_registrasi'  => $this->input->post('tglregistrasi'),
+				'usernamepoe'  => $this->input->post('usernamepoe'),
+				'p_ppoe'  => $this->input->post('p_ppoe'),
+				'kepemilikan_perangkat'  => $this->input->post('kepemilikanperangkat'),
+				'jenis_ipaddress'  => $this->input->post('jenisipaddress'),
+				'tgl_aktivasi'  => $this->input->post('tglaktivasi'),
+				'wilayah'  => $this->input->post('wilayah'),
+				'jenis_tempat'  => $this->input->post('jenistempat'),
+				'kepemilikan_tempat'  => $this->input->post('kepemilikantempat'),
+				'nama_teknisi'  => $this->input->post('nama_teknisi'),
+				'keterangan'  => $this->input->post('keterangan'),
+				'createdAt' => date('Y-m-d H:i:s'),
+				'createdBy'	=> $this->session->userdata('name')
+            );
+			$cek = $this->model_customer->checkDuplicate($data,'customer');
+			if($cek > 0){
+				echo json_encode(401);
+			} else {
+				$action = $this->model_customer->insert($data, 'customer');
+				echo json_encode($action);
+			}
+
+        } else {
+            $this->load->view('pageadmin/login'); //Memanggil function render_view
+        }
+    }
+
+	public function delete()
+    {
+        if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+
+            $data_id = array(
+                'id'  => $this->input->post('id')
+            );
+            $action = $this->model_customer->delete($data_id, 'customer');
+            echo json_encode($action);
+        } else {
+            $this->load->view('pageadmin/login'); //Memanggil function render_view
+        }
+    }
 }

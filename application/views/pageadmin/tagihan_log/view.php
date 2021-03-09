@@ -11,17 +11,13 @@
 							</button>
 						</div>
 						<div class="card-body">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-calendar"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Bulan</label>
 								<input maxlength="2" max="12" min="1" required type="text" id="bulan" name="bulan" class="form-control" placeholder="Bulan">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-calendar"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Tahun</label>
 								<input maxlength="4" maxlength="4" type="tahun" id="tahun" name="tahun" class="form-control" placeholder="Tahun">
 							</div>
 						</div>

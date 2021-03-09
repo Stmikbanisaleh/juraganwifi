@@ -56,12 +56,79 @@ class Datamidi extends CI_Controller
 			$data_id = array(
 				'id'  => $this->input->post('e_id')
 			);
-			$data = array(
-				'nama'  => $this->input->post('e_nama'),
-				'keterangan'  => $this->input->post('e_keterangan'),
-				'updatedAt' => date('Y-m-d H:i:s'),
-				'updatedBy' => $this->session->userdata('name'),
-			);
+			$config['upload_path'] = './assets/datamidi';
+			$config['overwrite'] = TRUE;
+			$config['encrypt_name'] = TRUE;
+			$config["allowed_types"] = 'jpg|jpeg|png|gif|pdf';
+			$config["max_size"] = 4096;
+			$this->load->library('upload', $config);
+			$do_upload = $this->upload->do_upload("e_dokumen");
+			if ($do_upload) {
+				$upload_data = $this->upload->data();
+				$file_name = $upload_data['file_name'];
+				$data = array(
+					'kode'  => $this->input->post('e_kode'),
+					'nama'  => $this->input->post('e_nama'),
+					'alamat'  => $this->input->post('e_alamat'),
+					'titik_kordinat'  => $this->input->post('e_titik_kordinat'),
+					'telp_toko'  => $this->input->post('e_telp_toko'),
+					'pejabat_toko'  => $this->input->post('e_nama_pejabat_toko'),
+					'telp_pejabat_toko'  => $this->input->post('e_telp_pejabat'),
+					'nama_it_cabang'  => $this->input->post('e_nama_it_cabang'),
+					'telp_it_cabang'  => $this->input->post('e_telp_it_cabang'),
+					'tgl_aktivasi'  => $this->input->post('e_tgl_aktivasi'),
+					'pic_aktivasi'  => $this->input->post('e_pic_aktivasi'),
+					'media_koneksi'  => $this->input->post('e_media_koneksi'),
+					'jenis_perangkat'  => $this->input->post('e_jenis_perangkat'),
+					'type_perangkat'  => $this->input->post('e_type_perangkat'),
+					'merek_perangkat'  => $this->input->post('e_merek_perangkat'),
+					'mac_address'  => $this->input->post('e_macaddress'),
+					'serial_number'  => $this->input->post('e_serial_number'),
+					'nomor_1'  => $this->input->post('e_nomor_1'),
+					'nomor_2'  => $this->input->post('e_nomor_2'),
+					'imei1'  => $this->input->post('e_imei_1'),
+					'dokumen'	=> $file_name,
+					'imei2'  => $this->input->post('e_imei_2'),
+					'inet'  => $this->input->post('e_nomor_inet'),
+					'vendor'  => $this->input->post('e_vendor'),
+					'kapasitas'  => $this->input->post('e_kapasitas'),
+					'status'  => $this->input->post('e_status'),
+					'keterangan'  => $this->input->post('e_keterangan'),
+					'updatedAt' => date('Y-m-d H:i:s'),
+					'updatedBy'	=> $this->session->userdata('name')
+				);
+			} else {
+				$data = array(
+					'kode'  => $this->input->post('e_kode'),
+					'nama'  => $this->input->post('e_nama'),
+					'alamat'  => $this->input->post('e_alamat'),
+					'titik_kordinat'  => $this->input->post('e_titik_kordinat'),
+					'telp_toko'  => $this->input->post('e_telp_toko'),
+					'pejabat_toko'  => $this->input->post('e_nama_pejabat_toko'),
+					'telp_pejabat_toko'  => $this->input->post('e_telp_pejabat'),
+					'nama_it_cabang'  => $this->input->post('e_nama_it_cabang'),
+					'telp_it_cabang'  => $this->input->post('e_telp_it_cabang'),
+					'tgl_aktivasi'  => $this->input->post('e_tgl_aktivasi'),
+					'pic_aktivasi'  => $this->input->post('e_pic_aktivasi'),
+					'media_koneksi'  => $this->input->post('e_media_koneksi'),
+					'jenis_perangkat'  => $this->input->post('e_jenis_perangkat'),
+					'type_perangkat'  => $this->input->post('e_type_perangkat'),
+					'merek_perangkat'  => $this->input->post('e_merek_perangkat'),
+					'mac_address'  => $this->input->post('e_macaddress'),
+					'serial_number'  => $this->input->post('e_serial_number'),
+					'nomor_1'  => $this->input->post('e_nomor_1'),
+					'nomor_2'  => $this->input->post('e_nomor_2'),
+					'imei1'  => $this->input->post('e_imei_1'),
+					'imei2'  => $this->input->post('e_imei_2'),
+					'inet'  => $this->input->post('e_nomor_inet'),
+					'vendor'  => $this->input->post('e_vendor'),
+					'kapasitas'  => $this->input->post('e_kapasitas'),
+					'status'  => $this->input->post('e_status'),
+					'keterangan'  => $this->input->post('e_keterangan'),
+					'updatedAt' => date('Y-m-d H:i:s'),
+					'updatedBy'	=> $this->session->userdata('name')
+				);
+			}
 			$action = $this->model_datamidi->update($data_id, $data, 'datamidi');
 			echo json_encode($action);
 		} else {
@@ -138,7 +205,6 @@ class Datamidi extends CI_Controller
 					'vendor'  => $this->input->post('vendor'),
 					'kapasitas'  => $this->input->post('kapasitas'),
 					'status'  => $this->input->post('status'),
-					'dokumen'  => $this->input->post('dokumen'),
 					'keterangan'  => $this->input->post('keterangan'),
 					'createdAt' => date('Y-m-d H:i:s'),
 					'createdBy'	=> $this->session->userdata('name')
@@ -170,7 +236,6 @@ class Datamidi extends CI_Controller
 					'vendor'  => $this->input->post('vendor'),
 					'kapasitas'  => $this->input->post('kapasitas'),
 					'status'  => $this->input->post('status'),
-					'dokumen'  => $this->input->post('dokumen'),
 					'keterangan'  => $this->input->post('keterangan'),
 					'createdAt' => date('Y-m-d H:i:s'),
 					'createdBy'	=> $this->session->userdata('name')

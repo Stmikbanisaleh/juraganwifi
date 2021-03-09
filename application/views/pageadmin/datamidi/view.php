@@ -59,7 +59,7 @@
 										<label>Telp IT Cabang</label>
 										<input type="text" id="telp_it_cabang" name="telp_it_cabang" class="form-control" placeholder="Telp IT Cabang">
 									</div>
-							
+
 									<div class="form-group">
 										<label>PIC Aktivasi</label>
 										<input type="text" id="pic_aktivasi" name="pic_aktivasi" class="form-control" placeholder="PIC Aktivasi">
@@ -76,7 +76,7 @@
 								<div class="card-body">
 									<b>PERANGKAT</b>
 									<hr>
-				
+
 
 									<div class="form-group">
 										<label>Media Koneksi</label>
@@ -129,17 +129,17 @@
 									</div>
 
 									<div class="form-group">
-										<label>Noor MSISDN 2</label>										
+										<label>Nomor MSISDN 2</label>
 										<input type="text" id="nomor_2" name="nomor_2" class="form-control" placeholder="NOMOR MSISDN 2">
-									</label>
+									</div>
 
 									<div class="form-group">
-										<label>IMEI GSM 1</label>
+										<label>IMEI 1</label>
 										<input type="text" id="imei_1" name="imei_1" class="form-control" placeholder="IMEI-GSM 1">
 									</div>
 
 									<div class="form-group">
-										<label>IMEI GSM 2</label>
+										<label>IMEI 2</label>
 										<input type="text" id="imei_2" name="imei_2" class="form-control" placeholder="IMEI-GSM 2">
 									</div>
 
@@ -172,7 +172,7 @@
 										<label>Status</label>
 										<select class="form-control select2" style="width: 100%;" name="status" id="status">
 											<option value="" selected="selected">-- Pilih --</option>
-											<option value="1" >-- Active --</option>
+											<option value="1">-- Active --</option>
 											<option value="0">-- Inactive --</option>
 										</select>
 									</div>
@@ -219,81 +219,103 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="card-body">
+									<b>DATA TOKO</b>
+									<hr>
 									<div class="form-group">
-										<label>Nama Inventori</label>
-										<input required type="hidden" id="e_id" name="e_id" class="form-control">
-										<input required type="text" id="e_nama" name="e_nama" class="form-control" placeholder="Nama Inventori">
+										<label>Kode Toko</label>
+										<input required type="hidden" id="e_id" name="e_id" class="form-control" placeholder="Kode Toko">
+										<input required type="text" id="e_kode" name="e_kode" class="form-control" placeholder="Kode Toko">
 									</div>
 
 									<div class="form-group">
-										<label>Nomor Inventori</label>
-										<input required type="text" id="e_nomor" name="e_nomor" class="form-control" placeholder="Nomor Inventori">
-									</div>
-
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-tag"></i></span>
-										</div>
-										<input type="text" id="e_label" name="e_label" class="form-control" placeholder="Label Inventori">
+										<label>Nama Toko</label>
+										<input required type="text" id="e_nama" name="e_nama" class="form-control" placeholder="Nama Toko">
 									</div>
 
 									<div class="form-group">
-										<label>Kategori Inventori</label>
-										<select class="form-control select2" style="width: 100%;" name="e_kategori" id="e_kategori">
-											<option selected="selected">-- Pilih --</option>
-											<?php foreach ($mykategori as $value) { ?>
-												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
-											<?php } ?>
-										</select>
+										<label>Alamat Toko</label>
+										<textarea type="text" id="e_alamat" name="e_alamat" class="form-control" placeholder="Alamat Toko"></textarea>
 									</div>
 
 									<div class="form-group">
-										<label>Tanggal Pembelian</label>
-										<input type="date" id="e_tglpembelian" name="e_tglpembelian" class="form-control" placeholder="Tanggal Pembelian"></input>
+										<label>Titik Kordinat</label>
+										<input type="text" id="e_titik_kordinat" name="e_titik_kordinat" class="form-control" placeholder="Titik Kordinat">
 									</div>
 
 									<div class="form-group">
-										<label>Fungsi</label>
-										<input type="text" id="e_fungsi" name="e_fungsi" class="form-control" placeholder="Fungsi"></input>
+										<label>Nomor Telp Toko</label>
+										<input type="text" id="e_telp_toko" name="e_telp_toko" class="form-control" placeholder="Nomor Telp Toko">
 									</div>
 
 									<div class="form-group">
-										<label>Ukuran</label>
-										<input type="text" id="e_ukuran" name="e_ukuran" class="form-control" placeholder="Ukuran"></input>
+										<label>Nama Pejabat Toko</label>
+										<input type="text" id="e_nama_pejabat_toko" name="e_nama_pejabat_toko" class="form-control" placeholder="Nama Pejabat Toko">
 									</div>
 
 									<div class="form-group">
-										<label>Merek Perangkat</label>
-										<select class="form-control select2" style="width: 100%;" name="e_merek" id="e_merek">
-											<option selected="selected">-- Pilih --</option>
-											<?php foreach ($mymerek as $value) { ?>
-												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
-											<?php } ?>
-										</select>
+										<label>Telp Pejabat Toko</label>
+										<input type="text" id="e_telp_pejabat" name="e_telp_pejabat" class="form-control" placeholder="Telp Pejabat Toko">
 									</div>
 
 									<div class="form-group">
-										<label>Type</label>
-										<input type="text" id="e_type" name="e_type" class="form-control" placeholder="Type"></input>
+										<label>Nama IT Cabang</label>
+										<input type="text" id="e_nama_it_cabang" name="e_nama_it_cabang" class="form-control" placeholder="Nama IT Cabang">
+									</div>
+
+									<div class="form-group">
+										<label>Telp IT Cabang</label>
+										<input type="text" id="e_telp_it_cabang" name="e_telp_it_cabang" class="form-control" placeholder="Telp IT Cabang">
+									</div>
+
+									<div class="form-group">
+										<label>PIC Aktivasi</label>
+										<input type="text" id="e_pic_aktivasi" name="e_pic_aktivasi" class="form-control" placeholder="PIC Aktivasi">
+									</div>
+
+									<div class="form-group">
+										<label>Tanggal Aktivasi</label>
+										<input type="date" id="e_tgl_aktivasi" name="e_tgl_aktivasi" class="form-control" placeholder="Serial Number">
 									</div>
 								</div>
 								<!-- /.card-body -->
 							</div>
 							<div class="col-md-6">
 								<div class="card-body">
+									<b>PERANGKAT</b>
+									<hr>
 									<div class="form-group">
-										<label>Status Kepemilikan</label>
-										<select class="form-control select2" style="width: 100%;" name="e_statuskepemilikan" id="e_statuskepemilikan">
+										<label>Media Koneksi</label>
+										<select class="form-control select2" style="width: 100%;" name="e_media_koneksi" id="e_media_koneksi">
 											<option selected="selected">-- Pilih --</option>
-											<?php foreach ($mystatuskepemilikan as $value) { ?>
+											<?php foreach ($mymediakoneksi as $value) { ?>
 												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
 											<?php } ?>
 										</select>
 									</div>
 
 									<div class="form-group">
-										<label>Serial Number</label>
-										<input type="text" id="e_serialnumber" name="e_serialnumber" class="form-control" placeholder="Serial Number">
+										<label>Jenis Perangkat</label>
+										<select class="form-control select2" style="width: 100%;" name="e_jenis_perangkat" id="e_jenis_perangkat">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($myjenisperangkat as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Type Perangkat</label>
+										<input type="text" id="e_type_perangkat" name="e_type_perangkat" class="form-control" placeholder="Type Perangkat">
+									</div>
+
+									<div class="form-group">
+										<label>Merek Perangkat</label>
+										<select class="form-control select2" style="width: 100%;" name="e_merek_perangkat" id="e_merek_perangkat">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($mymerekperangkat as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
 									</div>
 
 									<div class="form-group">
@@ -302,18 +324,67 @@
 									</div>
 
 									<div class="form-group">
-										<label>Alokasi</label>
-										<input type="text" id="e_alokasi" name="e_alokasi" class="form-control" placeholder="Alokasi">
+										<label>Serial Number</label>
+										<input type="text" id="e_serial_number" name="e_serial_number" class="form-control" placeholder="Serial Number">
 									</div>
 
 									<div class="form-group">
-										<label>Penanggung Jawab</label>
-										<input type="text" id="e_penanggungjawab" name="e_penanggungjawab" class="form-control" placeholder="Penanggung Jawab">
+										<label>Nomor MSISDN 1</label>
+										<input type="text" id="e_nomor_1" name="e_nomor_1" class="form-control" placeholder="NOMOR MSISDN 1">
 									</div>
 
 									<div class="form-group">
-										<label>File</label>
-										<input type="file" id="e_foto" name="e_foto" class="form-control" placeholder="Penanggung Jawab">
+										<label>Nomor MSISDN 2</label>
+										<input type="text" id="e_nomor_2" name="e_nomor_2" class="form-control" placeholder="NOMOR MSISDN 2">
+									</div>
+
+									<div class="form-group">
+										<label>IMEI 1</label>
+										<input type="text" id="e_imei_1" name="e_imei_1" class="form-control" placeholder="IMEI-GSM 1">
+									</div>
+
+									<div class="form-group">
+										<label>IMEI 2</label>
+										<input type="text" id="e_imei_2" name="e_imei_2" class="form-control" placeholder="IMEI-GSM 2">
+									</div>
+
+									<div class="form-group">
+										<label>Vendor</label>
+										<select class="form-control select2" style="width: 100%;" name="e_vendor" id="e_vendor">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($myvendor as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>INET</label>
+										<select class="form-control select2" style="width: 100%;" name="e_nomor_inet" id="e_nomor_inet">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($myinet as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Kapasitas</label>
+										<input type="text" id="e_kapasitas" name="e_kapasitas" class="form-control" placeholder="Kapasitas">
+									</div>
+
+									<div class="form-group">
+										<label>Status</label>
+										<select class="form-control select2" style="width: 100%;" name="e_status" id="e_status">
+											<option value="" selected="selected">-- Pilih --</option>
+											<option value="1">-- Active --</option>
+											<option value="0">-- Inactive --</option>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Dokumen</label>
+										<input type="file" id="e_dokumen" name="e_dokumen" class="form-control">
 									</div>
 
 									<div class="form-group">
@@ -551,7 +622,13 @@
 				var html = '';
 				var i = 0;
 				var no = 1;
+				var status = '';
 				for (i = 0; i < data.length; i++) {
+					if (data[i].status == 1 ) {
+						status = '<td class="project-state"><span class="badge badge-success"> Active </span></td>'
+					} else {
+						status = '<td class="project-state"><span class="badge badge-danger"> Inactive </span></td>'
+					}
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
 						'<td class="text-left">' + data[i].kode + '</td>' +
@@ -577,7 +654,7 @@
 						'<td class="text-left">' + data[i].nama_vendor + '</td>' +
 						'<td class="text-left">' + data[i].nama_inet + '</td>' +
 						'<td class="text-left">' + data[i].kapasitas + '</td>' +
-						'<td class="text-left">' + data[i].status + '</td>' +
+						status+
 						'<td class="text-left">' +
 						'   <a href="<?php echo base_url() . 'assets/inventori/' ?>' + data[i].dokumen + '" target="_blank" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-download"> </i>  Download </a>' +
@@ -628,22 +705,32 @@
 			success: function(data) {
 				$('#e_id').val(data[0].id);
 				$('#e_nama').val(data[0].nama);
-				$('#e_nomor').val(data[0].nomor);
-				$('#e_label').val(data[0].label);
+				$('#e_kode').val(data[0].kode);
+				$('#e_alamat').val(data[0].alamat);
 				$('#e_keterangan').val(data[0].keterangan);
-				$('#e_kategori').val(data[0].kategori).select2();
-				$('#e_tglpembelian').val(data[0].tgl_pembelian);
-				$('#e_fungsi').val(data[0].fungsi);
-				$('#e_ukuran').val(data[0].ukuran);
-				$('#e_merek').val(data[0].merek).select2();
-				$('#e_type').val(data[0].type);
-				$('#e_statuskepemilikan').val(data[0].status_kepemilikan).select2();
-				$('#e_serialnumber').val(data[0].serial_number);
+				$('#e_titik_kordinat').val(data[0].titik_kordinat);
+				$('#e_telp_toko').val(data[0].telp_toko);
+				$('#e_nama_pejabat_toko').val(data[0].pejabat_toko);
+				$('#e_telp_pejabat').val(data[0].telp_pejabat_toko);
+				$('#e_nama_it_cabang').val(data[0].nama_it_cabang);
+				$('#e_telp_it_cabang').val(data[0].telp_it_cabang);
+				$('#e_pic_aktivasi').val(data[0].pic_aktivasi);
+				$('#e_tgl_aktivasi').val(data[0].tgl_aktivasi);
+				$('#e_media_koneksi').val(data[0].media_koneksi).select2();
+				$('#e_jenis_perangkat').val(data[0].jenis_perangkat).select2();
+				$('#e_merek_perangkat').val(data[0].merek_perangkat).select2();
+				$('#e_keterangan').val(data[0].keterangan);
 				$('#e_macaddress').val(data[0].mac_address);
-				$('#e_alokasi').val(data[0].alokasi);
-				$('#e_penanggungjawab').val(data[0].penanggung_jawab);
-				$('#e_keterangan').val(data[0].keterangan);
-
+				$('#e_serial_number').val(data[0].serial_number);
+				$('#e_nomor_1').val(data[0].nomor_1);
+				$('#e_nomor_2').val(data[0].nomor_2);
+				$('#e_imei_1').val(data[0].imei1);
+				$('#e_imei_2').val(data[0].imei2);
+				$('#e_vendor').val(data[0].vendor).select2();
+				$('#e_nomor_inet').val(data[0].inet).select2();
+				$('#e_status').val(data[0].status).select2();
+				$('#e_type_perangkat').val(data[0].type_perangkat);
+				$('#e_kapasitas').val(data[0].kapasitas);
 			}
 		});
 	});
@@ -652,26 +739,6 @@
 		$("#formEdit").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
-			rules: {
-				e_nama: {
-					required: true
-				},
-
-				e_keterangan: {
-					required: true
-				},
-
-			},
-			messages: {
-				e_nama: {
-					required: "Wajib diisi!"
-				},
-
-				e_keterangan: {
-					required: "Wajib diisi!"
-				},
-
-			},
 			submitHandler: function(form) {
 				$('#btn_edit').html('Sending..');
 				$.ajax({

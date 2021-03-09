@@ -11,10 +11,8 @@
 							</button>
 						</div>
 						<div class="card-body">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nama Operator</label>
 								<input required type="text" id="nama" name="nama" class="form-control" placeholder="Nama Operator">
 							</div>
 
@@ -28,17 +26,13 @@
 								</select>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cog"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-home"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Alamat</label>
 								<textarea type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat"></textarea>
 							</div>
 						</div>
@@ -71,25 +65,19 @@
 							</button>
 						</div>
 						<div class="card-body">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Nama Operator</label>
 								<input required type="hidden" id="e_id" name="e_id">
 								<input required type="text" id="e_nama" name="e_nama" class="form-control" placeholder="Nama Operator">
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-cog"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Keterangan</label>
 								<textarea type="text" id="e_keterangan" name="e_keterangan" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-home"></i></span>
-								</div>
+							<div class="form-group">
+								<label>Alamat</label>
 								<textarea type="text" id="e_alamat" name="e_alamat" class="form-control" placeholder="Alamat"></textarea>
 							</div>
 						</div>
@@ -136,12 +124,6 @@
 						</th>
 						<th class="text-center">
 							Keterangan
-						</th>
-						<th class="text-center">
-							Created By
-						</th>
-						<th class="text-center">
-							Created Date
 						</th>
 						<th style="width: 16%" class="text-center">
 							Action
@@ -266,8 +248,6 @@
 						'<td class="text-left">' + data[i].name + '</td>' +
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						'<td class="text-left">' + data[i].alamat + '</td>' +
-						'<td class="text-left">' + data[i].createdBy + '</td>' +
-						'<td class="text-left">' + data[i].createdAt + '</td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +

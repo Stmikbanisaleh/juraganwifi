@@ -1,6 +1,6 @@
 <?php
 
-class Model_customer extends CI_model
+class Model_data_voip extends CI_model
 {
 
     public function viewOrdering($table, $order, $ordering)
@@ -11,27 +11,27 @@ class Model_customer extends CI_model
 
 	public function viewOrderingCustom()
     {
-        return $this->db->query("select a.* , b.name as nama_jenis_layanan, 
-		c.nama as nama_media_koneksi, d.nama as nama_kepemilikan_tempat , e.nama as nama_kepemilikan_perangkat,
-		f.nama as nama_jenis_tempat, g.nama as nama_jenis_perangkat, h.nama as nama_merek_perangkat
-		from customer a
-		join package_item b on a.jenis_layanan = b.id
+        return $this->db->query("select a.*,b.nama as nama_vendor,c.nama as nama_media_koneksi,
+		d.nama as nama_jenis_perangkat,e.nama as nama_merek,f.nama as nama_kepemilikan from data_pelanggan_voip a 
+		join vendor_detail b on a.vendor = b.id
 		join media_koneksi c on a.media_koneksi = c.id
-		join jenis_kepemilikan d on a.kepemilikan_tempat  = d.id
-		join jenis_kepemilikan_perangkat e on a.kepemilikan_perangkat = e.id
-		join jenis_tempat f on a.jenis_tempat = f.id
-		join jenis_perangkat g on a.jenis_perangkat = g.id
-		join merek_perangkat h on a.merek_perangkat = h.id
-		order by a.id desc");
+		join jenis_perangkat d on a.jenis_perangkat = d.id
+		join merek_perangkat e on a.merek_perangkat = e.id
+		join jenis_kepemilikan_perangkat f on a.status_kepemilikan_perangkat = f.id
+		");
     }
 
-
+	public function viewWhere($table, $data)
+    {
+        $this->db->where($data);
+        return $this->db->get($table);
+	}
+	
 	public function checkDuplicate($data, $table)
     {
-        $this->db->where('email',$data['email']);
+        $this->db->where('nomor',$data['nomor']);
         return $this->db->get($table)->num_rows();
     }
-
 
     public function viewWhereOrdering($table, $data, $order, $ordering)
     {
@@ -43,6 +43,7 @@ class Model_customer extends CI_model
     public function view_where($table, $data)
     {
         $this->db->where($data);
+        $this->db->where('isdeleted !=', 1);
         return $this->db->get($table);
 	}
 	
