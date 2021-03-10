@@ -41,6 +41,14 @@
 		});
 	}
 
+	function swalNotMatch(){
+		Swal.fire({
+		  icon: 'error',
+		  title: 'Gagal',
+		  text: 'Password dengan Password Confirm tidak sama',
+		});
+	}
+
 	function swalDatanull(){
 		Swal.fire({
 		  icon: 'error',
