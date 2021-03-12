@@ -55,8 +55,8 @@ class Datainventori extends CI_Controller
 			$config['upload_path'] = './assets/inventori';
 			$config['overwrite'] = TRUE;
 			$config['encrypt_name'] = TRUE;
-			$config["allowed_types"] = 'jpg';
-			$config["max_size"] = 4096;
+			$config["allowed_types"] = 'jpg|jpeg|png|gif|pdf';
+			$config["max_size"] = 40960;
 			$this->load->library('upload', $config);
 			$do_upload = $this->upload->do_upload("e_foto");
 			if($do_upload){
@@ -146,7 +146,7 @@ class Datainventori extends CI_Controller
 			$config['upload_path'] = './assets/inventori';
 			$config['overwrite'] = TRUE;
 			$config['encrypt_name'] = TRUE;
-			$config["allowed_types"] = 'jpg';
+			$config["allowed_types"] = 'jpg|jpeg|png|gif|pdf';
 			$config["max_size"] = 4096;
 			$this->load->library('upload', $config);
 			$do_upload = $this->upload->do_upload("foto");

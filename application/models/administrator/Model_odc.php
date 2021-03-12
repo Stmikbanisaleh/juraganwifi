@@ -10,6 +10,11 @@ class Model_odc extends CI_model
         return $this->db->get($table);
     }
 
+	public function viewOrderingCustom($table, $order, $ordering)
+    {
+        return $this->db->query("Select a.*,b.nama as nama_wilayah from odc a left join wilayah b on a.wilayah = b.id");
+    }
+
     public function viewWhereOrdering($table, $data, $order, $ordering)
     {
         $this->db->where($data);

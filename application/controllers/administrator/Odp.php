@@ -34,7 +34,7 @@ class Odp extends CI_Controller
 	public function tampil()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
-			$my_data = $this->model_odp->viewOrdering('odp', 'id', 'desc')->result_array();
+			$my_data = $this->model_odp->viewOrderingCustom('odp', 'id', 'desc')->result_array();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pageadmin/login'); //Memanggil function render_view

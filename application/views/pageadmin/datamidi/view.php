@@ -632,6 +632,12 @@
 				var no = 1;
 				var status = '';
 				for (i = 0; i < data.length; i++) {
+					var foto = '';
+					if (data[i].dokumen != null) {
+						foto = '<td ><a href="<?php echo site_url('/assets/datamidi/') ?>' + data[i].dokumen + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/datamidi/') ?>' + data[i].dokumen + '""></a></td>'
+					} else {
+						foto = '<td class="text-left"> No Image</td>'
+					}
 					if (data[i].status == 1 ) {
 						status = '<td class="project-state"><span class="badge badge-success"> Active </span></td>'
 					} else {
@@ -663,11 +669,7 @@
 						'<td class="text-left">' + data[i].nama_inet + '</td>' +
 						'<td class="text-left">' + data[i].kapasitas + '</td>' +
 						status+
-						'<td class="text-left">' +
-						'   <a href="<?php echo base_url() . 'assets/inventori/' ?>' + data[i].dokumen + '" target="_blank" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-download"> </i>  Download </a>' +
-						'</a> &nbsp' +
-						'</td>' +
+						foto+
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
@@ -749,11 +751,15 @@
 			validClass: "my-valid-class",
 			submitHandler: function(form) {
 				$('#btn_edit').html('Sending..');
+				formdata = new FormData(form);
 				$.ajax({
 					url: "<?php echo base_url('administrator/datamidi/update') ?>",
 					type: "POST",
-					data: $('#formEdit').serialize(),
-					dataType: "json",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
 					success: function(response) {
 						$('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
 							'Ubah');
@@ -765,7 +771,10 @@
 						} else if (response == 401) {
 							swalIdDouble();
 						} else {
-							swalEditFailed();
+							document.getElementById("formEdit").reset();
+							swalEditSuccess();
+							show_data();
+							$('#modalEdit').modal('hide');
 						}
 					}
 				});

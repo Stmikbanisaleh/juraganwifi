@@ -44,6 +44,10 @@
 										<label>Alamat</label>
 										<textarea type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat"></textarea>
 									</div>
+									<div class="form-group">
+										<label>Foto</label>
+										<input type="file" id="foto" name="foto" class="form-control" placeholder="Foto"></input>
+									</div>
 									<hr>
 									<b>PERANGKAT</b>
 									<hr>
@@ -273,6 +277,11 @@
 										<label>Alamat</label>
 										<textarea type="text" id="e_alamat" name="e_alamat" class="form-control" placeholder="Alamat"></textarea>
 									</div>
+
+									<div class="form-group">
+										<label>Foto</label>
+										<input type="file" id="e_foto" name="e_foto" class="form-control" placeholder="Alamat"></input>
+									</div>
 									<hr>
 									<b>PERANGKAT</b>
 									<hr>
@@ -496,6 +505,9 @@
 						<th style="width: 15%" class="text-center">
 							Status User
 						</th>
+						<th  class="text-center">
+							Foto
+						</th>
 						<th style="width: 8%" class="text-center">
 							Jenis Layanan
 						</th>
@@ -551,9 +563,6 @@
 							Kode ODC
 						</th>
 						<th style="width: 8%" class="text-center">
-							Dokumen
-						</th>
-						<th style="width: 8%" class="text-center">
 							Nama Teknisi
 						</th>
 						<th style="width: 16%" class="text-center">
@@ -577,11 +586,15 @@
 			validClass: "my-valid-class",
 			submitHandler: function(form) {
 				$('#btn_simpan').html('Sending..');
+				formdata = new FormData(form);
 				$.ajax({
 					url: "<?php echo base_url('administrator/customer/simpan') ?>",
 					type: "POST",
-					data: $('#formTambah').serialize(),
-					dataType: "json",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
 					success: function(response) {
 						$('#btn_simpan').html('<i class="ace-icon fa fa-save"></i>' +
 							'Simpan');
@@ -595,7 +608,14 @@
 								allowClear: true
 							}); // re-init to show default status
 						} else {
-							swalInputFailed();
+							document.getElementById("formTambah").reset();
+							swalInputSuccess();
+							show_data();
+							$('#modalTambah').modal('hide');
+							$("select.select2").select2('data', {}); // clear out values selected
+							$("select.select2").select2({
+								allowClear: true
+							}); // re-init to show default status
 							
 						}
 					}
@@ -651,6 +671,14 @@
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
 					var status = '';
+					var foto = '';
+
+					if(data[i].dokumen != null){
+						foto =	'<td ><a href="<?php echo site_url('/assets/customer/') ?>' + data[i].dokumen + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/customer/') ?>' + data[i].dokumen + '""></a></td>'
+					} else {
+						foto = '<td class="text-left"> No Image</td>' 
+					}
+
 					if (data[i].status == '1') {
 						status = '<td class="text-left">'+
 						'   <button  class="btn btn-primary btn-sm item_non"  data-id="' + data[i].id + '">' +
@@ -673,6 +701,7 @@
 						'<td class="text-left">' + data[i].no_ktp + '</td>' +
 						'<td class="text-left">' + data[i].address + '</td>' +
 						status+
+						foto +
 						'<td class="text-left">' + data[i].nama_jenis_layanan + '</td>' +
 						'<td class="text-left">' + data[i].nama_media_koneksi + '</td>' +
 						'<td class="text-left">' + data[i].nama_kepemilikan_tempat + '</td>' +
@@ -691,7 +720,6 @@
 						'<td class="text-left">' + data[i].olt + '</td>' +
 						'<td class="text-left">' + data[i].kodp + '</td>' +
 						'<td class="text-left">' + data[i].kodc + '</td>' +
-						'<td class="text-left">' + data[i].dokumen + '</td>' +
 						'<td class="text-left">' + data[i].nama_teknisi + '</td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
@@ -897,11 +925,15 @@
 			},
 			submitHandler: function(form) {
 				$('#btn_edit').html('Sending..');
+				formdata = new FormData(form);
 				$.ajax({
 					url: "<?php echo base_url('administrator/customer/update') ?>",
 					type: "POST",
-					data: $('#formEdit').serialize(),
-					dataType: "json",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
 					success: function(response) {
 						$('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
 							'Ubah');
@@ -913,7 +945,10 @@
 						} else if (response == 401) {
 							swalIdDouble();
 						} else {
-							swalEditFailed();
+							document.getElementById("formEdit").reset();
+							swalEditSuccess();
+							show_data();
+							$('#modalEdit').modal('hide');
 						}
 					}
 				});

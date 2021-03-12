@@ -9,6 +9,10 @@ class Model_odp extends CI_model
         $this->db->order_by($order, $ordering);
         return $this->db->get($table);
     }
+	 function viewOrderingCustom($table, $order, $ordering)
+    {
+        return $this->db->query("select a.*,b.nama as nama_wilayah from odp a left join wilayah b on a.wilayah = b.id");
+    }
 
     public function viewWhereOrdering($table, $data, $order, $ordering)
     {

@@ -312,17 +312,20 @@
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
+					var foto = '';
+					if (data[i].dokumen != null) {
+						foto = '<td ><a href="<?php echo site_url('/assets/odp/') ?>' + data[i].dokumen + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/odp/') ?>' + data[i].dokumen + '""></a></td>'
+					} else {
+						foto = '<td class="text-left"> No Image</td>'
+					}
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
 						'<td class="text-left">' + data[i].kode + '</td>' +
-						'<td class="text-left">' + data[i].wilayah + '</td>' +
+						'<td class="text-left">' + data[i].nama_wilayah + '</td>' +
 						'<td class="text-left">' + data[i].nomor_tiang + '</td>' +
 						'<td class="text-left">' + data[i].titik_kordinat + '</td>' +
 						'<td class="text-left">' + data[i].jumlah_port + '</td>' +
-						'<td class="text-left">' +
-						'   <a href="<?php echo base_url().'assets/odp/'?>'+data[i].dokumen+'" target="_blank" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-download"> </i>  Download </a>' +
-						'</a> &nbsp' +
+						foto+
 						 '</td>' +
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						'<td class="project-actions text-right">' +

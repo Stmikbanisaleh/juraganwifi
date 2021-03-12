@@ -463,11 +463,7 @@
 						'<td class="text-left">' + data[i].nama_ketua_rw + '</td>' +
 						'<td class="text-left">' + data[i].telp_ketua_rw + '</td>' +
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
-						'<td class="text-left">' +
-						'   <button  class="btn btn-primary btn-sm item_image"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-folder"> </i>  Edit </a>' +
-						'</button> &nbsp' +
-						 '</td>' +
+						'<td ><a href="<?php echo site_url('/assets/wilayah/') ?>' + data[i].dokumen_mou + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/wilayah/') ?>' + data[i].dokumen_mou + '""></a></td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +

@@ -428,11 +428,7 @@
 						'<td class="text-left">' + data[i].serial_number + '</td>' +
 						'<td class="text-left">' + data[i].mac_address + '</td>' +
 						'<td class="text-left">' + data[i].penanggung_jawab + '</td>' +
-						'<td class="text-left">' +
-						'   <a href="<?php echo base_url() . 'assets/inventori/' ?>' + data[i].foto + '" target="_blank" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-download"> </i>  Download </a>' +
-						'</a> &nbsp' +
-						'</td>' +
+						'<td ><a href="<?php echo site_url('/assets/inventori/') ?>' + data[i].foto + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/inventori/') ?>' + data[i].foto + '""></a></td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +
@@ -503,11 +499,15 @@
 			validClass: "my-valid-class",
 			submitHandler: function(form) {
 				$('#btn_edit').html('Sending..');
+				formdata = new FormData(form);
 				$.ajax({
 					url: "<?php echo base_url('administrator/datainventori/update') ?>",
 					type: "POST",
-					data: $('#formEdit').serialize(),
-					dataType: "json",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
 					success: function(response) {
 						$('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
 							'Ubah');
@@ -519,7 +519,10 @@
 						} else if (response == 401) {
 							swalIdDouble();
 						} else {
-							swalEditFailed();
+							document.getElementById("formEdit").reset();
+							swalEditSuccess();
+							show_data();
+							$('#modalEdit').modal('hide');
 						}
 					}
 				});
