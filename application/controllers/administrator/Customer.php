@@ -67,12 +67,15 @@ class Customer extends CI_Controller
 			'name'  => $this->input->post('e_nama'),
 			'no_ktp'  => $this->input->post('e_ktp'),
 			'email'  => $this->input->post('e_email'),
+			'status'  => $this->input->post('e_status'),
 			'no_services'  => $this->input->post('e_nomor_layanan'),
 			'no_wa'  => $this->input->post('e_telp'),
 			'address'  => $this->input->post('e_alamat'),
 			'panjang_kabel'  => $this->input->post('e_panjangkabel'),
 			'odp'  => $this->input->post('e_odp'),
 			'olt'  => $this->input->post('e_olt'),
+			'kodp'  => $this->input->post('e_kodp'),
+			'kodc'  => $this->input->post('e_kodc'),
 			'jenis_perangkat'  => $this->input->post('e_jenisperangkat'),
 			'merek_perangkat'  => $this->input->post('e_merekperangkat'),
 			'serial_number'  => $this->input->post('e_serialnumber'),
@@ -114,6 +117,7 @@ class Customer extends CI_Controller
                 'name'  => $this->input->post('nama'),
 				'no_ktp'  => $this->input->post('ktp'),
 				'email'  => $this->input->post('email'),
+				'status'  => 0,
 				'no_services'  => $this->input->post('nomor_layanan'),
 				'no_wa'  => $this->input->post('telp'),
 				'address'  => $this->input->post('alamat'),
@@ -127,6 +131,8 @@ class Customer extends CI_Controller
 				'jenis_layanan'  => $this->input->post('jenislayanan'),
 				'media_koneksi'  => $this->input->post('mediakoneksi'),
 				'tgl_registrasi'  => $this->input->post('tglregistrasi'),
+				'kodp'  => $this->input->post('kodp'),
+				'kodc'  => $this->input->post('kodc'),
 				'usernamepoe'  => $this->input->post('usernamepoe'),
 				'p_ppoe'  => $this->input->post('p_ppoe'),
 				'kepemilikan_perangkat'  => $this->input->post('kepemilikanperangkat'),
@@ -161,6 +167,40 @@ class Customer extends CI_Controller
                 'id'  => $this->input->post('id')
             );
             $action = $this->model_customer->delete($data_id, 'customer');
+            echo json_encode($action);
+        } else {
+            $this->load->view('pageadmin/login'); //Memanggil function render_view
+        }
+    }
+
+	public function aktif()
+    {
+        if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+
+            $data_id = array(
+                'id'  => $this->input->post('id')
+            );
+			$data = array(
+				'status'  => 1
+			);
+            $action = $this->model_customer->update($data_id,$data, 'customer');
+            echo json_encode($action);
+        } else {
+            $this->load->view('pageadmin/login'); //Memanggil function render_view
+        }
+    }
+
+	public function nonaktif()
+    {
+        if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+
+            $data_id = array(
+                'id'  => $this->input->post('id')
+            );
+			$data = array(
+				'status'  => 0
+			);
+            $action = $this->model_customer->update($data_id,$data, 'customer');
             echo json_encode($action);
         } else {
             $this->load->view('pageadmin/login'); //Memanggil function render_view

@@ -54,7 +54,7 @@
 									</div>
 
 									<div class="form-group">
-										<label>Merek Perangkat</label>
+										<label>Merk Perangkat</label>
 										<select class="form-control select2" style="width: 100%;" name="merek" id="merek">
 											<option selected="selected">-- Pilih --</option>
 											<?php foreach ($mymerek as $value) { ?>
@@ -108,7 +108,7 @@
 									</div>
 
 									<div class="form-group">
-									<label>Keterangan</label>
+										<label>Keterangan</label>
 										<textarea type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Keterangan"></textarea>
 									</div>
 								</div>
@@ -188,7 +188,7 @@
 									<div class="form-group">
 										<label>Merek Perangkat</label>
 										<select class="form-control select2" style="width: 100%;" name="e_merek" id="e_merek">
-											<option selected="selected">-- Pilih --</option>
+											<option value="" selected="selected">-- Pilih --</option>
 											<?php foreach ($mymerek as $value) { ?>
 												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
 											<?php } ?>
@@ -270,7 +270,7 @@
 		</div>
 		<br>
 		<div class="col-sm-2">
-			<button href="#modalTambah" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Data Inventori</button>
+			<button href="#modalTambah" id="modalTambah" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Data Inventori</button>
 		</div>
 		<br>
 		<div class="card-body p-0">
@@ -296,7 +296,7 @@
 							Fungsi
 						</th>
 						<th class="text-center">
-							Merek
+							Merk
 						</th>
 						<th class="text-center">
 							Serial Number
@@ -310,7 +310,7 @@
 						<th class="text-center">
 							Foto
 						</th>
-						<th style="width:16%" class="text-center">
+						<th style="width:18%" class="text-center">
 							Actions
 						</th>
 					</tr>
@@ -329,25 +329,6 @@
 		$("#formTambah").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
-			rules: {
-				nama: {
-					required: true
-				},
-
-				keterangan: {
-					required: true
-				},
-			},
-			messages: {
-
-				nama: {
-					required: "Wajib diisi!"
-				},
-
-				keterangan: {
-					required: "Wajib diisi!"
-				},
-			},
 			submitHandler: function(form) {
 				$('#btn_simpan').html('Sending..');
 				formdata = new FormData(form);
@@ -367,6 +348,11 @@
 							swalInputSuccess();
 							show_data();
 							$('#modalTambah').modal('hide');
+
+							$("select.select2").select2('data', {}); // clear out values selected
+							$("select.select2").select2({
+								allowClear: true
+							}); // re-init to show default status
 						} else if (response == 401) {
 							swalIdDouble();
 						} else {
@@ -374,6 +360,10 @@
 							swalInputSuccess();
 							show_data();
 							$('#modalTambah').modal('hide');
+							$("select.select2").select2('data', {}); // clear out values selected
+							$("select.select2").select2({
+								allowClear: true
+							}); // re-init to show default status
 						}
 					}
 				});
@@ -434,15 +424,15 @@
 						'<td class="text-left">' + data[i].label + '</td>' +
 						'<td class="text-left">' + data[i].tgl_pembelian + '</td>' +
 						'<td class="text-left">' + data[i].fungsi + '</td>' +
-						'<td class="text-left">' + data[i].merek + '</td>' +
+						'<td class="text-left">' + data[i].nama_merek + '</td>' +
 						'<td class="text-left">' + data[i].serial_number + '</td>' +
 						'<td class="text-left">' + data[i].mac_address + '</td>' +
 						'<td class="text-left">' + data[i].penanggung_jawab + '</td>' +
 						'<td class="text-left">' +
-						'   <a href="<?php echo base_url().'assets/inventori/'?>'+data[i].foto+'" target="_blank" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
+						'   <a href="<?php echo base_url() . 'assets/inventori/' ?>' + data[i].foto + '" target="_blank" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-download"> </i>  Download </a>' +
 						'</a> &nbsp' +
-						 '</td>' +
+						'</td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +
@@ -511,26 +501,6 @@
 		$("#formEdit").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
-			rules: {
-				e_nama: {
-					required: true
-				},
-
-				e_keterangan: {
-					required: true
-				},
-
-			},
-			messages: {
-				e_nama: {
-					required: "Wajib diisi!"
-				},
-
-				e_keterangan: {
-					required: "Wajib diisi!"
-				},
-
-			},
 			submitHandler: function(form) {
 				$('#btn_edit').html('Sending..');
 				$.ajax({
@@ -556,6 +526,7 @@
 			}
 		})
 	}
+
 
 	$(document).ready(function() {
 		show_data();

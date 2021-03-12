@@ -411,6 +411,10 @@
 							swalEditSuccess();
 							show_data();
 							$('#modalEdit').modal('hide');
+							$("select.select2").select2('data', {}); // clear out values selected
+							$("select.select2").select2({
+								allowClear: true
+							}); //
 						} else if (response == 401) {
 							swalIdDouble();
 						} else {

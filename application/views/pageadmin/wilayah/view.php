@@ -376,6 +376,10 @@
 							swalInputSuccess();
 							show_data();
 							$('#modalTambah').modal('hide');
+							$("select.select2").select2('data', {}); // clear out values selected
+							$("select.select2").select2({
+								allowClear: true
+							}); //
 						} else if (response == 401) {
 							swalIdDouble();
 						} else {
@@ -383,6 +387,10 @@
 							swalInputSuccess();
 							show_data();
 							$('#modalTambah').modal('hide');
+							$("select.select2").select2('data', {}); // clear out values selected
+							$("select.select2").select2({
+								allowClear: true
+							}); //
 						}
 					}
 				});
@@ -456,9 +464,9 @@
 						'<td class="text-left">' + data[i].telp_ketua_rw + '</td>' +
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						'<td class="text-left">' +
-						'   <a href="<?php echo base_url().'assets/wilayah/'?>'+data[i].dokumen_mou+'" target="_blank" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-download"> </i>  Download </a>' +
-						'</a> &nbsp' +
+						'   <button  class="btn btn-primary btn-sm item_image"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-folder"> </i>  Edit </a>' +
+						'</button> &nbsp' +
 						 '</td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +

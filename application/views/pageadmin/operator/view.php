@@ -17,23 +17,17 @@
 							</div>
 
 							<div class="form-group">
-								<label>Wilayah / Regional</label>
-								<select class="form-control select2" style="width: 100%;" name="wilayah" id="wilayah">
-									<option selected="selected">-- Pilih --</option>
-									<?php foreach ($mywilayah as $value) { ?>
-										<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
-									<?php } ?>
-								</select>
+								<label>Nama PPIC</label>
+								<input type="text" id="ppic" name="ppic" class="form-control" placeholder="Nama PPIC"></input>
+							</div>
+							<div class="form-group">
+								<label>Alamat</label>
+								<textarea type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat"></textarea>
 							</div>
 
 							<div class="form-group">
 								<label>Keterangan</label>
 								<textarea type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Keterangan"></textarea>
-							</div>
-
-							<div class="form-group">
-								<label>Alamat</label>
-								<textarea type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat"></textarea>
 							</div>
 						</div>
 						<!-- /.card-body -->
@@ -70,15 +64,18 @@
 								<input required type="hidden" id="e_id" name="e_id">
 								<input required type="text" id="e_nama" name="e_nama" class="form-control" placeholder="Nama Operator">
 							</div>
+							<div class="form-group">
+								<label>Nama PPIC</label>
+								<input type="text" id="e_ppic" name="e_ppic" class="form-control" placeholder="Nama PPIC"></input>
+							</div>
+							<div class="form-group">
+								<label>Alamat</label>
+								<textarea type="text" id="e_alamat" name="e_alamat" class="form-control" placeholder="Alamat"></textarea>
+							</div>
 
 							<div class="form-group">
 								<label>Keterangan</label>
 								<textarea type="text" id="e_keterangan" name="e_keterangan" class="form-control" placeholder="Keterangan"></textarea>
-							</div>
-
-							<div class="form-group">
-								<label>Alamat</label>
-								<textarea type="text" id="e_alamat" name="e_alamat" class="form-control" placeholder="Alamat"></textarea>
 							</div>
 						</div>
 						<!-- /.card-body -->
@@ -118,6 +115,9 @@
 						</th>
 						<th class="text-center">
 							Nama Operator
+						</th>
+						<th class="text-center">
+							Nama PPIC
 						</th>
 						<th class="text-center">
 							Alamat
@@ -186,6 +186,10 @@
 							swalInputSuccess();
 							show_data();
 							$('#modalTambah').modal('hide');
+							$("select.select2").select2('data', {}); // clear out values selected
+							$("select.select2").select2({
+								allowClear: true
+							}); //
 						} else if (response == 401) {
 							swalIdDouble();
 						} else {
@@ -246,8 +250,9 @@
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
 						'<td class="text-left">' + data[i].name + '</td>' +
-						'<td class="text-left">' + data[i].keterangan + '</td>' +
+						'<td class="text-left">' + data[i].ppic + '</td>' +
 						'<td class="text-left">' + data[i].alamat + '</td>' +
+						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +
@@ -292,6 +297,7 @@
 			success: function(data) {
 				$('#e_id').val(data[0].id);
 				$('#e_nama').val(data[0].name);
+				$('#e_ppic').val(data[0].ppic);
 				$('#e_keterangan').val(data[0].keterangan);
 				$('#e_alamat').val(data[0].alamat);
 			}

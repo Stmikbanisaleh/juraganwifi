@@ -39,7 +39,7 @@ class Datainventori extends CI_Controller
 	public function tampil()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
-			$my_data = $this->model_datainventori->viewOrdering('data_inventori', 'id', 'desc')->result_array();
+			$my_data = $this->model_datainventori->viewOrderingCustom('data_inventori', 'id', 'desc')->result_array();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pageadmin/login'); //Memanggil function render_view
@@ -55,7 +55,7 @@ class Datainventori extends CI_Controller
 			$config['upload_path'] = './assets/inventori';
 			$config['overwrite'] = TRUE;
 			$config['encrypt_name'] = TRUE;
-			$config["allowed_types"] = 'jpg|jpeg|png|gif|pdf';
+			$config["allowed_types"] = 'jpg';
 			$config["max_size"] = 4096;
 			$this->load->library('upload', $config);
 			$do_upload = $this->upload->do_upload("e_foto");
@@ -67,7 +67,7 @@ class Datainventori extends CI_Controller
 					'nomor'  => $this->input->post('e_nomor'),
 					'label'  => $this->input->post('e_label'),
 					'kategori'  => $this->input->post('e_kategori'),
-					'tgl_pembelian'  => $this->input->post('e_tgl_pembelian'),
+					'tgl_pembelian'  => $this->input->post('e_tglpembelian'),
 					'fungsi'  => $this->input->post('e_fungsi'),
 					'ukuran'  => $this->input->post('e_ukuran'),
 					'merek'  => $this->input->post('e_merek'),
@@ -88,7 +88,7 @@ class Datainventori extends CI_Controller
 					'nomor'  => $this->input->post('e_nomor'),
 					'label'  => $this->input->post('e_label'),
 					'kategori'  => $this->input->post('e_kategori'),
-					'tgl_pembelian'  => $this->input->post('e_tgl_pembelian'),
+					'tgl_pembelian'  => $this->input->post('e_tglpembelian'),
 					'fungsi'  => $this->input->post('e_fungsi'),
 					'ukuran'  => $this->input->post('e_ukuran'),
 					'merek'  => $this->input->post('e_merek'),
@@ -146,7 +146,7 @@ class Datainventori extends CI_Controller
 			$config['upload_path'] = './assets/inventori';
 			$config['overwrite'] = TRUE;
 			$config['encrypt_name'] = TRUE;
-			$config["allowed_types"] = 'jpg|jpeg|png|gif|pdf';
+			$config["allowed_types"] = 'jpg';
 			$config["max_size"] = 4096;
 			$this->load->library('upload', $config);
 			$do_upload = $this->upload->do_upload("foto");
@@ -179,7 +179,7 @@ class Datainventori extends CI_Controller
 					'nomor'  => $this->input->post('nomor'),
 					'label'  => $this->input->post('label'),
 					'kategori'  => $this->input->post('kategori'),
-					'tgl_pembelian'  => $this->input->post('tgl_pembelian'),
+					'tgl_pembelian'  => $this->input->post('tglpembelian'),
 					'fungsi'  => $this->input->post('fungsi'),
 					'ukuran'  => $this->input->post('ukuran'),
 					'merek'  => $this->input->post('merek'),

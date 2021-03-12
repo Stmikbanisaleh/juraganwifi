@@ -5,7 +5,7 @@
 				<form class="form-horizontal" role="form" id="formTambah">
 					<div class="card card-info">
 						<div class="modal-header">
-							<h4 class="modal-title">Add Customer</h4>
+							<h4 class="modal-title">Add Pelanggan</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -16,15 +16,14 @@
 									<b>PROFIL</b>
 									<hr>
 									<div class="form-group">
-										<label>Nama Customer</label>
-										<input required type="text" id="nama" name="nama" class="form-control" placeholder="Nama Customer">
-									</div>
-
-									<div class="form-group">
-										<label>Nomor Layanan</label>
+										<label>ID Pelanggan</label>
 										<input required type="text" id="nomor_layanan" name="nomor_layanan" class="form-control" placeholder="Nomor Layanan">
 									</div>
 
+									<div class="form-group">
+										<label>Nama Pelanggan</label>
+										<input required type="text" id="nama" name="nama" class="form-control" placeholder="Nama Customer">
+									</div>
 
 									<div class="form-group">
 										<label>NIK KTP</label>
@@ -63,6 +62,15 @@
 										<input type="number" id="olt" name="olt" class="form-control" placeholder="Nomor Port OLT">
 									</div>
 
+									<div class="form-group">
+										<label>Kode ODP</label>
+										<textarea type="text" id="kodp" name="kodp" class="form-control" placeholder="Kode ODP"></textarea>
+									</div>
+
+									<div class="form-group">
+										<label>Kode ODC</label>
+										<input type="number" id="kodc" name="kodc" class="form-control" placeholder="Kode ODC">
+									</div>
 
 									<div class="form-group">
 										<label>Jenis Perangkat</label>
@@ -227,7 +235,7 @@
 				<form class="form-horizontal" role="form" id="formEdit">
 					<div class="card card-info">
 						<div class="modal-header">
-							<h4 class="modal-title">Edit Customer</h4>
+							<h4 class="modal-title">Edit Pelanggan</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -238,17 +246,14 @@
 									<b>PROFIL</b>
 									<hr>
 									<div class="form-group">
-										<label>Nama Customer</label>
+										<label>ID Pelanggan</label>
+										<input required type="text" id="e_nomor_layanan" name="e_nomor_layanan" class="form-control" placeholder="Nomor Layanan">
+									</div>
+									<div class="form-group">
+										<label>Nama Pelanggan</label>
 										<input required type="hidden" id="e_id" name="e_id" >
 										<input required type="text" id="e_nama" name="e_nama" class="form-control" placeholder="Nama Customer">
 									</div>
-
-									<div class="form-group">
-										<label>Nomor Layanan</label>
-										<input required type="text" id="e_nomor_layanan" name="e_nomor_layanan" class="form-control" placeholder="Nomor Layanan">
-									</div>
-
-
 									<div class="form-group">
 										<label>NIK KTP</label>
 										<input required type="number" id="e_ktp" name="e_ktp" class="form-control" placeholder="NIK KTP">
@@ -286,6 +291,15 @@
 										<input type="number" id="e_olt" name="e_olt" class="form-control" placeholder="Nomor Port OLT">
 									</div>
 
+									<div class="form-group">
+										<label>Kode ODP</label>
+										<textarea type="text" id="e_kodp" name="e_kodp" class="form-control" placeholder="Kode ODP"></textarea>
+									</div>
+
+									<div class="form-group">
+										<label>Kode ODC</label>
+										<input type="number" id="e_kodc" name="e_kodc" class="form-control" placeholder="Kode ODC">
+									</div>
 
 									<div class="form-group">
 										<label>Jenis Perangkat</label>
@@ -446,12 +460,12 @@
 
 	<div class="card">
 		<div class="card-header">
-			<h3 class="card-title">Daftar Customer</h3>
+			<h3 class="card-title">Daftar Pelanggan</h3>
 		</div>
 		<br>
 		<div class="col-sm-2">
 			<button href="#modalTambah" type="button" role="button" data-toggle="modal" 
-			class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Customer</button>
+			class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Pelanggan</button>
 		</div>
 		<br>
 		<div class="card-body p-0">
@@ -478,6 +492,9 @@
 						</th>
 						<th style="width: 8%" class="text-center">
 							Alamat
+						</th>
+						<th style="width: 15%" class="text-center">
+							Status User
 						</th>
 						<th style="width: 8%" class="text-center">
 							Jenis Layanan
@@ -522,10 +539,19 @@
 							Tanggal Aktivasi
 						</th>
 						<th style="width: 8%" class="text-center">
-							ODP
+							PORT ODP
 						</th>
 						<th style="width: 8%" class="text-center">
-							OLT
+							PORT OLT
+						</th>
+						<th style="width: 8%" class="text-center">
+							Kode ODP
+						</th>
+						<th style="width: 8%" class="text-center">
+							Kode ODC
+						</th>
+						<th style="width: 8%" class="text-center">
+							Dokumen
 						</th>
 						<th style="width: 8%" class="text-center">
 							Nama Teknisi
@@ -564,8 +590,13 @@
 							swalInputSuccess();
 							show_data();
 							$('#modalTambah').modal('hide');
+							$("select.select2").select2('data', {}); // clear out values selected
+							$("select.select2").select2({
+								allowClear: true
+							}); // re-init to show default status
 						} else {
 							swalInputFailed();
+							
 						}
 					}
 				});
@@ -620,10 +651,18 @@
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
 					var status = '';
-					if (data[i].c_status == 'Aktif') {
-						status = '<td class="project-state"><span class="badge badge-success">' + data[i].c_status + '</span></td>'
+					if (data[i].status == '1') {
+						status = '<td class="text-left">'+
+						'   <button  class="btn btn-primary btn-sm item_non"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-check"> </i>  Aktif </button>' +
+						'</a> &nbsp' +
+						'</td>'
 					} else {
-						status = '<td class="project-state"><span class="badge badge-danger">' + data[i].c_status + '</span></td>'
+						status = '<td class="text-left">'+
+						'   <button  class="btn btn-danger btn-sm item_approve"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-times"> </i>  Non Aktif </button>' +
+						'</button> &nbsp' +
+						'</td>'
 					}
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
@@ -633,6 +672,7 @@
 						'<td class="text-left">' + data[i].no_wa + '</td>' +
 						'<td class="text-left">' + data[i].no_ktp + '</td>' +
 						'<td class="text-left">' + data[i].address + '</td>' +
+						status+
 						'<td class="text-left">' + data[i].nama_jenis_layanan + '</td>' +
 						'<td class="text-left">' + data[i].nama_media_koneksi + '</td>' +
 						'<td class="text-left">' + data[i].nama_kepemilikan_tempat + '</td>' +
@@ -649,6 +689,9 @@
 						'<td class="text-left">' + data[i].tgl_aktivasi + '</td>' +
 						'<td class="text-left">' + data[i].odp + '</td>' +
 						'<td class="text-left">' + data[i].olt + '</td>' +
+						'<td class="text-left">' + data[i].kodp + '</td>' +
+						'<td class="text-left">' + data[i].kodc + '</td>' +
+						'<td class="text-left">' + data[i].dokumen + '</td>' +
 						'<td class="text-left">' + data[i].nama_teknisi + '</td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
@@ -712,6 +755,74 @@
 		})
 	})
 
+	$('#show_data').on('click', '.item_approve', function() {
+		var id = $(this).data('id');
+		Swal.fire({
+			title: 'Apakah anda yakin?',
+			text: "Anda mengubah status pelanggan menjadi aktif",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Ya, Aktifkan!',
+			cancelButtonText: 'Batal'
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('administrator/customer/aktif') ?>",
+					async: true,
+					dataType: "JSON",
+					data: {
+						id: id,
+					},
+					success: function(data) {
+						show_data();
+						Swal.fire(
+							'Terupdate!',
+							'User Telah Aktif',
+							'success'
+						)
+					}
+				});
+			}
+		})
+	})
+
+	$('#show_data').on('click', '.item_non', function() {
+		var id = $(this).data('id');
+		Swal.fire({
+			title: 'Apakah anda yakin?',
+			text: "Anda mengubah status pelanggan menjadi aktif",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Ya, Non Aktifkan!',
+			cancelButtonText: 'Batal'
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('administrator/customer/nonaktif') ?>",
+					async: true,
+					dataType: "JSON",
+					data: {
+						id: id,
+					},
+					success: function(data) {
+						show_data();
+						Swal.fire(
+							'Terupdate!',
+							'User Telah Non Aktif',
+							'success'
+						)
+					}
+				});
+			}
+		})
+	})
+
 	//get data for update record
 	$('#show_data').on('click', '.item_edit', function() {
 		document.getElementById("formEdit").reset();
@@ -730,6 +841,7 @@
 				$('#e_nama').val(data[0].name);
 				$('#e_ktp').val(data[0].no_ktp);
 				$('#e_email').val(data[0].email);
+				$('#e_nomor_layanan').val(data[0].no_services);
 				$('#e_keterangan').val(data[0].keterangan);
 				$('#e_telp').val(data[0].no_wa);
 				$('#e_alamat').val(data[0].address);
@@ -744,6 +856,8 @@
 				$('#e_mediakoneksi').val(data[0].media_koneksi).select2();
 				$('#e_usernamepoe').val(data[0].usernamepoe);
 				$('#e_p_ppoe').val(data[0].p_ppoe);
+				$('#e_kodp').val(data[0].kodp);
+				$('#e_kodc').val(data[0].kodc);
 				$('#e_jenisipaddress').val(data[0].jenis_ipaddress).select2();
 				$('#e_wilayah').val(data[0].wilayah).select2();
 				$('#e_tglregistrasi').val(data[0].tgl_registrasi);

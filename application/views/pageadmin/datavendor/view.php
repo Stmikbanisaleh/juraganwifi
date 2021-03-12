@@ -264,6 +264,10 @@
 						
 							show_data();
 							$('#modalTambah').modal('hide');
+							$("select.select2").select2('data', {}); // clear out values selected
+							$("select.select2").select2({
+								allowClear: true
+							}); //
 						} else if (response == 401) {
 							swalIdDouble();
 						} else {
@@ -271,6 +275,10 @@
 							$('#modalTambah').modal('hide');
 							document.getElementById("formTambah").reset();
 							show_data();
+							$("select.select2").select2('data', {}); // clear out values selected
+							$("select.select2").select2({
+								allowClear: true
+							}); //
 						}
 					}
 				});

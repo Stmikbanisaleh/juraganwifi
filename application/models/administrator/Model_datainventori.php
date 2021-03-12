@@ -10,9 +10,15 @@ class Model_datainventori extends CI_model
         return $this->db->get($table);
     }
 
+	public function viewOrderingCustom($table, $order, $ordering)
+    {
+        return $this->db->query("select a.*,b.nama as nama_merek from data_inventori a join merek_perangkat b
+		on a.merek = b.id ");
+    }
+
 	public function checkDuplicate($data, $table)
     {
-        $this->db->where('nama',$data['nama']);
+        $this->db->where('nomor',$data['nomor']);
         return $this->db->get($table)->num_rows();
     }
 

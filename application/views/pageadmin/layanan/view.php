@@ -255,6 +255,10 @@
 							swalInputSuccess();
 							show_data();
 							$('#my-modal').modal('hide');
+							$("select.select2").select2('data', {}); // clear out values selected
+							$("select.select2").select2({
+								allowClear: true
+							}); //
 						} else {
 							swalInputFailed();
 						}

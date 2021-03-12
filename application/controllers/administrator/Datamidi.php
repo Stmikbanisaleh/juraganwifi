@@ -59,7 +59,7 @@ class Datamidi extends CI_Controller
 			$config['upload_path'] = './assets/datamidi';
 			$config['overwrite'] = TRUE;
 			$config['encrypt_name'] = TRUE;
-			$config["allowed_types"] = 'jpg|jpeg|png|gif|pdf';
+			$config["allowed_types"] = 'jpg';
 			$config["max_size"] = 4096;
 			$this->load->library('upload', $config);
 			$do_upload = $this->upload->do_upload("e_dokumen");
@@ -171,7 +171,7 @@ class Datamidi extends CI_Controller
 			$config['upload_path'] = './assets/datamidi';
 			$config['overwrite'] = TRUE;
 			$config['encrypt_name'] = TRUE;
-			$config["allowed_types"] = 'jpg|jpeg|png|gif|pdf';
+			$config["allowed_types"] = 'jpg';
 			$config["max_size"] = 4096;
 			$this->load->library('upload', $config);
 			$do_upload = $this->upload->do_upload("dokumen");
