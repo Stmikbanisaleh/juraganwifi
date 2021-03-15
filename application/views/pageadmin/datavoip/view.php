@@ -33,6 +33,32 @@
 									<div class="form-group">
 										<label>Limit Pemakaian</label>
 										<input type="text" id="limit" name="limit" class="form-control" placeholder="Limit Pemakaian"></input>
+										<input type="hidden" id="limit_v" required name="limit_v" placeholder="total penerimaan" class="form-control" />
+										<script language="JavaScript">
+										var rupiah3 = document.getElementById('limit');
+										rupiah3.addEventListener('keyup', function(e) {
+											rup = this.value.replace(/\D/g, '');
+											$('#limit_v').val(rup);
+											rupiah3.value = formatRupiah2(this.value, 'Rp. ');
+										});
+
+										function formatRupiah2(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah3 = split[0].substr(0, sisa),
+												ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan) {
+												separator = sisa ? '.' : '';
+												rupiah3 += separator + ribuan.join('.');
+											}
+
+											rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
+											return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
+										}
+									</script>
 									</div>
 
 									<div class="form-group">
@@ -155,6 +181,32 @@
 									<div class="form-group">
 										<label>Limit Pemakaian</label>
 										<input type="text" id="e_limit" name="e_limit" class="form-control" placeholder="Limit Pemakaian"></input>
+										<input type="hidden" id="e_limit_v" required name="e_limit_v" placeholder="total penerimaan" class="form-control" />
+										<script language="JavaScript">
+										var rupiah = document.getElementById('e_limit');
+										rupiah.addEventListener('keyup', function(e) {
+											rup = this.value.replace(/\D/g, '');
+											$('#e_limit_v').val(rup);
+											rupiah.value = formatRupiah(this.value, 'Rp. ');
+										});
+
+										function formatRupiah(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah = split[0].substr(0, sisa),
+												ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan) {
+												separator = sisa ? '.' : '';
+												rupiah += separator + ribuan.join('.');
+											}
+
+											rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+											return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+										}
+									</script>
 									</div>
 
 									<div class="form-group">
@@ -412,7 +464,7 @@
 						'<td class="text-left">' + data[i].nomor + '</td>' +
 						'<td class="text-left">' + data[i].nama + '</td>' +
 						'<td class="text-left">' + data[i].alamat + '</td>' +
-						'<td class="text-left">' + data[i].limit_pemakaian + '</td>' +
+						'<td class="text-left">' + data[i].Nominal + '</td>' +
 						'<td class="text-left">' + data[i].nama_vendor + '</td>' +
 						'<td class="text-left">' + data[i].nama_media_koneksi + '</td>' +
 						'<td class="text-left">' + data[i].nama_jenis_perangkat + '</td>' +
@@ -466,8 +518,12 @@
 				$('#e_nama').val(data[0].nama);
 				$('#e_nomor').val(data[0].nomor);
 				$('#e_alamat').val(data[0].alamat);
-				$('#e_limit').val(data[0].limit_pemakaian);
 				$('#e_vendor').val(data[0].vendor).select2();
+
+				var a = ConvertFormatRupiah(data[0].limit_pemakaian, 'Rp. ');
+				$('#e_limit').val(a);
+				$('#e_limit_v').val(data[0].limit_pemakaian);
+
 				$('#e_media_koneksi').val(data[0].media_koneksi).select2();
 				$('#e_jenis_perangkat').val(data[0].jenis_perangkat).select2();
 				$('#e_merek_perangkat').val(data[0].merek_perangkat).select2();
@@ -539,4 +595,22 @@
 			"paging": true,
 		});
 	});
+
+
+	function ConvertFormatRupiah(angka, prefix) {
+		var number_string = angka.replace(/[^,\d]/g, '').toString(),
+			split = number_string.split(','),
+			sisa = split[0].length % 3,
+			rupiah = split[0].substr(0, sisa),
+			ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+		// tambahkan titik jika yang di input sudah menjadi angka ribuan
+		if (ribuan) {
+			separator = sisa ? '.' : '';
+			rupiah += separator + ribuan.join('.');
+		}
+
+		rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+		return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+	}
 </script>

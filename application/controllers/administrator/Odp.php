@@ -19,11 +19,13 @@ class Odp extends CI_Controller
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
 			$mywilayah = $this->model_odp->viewOrdering('wilayah', 'id', 'desc')->result_array();
+			$myodc = $this->model_odp->viewOrdering('odc', 'id', 'desc')->result_array();
 			$data = array(
 				'page_content'      => '../pageadmin/odp/view',
 				'ribbon'            => '<li class="active">Daftar odp</li>',
 				'page_name'         => 'Daftar odp',
-				'mywilayah'			=> $mywilayah
+				'mywilayah'			=> $mywilayah,
+				'myodc'				=> $myodc
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
@@ -66,6 +68,9 @@ class Odp extends CI_Controller
 					'dokumen' 		=> $file_name,
 					'keterangan'  => $this->input->post('e_Keterangan'),
 					'createdAt' => date('Y-m-d H:i:s'),
+					'odc'  => $this->input->post('e_odc'),
+					'portodc'  => $this->input->post('e_portodc'),
+					'fo'  => $this->input->post('e_fo'),
 					'createdBy'	=> $this->session->userdata('name')
 				);
 			} else {
@@ -77,7 +82,10 @@ class Odp extends CI_Controller
 					'jumlah_port' => $this->input->post('e_jumlah_port'),
 					'keterangan'  => $this->input->post('e_Keterangan'),
 					'updatedAt' => date('Y-m-d H:i:s'),
-					'updatedBy'	=> $this->session->userdata('name')
+					'updatedBy'	=> $this->session->userdata('name'),
+					'odc'  => $this->input->post('e_odc'),
+					'portodc'  => $this->input->post('e_portodc'),
+					'fo'  => $this->input->post('e_fo'),
 				);
 			}
 			$action = $this->model_odp->update($data_id, $data, 'odp');
@@ -132,6 +140,10 @@ class Odp extends CI_Controller
 				$data = array(
 					'kode'  => $this->input->post('nama'),
 					'wilayah'  => $this->input->post('wilayah'),
+					'odc'  => $this->input->post('odc'),
+					'portodc'  => $this->input->post('portodc'),
+					'fo'  => $this->input->post('fo'),
+
 					'nomor_tiang'  => $this->input->post('nomor_tiang'),
 					'titik_kordinat' => $this->input->post('kordinat'),
 					'jumlah_port' => $this->input->post('jumlah_port'),
@@ -151,6 +163,9 @@ class Odp extends CI_Controller
 				$data = array(
 					'kode'  => $this->input->post('nama'),
 					'wilayah'  => $this->input->post('wilayah'),
+					'odc'  => $this->input->post('odc'),
+					'portodc'  => $this->input->post('portodc'),
+					'fo'  => $this->input->post('fo'),
 					'nomor_tiang'  => $this->input->post('nomor_tiang'),
 					'titik_kordinat' => $this->input->post('kordinat'),
 					'jumlah_port' => $this->input->post('jumlah_port'),

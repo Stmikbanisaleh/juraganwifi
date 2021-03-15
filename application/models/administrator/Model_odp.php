@@ -11,7 +11,9 @@ class Model_odp extends CI_model
     }
 	 function viewOrderingCustom($table, $order, $ordering)
     {
-        return $this->db->query("select a.*,b.nama as nama_wilayah from odp a left join wilayah b on a.wilayah = b.id");
+        return $this->db->query("select a.*,b.nama as nama_wilayah,c.kode as kode_odc from odp a
+		 left join wilayah b on a.wilayah = b.id
+		 left join odc c on a.odc = c.id");
     }
 
     public function viewWhereOrdering($table, $data, $order, $ordering)

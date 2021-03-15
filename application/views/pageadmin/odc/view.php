@@ -27,6 +27,16 @@
 							</div>
 
 							<div class="form-group">
+								<label>Nomor Port OLT</label>
+								<input type="number" id="olt" name="olt" class="form-control" placeholder="Nomor PORT OLT"></input>
+							</div>
+
+							<div class="form-group">
+								<label>Warna Tube FO</label>
+								<input type="text" id="fo" name="fo" class="form-control" placeholder="Warna Tube FO"></input>
+							</div>
+
+							<div class="form-group">
 								<label>Nomor Tiang</label>
 								<input type="text" id="nomor_tiang" name="nomor_tiang" class="form-control" placeholder="Nomor Tiang">
 							</div>
@@ -98,6 +108,16 @@
 							</div>
 
 							<div class="form-group">
+								<label>Nomor Port OLT</label>
+								<input type="number" id="e_olt" name="e_olt" class="form-control" placeholder="Nomor PORT OLT"></input>
+							</div>
+
+							<div class="form-group">
+								<label>Warna Tube FO</label>
+								<input type="text" id="e_fo" name="e_fo" class="form-control" placeholder="Warna Tube FO"></input>
+							</div>
+
+							<div class="form-group">
 								<label>Nomor Tiang</label>
 								<input type="text" id="e_nomor_tiang" name="e_nomor_tiang" class="form-control" placeholder="Nomor Tiang">
 							</div>
@@ -111,6 +131,9 @@
 								<label>Jumlah Port</label>
 								<input type="number" id="e_jumlah_port" name="e_jumlah_port" class="form-control" placeholder="Jumlah Port"></input>
 							</div>
+
+
+							
 
 							<div class="form-group">
 								<label>Upload Dokumen</label>
@@ -172,6 +195,12 @@
 						</th>
 						<th class="text-center">
 							Jumlah PORT
+						</th>
+						<th class="text-center">
+							Port OLT
+						</th>
+						<th class="text-center">
+							Warna Tube FO
 						</th>
 						<th class="text-center">
 							Document
@@ -326,6 +355,8 @@
 						'<td class="text-left">' + data[i].nomor_tiang + '</td>' +
 						'<td class="text-left">' + data[i].titik_kordinat + '</td>' +
 						'<td class="text-left">' + data[i].jumlah_port + '</td>' +
+						'<td class="text-left">' + data[i].olt + '</td>' +
+						'<td class="text-left">' + data[i].fo + '</td>' +
 						foto+
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						'<td class="project-actions text-right">' +
@@ -376,6 +407,8 @@
 				$('#e_nomor_tiang').val(data[0].nomor_tiang);
 				$('#e_kordinat').val(data[0].titik_kordinat);
 				$('#e_jumlah_port').val(data[0].jumlah_port);
+				$('#e_olt').val(data[0].olt);
+				$('#e_fo').val(data[0].fo);
 				$('#e_Keterangan').val(data[0].keterangan);
 			}
 		});

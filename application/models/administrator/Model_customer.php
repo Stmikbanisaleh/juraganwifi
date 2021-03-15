@@ -13,7 +13,7 @@ class Model_customer extends CI_model
     {
         return $this->db->query("select a.* , b.name as nama_jenis_layanan, 
 		c.nama as nama_media_koneksi, d.nama as nama_kepemilikan_tempat , e.nama as nama_kepemilikan_perangkat,
-		f.nama as nama_jenis_tempat, g.nama as nama_jenis_perangkat, h.nama as nama_merek_perangkat
+		f.nama as nama_jenis_tempat, g.nama as nama_jenis_perangkat, h.nama as nama_merek_perangkat, i.kode as kode_odc, j.kode as kode_odp,i.id as id_odc
 		from customer a
 		left join package_item b on a.jenis_layanan = b.id
 		left join media_koneksi c on a.media_koneksi = c.id
@@ -22,9 +22,22 @@ class Model_customer extends CI_model
 		left join jenis_tempat f on a.jenis_tempat = f.id
 		left join jenis_perangkat g on a.jenis_perangkat = g.id
 		left join merek_perangkat h on a.merek_perangkat = h.id
+		left join odc i on a.kodc = i.id
+		left join odp j on a.kodp = j.id
 		order by a.id desc");
     }
 
+	public function viewWhereCustomODCV2($a)
+    {
+        return $this->db->query("select * from odc where wilayah = $a
+		");
+    }
+
+	public function viewWhereCustomODPV2($a)
+    {
+        return $this->db->query("select * from odp where wilayah = $a
+		");
+    }
 
 	public function checkDuplicate($data, $table)
     {
@@ -38,6 +51,21 @@ class Model_customer extends CI_model
         $this->db->where($data);
         $this->db->order_by($order, $ordering);
         return $this->db->get($table);
+    }
+
+	public function viewWhereCustomODC($wilayah)
+    {
+        return $this->db->query("select * from odc where wilayah = $wilayah");
+    }
+
+	public function getkodewilayah($wilayah)
+    {
+        return $this->db->query("select * from wilayah where id = $wilayah");
+    }
+
+	public function viewWhereCustomODP($wilayah)
+    {
+        return $this->db->query("select * from odp where wilayah = $wilayah");
     }
 
     public function view_where($table, $data)

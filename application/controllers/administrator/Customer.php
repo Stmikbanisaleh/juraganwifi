@@ -15,6 +15,44 @@ class Customer extends CI_Controller
 		$this->template->load('templateadmin', $data); //Display Page
 	}
 
+	public function showodc()
+	{
+		$wilayah = $this->input->post('id');
+		$result = $this->model_customer->viewWhereCustomODC($wilayah)->result_array();
+		echo "<option value='0'>--Pilih Data --</option>";
+		foreach ($result as $value) {
+			echo "<option value='" . $value['id'] . "'> [" . $value['kode'] . "] </option>";
+		}
+	}
+
+	public function showEditodc()
+	{
+		$wilayah = $this->input->post('id');
+		$result = $this->model_customer->viewWhereCustomODCV2($wilayah)->result_array();
+		foreach ($result as $value) {
+			echo "<option value='" . $value['id'] . "'> [" . $value['kode'] . "] </option>";
+		}
+	}
+
+	public function showEditodp()
+	{
+		$wilayah = $this->input->post('id');
+		$result = $this->model_customer->viewWhereCustomODPV2($wilayah)->result_array();
+		foreach ($result as $value) {
+			echo "<option value='" . $value['id'] . "'> [" . $value['kode'] . "] </option>";
+		}
+	}
+
+	public function showodp()
+	{
+		$wilayah = $this->input->post('id');
+		$result = $this->model_customer->viewWhereCustomODP($wilayah)->result_array();
+		echo "<option value='0'>--Pilih Data --</option>";
+		foreach ($result as $value) {
+			echo "<option value='" . $value['id'] . "'> [" . $value['kode'] . "] </option>";
+		}
+	}
+
 	public function index()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
@@ -156,6 +194,23 @@ class Customer extends CI_Controller
 		echo json_encode($my_data);
 	}
 
+	public function generate()
+	{
+		$wilayah = $this->input->post('id');
+		$kodewilayah = $this->model_customer->getkodewilayah($wilayah)->row();
+		$noreg = $this->db->query("SELECT
+		RIGHT(no_services+1,5)AS idservice FROM customer ORDER BY id DESC")->result_array();
+		if (count($noreg) < 1) {
+			$no = '00001';
+		} else {
+			$no = $noreg[0]['idservice'];
+		}
+		$kodewilayah = $kodewilayah->kode_wilayah;
+		$idlayanan = $kodewilayah.$no;
+		echo json_encode($idlayanan);
+	}
+
+
 	public function simpan()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
@@ -174,7 +229,7 @@ class Customer extends CI_Controller
 					'no_ktp'  => $this->input->post('ktp'),
 					'email'  => $this->input->post('email'),
 					'status'  => 0,
-					'no_services'  => $this->input->post('nomor_layanan'),
+					'no_services'  => str_replace('"', " ", $this->input->post('nomor_layanan')),
 					'no_wa'  => $this->input->post('telp'),
 					'address'  => $this->input->post('alamat'),
 					'panjang_kabel'  => $this->input->post('panjangkabel'),
@@ -209,7 +264,7 @@ class Customer extends CI_Controller
 					'no_ktp'  => $this->input->post('ktp'),
 					'email'  => $this->input->post('email'),
 					'status'  => 0,
-					'no_services'  => $this->input->post('nomor_layanan'),
+					'no_services'  => str_replace('"', " ", $this->input->post('nomor_layanan')),
 					'no_wa'  => $this->input->post('telp'),
 					'address'  => $this->input->post('alamat'),
 					'panjang_kabel'  => $this->input->post('panjangkabel'),

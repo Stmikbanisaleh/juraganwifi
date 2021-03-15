@@ -12,6 +12,24 @@
 						</div>
 						<div class="card-body">
 							<div class="form-group">
+								<label>Kode ODC</label>
+								<select class="form-control select2" style="width: 100%;" name="odc" id="odc">
+									<option selected="selected">-- Pilih --</option>
+									<?php foreach ($myodc as $value) { ?>
+										<option value=<?= $value['id'] ?>><?= $value['kode'] ?></option>
+									<?php } ?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Nomor PORT ODC</label>
+								<input required type="number" id="portodc" name="portodc" class="form-control" placeholder="Nomor Port ODC">
+							</div>
+							<div class="form-group">
+								<label>Warna Tube FO</label>
+								<input required type="text" id="fo" name="fo" class="form-control" placeholder="Warna Tube FO">
+							</div>
+
+							<div class="form-group">
 								<label>Kode ODP</label>
 								<input required type="text" id="nama" name="nama" class="form-control" placeholder="Kode odp">
 							</div>
@@ -81,6 +99,24 @@
 							</button>
 						</div>
 						<div class="card-body">
+						<div class="form-group">
+								<label>Kode ODC</label>
+								<select class="form-control select2" style="width: 100%;" name="e_odc" id="e_odc">
+									<option selected="selected">-- Pilih --</option>
+									<?php foreach ($myodc as $value) { ?>
+										<option value=<?= $value['id'] ?>><?= $value['kode'] ?></option>
+									<?php } ?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Nomor PORT ODC</label>
+								<input required type="number" id="e_portodc" name="e_portodc" class="form-control" placeholder="Nomor Port ODC">
+							</div>
+							<div class="form-group">
+								<label>Warna Tube FO</label>
+								<input required type="text" id="e_fo" name="e_fo" class="form-control" placeholder="Warna Tube FO">
+							</div>
+
 							<div class="form-group">
 								<label>Kode ODP</label>
 								<input type="hidden" id="e_id" name="e_id" class="form-control" placeholder="Kode odp">
@@ -159,10 +195,19 @@
 							#
 						</th>
 						<th class="text-center">
-							KODE odp
+							KODE ODC
 						</th>
 						<th class="text-center">
-							Wilayah odp
+							Nomor PORT ODC
+						</th>
+						<th class="text-center">
+							Warna Tube FO
+						</th>
+						<th class="text-center">
+							KODE ODP
+						</th>
+						<th class="text-center">
+							Wilayah ODP
 						</th>
 						<th class="text-center">
 							Nomor Tiang
@@ -320,13 +365,16 @@
 					}
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
+						'<td class="text-left">' + data[i].kode_odc + '</td>' +
+						'<td class="text-left">' + data[i].portodc + '</td>' +
+						'<td class="text-left">' + data[i].fo + '</td>' +
 						'<td class="text-left">' + data[i].kode + '</td>' +
 						'<td class="text-left">' + data[i].nama_wilayah + '</td>' +
 						'<td class="text-left">' + data[i].nomor_tiang + '</td>' +
 						'<td class="text-left">' + data[i].titik_kordinat + '</td>' +
 						'<td class="text-left">' + data[i].jumlah_port + '</td>' +
-						foto+
-						 '</td>' +
+						foto +
+						'</td>' +
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
@@ -377,6 +425,9 @@
 				$('#e_kordinat').val(data[0].titik_kordinat);
 				$('#e_jumlah_port').val(data[0].jumlah_port);
 				$('#e_Keterangan').val(data[0].keterangan);
+				$('#e_odc').val(data[0].odc);
+				$('#e_portodc').val(data[0].portodc);
+				$('#e_fo').val(data[0].fo);
 			}
 		});
 	});

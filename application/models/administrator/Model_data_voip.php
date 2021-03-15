@@ -11,7 +11,7 @@ class Model_data_voip extends CI_model
 
 	public function viewOrderingCustom()
     {
-        return $this->db->query("select a.*,b.nama as nama_vendor,c.nama as nama_media_koneksi,
+        return $this->db->query("select a.*, CONCAT('Rp. ',FORMAT(a.limit_pemakaian,2)) Nominal  ,b.nama as nama_vendor,c.nama as nama_media_koneksi,
 		d.nama as nama_jenis_perangkat,e.nama as nama_merek,f.nama as nama_kepemilikan from data_pelanggan_voip a 
 		join vendor_detail b on a.vendor = b.id
 		join media_koneksi c on a.media_koneksi = c.id

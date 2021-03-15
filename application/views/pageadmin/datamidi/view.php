@@ -31,6 +31,16 @@
 									</div>
 
 									<div class="form-group">
+										<label>DC Midi</label>
+										<select class="form-control select2" style="width: 100%;" name="dcmidi" id="dcmidi">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($mydcmidi as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
 										<label>Titik Kordinat</label>
 										<input type="text" id="titik_kordinat" name="titik_kordinat" class="form-control" placeholder="Titik Kordinat">
 									</div>
@@ -76,7 +86,6 @@
 								<div class="card-body">
 									<b>PERANGKAT</b>
 									<hr>
-
 
 									<div class="form-group">
 										<label>Media Koneksi</label>
@@ -235,6 +244,17 @@
 									<div class="form-group">
 										<label>Alamat Toko</label>
 										<textarea type="text" id="e_alamat" name="e_alamat" class="form-control" placeholder="Alamat Toko"></textarea>
+									</div>
+
+
+									<div class="form-group">
+										<label>DC Midi</label>
+										<select class="form-control select2" style="width: 100%;" name="e_dcmidi" id="e_dcmidi">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($mydcmidi as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
 									</div>
 
 									<div class="form-group">
@@ -436,6 +456,9 @@
 						</th>
 						<th class="text-center">
 							Alamat
+						</th>
+						<th class="text-center">
+							DC Midi
 						</th>
 						<th class="text-center">
 							Titik Kordinat
@@ -648,6 +671,7 @@
 						'<td class="text-left">' + data[i].kode + '</td>' +
 						'<td class="text-left">' + data[i].nama + '</td>' +
 						'<td class="text-left">' + data[i].alamat + '</td>' +
+						'<td class="text-left">' + data[i].namadcmidi + '</td>' +
 						'<td class="text-left">' + data[i].titik_kordinat + '</td>' +
 						'<td class="text-left">' + data[i].telp_toko + '</td>' +
 						'<td class="text-left">' + data[i].pejabat_toko + '</td>' +
@@ -730,6 +754,7 @@
 				$('#e_jenis_perangkat').val(data[0].jenis_perangkat).select2();
 				$('#e_merek_perangkat').val(data[0].merek_perangkat).select2();
 				$('#e_keterangan').val(data[0].keterangan);
+				$('#e_dcmidi').val(data[0].dcmidi).select2();
 				$('#e_macaddress').val(data[0].mac_address);
 				$('#e_serial_number').val(data[0].serial_number);
 				$('#e_nomor_1').val(data[0].nomor_1);

@@ -23,6 +23,7 @@ class Datamidi extends CI_Controller
 			$mymerekperangkat = $this->model_datamidi->viewOrdering('merek_perangkat', 'id', 'desc')->result_array();
 			$myvendor = $this->model_datamidi->viewOrdering('vendor_detail', 'id', 'desc')->result_array();
 			$myinet = $this->model_datamidi->viewOrdering('inet', 'id', 'desc')->result_array();
+			$mydcmidi = $this->model_datamidi->viewOrdering('dc_midi', 'id', 'desc')->result_array();
 
 			$data = array(
 				'page_content'      => '../pageadmin/datamidi/view',
@@ -32,7 +33,8 @@ class Datamidi extends CI_Controller
 				'myjenisperangkat'	=> $myjenisperangkat,
 				'mymerekperangkat'	=> $mymerekperangkat,
 				'myvendor'	=> $myvendor,
-				'myinet'	=> $myinet
+				'myinet'	=> $myinet,
+				'mydcmidi' => $mydcmidi
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
@@ -86,6 +88,7 @@ class Datamidi extends CI_Controller
 					'serial_number'  => $this->input->post('e_serial_number'),
 					'nomor_1'  => $this->input->post('e_nomor_1'),
 					'nomor_2'  => $this->input->post('e_nomor_2'),
+					'dcmidi'  => $this->input->post('e_dcmidi'),
 					'imei1'  => $this->input->post('e_imei_1'),
 					'dokumen'	=> $file_name,
 					'imei2'  => $this->input->post('e_imei_2'),
@@ -119,6 +122,7 @@ class Datamidi extends CI_Controller
 					'nomor_1'  => $this->input->post('e_nomor_1'),
 					'nomor_2'  => $this->input->post('e_nomor_2'),
 					'imei1'  => $this->input->post('e_imei_1'),
+					'dcmidi'  => $this->input->post('e_dcmidi'),
 					'imei2'  => $this->input->post('e_imei_2'),
 					'inet'  => $this->input->post('e_nomor_inet'),
 					'vendor'  => $this->input->post('e_vendor'),
@@ -184,6 +188,7 @@ class Datamidi extends CI_Controller
 					'alamat'  => $this->input->post('alamat'),
 					'titik_kordinat'  => $this->input->post('titik_kordinat'),
 					'telp_toko'  => $this->input->post('telp_toko'),
+					'dcmidi'  => $this->input->post('dcmidi'),
 					'pejabat_toko'  => $this->input->post('nama_pejabat_toko'),
 					'telp_pejabat_toko'  => $this->input->post('telp_pejabat'),
 					'nama_it_cabang'  => $this->input->post('nama_it_cabang'),
@@ -216,6 +221,7 @@ class Datamidi extends CI_Controller
 					'alamat'  => $this->input->post('alamat'),
 					'titik_kordinat'  => $this->input->post('titik_kordinat'),
 					'telp_toko'  => $this->input->post('telp_toko'),
+					'dcmidi'  => $this->input->post('dcmidi'),
 					'pejabat_toko'  => $this->input->post('nama_pejabat_toko'),
 					'telp_pejabat_toko'  => $this->input->post('telp_pejabat'),
 					'nama_it_cabang'  => $this->input->post('nama_it_cabang'),

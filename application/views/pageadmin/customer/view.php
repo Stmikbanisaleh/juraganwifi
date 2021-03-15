@@ -17,7 +17,7 @@
 									<hr>
 									<div class="form-group">
 										<label>ID Pelanggan</label>
-										<input required type="text" id="nomor_layanan" name="nomor_layanan" class="form-control" placeholder="Nomor Layanan">
+										<input readonly required type="text" id="nomor_layanan" name="nomor_layanan" class="form-control" placeholder="Nomor Layanan">
 									</div>
 
 									<div class="form-group">
@@ -49,16 +49,16 @@
 										<input type="file" id="foto" name="foto" class="form-control" placeholder="Foto"></input>
 									</div>
 									<hr>
-									<b>PERANGKAT</b>
+									<b>DATA TEKNIS</b>
 									<hr>
 									<div class="form-group">
-										<label>Panjang Kabel</label>
-										<input type="number" id="panjangkabel" name="panjangkabel" class="form-control" placeholder="Panjang Kabel">
-									</div>
-
-									<div class="form-group">
-										<label>Nomor Port ODP</label>
-										<textarea type="text" id="odp" name="odp" class="form-control" placeholder="Nomor Port ODP"></textarea>
+										<label>Wilayah / Coverage Area</label>
+										<select class="form-control select2" style="width: 100%;" name="wilayah" id="wilayah">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($mywilayah as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] . ' - ( ' . $value['kode_wilayah'] . ')' ?></option>
+											<?php } ?>
+										</select>
 									</div>
 
 									<div class="form-group">
@@ -67,13 +67,28 @@
 									</div>
 
 									<div class="form-group">
-										<label>Kode ODP</label>
-										<textarea type="text" id="kodp" name="kodp" class="form-control" placeholder="Kode ODP"></textarea>
+										<label>Kode ODC</label>
+										<select class="form-control select2" style="width: 100%;" name="kodc" id="kodc">
+											<option selected="selected">-- Pilih --</option>
+										</select>
 									</div>
 
 									<div class="form-group">
-										<label>Kode ODC</label>
-										<input type="number" id="kodc" name="kodc" class="form-control" placeholder="Kode ODC">
+										<label>Kode ODP</label>
+										<select class="form-control select2" style="width: 100%;" name="kodp" id="kodp">
+											<option selected="selected">-- Pilih --</option>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Nomor Port ODP</label>
+										<input type="number" id="odp" name="odp" class="form-control" placeholder="Nomor Port ODP"></input>
+									</div>
+
+
+									<div class="form-group">
+										<label>Panjang Kabel</label>
+										<input type="number" id="panjangkabel" name="panjangkabel" class="form-control" placeholder="Panjang Kabel">
 									</div>
 
 									<div class="form-group">
@@ -109,7 +124,7 @@
 							</div>
 							<div class="col-md-6">
 								<div class="card-body">
-									<b>LAYANAN</b>
+									<b>DATA LAYANAN</b>
 									<hr>
 									<div class="form-group">
 										<label>Jenis Layanan</label>
@@ -152,17 +167,9 @@
 										</select>
 									</div>
 
-									<div class="form-group">
-										<label>Wilayah</label>
-										<select class="form-control select2" style="width: 100%;" name="wilayah" id="wilayah">
-											<option value="" selected="selected">-- Pilih --</option>
-											<?php foreach ($mywilayah as $value) { ?>
-												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
-											<?php } ?>
-										</select>
-									</div>
+
 									<hr>
-									<b>ADMINISTRASI</b>
+									<b>DATA ADMINISTRASI</b>
 									<hr>
 									<div class="form-group">
 										<label>Tanggal Registrasi</label>
@@ -251,11 +258,11 @@
 									<hr>
 									<div class="form-group">
 										<label>ID Pelanggan</label>
-										<input required type="text" id="e_nomor_layanan" name="e_nomor_layanan" class="form-control" placeholder="Nomor Layanan">
+										<input readonly type="text" id="e_nomor_layanan" name="e_nomor_layanan" class="form-control" placeholder="Nomor Layanan">
 									</div>
 									<div class="form-group">
 										<label>Nama Pelanggan</label>
-										<input required type="hidden" id="e_id" name="e_id" >
+										<input required type="hidden" id="e_id" name="e_id">
 										<input required type="text" id="e_nama" name="e_nama" class="form-control" placeholder="Nama Customer">
 									</div>
 									<div class="form-group">
@@ -283,16 +290,16 @@
 										<input type="file" id="e_foto" name="e_foto" class="form-control" placeholder="Alamat"></input>
 									</div>
 									<hr>
-									<b>PERANGKAT</b>
+									<b>DATA TEKNIS</b>
 									<hr>
 									<div class="form-group">
-										<label>Panjang Kabel</label>
-										<input type="number" id="e_panjangkabel" name="e_panjangkabel" class="form-control" placeholder="Panjang Kabel">
-									</div>
-
-									<div class="form-group">
-										<label>Nomor Port ODP</label>
-										<textarea type="text" id="e_odp" name="e_odp" class="form-control" placeholder="Nomor Port ODP"></textarea>
+										<label>Wilayah / Coverage Area</label>
+										<select class="form-control select2" style="width: 100%;" name="e_wilayah" id="e_wilayah">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($mywilayah as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] . ' - ( ' . $value['kode_wilayah'] . ')' ?></option>
+											<?php } ?>
+										</select>
 									</div>
 
 									<div class="form-group">
@@ -301,13 +308,27 @@
 									</div>
 
 									<div class="form-group">
-										<label>Kode ODP</label>
-										<textarea type="text" id="e_kodp" name="e_kodp" class="form-control" placeholder="Kode ODP"></textarea>
+										<label>Kode ODC</label>
+										<select class="form-control select2" style="width: 100%;" name="e_kodc" id="e_kodc">
+											<option selected="selected">-- Pilih --</option>
+										</select>
 									</div>
 
 									<div class="form-group">
-										<label>Kode ODC</label>
-										<input type="number" id="e_kodc" name="e_kodc" class="form-control" placeholder="Kode ODC">
+										<label>Kode ODP</label>
+										<select class="form-control select2" style="width: 100%;" name="e_kodp" id="e_kodp">
+											<option selected="selected">-- Pilih --</option>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Nomor Port ODP</label>
+										<input type="number" id="e_odp" name="e_odp" class="form-control" placeholder="Nomor Port ODP"></input>
+									</div>
+
+									<div class="form-group">
+										<label>Panjang Kabel</label>
+										<input type="number" id="e_panjangkabel" name="e_panjangkabel" class="form-control" placeholder="Panjang Kabel">
 									</div>
 
 									<div class="form-group">
@@ -343,7 +364,7 @@
 							</div>
 							<div class="col-md-6">
 								<div class="card-body">
-									<b>LAYANAN</b>
+									<b>DATA LAYANAN</b>
 									<hr>
 									<div class="form-group">
 										<label>Jenis Layanan</label>
@@ -385,18 +406,8 @@
 											<?php } ?>
 										</select>
 									</div>
-
-									<div class="form-group">
-										<label>Wilayah</label>
-										<select class="form-control select2" style="width: 100%;" name="e_wilayah" id="e_wilayah">
-											<option value="" selected="selected">-- Pilih --</option>
-											<?php foreach ($mywilayah as $value) { ?>
-												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
-											<?php } ?>
-										</select>
-									</div>
 									<hr>
-									<b>ADMINISTRASI</b>
+									<b>DATA ADMINISTRASI</b>
 									<hr>
 									<div class="form-group">
 										<label>Tanggal Registrasi</label>
@@ -473,8 +484,7 @@
 		</div>
 		<br>
 		<div class="col-sm-2">
-			<button href="#modalTambah" type="button" role="button" data-toggle="modal" 
-			class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Pelanggan</button>
+			<button href="#modalTambah" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Pelanggan</button>
 		</div>
 		<br>
 		<div class="card-body p-0">
@@ -505,7 +515,7 @@
 						<th style="width: 15%" class="text-center">
 							Status User
 						</th>
-						<th  class="text-center">
+						<th class="text-center">
 							Foto
 						</th>
 						<th style="width: 8%" class="text-center">
@@ -616,7 +626,7 @@
 							$("select.select2").select2({
 								allowClear: true
 							}); // re-init to show default status
-							
+
 						}
 					}
 				});
@@ -673,24 +683,24 @@
 					var status = '';
 					var foto = '';
 
-					if(data[i].dokumen != null){
-						foto =	'<td ><a href="<?php echo site_url('/assets/customer/') ?>' + data[i].dokumen + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/customer/') ?>' + data[i].dokumen + '""></a></td>'
+					if (data[i].dokumen != null) {
+						foto = '<td ><a href="<?php echo site_url('/assets/customer/') ?>' + data[i].dokumen + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/customer/') ?>' + data[i].dokumen + '""></a></td>'
 					} else {
-						foto = '<td class="text-left"> No Image</td>' 
+						foto = '<td class="text-left"> No Image</td>'
 					}
 
 					if (data[i].status == '1') {
-						status = '<td class="text-left">'+
-						'   <button  class="btn btn-primary btn-sm item_non"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-check"> </i>  Aktif </button>' +
-						'</a> &nbsp' +
-						'</td>'
+						status = '<td class="text-left">' +
+							'   <button  class="btn btn-primary btn-sm item_non"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-check"> </i>  Aktif </button>' +
+							'</a> &nbsp' +
+							'</td>'
 					} else {
-						status = '<td class="text-left">'+
-						'   <button  class="btn btn-danger btn-sm item_approve"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-times"> </i>  Non Aktif </button>' +
-						'</button> &nbsp' +
-						'</td>'
+						status = '<td class="text-left">' +
+							'   <button  class="btn btn-danger btn-sm item_approve"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-times"> </i>  Non Aktif </button>' +
+							'</button> &nbsp' +
+							'</td>'
 					}
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
@@ -700,7 +710,7 @@
 						'<td class="text-left">' + data[i].no_wa + '</td>' +
 						'<td class="text-left">' + data[i].no_ktp + '</td>' +
 						'<td class="text-left">' + data[i].address + '</td>' +
-						status+
+						status +
 						foto +
 						'<td class="text-left">' + data[i].nama_jenis_layanan + '</td>' +
 						'<td class="text-left">' + data[i].nama_media_koneksi + '</td>' +
@@ -718,8 +728,8 @@
 						'<td class="text-left">' + data[i].tgl_aktivasi + '</td>' +
 						'<td class="text-left">' + data[i].odp + '</td>' +
 						'<td class="text-left">' + data[i].olt + '</td>' +
-						'<td class="text-left">' + data[i].kodp + '</td>' +
-						'<td class="text-left">' + data[i].kodc + '</td>' +
+						'<td class="text-left">' + data[i].kode_odp + '</td>' +
+						'<td class="text-left">' + data[i].kode_odc + '</td>' +
 						'<td class="text-left">' + data[i].nama_teknisi + '</td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
@@ -884,8 +894,8 @@
 				$('#e_mediakoneksi').val(data[0].media_koneksi).select2();
 				$('#e_usernamepoe').val(data[0].usernamepoe);
 				$('#e_p_ppoe').val(data[0].p_ppoe);
-				$('#e_kodp').val(data[0].kodp);
-				$('#e_kodc').val(data[0].kodc);
+				// $('#e_kodp').val(data[0].kodp);
+				// $('#e_kodc').val(data[0].kodc);
 				$('#e_jenisipaddress').val(data[0].jenis_ipaddress).select2();
 				$('#e_wilayah').val(data[0].wilayah).select2();
 				$('#e_tglregistrasi').val(data[0].tgl_registrasi);
@@ -894,7 +904,13 @@
 				$('#e_kepemilikanperangkat').val(data[0].kepemilikan_perangkat).select2();
 				$('#e_kepemilikantempat').val(data[0].kepemilikan_tempat).select2();
 				$('#e_nama_teknisi').val(data[0].nama_teknisi);
-
+				console.log(data[0].kode_odc)
+				show_data_eodc(data[0].wilayah, function(a) {
+					$('#e_kodc').val(data[0].kodc);
+				});
+				show_data_eodp(data[0].wilayah, function(a) {
+					$('#e_kodp').val(data[0].kodp);
+				});
 			}
 		});
 	});
@@ -966,8 +982,103 @@
 			"responsive": true,
 			"paging": true,
 			"buttons": [
-           "excel"
-        ]
+				"excel"
+			]
 		});
 	});
+
+	$("#wilayah").change(function() {
+		var id = $('#wilayah').val();
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/customer/generate') ?>",
+			data: {
+				id: id
+			}
+		}).done(function(data) {
+			$("#nomor_layanan").val(data);
+		});
+	});
+
+	$("#wilayah").change(function() {
+		var id = $('#wilayah').val();
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/customer/showodc') ?>",
+			data: {
+				id: id
+			}
+		}).done(function(data) {
+			$("#kodc").html(data);
+		});
+	});
+
+	$("#wilayah").change(function() {
+		var id = $('#wilayah').val();
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/customer/showodp') ?>",
+			data: {
+				id: id
+			}
+		}).done(function(data) {
+			$("#kodp").html(data);
+		});
+	});
+
+	function show_data_odc(id, callback) {
+		var id = id;
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/customer/showodc') ?>",
+			data: {
+				id: id
+			}
+		}).done(function(data) {
+			$("#e_kodc").html(data);
+			callback()
+		});
+	}
+
+	function show_data_eodc(id, callback) {
+		var id = id;
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/customer/showEditodc') ?>",
+			data: {
+				id: id
+			}
+		}).done(function(data) {
+			$("#e_kodc").html(data);
+			callback()
+		});
+	}
+
+	function show_data_eodp(id, callback) {
+		var id = id;
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/customer/showEditodp') ?>",
+			data: {
+				id: id
+			}
+		}).done(function(data) {
+			$("#e_kodp").html(data);
+			callback()
+		});
+	}
+
+	function show_data_odp(id, callback) {
+		var id = id;
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/customer/showodp') ?>",
+			data: {
+				id: id
+			}
+		}).done(function(data) {
+			$("#e_kodp").html(data);
+			callback()
+		});
+	}
 </script>

@@ -9,12 +9,15 @@ class Model_datamidi extends CI_model
         return $this->db->query("select a.* ,b.nama as nama_media_koneksi,c.nama as nama_jenis_perangkat,
 		d.nama as nama_merek_perangkat,
 		e.nama as nama_vendor,
-		f.nama as nama_inet from datamidi a 
-		join media_koneksi b on a.media_koneksi = b.id 
-		join jenis_perangkat c on a.jenis_perangkat = c.id 
-		join merek_perangkat d on a.merek_perangkat = d.id
-		join vendor_detail e on a.vendor = e.id
-		join inet f on a.inet = f.id");
+		f.nama as nama_inet,
+		g.nama as namadcmidi from datamidi a 
+		left join media_koneksi b on a.media_koneksi = b.id 
+		left join jenis_perangkat c on a.jenis_perangkat = c.id 
+		left join merek_perangkat d on a.merek_perangkat = d.id
+		left join vendor_detail e on a.vendor = e.id
+		left join inet f on a.inet = f.id
+		left join dc_midi g on a.dcmidi = g.id
+		");
     }
 
 	public function viewOrdering($table, $order, $ordering)
