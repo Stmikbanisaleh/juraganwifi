@@ -246,11 +246,11 @@
 
 	<div class="card">
 		<div class="card-header">
-			<h3 class="card-title">Daftar Jenis Identitas</h3>
+			<h3 class="card-title">Daftar Data VOIP</h3>
 		</div>
 		<br>
 		<div class="col-sm-2">
-			<button href="#modalTambah" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Jenis Identitas</button>
+			<button href="#modalTambah" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Data VOIP</button>
 		</div>
 		<br>
 		<div class="card-body p-0">
