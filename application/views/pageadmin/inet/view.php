@@ -16,7 +16,7 @@
 								<select class="form-control select2" style="width: 100%;" name="nama" id="nama">
 									<option selected="selected">-- Pilih --</option>
 									<?php foreach ($myoperator as $value) { ?>
-										<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>
+										<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
 									<?php } ?>
 								</select>
 							</div>
@@ -95,7 +95,7 @@
 								<select class="form-control select2" style="width: 100%;" name="e_nama" id="e_nama">
 									<option selected="selected">-- Pilih --</option>
 									<?php foreach ($myoperator as $value) { ?>
-										<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>
+										<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
 									<?php } ?>
 								</select>
 							</div>
@@ -439,6 +439,7 @@
 
 	$(document).ready(function() {
 		show_data();
+		$('.select2').select2();
 		$('#table_id').DataTable({
 			"searching": true,
 			"ordering": true,

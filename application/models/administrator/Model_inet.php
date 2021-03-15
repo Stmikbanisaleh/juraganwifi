@@ -12,7 +12,7 @@ class Model_inet extends CI_model
 
 	public function viewOrderingCustom($table, $order, $ordering)
     {
-        return $this->db->query("select a.*, b.name as nama_operator from inet a join operator b on a.nama = b.id");
+        return $this->db->query("select a.*, b.nama as nama_operator from inet a left join vendor_detail b on a.nama = b.id");
 	}
 
 	public function checkDuplicate($data, $table)

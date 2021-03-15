@@ -18,7 +18,7 @@ class Inet extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
-			$myoperator = $this->model_inet->viewOrdering('operator', 'id', 'desc')->result_array();
+			$myoperator = $this->model_inet->viewOrdering('vendor_detail', 'id', 'desc')->result_array();
 			$data = array(
 				'page_content'      => '../pageadmin/inet/view',
 				'ribbon'            => '<li class="active">Daftar Pengguna INET</li>',
