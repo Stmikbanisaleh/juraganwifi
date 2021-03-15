@@ -98,7 +98,6 @@ class Operator extends CI_Controller
             $data = array(
                 'name'  => $this->input->post('nama'),
 				'keterangan'  => $this->input->post('keterangan'),
-				'operator'  => $this->input->post('operator'),
 				'alamat'  => $this->input->post('alamat'),
 				'createdAt' => date('Y-m-d H:i:s'),
 				'createdBy'	=> $this->session->userdata('name')

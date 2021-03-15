@@ -1,6 +1,92 @@
 			<!-- Main content -->
 			<div class="content">
 				<div class="container-fluid">
+					<!-- =========================================================== -->
+					<h5 class="mt-4 mb-2">Keseluruhan</h5>
+					<div class="row">
+						<div class="col-md-3 col-sm-6 col-12">
+							<div class="info-box bg-gradient-info">
+								<span class="info-box-icon"><i class="far fa-user"></i></span>
+
+								<div class="info-box-content">
+									<span class="info-box-text">Pelanggan RT / RW NET</span>
+									<span class="info-box-number">41,410</span>
+
+									<div class="progress">
+										<div class="progress-bar" style="width: 100%"></div>
+									</div>
+									<span class="progress-description">
+										70% Increase in 30 Days
+									</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<!-- /.col -->
+						<div class="col-md-3 col-sm-6 col-12">
+							<div class="info-box bg-gradient-success">
+								<span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+
+								<div class="info-box-content">
+									<span class="info-box-text">Pelanggan VOIP</span>
+									<span class="info-box-number">41,410</span>
+
+									<div class="progress">
+										<div class="progress-bar" style="width: 70%"></div>
+									</div>
+									<span class="progress-description">
+										70% Increase in 30 Days
+									</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<!-- /.col -->
+						<div class="col-md-3 col-sm-6 col-12">
+							<div class="info-box bg-gradient-warning">
+								<span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
+
+								<div class="info-box-content">
+									<span class="info-box-text">Alfa Midi</span>
+									<span class="info-box-number">41,410</span>
+
+									<div class="progress">
+										<div class="progress-bar" style="width: 70%"></div>
+									</div>
+									<span class="progress-description">
+										70% Increase in 30 Days
+									</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<!-- /.col -->
+						<div class="col-md-3 col-sm-6 col-12">
+							<div class="info-box bg-gradient-danger">
+								<span class="info-box-icon"><i class="fas fa-comments"></i></span>
+
+								<div class="info-box-content">
+									<span class="info-box-text">Inventori</span>
+									<span class="info-box-number">41,410</span>
+
+									<div class="progress">
+										<div class="progress-bar" style="width: 70%"></div>
+									</div>
+									<span class="progress-description">
+										70% Increase in 30 Days
+									</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="card">
@@ -248,4 +334,3 @@
 				<!-- /.container-fluid -->
 			</div>
 			<!-- /.content -->
-

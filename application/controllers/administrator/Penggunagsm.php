@@ -19,11 +19,13 @@ class Penggunagsm extends CI_Controller
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
 			$myoperator = $this->model_penggunagsm->viewOrdering('operator', 'id', 'desc')->result_array();
+			$myquota = $this->model_penggunagsm->viewOrdering('quota', 'id', 'desc')->result_array();
 			$data = array(
 				'page_content'      => '../pageadmin/penggunagsm/view',
 				'ribbon'            => '<li class="active">Daftar Pengguna GSM</li>',
 				'page_name'         => 'Daftar Pengguna GSM',
-				'myoperator'		=> $myoperator
+				'myoperator'		=> $myoperator,
+				'myquota'			=> $myquota
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
