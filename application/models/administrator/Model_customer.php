@@ -13,7 +13,7 @@ class Model_customer extends CI_model
     {
         return $this->db->query("select a.* , b.name as nama_jenis_layanan, 
 		c.nama as nama_media_koneksi, d.nama as nama_kepemilikan_tempat , e.nama as nama_kepemilikan_perangkat,
-		f.nama as nama_jenis_tempat, g.nama as nama_jenis_perangkat, h.nama as nama_merek_perangkat, i.kode as kode_odc, j.kode as kode_odp,i.id as id_odc
+		f.nama as nama_jenis_tempat, g.nama as nama_jenis_perangkat, h.nama as nama_merek_perangkat, i.kode as kode_odc, j.kode as kode_odp,i.id as id_odc,k.nama as type_ip
 		from customer a
 		left join package_item b on a.jenis_layanan = b.id
 		left join media_koneksi c on a.media_koneksi = c.id
@@ -24,6 +24,8 @@ class Model_customer extends CI_model
 		left join merek_perangkat h on a.merek_perangkat = h.id
 		left join odc i on a.kodc = i.id
 		left join odp j on a.kodp = j.id
+		left join type_ipaddress k on a.typeipaddress = k.id
+		left join jenis_ipaddress l on a.jenis_ipaddress = l.id
 		order by a.id desc");
     }
 

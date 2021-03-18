@@ -61,6 +61,7 @@ class Customer extends CI_Controller
 			$myjenislayanan = $this->model_customer->viewOrdering('package_item', 'id', 'desc')->result_array();
 			$mymediakoneksi = $this->model_customer->viewOrdering('media_koneksi', 'id', 'desc')->result_array();
 			$myjenisip = $this->model_customer->viewOrdering('jenis_ipaddress', 'id', 'desc')->result_array();
+			$mytypeip = $this->model_customer->viewOrdering('type_ipaddress', 'id', 'desc')->result_array();
 			$myjenistempat = $this->model_customer->viewOrdering('jenis_tempat', 'id', 'desc')->result_array();
 			$mywilayah = $this->model_customer->viewOrdering('wilayah', 'id', 'desc')->result_array();
 			$mystatuskepemilikan = $this->model_customer->viewOrdering('jenis_kepemilikan', 'id', 'desc')->result_array();
@@ -78,7 +79,9 @@ class Customer extends CI_Controller
 				'myjenistempat'		=> $myjenistempat,
 				'mywilayah'			=> $mywilayah,
 				'mystatuskepemilikan'	=> $mystatuskepemilikan,
-				'mystatuskepemilikanperangkat'	=> $mystatuskepemilikanperangkat
+				'mystatuskepemilikanperangkat'	=> $mystatuskepemilikanperangkat,
+				'mytypeip'	=> $mytypeip
+
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
@@ -126,6 +129,7 @@ class Customer extends CI_Controller
 				'kodc'  => $this->input->post('e_kodc'),
 				'dokumen' => $file_name,
 				'jenis_perangkat'  => $this->input->post('e_jenisperangkat'),
+				'typeipaddress'  => $this->input->post('e_typeipaddress'),
 				'merek_perangkat'  => $this->input->post('e_merekperangkat'),
 				'serial_number'  => $this->input->post('e_serialnumber'),
 				'mac_address'  => $this->input->post('e_macaddress'),
@@ -158,6 +162,7 @@ class Customer extends CI_Controller
 				'odp'  => $this->input->post('e_odp'),
 				'olt'  => $this->input->post('e_olt'),
 				'kodp'  => $this->input->post('e_kodp'),
+				'typeipaddress'  => $this->input->post('e_typeipaddress'),
 				'kodc'  => $this->input->post('e_kodc'),
 				'jenis_perangkat'  => $this->input->post('e_jenisperangkat'),
 				'merek_perangkat'  => $this->input->post('e_merekperangkat'),
@@ -235,6 +240,7 @@ class Customer extends CI_Controller
 					'panjang_kabel'  => $this->input->post('panjangkabel'),
 					'odp'  => $this->input->post('odp'),
 					'olt'  => $this->input->post('olt'),
+					'typeipaddress'  => $this->input->post('typeipaddress'),
 					'jenis_perangkat'  => $this->input->post('jenisperangkat'),
 					'merek_perangkat'  => $this->input->post('merekperangkat'),
 					'serial_number'  => $this->input->post('serialnumber'),
@@ -270,6 +276,7 @@ class Customer extends CI_Controller
 					'panjang_kabel'  => $this->input->post('panjangkabel'),
 					'odp'  => $this->input->post('odp'),
 					'olt'  => $this->input->post('olt'),
+					'typeipaddress'  => $this->input->post('typeipaddress'),
 					'jenis_perangkat'  => $this->input->post('jenisperangkat'),
 					'merek_perangkat'  => $this->input->post('merekperangkat'),
 					'serial_number'  => $this->input->post('serialnumber'),

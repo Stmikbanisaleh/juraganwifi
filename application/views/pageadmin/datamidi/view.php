@@ -132,7 +132,7 @@
 										<input type="text" id="serial_number" name="serial_number" class="form-control" placeholder="Serial Number">
 									</div>
 
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label>Nomor MSISDN 1</label>
 										<input type="text" id="nomor_1" name="nomor_1" class="form-control" placeholder="NOMOR MSISDN 1">
 									</div>
@@ -140,7 +140,7 @@
 									<div class="form-group">
 										<label>Nomor MSISDN 2</label>
 										<input type="text" id="nomor_2" name="nomor_2" class="form-control" placeholder="NOMOR MSISDN 2">
-									</div>
+									</div> -->
 
 									<div class="form-group">
 										<label>IMEI 1</label>
@@ -167,7 +167,7 @@
 										<select class="form-control select2" style="width: 100%;" name="nomor_inet" id="nomor_inet">
 											<option selected="selected">-- Pilih --</option>
 											<?php foreach ($myinet as $value) { ?>
-												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+												<option value=<?= $value['id'] ?>><?= $value['nomor_inet'] ?></option>
 											<?php } ?>
 										</select>
 									</div>
@@ -348,7 +348,7 @@
 										<input type="text" id="e_serial_number" name="e_serial_number" class="form-control" placeholder="Serial Number">
 									</div>
 
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label>Nomor MSISDN 1</label>
 										<input type="text" id="e_nomor_1" name="e_nomor_1" class="form-control" placeholder="NOMOR MSISDN 1">
 									</div>
@@ -356,7 +356,7 @@
 									<div class="form-group">
 										<label>Nomor MSISDN 2</label>
 										<input type="text" id="e_nomor_2" name="e_nomor_2" class="form-control" placeholder="NOMOR MSISDN 2">
-									</div>
+									</div> -->
 
 									<div class="form-group">
 										<label>IMEI 1</label>
@@ -498,12 +498,6 @@
 						</th>
 						<th class="text-center">
 							Serial Number
-						</th>
-						<th class="text-center">
-							Nomor MSISDN 1
-						</th>
-						<th class="text-center">
-							Nomor MSISDN 2
 						</th>
 						<th class="text-center">
 							IMEI GSM 1
@@ -685,8 +679,6 @@
 						'<td class="text-left">' + data[i].type_perangkat + '</td>' +
 						'<td class="text-left">' + data[i].mac_address + '</td>' +
 						'<td class="text-left">' + data[i].serial_number + '</td>' +
-						'<td class="text-left">' + data[i].nomor_1 + '</td>' +
-						'<td class="text-left">' + data[i].nomor_2 + '</td>' +
 						'<td class="text-left">' + data[i].imei1 + '</td>' +
 						'<td class="text-left">' + data[i].imei2 + '</td>' +
 						'<td class="text-left">' + data[i].nama_vendor + '</td>' +

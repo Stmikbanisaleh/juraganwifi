@@ -17,7 +17,7 @@ class Model_inet extends CI_model
 
 	public function checkDuplicate($data, $table)
     {
-        $this->db->where('nama',$data['nama']);
+        $this->db->where('nomor_inet',$data['nomor_inet']);
         return $this->db->get($table)->num_rows();
     }
 

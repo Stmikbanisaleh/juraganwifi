@@ -167,6 +167,16 @@
 										</select>
 									</div>
 
+									<div class="form-group">
+										<label>Type IP Address</label>
+										<select class="form-control select2" style="width: 100%;" name="typeipaddress" id="typeipaddress">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($mytypeip as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
 
 									<hr>
 									<b>DATA ADMINISTRASI</b>
@@ -406,6 +416,16 @@
 											<?php } ?>
 										</select>
 									</div>
+
+									<div class="form-group">
+										<label>Type IP Address</label>
+										<select class="form-control select2" style="width: 100%;" name="e_typeipaddress" id="e_typeipaddress">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($mytypeip as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
 									<hr>
 									<b>DATA ADMINISTRASI</b>
 									<hr>
@@ -553,6 +573,12 @@
 						</th>
 						<th style="width: 8%" class="text-center">
 							Password PPOE
+						</th>
+						<th style="width: 8%" class="text-center">
+							Jenis IP Address
+						</th>
+						<th style="width: 8%" class="text-center">
+							Type IP Address
 						</th>
 						<th style="width: 8%" class="text-center">
 							Tanggal Registrasi
@@ -724,6 +750,8 @@
 						'<td class="text-left">' + data[i].mac_address + '</td>' +
 						'<td class="text-left">' + data[i].usernamepoe + '</td>' +
 						'<td class="text-left">' + data[i].p_ppoe + '</td>' +
+						'<td class="text-left">' + data[i].jenis_ip + '</td>' +
+						'<td class="text-left">' + data[i].type_ip + '</td>' +
 						'<td class="text-left">' + data[i].tgl_registrasi + '</td>' +
 						'<td class="text-left">' + data[i].tgl_aktivasi + '</td>' +
 						'<td class="text-left">' + data[i].odp + '</td>' +
@@ -903,6 +931,7 @@
 				$('#e_jenistempat').val(data[0].jenis_tempat).select2();
 				$('#e_kepemilikanperangkat').val(data[0].kepemilikan_perangkat).select2();
 				$('#e_kepemilikantempat').val(data[0].kepemilikan_tempat).select2();
+				$('#e_typeipaddress').val(data[0].typeipaddress).select2();
 				$('#e_nama_teknisi').val(data[0].nama_teknisi);
 				console.log(data[0].kode_odc)
 				show_data_eodc(data[0].wilayah, function(a) {
@@ -919,26 +948,6 @@
 		$("#formEdit").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
-			rules: {
-				e_nama: {
-					required: true
-				},
-
-				e_keterangan: {
-					required: true
-				},
-
-			},
-			messages: {
-				e_nama: {
-					required: "Wajib diisi!"
-				},
-
-				e_keterangan: {
-					required: "Wajib diisi!"
-				},
-
-			},
 			submitHandler: function(form) {
 				$('#btn_edit').html('Sending..');
 				formdata = new FormData(form);
