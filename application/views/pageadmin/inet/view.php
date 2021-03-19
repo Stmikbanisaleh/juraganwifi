@@ -381,7 +381,7 @@
 				$('#e_password_inet').val(data[0].password_inet);
 				$('#e_kapasitas').val(data[0].kapasitas);
 				$('#e_alokasi').val(data[0].alokasi);
-				$('#e_status').val(data[0].status);
+				$('#e_status').val(data[0].status).select2();
 
 			}
 		});
