@@ -101,6 +101,9 @@
                         <th class="text-center">
 							Nominal Bayar
 						</th>
+						<th class="text-center">
+							Metode Pembayaran
+						</th>
                         <th class="text-center">
 							No Telp / WhatsApp
 						</th>
@@ -166,10 +169,16 @@
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
                     var status = '';
+					var metode = '';
                     if (data[i].no_wa != null) {
 						status = '<td ><a target="_blank" href="https://api.whatsapp.com/send/?phone=' + data[i].no_wa + '">'+data[i].no_wa+'</td>'
 					} else {
 						status = '<td class="text-left"> No Telp Tidak Tersedia</td>'
+					}
+					if (data[i].metode_pembayaran != null) {
+						metode = 	'<td class="text-left">' + data[i].metode_pembayaran + '</td>' 
+					} else {
+						metode = '<td class="text-left">- </td>'
 					}
                     var tombol= '';
                     if (data[i].status == '1') {
@@ -195,6 +204,7 @@
 						'<td class="text-left">' + data[i].year + '</td>' +
 						'<td class="text-left">' + data[i].Nominal + '</td>' +
 						'<td class="text-left">' + data[i].Nominal_bayar + '</td>' +
+						metode+
                         status+
 						tombol+
 						'</tr>';

@@ -74,9 +74,6 @@
 						<th  class="text-center">
 							Jatuh Tempo
 						</th>
-						<th  class="text-center">
-							Action
-						</th>
 					</tr>
 				</thead>
 				<tbody id="show_data">
@@ -162,27 +159,25 @@
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
 					var status = '';
+					var wa = '';
 					if (data[i].status == 1) {
 						status = '<td class="project-state"><span class="badge badge-success">Lunas</span></td>'
 					} else {
 						status = '<td class="project-state"><span class="badge badge-warning">Menunggu Pembayaran</span></td>'
 					}
+					if (data[i].no_wa != null) {
+						wa = '<td ><a target="_blank" href="https://api.whatsapp.com/send/?phone=' + data[i].no_wa + '">'+data[i].no_wa+'</td>'
+					} else {
+						wa = '<td class="text-left"> No Telp Tidak Tersedia</td>'
+					}
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
 						'<td class="text-left">' + data[i].name + '</td>' +
-						'<td class="text-right">' + data[i].no_wa + '</td>' +
+						wa+
 						'<td class="text-right">' + ConvertFormatRupiah(data[i].total_tagihan, 'Rp.') + '</td>' +
 						status +
 						'<td class="text-right">' + data[i].month +'/'+ data[i].year+'</td>' +
 						'<td class="text-right">' +data[i].due_date + '</td>' +
-						'<td class="project-actions text-center">' +
-						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-folder"> </i>  Edit </a>' +
-						'</button> &nbsp' +
-						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
-						'</button> ' +
-						'</td>' +
 						'</tr>';
 					no++;
 				}

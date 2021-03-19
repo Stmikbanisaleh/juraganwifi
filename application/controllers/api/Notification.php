@@ -22,33 +22,37 @@ class Notification extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        $params = array('server_key' => 'your_server_key', 'production' => false);
+		$params = array('server_key' => 'Mid-server-bZaYQrhSiFwmKleeDJIa1egv', 'production' => true);
 		$this->load->library('veritrans');
 		$this->veritrans->config($params);
 		$this->load->helper('url');
+		$this->load->model('administrator/model_generate_tagihan_log');
 		
     }
 
 	public function index()
 	{
-		echo 'test notification handler';
 		$json_result = file_get_contents('php://input');
 		$result = json_decode($json_result);
-
+	
 		if($result){
-		$notif = $this->veritrans->status($result->order_id);
+			$notif = $this->veritrans->status($result->order_id);
 		}
-
+		$data = array(
+			'invoice' => $result->order_id,
+			'log'  => json_encode($result),
+			'message' => json_encode($notif),
+			'createdAt' => date('Y-m-d H:i:s'),
+		);
+		$this->model_generate_tagihan_log->insert($data, 'veritrans_log');
 		error_log(print_r($result,TRUE));
 
 		//notification handler sample
-
-		/*
 		$transaction = $notif->transaction_status;
 		$type = $notif->payment_type;
+		$nominal = $notif->gross_amount;
 		$order_id = $notif->order_id;
 		$fraud = $notif->fraud_status;
-
 		if ($transaction == 'capture') {
 		  // For credit card transaction, we need to check whether transaction is challenge by FDS or not
 		  if ($type == 'credit_card'){
@@ -65,8 +69,28 @@ class Notification extends CI_Controller {
 		  }
 		else if ($transaction == 'settlement'){
 		  // TODO set payment status in merchant's database to 'Settlement'
-		  echo "Transaction order_id: " . $order_id ." successfully transfered using " . $type;
-		  } 
+			$data_id = array(
+				'invoice'  => $order_id
+			);
+			$data = array(
+				'status'  => 1,
+				'metode_pembayaran'  => $type,
+				'updatedAt' => date('Y-m-d H:i:s'),
+				'updatedBy' => 'Midtrans System Notification',
+			);
+			$this->model_generate_tagihan_log->update($data_id, $data, 'invoice');
+			$id = $this->db->query("select a.id from invoice_detail a join invoice b on a.invoice_id = b.id where b.invoice = $order_id ")->result_array();
+			$id = $id[0];
+			$data_id2 = array(
+				'id'  => $id['id']
+			);
+			$data2 = array(
+				'nominal_bayar'  => $nominal,
+				'updatedAt' => date('Y-m-d H:i:s'),
+				'updatedBy' => 'Midtrans System Notification',
+			);
+			$this->model_generate_tagihan_log->update($data_id2, $data2, 'invoice_detail');
+		} 
 		  else if($transaction == 'pending'){
 		  // TODO set payment status in merchant's database to 'Pending'
 		  echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
@@ -74,7 +98,7 @@ class Notification extends CI_Controller {
 		  else if ($transaction == 'deny') {
 		  // TODO set payment status in merchant's database to 'Denied'
 		  echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
-		}*/
+		}
 
 	}
 }

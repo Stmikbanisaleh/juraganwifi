@@ -121,14 +121,10 @@
 					success: function(response) {
 						$('#btn_simpan').html('<i class="ace-icon fa fa-save"></i>' +
 							'Simpan');
-						if (response == true) {
 							document.getElementById("formTambah").reset();
 							swalInputSuccess();
 							show_data();
 							$('#my-modal').modal('hide');
-						} else {
-							swalInputFailed();
-						}
 					}
 				});
 			}

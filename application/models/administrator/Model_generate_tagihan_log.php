@@ -7,7 +7,8 @@ class Model_generate_tagihan_log extends CI_model
     {
 		return $this->db->query("select a.due_date,a.createdAt,c.name,c.no_wa,a.invoice, a.month, a.year,a.status, sum(b.price) as total_tagihan from invoice a 
 		join invoice_detail b on a.id = b.invoice_id
-		join customer c on a.no_services = c.no_services ");
+		join customer c on a.no_services = c.no_services 
+        group by a.invoice");
 	}
 
 	function cek($bulan, $tahun, $no_services)
@@ -15,9 +16,17 @@ class Model_generate_tagihan_log extends CI_model
 		return $this->db->query("select no_services from invoice where no_services ='$no_services' and month='$bulan' and year ='$tahun' ");
 	}
 	
+    function getDataByInvoice($invoice)
+    {
+		return $this->db->query("select a.token, c.name, a.no_services, DATE_FORMAT(a.createdAt, '%d-%M-%Y') as periode_awal , DATE_FORMAT(a.due_date, '%d-%M-%Y') as periode_akhir,
+        CONCAT('Rp. ',FORMAT(b.price,2)) Nominal,DATE_FORMAT(DATE_ADD(a.createdAt,INTERVAL 14 DAY),'%d-%M-%Y') as jatuh_tempo  from invoice a 
+        join invoice_detail b on a.id = b.invoice_id 
+        join customer c on a.no_services = c.no_services where a.invoice = $invoice");
+	}
+
 	function cekInvoice($month, $year)
     {
-		return $this->db->query("select invoice, no_services from invoice where month = '$month' and year = '$year' and status = 0  ");
+		return $this->db->query("select invoice, no_services from invoice where month = '$month' and year = '$year' and status = 0 ");
 	}
 
 	function viewCustomer($invoice)

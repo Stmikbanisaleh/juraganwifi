@@ -1,10 +1,4 @@
-<!doctype html>
-<html>
-
-<head>
-	<meta charset="utf-8">
-	<title>A simple, clean, and responsive HTML invoice template</title>
-
+<html><head>
 	<style>
 		.invoice-box {
 			max-width: 800px;
@@ -83,7 +77,6 @@
 				text-align: center;
 			}
 		}
-
 		/** RTL **/
 		.rtl {
 			direction: rtl;
@@ -98,9 +91,7 @@
 			text-align: left;
 		}
 	</style>
-</head>
-
-<body>
+	</head><body>
 	<div class="invoice-box">
 		<table cellpadding="0" cellspacing="0">
 			<tr class="top">
@@ -116,7 +107,6 @@
 					</table>
 				</td>
 			</tr>
-
 			<tr class="information">
 				<td colspan="2">
 					<table>
@@ -138,7 +128,6 @@
 					</table>
 				</td>
 			</tr>
-
 			<tr class="heading">
 				<td>
 					Nama Layanan
@@ -166,10 +155,8 @@
 				$total += $value['price'];
 			}
 			?>
-
 			<tr class="total">
 				<td></td>
-
 				<td>
 					<?php echo 'Rp.' . number_format($total, 0, ',', '.'); ?>
 				</td>
@@ -189,9 +176,6 @@
 			Terima kasih
 			<br>
 			Salam Hangat,
-
 		</div>
 	</div>
-</body>
-
-</html>
+</body></html>

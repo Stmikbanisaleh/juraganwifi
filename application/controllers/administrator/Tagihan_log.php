@@ -5,6 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use Dompdf\Dompdf;
+use Dompdf\Options;
 // Load Composer's autoloader
 require 'vendor/autoload.php';
 class Tagihan_log extends CI_Controller
@@ -12,8 +13,13 @@ class Tagihan_log extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+		$params = array('server_key' => 'Mid-server-bZaYQrhSiFwmKleeDJIa1egv', 'production' => true);
+		$this->load->library('midtrans');
+		$this->midtrans->config($params);
+		$this->load->helper('url');	
 		$this->load->library('form_validation');
 		$this->load->model('administrator/model_generate_tagihan_log');
+		$this->load->library('pdf');
 	}
 
 	function render_view($data)
@@ -63,14 +69,15 @@ class Tagihan_log extends CI_Controller
 					$generateTagihanData = $this->model_generate_tagihan_log->generateTagihan($noVal['no_services'])->result_array();
 					if ($generateTagihanData) {
 						$invoiceNo = strtotime(date('Y-m-d H:i:s'));
+						$invoice =  $invoiceNo.$no;
 						$dataInvoice = array(
-							'invoice' => $invoiceNo.$no,
+							'invoice' => $invoice,
 							'month' => $this->input->post('bulan'),
 							'year' => $this->input->post('tahun'),
 							'no_services' => $noVal['no_services'],
 							'status' => 0,
 							'createdAt' => date('Y-m-d H:i:s'),
-							'due_date' => date('d-m-Y', strtotime('today + 14 days'))
+							'due_date' => date('Y-m-d', strtotime('today + 30 days'))
 						);
 						$insertInvoice = $this->model_generate_tagihan_log->insert($dataInvoice, 'invoice');
 						$id = $this->db->insert_id();
@@ -85,76 +92,140 @@ class Tagihan_log extends CI_Controller
 							);
 							$insertInvoiceDetail = $this->model_generate_tagihan_log->insert($dataInvoiceDetail, 'invoice_detail');
 						}
+						$this->generateTagihan($this->input->post('bulan'), $this->input->post('tahun') );
+						$token = $this->token($invoice);
+						$data_id = array(
+							'invoice'  => $invoice
+						);
+				
+						$dataToken = array(
+							"token" => "https://app.midtrans.com/snap/v2/vtweb/".$token
+						);
+						$action = $this->model_generate_tagihan_log->update($data_id, $dataToken, 'invoice');
+						
 					}
 			}
 			$no++;
 		}
 		$action = $this->model_generate_tagihan_log->insert($data, 'tagihan_generate_log');
-		echo json_encode($action);
+		echo json_encode(true);
 	}
 
-	public function generateTagihan()
+	public function generateTagihan($bulan, $tahun)
 	{
-		$invoice = $this->input->post('invoice');
-		// $itemlist = $this->model_generate_tagihan_log->viewTagihan($invoice)->row();
-		$item_list = $this->model_generate_tagihan_log->viewCustomer($invoice)->result_array();
-		$dataUser = $this->model_generate_tagihan_log->viewPelanggan($invoice)->result_array();
-		$data = array(
-			'invoice' => $invoice,
-			'createdAt' => date('d-m-Y'),
-			'due_date'  => date('d-m-Y', strtotime('today + 14 days')),
-			'item_list' => $item_list,
-			'user' => $dataUser,
-		);
-		$this->load->library('pdf');
-		$this->pdf->load_view('pageadmin/laporan/invoice', $data);
-	}
-
-	public function sendEmail($email, $invoice)
-	{
-		$email = $this->input->post('email');
-		$data = array(
-			'type' => 'TAGIHAN'
-		);
-		$mail = new PHPMailer(true);
-		//Server settings
-		$configEmail = $this->model_generate_tagihan_log->viewWhereOrdering('email', $data, 'id', 'desc')->result_array();
-		$configEmail = $configEmail[0];
-		try {
-
-			$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
-			$mail->isSMTP();                                            // Send using SMTP
-			$mail->Host       = $configEmail['host'];                    // Set the SMTP server to send through
-			$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-			$mail->Username   = $configEmail['email'];                     // SMTP username
-			$mail->Password   = $configEmail['password'];                               // SMTP password
-			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-			$mail->Port       = $configEmail['port'];                                     // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-
-			//Recipients
-			$mail->setFrom(EMAIL_TAGIHAN);
-			// $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-			$mail->addAddress($email);               // Name is optional
-			// $mail->addReplyTo('info@example.com', 'Information');
-			// $mail->addCC('cc@example.com');
-			$mail->addBCC($configEmail['bcc']);
-
-			// // Attachments
-			// $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-			// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-			// Content
-			$mail->isHTML(true);                                  // Set email format to HTML
-			$mail->Subject = 'Here is the subject';
-			$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-			$mail->send();
-			echo 'Message has been sent';
-		} catch (Exception $e) {
-			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		$month = $bulan;
+		$year = $tahun;
+		$listInvoice = $this->model_generate_tagihan_log->cekInvoice($month,$year)->result_array();
+		foreach ($listInvoice as $value ){
+			
+			$item_list = $this->model_generate_tagihan_log->viewCustomer($value['invoice'])->result_array();
+			$dataUser = $this->model_generate_tagihan_log->viewPelanggan($value['invoice'])->result_array();
+			
+			$email = $dataUser[0]['email'];
+			$data = array(
+				'invoice' => $value['invoice'],
+				'createdAt' => date('d-m-Y'),
+				'due_date'  => date('d-m-Y', strtotime('today + 14 days')),
+				'item_list' => $item_list,
+				'user' => $dataUser,
+			);
+			// $this->pdf->load_view('pageadmin/laporan/invoice', $data);
+			$mpdf = new \Mpdf\Mpdf();
+			$data = $this->load->view('pageadmin/laporan/invoice',$data, TRUE);
+			$mpdf->WriteHTML($data);
+			$mpdf->Output(APPPATH . "/public/".$value['invoice'].".pdf", \Mpdf\Output\Destination::FILE);
 		}
 	}
+
+	public function token($invoice)
+    {
+		$dataBill = $this->db->query("select a.invoice,b.price,c.name as package, c.id as packageid,
+		d.name as nama_customer,d.address,d.no_wa,d.email   from invoice a
+		join invoice_detail b on a.id = b.invoice_id 
+		join package_item c on b.item_id = c.id
+		join customer d on a.no_services = d.no_services
+		where a.invoice = $invoice group by a.invoice
+		")->result_array();
+
+		$dataBill = $dataBill[0];
+		// Required
+		$transaction_details = array(
+		  'order_id' => $dataBill['invoice'],
+		  'gross_amount' =>$dataBill['price'], // no decimal allowed for creditcard
+		);
+
+		// Optional
+		$item_details = array(
+		  'id' => $dataBill['packageid'],
+		  'price' => $dataBill['price'],
+		  'quantity' => 1,
+		  'name' => $dataBill['package']
+		);
+
+		// // Optional
+		// $item2_details = array(
+		//   'id' => 'a2',
+		//   'price' => 20000,
+		//   'quantity' => 2,
+		//   'name' => "Orange"
+		// );
+
+		// // Optional
+		// $item_details = array ($item1_details, $item2_details);
+
+		// Optional
+		$billing_address = array(
+		  'first_name'    => $dataBill['nama_customer'],
+		  'last_name'     => "",
+		  'address'       => $dataBill['address'],
+		  'phone'         => $dataBill['no_wa'],
+		  'country_code'  => 'IDN'
+		);
+
+		// Optional
+		$shipping_address = array(
+			'first_name'    => $dataBill['nama_customer'],
+			'last_name'     => "",
+			'address'       => $dataBill['address'],
+			'phone'         => $dataBill['no_wa'],
+			'country_code'  => 'IDN'
+		);
+
+		// Optional
+		$customer_details = array(
+			'first_name'    => $dataBill['nama_customer'],
+			'last_name'     => "",
+		  'email'         => $dataBill['email'],
+		  'phone'         => $dataBill['no_wa'],
+		  'billing_address'  => $billing_address,
+		  'shipping_address' => $shipping_address
+		);
+
+		// Data yang akan dikirim untuk request redirect_url.
+        $credit_card['secure'] = true;
+        //ser save_card true to enable oneclick or 2click
+        //$credit_card['save_card'] = true;
+
+        $time = time();
+        $custom_expiry = array(
+            'start_time' => date("Y-m-d H:i:s O",$time),
+            'unit' => 'day', 
+            'duration'  => 30
+        );
+        
+        $transaction_data = array(
+            'transaction_details'=> $transaction_details,
+            'item_details'       => $item_details,
+            'customer_details'   => $customer_details,
+            'credit_card'        => $credit_card,
+            'expiry'             => $custom_expiry
+        );
+
+		error_log(json_encode($transaction_data));
+		$snapToken = $this->midtrans->getSnapToken($transaction_data);
+		error_log($snapToken);
+		return $snapToken;
+    }
 
 	public function tampil_byid()
 	{
