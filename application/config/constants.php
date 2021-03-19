@@ -84,7 +84,7 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
-define('EMAIL_TAGIHAN', 'nilai@gemanurani.sch.id');
+define('EMAIL_TAGIHAN', 'tagihan@gigamurtisatria.id');
 define('PASSWORD_TAGIHAN', 'imam6325');
-define('HOST_EMAIL', 'mail.gemanurani.sch.id');
+define('HOST_EMAIL', 'mail.dev-jwf.gigamurtisatria.id');
 define('EMAIL_PORT', '587');

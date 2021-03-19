@@ -71,12 +71,12 @@ class Blast_email extends CI_Controller
 		try {
 
 			$mail->isSMTP();                                            // Send using SMTP
-			$mail->Host       = $configEmail['host'];                    // Set the SMTP server to send through
+			$mail->Host       = 'mail.gigamurtisatria.id';                    // Set the SMTP server to send through
 			$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
 			$mail->Username   = $configEmail['email'];                     // SMTP username
-			$mail->Password   = $configEmail['password'];                               // SMTP password
+			$mail->Password   = 'imam632507';                               // SMTP password
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-			$mail->Port       = $configEmail['port'];                                     // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+			$mail->Port       = '587';                                     // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
 			//Recipients
 			$mail->setFrom(EMAIL_TAGIHAN);
@@ -93,61 +93,7 @@ class Blast_email extends CI_Controller
 			// Content
 			$mail->isHTML(true);                                  // Set email format to HTML
 			$mail->Subject = 'Nanti disini di isi subject pembayaran ';
-			$html='<!-- #######  YAY, I AM THE SOURCE EDITOR! #########-->
-			<table>
-			<tbody>
-			<tr>
-			<td>
-			<h1>Dear Sdr IMAM SATRIANTA,</h1>
-			<p>Terima kasih atas kepercayaan Anda dalam menggunakan Layanan <span class="il">XL</span> Home.</p>
-			</td>
-			</tr>
-			</tbody>
-			</table>
-			<table>
-			<tbody>
-			<tr>
-			<th>Berikut ini rincian tagihan Anda :</th>
-			</tr>
-			<tr>
-			<th>&bull; Nama Pelanggan</th>
-			<td>:IMAM SATRIANTA</td>
-			</tr>
-			<tr>
-			<th>&bull; Subscriber ID</th>
-			<td>:38032520</td>
-			</tr>
-			<tr>
-			<th>&bull; Jumlah Tagihan</th>
-			<td>:273900.00</td>
-			</tr>
-			<tr>
-			<th>&bull; Tanggal Penagihan</th>
-			<td>:05 Feb 2021</td>
-			</tr>
-			<tr>
-			<th>&bull; Periode Penagihan</th>
-			<td>:01 Feb 2021 - 28 Feb 2021</td>
-			</tr>
-			<tr>
-			<th>&bull; Jatuh Tempo</th>
-			<td>:19 Feb 2021</td>
-			</tr>
-			</tbody>
-			</table>
-			<table>
-			<tbody>
-			<tr>
-			<td>Untuk kenyamanan pelanggan, sekarang pembayaran tagihan bulanan melalui <a><span class="il">XL</span> Home</a>Virtual Account <a>Bank BCA, Mandiri, Danamon, CIMB Niaga, Bank Permata</a><a> dan di minimarket </a><a>ALFA Group atau INDOMARET </a>terdekat dengan rumah Anda. Cara bayar selengkapnya bisa dilihat pada halaman website kami di <a href="http://www.xlhome.co.id/htp" target="_blank" rel="noopener" data-saferedirecturl="https://www.google.com/url?q=http://www.xlhome.co.id/htp&amp;source=gmail&amp;ust=1612791341142000&amp;usg=AFQjCNEfsQLHZlrqRXpaNUy8Bi2MrhEikw">http://www.xlhome.co.id/htp</a>.</td>
-			</tr>
-			<tr>
-			<td><span class="il">XL</span> HOME tidak menerima pembayaran secara tunai yang dilakukan oleh agen sales, teknisi ataupun agen lainnya yang mengatasnamakan <span class="il">XL</span> HOME. Apabila ada agen/oknum yang meminta tambahan biaya tunai, mohon segera laporkan ke customer service <span class="il">XL</span> HOME.</td>
-			</tr>
-			<tr>
-			<td>Untuk informasi lebih lanjut, silakan menghubungi call centre kami:</td>
-			</tr>
-			</tbody>
-			</table>';
+			$html='tst email';
 			$mail->Body    = $html;
 			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

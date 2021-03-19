@@ -37,8 +37,8 @@ class Model_generate_tagihan_log extends CI_model
 
 	function generateTagihan($services)
     {
-		return $this->db->query("Select a.id as item_id , a.price from package_item a join services b on a.id = b.item_id
-		where b.no_services ='".$services."'");
+		return $this->db->query("Select a.id as item_id , a.price from package_item a join customer b on a.id = b.jenis_layanan
+		where b.no_services ='".$services."' and b.status != 0");
 	}
 	
     public function viewOrdering($table, $order, $ordering)

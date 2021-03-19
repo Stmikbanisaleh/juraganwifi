@@ -55,21 +55,20 @@ class Tagihan_log extends CI_Controller
 			'createdBy' => $this->session->userdata('name'),
 		);
 		$listNoServices = $this->model_generate_tagihan_log->viewOrdering('customer', 'id', 'asc')->result_array();
+		$no=1;
 		foreach ($listNoServices as $noVal) {
-			
 			$cek = $this->model_generate_tagihan_log->cek($this->input->post('bulan'), $this->input->post('tahun'), $noVal['no_services']);
 			if ($cek->num_rows() == 0) {
 				$dataCek = $cek->result_array();
-				// foreach ($dataCek as $value) {
 					$generateTagihanData = $this->model_generate_tagihan_log->generateTagihan($noVal['no_services'])->result_array();
-
-					$invoiceNo = strtotime(date('Y-m-d H:i:s'));
 					if ($generateTagihanData) {
+						$invoiceNo = strtotime(date('Y-m-d H:i:s'));
 						$dataInvoice = array(
-							'invoice' => $invoiceNo,
+							'invoice' => $invoiceNo.$no,
 							'month' => $this->input->post('bulan'),
 							'year' => $this->input->post('tahun'),
 							'no_services' => $noVal['no_services'],
+							'status' => 0,
 							'createdAt' => date('Y-m-d H:i:s'),
 							'due_date' => date('d-m-Y', strtotime('today + 14 days'))
 						);
@@ -79,6 +78,7 @@ class Tagihan_log extends CI_Controller
 							$dataInvoiceDetail = array(
 								'invoice_id' => $id,
 								'price' => $val['price'],
+								'nominal_bayar' => 0,
 								'item_id' => $val['item_id'],
 								'd_month' => $this->input->post('bulan'),
 								'd_year' => $this->input->post('tahun')
@@ -86,11 +86,8 @@ class Tagihan_log extends CI_Controller
 							$insertInvoiceDetail = $this->model_generate_tagihan_log->insert($dataInvoiceDetail, 'invoice_detail');
 						}
 					}
-					// $generateTagihan = $this->generateTagihan($value['no_services']);
-					
-				// }
-				
 			}
+			$no++;
 		}
 		$action = $this->model_generate_tagihan_log->insert($data, 'tagihan_generate_log');
 		echo json_encode($action);

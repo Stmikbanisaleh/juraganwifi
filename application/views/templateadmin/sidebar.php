@@ -65,7 +65,7 @@
   					</a>
   					<ul class="nav nav-treeview">
   						<li class="nav-item">
-  							<a href="pages/charts/chartjs.html" class="nav-link">
+						  <a href="<?php echo base_url() . 'administrator/daftar_tagihan'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
   								<p>Daftar Tagihan</p>
   							</a>

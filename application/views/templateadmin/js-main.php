@@ -25,6 +25,14 @@
 		});
 	}
 
+	function swalOverBudget(){
+		Swal.fire({
+		  icon: 'error',
+		  title: 'Gagal',
+		  text: 'Update Data gagal!, Jumlah Bayar lebih besar dari tagihan',
+		});
+	}
+
 	function swalInputFailedakd(){
 		Swal.fire({
 		  icon: 'error',
