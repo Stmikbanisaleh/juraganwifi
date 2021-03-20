@@ -438,7 +438,8 @@
 		</div>
 		<br>
 		<div class="col-sm-2">
-			<button href="#modalTambah" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Data Inventori</button>
+			<button href="#modalTambah" type="button" role="button" data-toggle="modal"
+			 class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Data Midi</button>
 		</div>
 		<br>
 		<div class="card-body p-0">
