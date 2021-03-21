@@ -70,6 +70,7 @@ class User extends CI_Controller
 					'email'  => $this->input->post('e_email'),
 					'phone'  => $this->input->post('e_telp'),
 					'address'  => $this->input->post('e_alamat'),
+					'is_active'  => $this->input->post('e_status'),
 					'updatedAt' => date('Y-m-d H:i:s'),
 					'updatedBy'	=> $this->session->userdata('name')
 				);
@@ -82,6 +83,7 @@ class User extends CI_Controller
 						'email'  => $this->input->post('e_email'),
 						'phone'  => $this->input->post('e_telp'),
 						'address'  => $this->input->post('e_alamat'),
+						'is_active'  => $this->input->post('e_status'),
 						'password'	=> $password,
 						'updatedAt' => date('Y-m-d H:i:s'),
 						'updatedBy'	=> $this->session->userdata('name')

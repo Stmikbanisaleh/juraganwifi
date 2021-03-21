@@ -14,14 +14,67 @@ class Dashboard extends CI_Controller
     {
         $this->template->load('templateadmin', $data); //Display Page
     }
-    
+
     public function index()
     {
         if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+            $tahun = $this->input->post('tahun');
+            if(isset($tahun)){
+                $tahun = $this->input->post('tahun');
+            } else {
+                $tahun =date("Y");
+            }
+            $latestpayment = $this->db->query("select   CONCAT('Rp. ',FORMAT(c.nominal_bayar,2)) nominal, DATE_FORMAT(a.updatedAt,'%d-%M-%Y') as tgl_pembayaran, b.name as nama_pelanggan
+            ,d.name as nama_layanan , a.metode_pembayaran from invoice a
+            join customer b on a.no_services = b.no_services
+            join invoice_detail c on a.id = c.invoice_id
+            join package_item d on c.item_id = d.id where a.status != 0 order by a.updatedAt desc limit 10 ")->result_array();
+            $totalcustomer = $this->db->query("select count(id) as total from customer where status = 1 ")->result_array();
+            $totalcustomer2 = $this->db->query("select count(id) as total from customer where status = 0 ")->result_array();
+            $totalcustomer3 = $this->db->query("select count(id) as total from data_pelanggan_voip")->result_array();
+            $inet = $this->db->query("select count(id) as total from inet where status = 1")->result_array();
+            $inet2 = $this->db->query("select count(id) as total from inet where status = 0")->result_array();
+            $inventori = $this->db->query("select count(id) as total from data_inventori ")->result_array();
+            $totalpendapatan = $this->db->query("select CONCAT('Rp. ',FORMAT(sum(nominal_bayar),2)) total from invoice_detail a where year(a.updatedAt) = '$tahun' ")->result_array();
+            $totalpendapatan =  $totalpendapatan[0];
+            $datainv = $inventori[0];
+            $inet =  $inet[0];
+            $inet2 =  $inet2[0];
+            $totalcustomer = $totalcustomer[0];
+            $totalcustomer2 =  $totalcustomer2[0];
+            $totalcustomer3 = $totalcustomer3[0];
+            $harga = array();
+            $bulan = array();
+            $mygraph = $this->db->query("select sum(a.nominal_bayar) as harga, monthname(a.updatedAt) as bulan
+             from invoice_detail a where year(a.updatedAt) = '$tahun' group by monthname(a.updatedAt) ORDER by month(a.updatedAt) ")->result_array();
+            foreach ($mygraph as $row) {
+                if ($row['harga'] == null) {
+                    array_push($harga, 0);
+                } else {
+                    array_push($harga, $row['harga']);
+                }
+
+                if ($row['bulan'] == null) {
+                    array_push($bulan, 0);
+                } else {
+                    array_push($bulan, $row['bulan']);
+                }
+            }
+
             $data = array(
                 'page_content'      => '../pageadmin/dashboard',
                 'ribbon'            => '<li class="active">Dashboard</li>',
                 'page_name'         => 'Dashboard',
+                'customer'          => $totalcustomer['total'],
+                'customer2'         => $totalcustomer2['total'],
+                'customer3'         => $totalcustomer3['total'],
+                'inet'         => $inet['total'],
+                'inet2'         => $inet2['total'],
+                'datainv'       => $datainv['total'],
+                'bulan' => $bulan,
+                'harga' => $harga,
+                'totalpendapatan' =>  $totalpendapatan['total'],
+                'lastestpayment' =>  $latestpayment
             );
             $this->render_view($data); //Memanggil function render_view
         } else {
@@ -33,20 +86,20 @@ class Dashboard extends CI_Controller
     {
         $email = $this->input->post('email');
         $password = md5($this->input->post('password'));
-		$password = hash("sha512", $password);
-		$result = $this->model_dashboard->checkLogin($email,$password);
+        $password = hash("sha512", $password);
+        $result = $this->model_dashboard->checkLogin($email, $password);
         if ($result->num_rows() > 0) {
             $data = $result->result_array();
             foreach ($data as $value) {
-				if($value['is_active'] != 1){
-					$this->session->set_flashdata('category_error', 'Akun tersebut belum diaktifkan');
-					redirect('dashboard/index');
-				}
+                if ($value['is_active'] != 1) {
+                    $this->session->set_flashdata('category_error', 'Akun tersebut belum diaktifkan');
+                    redirect('dashboard/index');
+                }
                 $data = [
-					'email' => $value['email'],
-					'name' => $value['name'],
-					'image' => $value['image'],
-					'last_login' => $value['last_login'],
+                    'email' => $value['email'],
+                    'name' => $value['name'],
+                    'image' => $value['image'],
+                    'last_login' => $value['last_login'],
                 ];
             }
             $this->session->set_userdata($data);
@@ -57,75 +110,75 @@ class Dashboard extends CI_Controller
         }
     }
 
-	public function updatepassword()
-	{
-		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
-			$data_id = array(
-				'email'  => $this->session->userdata('email')
-			);
-			$password = md5($this->input->post('password'));
-			$password = hash("sha512", $password);
+    public function updatepassword()
+    {
+        if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+            $data_id = array(
+                'email'  => $this->session->userdata('email')
+            );
+            $password = md5($this->input->post('password'));
+            $password = hash("sha512", $password);
 
-			$password2 = md5($this->input->post('passwordconfirm'));
-			$password2 = hash("sha512", $password2);
-			if ($password == $password2) {
+            $password2 = md5($this->input->post('passwordconfirm'));
+            $password2 = hash("sha512", $password2);
+            if ($password == $password2) {
 
-				$data = array(
-					'password'  => $password,
-					'updatedAt' => date('Y-m-d H:i:s'),
-					'updatedBy' => $this->session->userdata('name'),
-				);
-				$action = $this->model_dashboard->update($data_id, $data, 'user');
-				echo json_encode($action);
-			} else {
-				echo json_encode(400);
-			}
-		} else {
-			$this->load->view('pageadmin/login'); //Memanggil function render_view
-		}
-	}
-	
-	public function notification()
-	{
-		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
-			if ($this->input->post('view') != '') {
-				$this->db->query("UPDATE status_log SET is_read = 1 WHERE is_read = 0");
-			}
-			$data = $this->db->query("Select a.*,b.airwaybill  from status_log a join pengiriman b on a.id_pengiriman = b.id order by a.createdAt desc limit 10")->result_array();
-			$output = '';
-			$status = '';
+                $data = array(
+                    'password'  => $password,
+                    'updatedAt' => date('Y-m-d H:i:s'),
+                    'updatedBy' => $this->session->userdata('name'),
+                );
+                $action = $this->model_dashboard->update($data_id, $data, 'user');
+                echo json_encode($action);
+            } else {
+                echo json_encode(400);
+            }
+        } else {
+            $this->load->view('pageadmin/login'); //Memanggil function render_view
+        }
+    }
 
-			if ($data != null) {
-				foreach ($data as $value) {
-					if ($value['status'] == 0) {
-						$text = "No Airway Bill <b>" . $value['airwaybill'] . "</b> <br>Pengiriman Sedang di Packing ";
-					} else if ($value['status'] == 1) {
-						$text = "No Airway Bill  <b>" . $value['airwaybill'] . "</b> <br> Pengiriman Sedang di Dalam Perjalanan ";
-					} else {
-						$text = "No Airway Bill  <b>" . $value['airwaybill'] . "</b> <br> Pengiriman Telah Sampai ";
-					}
-					$output .= '
+    public function notification()
+    {
+        if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+            if ($this->input->post('view') != '') {
+                $this->db->query("UPDATE status_log SET is_read = 1 WHERE is_read = 0");
+            }
+            $data = $this->db->query("Select a.*,b.airwaybill  from status_log a join pengiriman b on a.id_pengiriman = b.id order by a.createdAt desc limit 10")->result_array();
+            $output = '';
+            $status = '';
+
+            if ($data != null) {
+                foreach ($data as $value) {
+                    if ($value['status'] == 0) {
+                        $text = "No Airway Bill <b>" . $value['airwaybill'] . "</b> <br>Pengiriman Sedang di Packing ";
+                    } else if ($value['status'] == 1) {
+                        $text = "No Airway Bill  <b>" . $value['airwaybill'] . "</b> <br> Pengiriman Sedang di Dalam Perjalanan ";
+                    } else {
+                        $text = "No Airway Bill  <b>" . $value['airwaybill'] . "</b> <br> Pengiriman Telah Sampai ";
+                    }
+                    $output .= '
 				<div class="dropdown-divider"></div>
 				<a href=' . base_url() . "administrator/pengiriman/detail?id=$value[id_pengiriman]" . ' class="dropdown-item">
 					<i>' . $text . '</i> 
 				</a>';
-				}
-			} else {
-				$output .= '
+                }
+            } else {
+                $output .= '
 				<li><a href="#" class="text-bold text-italic">Notification Not Found</a></li>';
-			}
-			$count = $this->db->query("select count(id) as count from status_log where is_read = 0")->result_array();
-			$data = array(
-				'notification' => $output,
-				'unseen_notification'  => $count[0]['count']
-			);
-			echo json_encode($data);
-		} else {
-			$this->load->view('pageadmin/login'); //Memanggil function render_view
-		}
-	}
+            }
+            $count = $this->db->query("select count(id) as count from status_log where is_read = 0")->result_array();
+            $data = array(
+                'notification' => $output,
+                'unseen_notification'  => $count[0]['count']
+            );
+            echo json_encode($data);
+        } else {
+            $this->load->view('pageadmin/login'); //Memanggil function render_view
+        }
+    }
 
-	public function logout()
+    public function logout()
     {
         $this->session->sess_destroy();
         redirect('dashboard/index');

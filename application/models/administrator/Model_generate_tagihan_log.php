@@ -18,10 +18,11 @@ class Model_generate_tagihan_log extends CI_model
 	
     function getDataByInvoice($invoice)
     {
-		return $this->db->query("select a.token, c.name, a.no_services, DATE_FORMAT(a.createdAt, '%d-%M-%Y') as periode_awal , DATE_FORMAT(a.due_date, '%d-%M-%Y') as periode_akhir,
+		return $this->db->query("select d.name as nama_layanan, a.token, c.name, a.no_services, DATE_FORMAT(a.createdAt, '%d-%M-%Y') as periode_awal , DATE_FORMAT(a.due_date, '%d-%M-%Y') as periode_akhir,
         CONCAT('Rp. ',FORMAT(b.price,2)) Nominal,DATE_FORMAT(DATE_ADD(a.createdAt,INTERVAL 14 DAY),'%d-%M-%Y') as jatuh_tempo  from invoice a 
         join invoice_detail b on a.id = b.invoice_id 
-        join customer c on a.no_services = c.no_services where a.invoice = $invoice");
+        join customer c on a.no_services = c.no_services
+        join package_item d on b.item_id = d.id where a.invoice = $invoice ");
 	}
 
 	function cekInvoice($month, $year)

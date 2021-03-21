@@ -391,15 +391,9 @@
   							</a>
   						</li>
   						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/blast_email'; ?>" class="nav-link">
+  							<a href="<?php echo base_url() . 'administrator/email'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
   								<p> Email </p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="pages/examples/e-commerce.html" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Website</p>
   							</a>
   						</li>
   					</ul>
@@ -415,27 +409,15 @@
   					</a>
   					<ul class="nav nav-treeview">
   						<li class="nav-item">
-  							<a href="pages/examples/invoice.html" class="nav-link">
+						  <a href="<?php echo base_url() . 'administrator/laporanpembayaran'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
   								<p>Pembayaran </p>
   							</a>
   						</li>
   						<li class="nav-item">
-  							<a href="pages/examples/profile.html" class="nav-link">
+						  <a href="<?php echo base_url() . 'administrator/laporantagihan'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
   								<p>Tagihan</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="pages/examples/e-commerce.html" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Pemasukan</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="pages/examples/e-commerce.html" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Pengeluaran</p>
   							</a>
   						</li>
   					</ul>
