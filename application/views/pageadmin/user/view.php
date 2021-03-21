@@ -25,7 +25,7 @@
 							</div>
 							<div class="form-group">
 								<label>Alamat</label>
-								<textarea  type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat"></textarea>
+								<textarea type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat"></textarea>
 							</div>
 							<div class="form-group">
 								<label>Password</label>
@@ -80,15 +80,24 @@
 							</div>
 							<div class="form-group">
 								<label>Alamat</label>
-								<textarea  type="text" id="e_alamat" name="e_alamat" class="form-control" placeholder="Alamat"></textarea>
+								<textarea type="text" id="e_alamat" name="e_alamat" class="form-control" placeholder="Alamat"></textarea>
 							</div>
 							<div class="form-group">
 								<label>Password</label>
-								<input required type="password" id="e_password" name="e_password" class="form-control" placeholder="Kosongkan Jika TIdak ingin dirubah">
+								<input  type="password" id="e_password" name="e_password" class="form-control" placeholder="Kosongkan Jika TIdak ingin dirubah">
 							</div>
 							<div class="form-group">
 								<label>Password Confirm</label>
-								<input required type="password" id="e_passwordconfirm" name="e_passwordconfirm" class="form-control" placeholder="Kosongkan Jika TIdak ingin dirubah">
+								<input  type="password" id="e_passwordconfirm" name="e_passwordconfirm" class="form-control" placeholder="Kosongkan Jika TIdak ingin dirubah">
+							</div>
+
+							<div class="form-group">
+								<label>Status User</label>
+								<select class="form-control select2" style="width: 100%;" name="e_status" id="e_status">
+									<option value="" selected="selected">-- Pilih --</option>
+									<option value="1">-- Active --</option>
+									<option value="0">-- Inactive --</option>
+								</select>
 							</div>
 						</div>
 						<!-- /.card-body -->
@@ -197,7 +206,7 @@
 							$('#modalTambah').modal('hide');
 						} else if (response == 401) {
 							swalIdDouble();
-						} else if(response == 400) {
+						} else if (response == 400) {
 							swalNotMatch();
 						} else {
 							swalInputFailed();
@@ -254,13 +263,19 @@
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
+					var status = '';
+					if (data[i].is_active == 1) {
+						status = '<td class="project-state"><span class="badge badge-success"> Active </span></td>'
+					} else {
+						status = '<td class="project-state"><span class="badge badge-danger"> Inactive </span></td>'
+					}
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
 						'<td class="text-left">' + data[i].email + '</td>' +
 						'<td class="text-left">' + data[i].name + '</td>' +
 						'<td class="text-left">' + data[i].phone + '</td>' +
 						'<td class="text-left">' + data[i].address + '</td>' +
-						'<td class="text-left">' + data[i].is_active + '</td>' +
+						status +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +
@@ -307,8 +322,8 @@
 				$('#e_nama').val(data[0].name);
 				$('#e_email').val(data[0].email);
 				$('#e_telp').val(data[0].phone);
-				$('#e_alamat').val(data[0].phone);
-
+				$('#e_alamat').val(data[0].address);
+				$('#e_status').val(data[0].is_active).select2();
 			}
 		});
 	});
@@ -354,7 +369,7 @@
 							$('#modalEdit').modal('hide');
 						} else if (response == 401) {
 							swalIdDouble();
-						} else if(response == 400) {
+						} else if (response == 400) {
 							swalNotMatch();
 						} else {
 							swalEditFailed();

@@ -383,7 +383,7 @@
 										<select class="form-control select2" style="width: 100%;" name="e_nomor_inet" id="e_nomor_inet">
 											<option selected="selected">-- Pilih --</option>
 											<?php foreach ($myinet as $value) { ?>
-												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+												<option value=<?= $value['id'] ?>><?= $value['nomor_inet'] ?></option>
 											<?php } ?>
 										</select>
 									</div>
