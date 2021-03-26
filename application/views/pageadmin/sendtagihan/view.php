@@ -18,8 +18,103 @@
 
 							<div class="form-group">
 								<label>Tahun</label>
-								<input maxlength="4" maxlength="4" type="tahun" id="tahun" name="tahun" class="form-control" placeholder="Tahun">
+								<input required maxlength="4" maxlength="4" type="tahun" id="tahun" name="tahun" class="form-control" placeholder="Tahun">
 							</div>
+
+
+
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<div class="modal-footer">
+						<button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
+							<i class="ace-icon fa fa-save"></i>
+							Simpan
+						</button>
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Batal
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+
+	<div id="my-modal2" class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form" id="formTambah2">
+					<div class="card card-info">
+						<div class="modal-header">
+							<h4 class="modal-title">Blast Tagihan Email</h4>
+
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="card-body">
+
+							<div class="form-group">
+								<label>Bulan</label>
+								<input maxlength="2" max="12" min="1" required type="text" id="bulan" name="bulan" class="form-control" placeholder="Bulan">
+							</div>
+
+							<div class="form-group">
+								<label>Tahun</label>
+								<input required maxlength="4" maxlength="4" type="tahun" id="tahun" name="tahun" class="form-control" placeholder="Tahun">
+							</div>
+
+							<div class="form-group">
+								<label>Pelanggan 1</label>
+								<select class="form-control select2" style="width: 100%;" name="pelanggan[0]" id="pelanggan[0]">
+									<option value="" selected="selected">-- Pilih --</option>
+									<?php foreach ($mypelanggan as $value) { ?>
+										<option value=<?= $value['no_services'] ?>><?= $value['no_services'] .'-'.$value['name'] ?></option>
+									<?php } ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Pelanggan 2</label>
+								<select class="form-control select2" style="width: 100%;" name="pelanggan[1]" id="pelanggan[1]">
+									<option value="" selected="selected">-- Pilih --</option>
+									<?php foreach ($mypelanggan as $value) { ?>
+										<option value=<?= $value['no_services'] ?>><?= $value['no_services'] .'-'.$value['name'] ?></option>
+									<?php } ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Pelanggan 3</label>
+								<select class="form-control select2" style="width: 100%;" name="pelanggan[2]" id="pelanggan[2]">
+									<option value="" selected="selected">-- Pilih --</option>
+									<?php foreach ($mypelanggan as $value) { ?>
+										<option value=<?= $value['no_services'] ?>><?= $value['no_services'] .'-'.$value['name'] ?></option>
+									<?php } ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Pelanggan 4</label>
+								<select class="form-control select2" style="width: 100%;" name="pelanggan[3]" id="pelanggan[3]">
+									<option value="" selected="selected">-- Pilih --</option>
+									<?php foreach ($mypelanggan as $value) { ?>
+										<option value=<?= $value['no_services'] ?>><?= $value['no_services'] .'-'.$value['name'] ?></option>
+									<?php } ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Pelanggan 5</label>
+								<select class="form-control select2" style="width: 100%;" name="pelanggan[4]" id="pelanggan[4]">
+									<option value="" selected="selected">-- Pilih --</option>
+									<?php foreach ($mypelanggan as $value) { ?>
+										<option value=<?= $value['no_services'] ?>><?= $value['no_services'] .'-'.$value['name'] ?></option>
+									<?php } ?>
+								</select>
+							</div>
+
 						</div>
 						<!-- /.card-body -->
 					</div>
@@ -45,33 +140,39 @@
 			<h3 class="card-title">Daftar Invoice</h3>
 		</div>
 		<br>
-		<div class="col-sm-2">
-			<button href="#my-modal" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-envelope bigger-120"></a> Blast Tagihan Email</button>
+		<div class="row">
+			<div class="col-sm-2">
+				<button href="#my-modal" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-envelope bigger-120"></a> Blast Tagihan Email</button>
+			</div>
+			<div class="col-sm-2">
+				<button href="#my-modal2" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-envelope bigger-120"></a> Blast Email By Filter</button>
+			</div>
 		</div>
+
 		<br>
 		<div class="card-body p-0">
 			<table id="table_id" class="table table-bordered table-hover projects">
 				<thead>
 					<tr>
-						<th >
+						<th>
 							#
 						</th>
-						<th class="text-center" >
+						<th class="text-center">
 							Nama Customer
 						</th>
 						<th class="text-center">
-							No Telp 
+							No Telp
 						</th>
-						<th  class="text-center">
+						<th class="text-center">
 							Total Tagihan
 						</th>
 						<th class="text-center">
 							Status
 						</th>
-						<th  class="text-center">
+						<th class="text-center">
 							Periode
 						</th>
-						<th  class="text-center">
+						<th class="text-center">
 							Jatuh Tempo
 						</th>
 					</tr>
@@ -97,15 +198,41 @@
 					dataType: "json",
 					success: function(response) {
 						$('#btn_simpan').html('<i class="ace-icon fa fa-save"></i>' +
-                            'Simpan');
-                        if (response == true) {
-                            document.getElementById("formTambah").reset();
-                            swalGenerateSuccess();
-                            show_data();
-                            $('#my-modal').modal('hide');
-                        } else {
-                            swalGenerateFailed();
-                        } 
+							'Simpan');
+						if (response == true) {
+							document.getElementById("formTambah").reset();
+							swalGenerateSuccess();
+							show_data();
+							$('#my-modal').modal('hide');
+						} else {
+							swalGenerateFailed();
+						}
+					}
+				});
+			}
+		})
+	}
+
+	if ($("#formTambah2").length > 0) {
+		$("#formTambah2").validate({
+			submitHandler: function(form) {
+				$('#btn_simpan').html('Sending..');
+				$.ajax({
+					url: "<?php echo base_url('administrator/blast_email/generateTagihanByUser') ?>",
+					type: "POST",
+					data: $('#formTambah2').serialize(),
+					dataType: "json",
+					success: function(response) {
+						$('#btn_simpan').html('<i class="ace-icon fa fa-save"></i>' +
+							'Simpan');
+						if (response == true) {
+							document.getElementById("formTambah2").reset();
+							swalGenerateSuccess();
+							show_data();
+							$('#my-modal2').modal('hide');
+						} else {
+							swalGenerateFailed();
+						}
 					}
 				});
 			}
@@ -166,18 +293,18 @@
 						status = '<td class="project-state"><span class="badge badge-warning">Menunggu Pembayaran</span></td>'
 					}
 					if (data[i].no_wa != null) {
-						wa = '<td ><a target="_blank" href="https://api.whatsapp.com/send/?phone=' + data[i].no_wa + '">'+data[i].no_wa+'</td>'
+						wa = '<td ><a target="_blank" href="https://api.whatsapp.com/send/?phone=' + data[i].no_wa + '">' + data[i].no_wa + '</td>'
 					} else {
 						wa = '<td class="text-left"> No Telp Tidak Tersedia</td>'
 					}
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
 						'<td class="text-left">' + data[i].name + '</td>' +
-						wa+
+						wa +
 						'<td class="text-right">' + ConvertFormatRupiah(data[i].total_tagihan, 'Rp.') + '</td>' +
 						status +
-						'<td class="text-right">' + data[i].month +'/'+ data[i].year+'</td>' +
-						'<td class="text-right">' +data[i].due_date + '</td>' +
+						'<td class="text-right">' + data[i].month + '/' + data[i].year + '</td>' +
+						'<td class="text-right">' + data[i].due_date + '</td>' +
 						'</tr>';
 					no++;
 				}
@@ -200,6 +327,7 @@
 
 	$(document).ready(function() {
 		show_data();
+		$('.select2').select2();
 		$('#table_id').DataTable({
 			"searching": true,
 			"ordering": true,

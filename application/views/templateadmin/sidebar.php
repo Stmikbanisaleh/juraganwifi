@@ -29,43 +29,24 @@
   						</p>
   					</a>
   				</li>
-  				<li class="nav-header">CUSTOMER</li>
+  				<li class="nav-header">CUSTOMER RT/RW NET</li>
   				<li class="nav-item has-treeview">
   					<a href="<?php echo base_url() . 'administrator/customer'; ?>" class="nav-link">
   						<i class="nav-icon fas fa-users"></i>
   						<p>
-  							Daftar Pelanggan RT/RW Net
-  						</p>
-  					</a>
-  				</li>
-				  <li class="nav-item has-treeview">
-  					<a href="<?php echo base_url() . 'administrator/datavoip'; ?>" class="nav-link">
-  						<i class="nav-icon fas fa-users"></i>
-  						<p>
-  							Daftar Pelanggan VOIP
-  						</p>
-  					</a>
-  				</li>
-  				<li class="nav-item has-treeview">
-  					<a href="#" class="nav-link">
-  						<i class="nav-icon fas fa-book"></i>
-  						<p>
-  							Keluhan Customer
-  							<i class="fas fa-angle-left right"></i>
-  						</p>
-  					</a>
-  				</li>
-  				<li class="nav-item has-treeview">
-  					<a href="#" class="nav-link">
-  						<i class="nav-icon fas fa-money-check-alt"></i>
-  						<p>
-  							Tagihan
+  							Pelanggan RT/RW Net
   							<i class="fas fa-angle-left right"></i>
   						</p>
   					</a>
   					<ul class="nav nav-treeview">
   						<li class="nav-item">
-						  <a href="<?php echo base_url() . 'administrator/daftar_tagihan'; ?>" class="nav-link">
+  							<a href="<?php echo base_url() . 'administrator/customer'; ?>" class="nav-link">
+  								<i class="far fa-circle nav-icon"></i>
+  								<p>Daftar Pelanggan RT/RW Net</p>
+  							</a>
+  						</li>
+  						<li class="nav-item">
+  							<a href="<?php echo base_url() . 'administrator/daftar_tagihan'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
   								<p>Daftar Tagihan</p>
   							</a>
@@ -83,6 +64,44 @@
   							</a>
   						</li>
   					</ul>
+  				</li>
+  				<li class="nav-header">CUSTOMER CORPORATE</li>
+  				<li class="nav-item has-treeview">
+  					<a href="<?php echo base_url() . 'administrator/customer'; ?>" class="nav-link">
+  						<i class="nav-icon fas fa-users"></i>
+  						<p>
+  							Pelanggan Corporate
+  							<i class="fas fa-angle-left right"></i>
+  						</p>
+  					</a>
+  					<ul class="nav nav-treeview">
+  						<li class="nav-item">
+  							<a href="<?php echo base_url() . 'administrator/corporate'; ?>" class="nav-link">
+  								<i class="far fa-circle nav-icon"></i>
+  								<p>Daftar Pelanggan</p>
+  							</a>
+  						</li>
+  						<li class="nav-item">
+  							<a href="<?php echo base_url() . 'administrator/daftar_tagihanc'; ?>" class="nav-link">
+  								<i class="far fa-circle nav-icon"></i>
+  								<p>Daftar Tagihan</p>
+  							</a>
+  						</li>
+  						<li class="nav-item">
+  							<a href="<?php echo base_url() . 'administrator/tagihan_logc'; ?>" class="nav-link">
+  								<i class="far fa-circle nav-icon"></i>
+  								<p>Generate Tagihan</p>
+  							</a>
+  						</li>
+  					</ul>
+  				</li>
+  				<li class="nav-item has-treeview">
+  					<a href="<?php echo base_url() . 'administrator/datavoip'; ?>" class="nav-link">
+  						<i class="nav-icon fas fa-users"></i>
+  						<p>
+  							Daftar Pelanggan VOIP
+  						</p>
+  					</a>
   				</li>
   				<li class="nav-header">MASTER</li>
   				<li class="nav-item has-treeview">
@@ -385,7 +404,7 @@
   					</a>
   					<ul class="nav nav-treeview">
   						<li class="nav-item">
-						  <a href="<?php echo base_url() . 'administrator/user'; ?>" class="nav-link">
+  							<a href="<?php echo base_url() . 'administrator/user'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
   								<p>Daftar User</p>
   							</a>
@@ -409,13 +428,13 @@
   					</a>
   					<ul class="nav nav-treeview">
   						<li class="nav-item">
-						  <a href="<?php echo base_url() . 'administrator/laporanpembayaran'; ?>" class="nav-link">
+  							<a href="<?php echo base_url() . 'administrator/laporanpembayaran'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
   								<p>Pembayaran </p>
   							</a>
   						</li>
   						<li class="nav-item">
-						  <a href="<?php echo base_url() . 'administrator/laporantagihan'; ?>" class="nav-link">
+  							<a href="<?php echo base_url() . 'administrator/laporantagihan'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
   								<p>Tagihan</p>
   							</a>

@@ -111,7 +111,7 @@
 										// tambahkan 'Rp.' pada saat form di ketik
 										// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
 										rup4 = this.value.replace(/\D/g, '');
-										$('#e_harga_v').val(rup3);
+										$('#e_harga_v').val(rup4);
 										rupiah4.value = formatRupiah3(this.value, 'Rp. ');
 									});
 

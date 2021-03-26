@@ -26,10 +26,12 @@ class Blast_email extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+			$pelanggan = $this->model_generate_tagihan_log->viewOrderingCustom('customer', 'id', 'desc')->result_array();
 			$data = array(
 				'page_content'      => '../pageadmin/sendtagihan/view',
 				'ribbon'            => '<li class="active">Kirim Tagihan Email</li>',
 				'page_name'         => 'Tagihan Email',
+				'mypelanggan'			=> $pelanggan
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
@@ -169,6 +171,25 @@ class Blast_email extends CI_Controller
 			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 		}
 	}
+
+	public function generateTagihanByUser()
+	{
+		$this->load->library('pdf');
+		$month = $this->input->post('bulan');
+		$year = $this->input->post('tahun');
+		$pelanggan = $this->input->post('pelanggan');
+
+		$listInvoice = $this->model_generate_tagihan_log->cekInvoice2($month, $year, $pelanggan)->result_array();
+		foreach ($listInvoice as $value) {
+			// $item_list = $this->model_generate_tagihan_log->viewCustomer($value['invoice'])->result_array();
+			$dataUser = $this->model_generate_tagihan_log->viewPelanggan($value['invoice'])->result_array();
+
+			$email = $dataUser[0]['email'];
+			$this->sendEmail($email, $value['invoice']);
+		}
+		echo json_encode(true);
+	}
+
 
 	public function tampil()
 	{

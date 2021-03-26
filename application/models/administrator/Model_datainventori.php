@@ -12,7 +12,7 @@ class Model_datainventori extends CI_model
 
 	public function viewOrderingCustom($table, $order, $ordering)
     {
-        return $this->db->query("select a.*,b.nama as nama_merek from data_inventori a join merek_perangkat b
+        return $this->db->query("select a.*,b.nama as nama_merek from data_inventori a left join merek_perangkat b
 		on a.merek = b.id ");
     }
 

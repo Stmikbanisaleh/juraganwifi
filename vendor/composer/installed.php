@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '8fe2b6e3ca48349d19b5772f6638d8aa48e4f484',
+    'reference' => 'e36a55ad0176fc3d22af3667f43498e41a8feb0d',
     'name' => 'codeigniter/framework',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '8fe2b6e3ca48349d19b5772f6638d8aa48e4f484',
+      'reference' => 'e36a55ad0176fc3d22af3667f43498e41a8feb0d',
     ),
     'doctrine/instantiator' => 
     array (
@@ -116,12 +116,12 @@
     ),
     'myclabs/php-enum' => 
     array (
-      'pretty_version' => '1.7.7',
-      'version' => '1.7.7.0',
+      'pretty_version' => '1.8.0',
+      'version' => '1.8.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd178027d1e679832db9f38248fcc7200647dc2b7',
+      'reference' => '46cf3d8498b095bd33727b13fd5707263af99421',
     ),
     'paragonie/random_compat' => 
     array (

@@ -22,12 +22,18 @@ class Model_generate_tagihan_log extends CI_model
         CONCAT('Rp. ',FORMAT(b.price,2)) Nominal,DATE_FORMAT(DATE_ADD(a.createdAt,INTERVAL 14 DAY),'%d-%M-%Y') as jatuh_tempo  from invoice a 
         join invoice_detail b on a.id = b.invoice_id 
         join customer c on a.no_services = c.no_services
-        join package_item d on b.item_id = d.id where a.invoice = $invoice ");
+        join package_item d on b.item_id = d.id where a.invoice = '$invoice' ");
 	}
 
 	function cekInvoice($month, $year)
     {
 		return $this->db->query("select invoice, no_services from invoice where month = '$month' and year = '$year' and status = 0 ");
+	}
+
+	function cekInvoice2($month, $year, $pelanggan)
+    {
+		$pelanggan = join("','",$pelanggan); 
+		return $this->db->query("select invoice, no_services from invoice where month = '$month' and year = '$year' and status = 0  and no_services in ('$pelanggan')");
 	}
 
 	function viewCustomer($invoice)
@@ -56,6 +62,14 @@ class Model_generate_tagihan_log extends CI_model
         $this->db->order_by($order, $ordering);
         return $this->db->get($table);
 	}
+
+	public function viewOrderingCustom($table, $order, $ordering)
+    {
+        $this->db->where('status', '1');
+        $this->db->order_by($order, $ordering);
+        return $this->db->get($table);
+	}
+	
 	
     public function viewWhereOrdering($table, $data, $order, $ordering)
     {

@@ -16,7 +16,7 @@ class Tagihan_log extends CI_Controller
 		$params = array('server_key' => 'Mid-server-bZaYQrhSiFwmKleeDJIa1egv', 'production' => true);
 		$this->load->library('midtrans');
 		$this->midtrans->config($params);
-		$this->load->helper('url');	
+		$this->load->helper('url');
 		$this->load->library('form_validation');
 		$this->load->model('administrator/model_generate_tagihan_log');
 		$this->load->library('pdf');
@@ -50,6 +50,23 @@ class Tagihan_log extends CI_Controller
 			$this->load->view('pageadmin/login'); //Memanggil function render_view
 		}
 	}
+	public function generateInvoice()
+	{
+		$noreg = $this->db->query("SELECT invoice as maxno from invoice order by id desc")->result_array();
+		
+		$invoiceDate = date('mdY');
+		$kata = '/JWI/RTL/';
+		if (count($noreg) < 1) {
+			$urutan = 'INV000001'.$kata.$invoiceDate;
+		} else {
+			$no = $noreg[0]['maxno'];
+			$urutan =  (int)substr($no, 3, 9);
+			$urutan = $urutan + 1;
+			$urutan = 'INV' . sprintf("%05s", $urutan).$kata.$invoiceDate;
+		}
+
+		return $urutan;
+	}
 
 	public function generate()
 	{
@@ -60,50 +77,50 @@ class Tagihan_log extends CI_Controller
 			'createdAt' => date('Y-m-d H:i:s'),
 			'createdBy' => $this->session->userdata('name'),
 		);
-		$listNoServices = $this->model_generate_tagihan_log->viewOrdering('customer', 'id', 'asc')->result_array();
-		$no=1;
+		$listNoServices = $this->model_generate_tagihan_log->viewOrderingCustom('customer', 'id', 'asc')->result_array();
+		$no = 1;
 		foreach ($listNoServices as $noVal) {
 			$cek = $this->model_generate_tagihan_log->cek($this->input->post('bulan'), $this->input->post('tahun'), $noVal['no_services']);
 			if ($cek->num_rows() == 0) {
 				$dataCek = $cek->result_array();
-					$generateTagihanData = $this->model_generate_tagihan_log->generateTagihan($noVal['no_services'])->result_array();
-					if ($generateTagihanData) {
-						$invoiceNo = strtotime(date('Y-m-d H:i:s'));
-						$invoice =  $invoiceNo.$no;
-						$dataInvoice = array(
-							'invoice' => $invoice,
-							'month' => $this->input->post('bulan'),
-							'year' => $this->input->post('tahun'),
-							'no_services' => $noVal['no_services'],
-							'status' => 0,
-							'createdAt' => date('Y-m-d H:i:s'),
-							'due_date' => date('Y-m-d', strtotime('today + 30 days'))
+				$generateTagihanData = $this->model_generate_tagihan_log->generateTagihan($noVal['no_services'])->result_array();
+				if ($generateTagihanData) {
+					$invoice = $this->generateInvoice();
+					$dataInvoice = array(
+						'invoice' => $invoice = str_replace(' ', '', $invoice),
+						'month' => $this->input->post('bulan'),
+						'year' => $this->input->post('tahun'),
+						'no_services' => str_replace(' ', '', $noVal['no_services']),
+						'status' => 0,
+						'createdAt' => date('Y-m-d H:i:s'),
+						'due_date' => date('Y-m-d', strtotime('today + 30 days'))
+					);
+					$insertInvoice = $this->model_generate_tagihan_log->insert($dataInvoice, 'invoice');
+					$id = $this->db->insert_id();
+					foreach ($generateTagihanData as $val) {
+						$dataInvoiceDetail = array(
+							'invoice_id' => $id,
+							'price' => $val['price'],
+							'nominal_bayar' => 0,
+							'item_id' => $val['item_id'],
+							'd_month' => $this->input->post('bulan'),
+							'd_year' => $this->input->post('tahun')
 						);
-						$insertInvoice = $this->model_generate_tagihan_log->insert($dataInvoice, 'invoice');
-						$id = $this->db->insert_id();
-						foreach ($generateTagihanData as $val) {
-							$dataInvoiceDetail = array(
-								'invoice_id' => $id,
-								'price' => $val['price'],
-								'nominal_bayar' => 0,
-								'item_id' => $val['item_id'],
-								'd_month' => $this->input->post('bulan'),
-								'd_year' => $this->input->post('tahun')
-							);
-							$insertInvoiceDetail = $this->model_generate_tagihan_log->insert($dataInvoiceDetail, 'invoice_detail');
-						}
-						$this->generateTagihan($this->input->post('bulan'), $this->input->post('tahun') );
-						$token = $this->token($invoice);
-						$data_id = array(
-							'invoice'  => $invoice
-						);
-				
-						$dataToken = array(
-							"token" => "https://app.midtrans.com/snap/v2/vtweb/".$token
-						);
-						$action = $this->model_generate_tagihan_log->update($data_id, $dataToken, 'invoice');
-						
+						$insertInvoiceDetail = $this->model_generate_tagihan_log->insert($dataInvoiceDetail, 'invoice_detail');
 					}
+
+					//generate Inovice
+					// $this->generateTagihan($this->input->post('bulan'), $this->input->post('tahun') );
+					$token = $this->token($invoice);
+					$data_id = array(
+						'invoice'  => $invoice
+					);
+
+					$dataToken = array(
+						"token" => "https://app.midtrans.com/snap/v2/vtweb/" . $token
+					);
+					$action = $this->model_generate_tagihan_log->update($data_id, $dataToken, 'invoice');
+				}
 			}
 			$no++;
 		}
@@ -115,13 +132,12 @@ class Tagihan_log extends CI_Controller
 	{
 		$month = $bulan;
 		$year = $tahun;
-		$listInvoice = $this->model_generate_tagihan_log->cekInvoice($month,$year)->result_array();
-		foreach ($listInvoice as $value ){
-			
+		$listInvoice = $this->model_generate_tagihan_log->cekInvoice($month, $year)->result_array();
+		foreach ($listInvoice as $value) {
+
 			$item_list = $this->model_generate_tagihan_log->viewCustomer($value['invoice'])->result_array();
 			$dataUser = $this->model_generate_tagihan_log->viewPelanggan($value['invoice'])->result_array();
-			
-			$email = $dataUser[0]['email'];
+
 			$data = array(
 				'invoice' => $value['invoice'],
 				'createdAt' => date('d-m-Y'),
@@ -131,35 +147,34 @@ class Tagihan_log extends CI_Controller
 			);
 			// $this->pdf->load_view('pageadmin/laporan/invoice', $data);
 			$mpdf = new \Mpdf\Mpdf();
-			$data = $this->load->view('pageadmin/laporan/invoice',$data, TRUE);
+			$data = $this->load->view('pageadmin/laporan/invoice', $data, TRUE);
 			$mpdf->WriteHTML($data);
-			$mpdf->Output(APPPATH . "/public/".$value['invoice'].".pdf", \Mpdf\Output\Destination::FILE);
+			$mpdf->Output(APPPATH . "/public/" . $value['invoice'] . ".pdf", \Mpdf\Output\Destination::FILE);
 		}
 	}
 
 	public function token($invoice)
-    {
+	{
 		$dataBill = $this->db->query("select a.invoice,b.price,c.name as package, c.id as packageid,
-		d.name as nama_customer,d.address,d.no_wa,d.email   from invoice a
+		d.no_services as no_pelanggan, d.name as nama_customer,d.address,d.no_wa,d.email   from invoice a
 		join invoice_detail b on a.id = b.invoice_id 
 		join package_item c on b.item_id = c.id
 		join customer d on a.no_services = d.no_services
-		where a.invoice = $invoice group by a.invoice
+		where a.invoice = '$invoice' group by a.invoice
 		")->result_array();
-
 		$dataBill = $dataBill[0];
 		// Required
 		$transaction_details = array(
-		  'order_id' => $dataBill['invoice'],
-		  'gross_amount' =>$dataBill['price'], // no decimal allowed for creditcard
+			'order_id' => $dataBill['invoice'],
+			'gross_amount' => $dataBill['price'], // no decimal allowed for creditcard
 		);
 
 		// Optional
 		$item_details = array(
-		  'id' => $dataBill['packageid'],
-		  'price' => $dataBill['price'],
-		  'quantity' => 1,
-		  'name' => $dataBill['package']
+			'id' => $dataBill['packageid'],
+			'price' => $dataBill['price'],
+			'quantity' => 1,
+			'name' => $dataBill['package']
 		);
 
 		// // Optional
@@ -175,11 +190,11 @@ class Tagihan_log extends CI_Controller
 
 		// Optional
 		$billing_address = array(
-		  'first_name'    => $dataBill['nama_customer'],
-		  'last_name'     => "",
-		  'address'       => $dataBill['address'],
-		  'phone'         => $dataBill['no_wa'],
-		  'country_code'  => 'IDN'
+			'first_name'    => $dataBill['nama_customer'],
+			'last_name'     => "",
+			'address'       => $dataBill['address'],
+			'phone'         => $dataBill['no_wa'],
+			'country_code'  => 'IDN'
 		);
 
 		// Optional
@@ -195,37 +210,38 @@ class Tagihan_log extends CI_Controller
 		$customer_details = array(
 			'first_name'    => $dataBill['nama_customer'],
 			'last_name'     => "",
-		  'email'         => $dataBill['email'],
-		  'phone'         => $dataBill['no_wa'],
-		  'billing_address'  => $billing_address,
-		  'shipping_address' => $shipping_address
+			'email'         => $dataBill['email'],
+			'phone'         => $dataBill['no_wa'],
+			'billing_address'  => $billing_address,
+			'shipping_address' => $shipping_address
 		);
 
 		// Data yang akan dikirim untuk request redirect_url.
-        $credit_card['secure'] = true;
-        //ser save_card true to enable oneclick or 2click
-        //$credit_card['save_card'] = true;
+		$credit_card['secure'] = true;
+		//ser save_card true to enable oneclick or 2click
+		//$credit_card['save_card'] = true;
 
-        $time = time();
-        $custom_expiry = array(
-            'start_time' => date("Y-m-d H:i:s O",$time),
-            'unit' => 'day', 
-            'duration'  => 30
-        );
-        
-        $transaction_data = array(
-            'transaction_details'=> $transaction_details,
-            'item_details'       => $item_details,
-            'customer_details'   => $customer_details,
-            'credit_card'        => $credit_card,
-            'expiry'             => $custom_expiry
-        );
+		$time = time();
+		$custom_expiry = array(
+			'start_time' => date("Y-m-d H:i:s O", $time),
+			'unit' => 'day',
+			'duration'  => 30
+		);
+
+		$transaction_data = array(
+			'transaction_details' => $transaction_details,
+			'item_details'       => $item_details,
+			'customer_details'   => $customer_details,
+			'credit_card'        => $credit_card,
+			'expiry'             => $custom_expiry,
+			'custom_field1' => $dataBill['no_pelanggan'],
+		);
 
 		error_log(json_encode($transaction_data));
 		$snapToken = $this->midtrans->getSnapToken($transaction_data);
 		error_log($snapToken);
 		return $snapToken;
-    }
+	}
 
 	public function tampil_byid()
 	{
