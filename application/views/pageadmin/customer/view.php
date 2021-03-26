@@ -128,7 +128,7 @@
 									<hr>
 									<div class="form-group">
 										<label>Jenis Layanan</label>
-										<select class="form-control select2" style="width: 100%;" name="jenislayanan" id="jenislayanan">
+										<select required class="form-control select2" style="width: 100%;" name="jenislayanan" id="jenislayanan">
 											<option value="" selected="selected">-- Pilih --</option>
 											<?php foreach ($myjenislayanan as $value) { ?>
 												<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>
@@ -378,7 +378,7 @@
 									<hr>
 									<div class="form-group">
 										<label>Jenis Layanan</label>
-										<select class="form-control select2" style="width: 100%;" name="e_jenislayanan" id="e_jenislayanan">
+										<select required class="form-control select2" style="width: 100%;" name="e_jenislayanan" id="e_jenislayanan">
 											<option value="" selected="selected">-- Pilih --</option>
 											<?php foreach ($myjenislayanan as $value) { ?>
 												<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>

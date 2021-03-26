@@ -55,7 +55,7 @@
 
 									<div class="form-group">
 										<label>Merk Perangkat</label>
-										<select class="form-control select2" style="width: 100%;" name="merek" id="merek">
+										<select required class="form-control select2" style="width: 100%;" name="merek" id="merek">
 											<option selected="selected">-- Pilih --</option>
 											<?php foreach ($mymerek as $value) { ?>
 												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
@@ -187,7 +187,7 @@
 
 									<div class="form-group">
 										<label>Merek Perangkat</label>
-										<select class="form-control select2" style="width: 100%;" name="e_merek" id="e_merek">
+										<select required class="form-control select2" style="width: 100%;" name="e_merek" id="e_merek">
 											<option value="" selected="selected">-- Pilih --</option>
 											<?php foreach ($mymerek as $value) { ?>
 												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
