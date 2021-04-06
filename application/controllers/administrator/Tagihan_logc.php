@@ -53,16 +53,16 @@ class Tagihan_logc extends CI_Controller
 	public function generateInvoice()
 	{
 		$noreg = $this->db->query("SELECT invoice as maxno from invoice_corporate order by id desc")->result_array();
-		
+
 		$invoiceDate = date('mdY');
 		$kata = '/JWI/CRP/';
 		if (count($noreg) < 1) {
-			$urutan = 'INV000001'.$kata.$invoiceDate;
+			$urutan = 'INV000001' . $kata . $invoiceDate;
 		} else {
 			$no = $noreg[0]['maxno'];
 			$urutan =  (int)substr($no, 3, 9);
 			$urutan = $urutan + 1;
-			$urutan = 'INV' . sprintf("%05s", $urutan).$kata.$invoiceDate;
+			$urutan = 'INV' . sprintf("%05s", $urutan) . $kata . $invoiceDate;
 		}
 
 		return $urutan;
@@ -81,7 +81,6 @@ class Tagihan_logc extends CI_Controller
 		$no = 1;
 		foreach ($listNoServices as $noVal) {
 			$cek = $this->model_generate_tagihan_logc->cek($this->input->post('bulan'), $this->input->post('tahun'), $noVal['no_services']);
-			print_r($this->db->last_query());exit;
 			if ($cek->num_rows() == 0) {
 				$dataCek = $cek->result_array();
 				$generateTagihanData = $this->model_generate_tagihan_logc->generateTagihan($noVal['no_services'])->result_array();
@@ -111,7 +110,7 @@ class Tagihan_logc extends CI_Controller
 					}
 
 					//generate Inovice
-					$this->generateTagihan($this->input->post('bulan'), $this->input->post('tahun') );
+					// $this->generateTagihan($this->input->post('bulan'), $this->input->post('tahun') );
 					// $token = $this->token($invoice);
 					// $data_id = array(
 					// 	'invoice'  => $invoice
@@ -129,6 +128,36 @@ class Tagihan_logc extends CI_Controller
 		echo json_encode(true);
 	}
 
+	public function downloadTagihan()
+	{
+		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+			$this->load->library('dateutil');
+			$listInvoice = $this->model_generate_tagihan_logc->viewWhereCustom($this->input->get('invoice'))->result_array();
+			foreach ($listInvoice as $value) {
+
+				$item_list = $this->model_generate_tagihan_logc->viewCustomer($value['invoice'])->result_array();
+				$dataUser = $this->model_generate_tagihan_logc->viewPelanggan($value['invoice'])->result_array();
+
+				$data = array(
+					'invoice' => $value['invoice'],
+					'monthname' => $this->dateutil->getMonthName($value['month']),
+					'createdAt' => date('d-m-Y'),
+					'due_date'  => date('d-m-Y', strtotime('today + 7 days')),
+					'item_list' => $item_list,
+					'user' => $dataUser,
+				);
+				// $this->pdf->load_view('pageadmin/laporan/invoice', $data);
+				$mpdf = new \Mpdf\Mpdf();
+				$data = $this->load->view('pageadmin/laporan/invoicecorporate', $data, TRUE);
+				$mpdf->WriteHTML($data);
+				// $mpdf->Output(APPPATH . "/public/" . $value['invoice'] . ".pdf", \Mpdf\Output\Destination::FILE);
+				$filename = $value['invoice'] . ".pdf";
+				$mpdf->Output($filename,"D");
+			}
+		} else {
+			$this->load->view('pageadmin/login'); //Memanggil function render_view
+		}
+	}
 	public function generateTagihan($bulan, $tahun)
 	{
 		$month = $bulan;

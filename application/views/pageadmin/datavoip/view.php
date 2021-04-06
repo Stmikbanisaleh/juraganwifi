@@ -328,6 +328,9 @@
 							Nama Vendor
 						</th>
 						<th class="text-center">
+							Status
+						</th>
+						<th class="text-center">
 							Media Koneksi
 						</th>
 						<th class="text-center">
@@ -459,6 +462,19 @@
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
+					if (data[i].status == '1') {
+						status = '<td class="text-left">' +
+							'   <button  class="btn btn-primary btn-sm item_non"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-check"> </i>  Aktif </button>' +
+							'</a> &nbsp' +
+							'</td>'
+					} else {
+						status = '<td class="text-left">' +
+							'   <button  class="btn btn-danger btn-sm item_approve"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-times"> </i>  Non Aktif </button>' +
+							'</button> &nbsp' +
+							'</td>'
+					}
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
 						'<td class="text-left">' + data[i].nomor + '</td>' +
@@ -466,6 +482,7 @@
 						'<td class="text-left">' + data[i].alamat + '</td>' +
 						'<td class="text-left">' + data[i].Nominal + '</td>' +
 						'<td class="text-left">' + data[i].nama_vendor + '</td>' +
+						status+
 						'<td class="text-left">' + data[i].nama_media_koneksi + '</td>' +
 						'<td class="text-left">' + data[i].nama_jenis_perangkat + '</td>' +
 						'<td class="text-left">' + data[i].nama_merek + '</td>' +
@@ -613,4 +630,72 @@
 		rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
 		return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
 	}
+
+	$('#show_data').on('click', '.item_approve', function() {
+		var id = $(this).data('id');
+		Swal.fire({
+			title: 'Apakah anda yakin?',
+			text: "Anda mengubah status pelanggan menjadi aktif",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Ya, Aktifkan!',
+			cancelButtonText: 'Batal'
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('administrator/datavoip/aktif') ?>",
+					async: true,
+					dataType: "JSON",
+					data: {
+						id: id,
+					},
+					success: function(data) {
+						show_data();
+						Swal.fire(
+							'Terupdate!',
+							'User Telah Aktif',
+							'success'
+						)
+					}
+				});
+			}
+		})
+	})
+
+	$('#show_data').on('click', '.item_non', function() {
+		var id = $(this).data('id');
+		Swal.fire({
+			title: 'Apakah anda yakin?',
+			text: "Anda mengubah status pelanggan menjadi aktif",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Ya, Non Aktifkan!',
+			cancelButtonText: 'Batal'
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('administrator/datavoip/nonaktif') ?>",
+					async: true,
+					dataType: "JSON",
+					data: {
+						id: id,
+					},
+					success: function(data) {
+						show_data();
+						Swal.fire(
+							'Terupdate!',
+							'User Telah Non Aktif',
+							'success'
+						)
+					}
+				});
+			}
+		})
+	})
 </script>

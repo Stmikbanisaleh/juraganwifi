@@ -655,7 +655,7 @@
 						foto = '<td ><a href="<?php echo site_url('/assets/datamidi/') ?>' + data[i].dokumen + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/datamidi/') ?>' + data[i].dokumen + '""></a></td>'
 					} else {
 						foto = '<td class="text-left"> No Image</td>'
-					}
+					} 
 					if (data[i].status == 1 ) {
 						status = '<td class="project-state"><span class="badge badge-success"> Active </span></td>'
 					} else {

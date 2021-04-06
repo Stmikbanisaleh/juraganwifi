@@ -417,6 +417,12 @@
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
+					var foto = '';
+					if(data[i].foto != null){
+						foto = '<td ><a href="<?php echo site_url('/assets/inventori/') ?>' + data[i].foto + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/inventori/') ?>' + data[i].foto + '""></a></td>'
+					} else {
+						foto = '<td >Foto Tidak Tersedia</td>'
+					}
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
 						'<td class="text-left">' + data[i].nama + '</td>' +
@@ -428,7 +434,7 @@
 						'<td class="text-left">' + data[i].serial_number + '</td>' +
 						'<td class="text-left">' + data[i].mac_address + '</td>' +
 						'<td class="text-left">' + data[i].penanggung_jawab + '</td>' +
-						'<td ><a href="<?php echo site_url('/assets/inventori/') ?>' + data[i].foto + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/inventori/') ?>' + data[i].foto + '""></a></td>' +
+						foto+
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +
@@ -449,6 +455,10 @@
 						"ordering": true,
 						"responsive": true,
 						"paging": true,
+						"dom": "Bfrtip",
+						"buttons": [
+						 "excel"
+						],
 					});
 				}
 				/* END TABLETOOLS */
@@ -535,6 +545,10 @@
 		show_data();
 		$('.select2').select2();
 		$('#table_id').DataTable({
+			"dom": "Bfrtip",
+						"buttons": [
+						 "excel"
+						],
 			"searching": true,
 			"ordering": true,
 			"responsive": true,

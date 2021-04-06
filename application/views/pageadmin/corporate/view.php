@@ -23,9 +23,8 @@
 									} else {
 										$no = $noreg[0]['maxno'];
 										$urutan =  (int)substr($no, 3, 9);
-										$urutan = $urutan+1;
+										$urutan = $urutan + 1;
 										$urutan = 'CRP' . sprintf("%05s", $urutan);
-										
 									}
 									?>
 									<div class="form-group">
@@ -511,6 +510,247 @@
 	</div>
 	<!-- Default box -->
 
+
+	<div id="modalPrev" class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form" id="formPrev">
+					<div class="card card-info">
+						<div class="modal-header">
+							<h4 class="modal-title">Preview Pelanggan</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="card-body">
+									<b>PROFIL</b>
+									<hr>
+									<div class="form-group">
+										<label>ID Pelanggan</label>
+										<input readonly type="text" id="e_nomor_layanan2" name="e_nomor_layanan2" class="form-control" placeholder="Nomor Layanan">
+									</div>
+									<div class="form-group">
+										<label>Nama Pelanggan</label>
+										<input readonly required type="hidden" id="e_id2" name="e_id2">
+										<input readonly required type="text" id="e_nama2" name="e_nama2" class="form-control" placeholder="Nama Customer">
+									</div>
+									<div class="form-group">
+										<label>NIK KTP</label>
+										<input readonly required type="number" id="e_ktp2" name="e_ktp2" class="form-control" placeholder="NIK KTP">
+									</div>
+
+									<div class="form-group">
+										<label>Email</label>
+										<input readonly type="email" id="e_email2" name="e_email2" class="form-control" placeholder="Email">
+									</div>
+
+									<div class="form-group">
+										<label>No Telepon</label>
+										<input readonly required type="number" id="e_telp2" name="e_telp2" class="form-control" placeholder="No Telepon">
+									</div>
+
+									<div class="form-group">
+										<label>Alamat</label>
+										<textarea  readonly type="text" id="e_alamat2" name="e_alamat2" class="form-control" placeholder="Alamat"></textarea>
+									</div>
+
+									<hr>
+									<b>DATA TEKNIS</b>
+									<hr>
+									<div class="form-group">
+										<label>Wilayah / Coverage Area</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_wilayah2" id="e_wilayah2">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($mywilayah as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] . ' - ( ' . $value['kode_wilayah'] . ')' ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Nomor Port OLT</label>
+										<input readonly type="number" id="e_olt2" name="e_olt2" class="form-control" placeholder="Nomor Port OLT">
+									</div>
+
+									<div class="form-group">
+										<label>Kode ODC</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_kodc" id="e_kodc">
+											<option selected="selected">-- Pilih --</option>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Kode ODP</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_kodp2" id="e_kodp2">
+											<option selected="selected">-- Pilih --</option>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Nomor Port ODP</label>
+										<input readonly type="number" id="e_odp2" name="e_odp2" class="form-control" placeholder="Nomor Port ODP"></input>
+									</div>
+
+									<div class="form-group">
+										<label>Panjang Kabel</label>
+										<input readonly type="number" id="e_panjangkabel2" name="e_panjangkabel2" class="form-control" placeholder="Panjang Kabel">
+									</div>
+
+									<div class="form-group">
+										<label>Jenis Perangkat</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_jenisperangkat2" id="e_jenisperangkat2">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($myjenisperangkat as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Merek Perangkat</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_merekperangkat" id="e_merekperangkat">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($mymerek as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Serial Number</label>
+										<input readonly type="text" id="e_serialnumber2" name="e_serialnumber2" class="form-control" placeholder="Serial Number">
+									</div>
+
+									<div class="form-group">
+										<label>MAC Address</label>
+										<input readonly type="text" id="e_macaddress2" name="e_macaddress2" class="form-control" placeholder="Mac Address">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="card-body">
+									<b>DATA LAYANAN</b>
+									<hr>
+									<div class="form-group">
+										<label>Jenis Layanan</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_jenislayanan2" id="e_jenislayanan2">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($myjenislayanan as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Media Koneksi</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_mediakoneksi2" id="e_mediakoneksi2">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($mymediakoneksi as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Username POE</label>
+										<input readonly type="text" id="e_usernamepoe2" name="e_usernamepoe2" class="form-control" placeholder="Username PPOE">
+									</div>
+
+									<div class="form-group">
+										<label>Password POE</label>
+										<input readonly type="text" id="e_p_ppoe2" name="e_p_ppoe2" class="form-control" placeholder="Password PPOE">
+									</div>
+
+
+									<div class="form-group">
+										<label>Jenis IP Address</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_jenisipaddress2" id="e_jenisipaddress2">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($myjenisip as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Type IP Address</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_typeipaddress2" id="e_typeipaddress2">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($mytypeip as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+									<hr>
+									<b>DATA ADMINISTRASI</b>
+									<hr>
+									<div class="form-group">
+										<label>Tanggal Registrasi</label>
+										<input readonly type="date" id="e_tglregistrasi2" name="e_tglregistrasi2" class="form-control">
+									</div>
+									<div class="form-group">
+										<label>Tanggal Aktivasi</label>
+										<input readonly type="date" id="e_tglaktivasi2" name="e_tglaktivasi2" class="form-control" placeholder="Tanggal Aktivasi">
+									</div>
+
+									<div class="form-group">
+										<label>Jenis Tempat</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_jenistempat" id="e_jenistempat">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($myjenistempat as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Status Kepemilikan Tempat</label>
+										<select readonly class="form-control select2" style="width: 100%;" id="e_kepemilikantempat2" name="e_kepemilikantempat2">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($mystatuskepemilikan as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+
+									<div class="form-group">
+										<label>Status Kepemilikan Perangkat</label>
+										<select readonly class="form-control select2" style="width: 100%; " id="e_kepemilikanperangkat2" name="e_kepemilikanperangkat2">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($mystatuskepemilikanperangkat as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Nama Teknisi</label>
+										<input readonly type="text" id="e_nama_teknisi2" name="e_nama_teknisi2" class="form-control" placeholder="Nama Teknisi">
+									</div>
+
+									<div class="form-group">
+										<label>Keterangan</label>
+										<textarea readonly type="text" id="e_keterangan2" name="e_keterangan2" class="form-control" placeholder="Ketarangan"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Kembali
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+	<!-- Default box -->
+
 	<div class="card">
 		<div class="card-header">
 			<h3 class="card-title">Daftar Pelanggan</h3>
@@ -774,12 +1014,16 @@
 						'<td class="text-left">' + data[i].kode_odc + '</td>' +
 						'<td class="text-left">' + data[i].nama_teknisi + '</td>' +
 						'<td class="project-actions text-right">' +
+						'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-search"> </i>  Preview </a>' +
+						'</button> ' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +
 						'</button> &nbsp' +
 						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
 						'</button> ' +
+					
 						'</td>' +
 						'</tr>';
 					no++;
@@ -789,6 +1033,10 @@
 				//                    $('#mydata').dataTable();
 				if (a) {
 					$('#table_id').dataTable({
+						"dom": "Bfrtip",
+						"buttons": [
+							"excel"
+						],
 						"searching": true,
 						"ordering": true,
 						"responsive": true,
@@ -958,7 +1206,65 @@
 		});
 	});
 
+		//get data for update record
+		$('#show_data').on('click', '.item_prev', function() {
+			$('select').select2().prop('readonly',true);
+		document.getElementById("formPrev").reset();
+		var id = $(this).data('id');
+		$('#modalPrev').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/corporate/tampil_byid') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				$('#e_id2').val(data[0].id);
+				$('#e_id2').val(data[0].id);
+				$('#e_nama2').val(data[0].name);
+				$('#e_ktp2').val(data[0].no_ktp);
+				$('#e_email2').val(data[0].email);
+				$('#e_nomor_layanan2').val(data[0].no_services);
+				$('#e_keterangan2').val(data[0].keterangan);
+				$('#e_telp2').val(data[0].no_wa);
+				$('#e_alamat2').val(data[0].address);
+				$('#e_panjangkabel2').val(data[0].panjang_kabel);
+				$('#e_odp2').val(data[0].odp);
+				$('#e_olt2').val(data[0].olt);
+				$('#e_jenisperangkat2').val(data[0].jenis_perangkat).select2();
+				$('#e_merekperangkat2').val(data[0].merek_perangkat).select2();
+				$('#e_serialnumber2').val(data[0].serial_number);
+				$('#e_macaddress2').val(data[0].mac_address);
+				$('#e_jenislayanan2').val(data[0].jenis_layanan).select2();
+				$('#e_mediakoneksi2').val(data[0].media_koneksi).select2();
+				$('#e_usernamepoe').val(data[0].usernamepoe);
+				$('#e_p_ppoe2').val(data[0].p_ppoe);
+				// $('#e_kodp').val(data[0].kodp);
+				// $('#e_kodc').val(data[0].kodc);
+				$('#e_jenisipaddress2').val(data[0].jenis_ipaddress).select2();
+				$('#e_wilayah2').val(data[0].wilayah).select2();
+				$('#e_tglregistrasi2').val(data[0].tgl_registrasi);
+				$('#e_tglaktivasi2').val(data[0].tgl_aktivasi);
+				$('#e_jenistempat2').val(data[0].jenis_tempat).select2();
+				$('#e_kepemilikanperangkat2').val(data[0].kepemilikan_perangkat).select2();
+				$('#e_kepemilikantempat2').val(data[0].kepemilikan_tempat).select2();
+				$('#e_typeipaddress2').val(data[0].typeipaddress).select2();
+				$('#e_nama_teknisi2').val(data[0].nama_teknisi);
+				console.log(data[0].kode_odc)
+				show_data_eodc(data[0].wilayah, function(a) {
+					$('#e_kodc2').val(data[0].kodc);
+				});
+				show_data_eodp(data[0].wilayah, function(a) {
+					$('#e_kodp2').val(data[0].kodp);
+				});
+			}
+		});
+	});
+
 	if ($("#formEdit").length > 0) {
+		$('select').prop('readonly',false);
 		$("#formEdit").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
@@ -1004,9 +1310,10 @@
 			"ordering": true,
 			"responsive": true,
 			"paging": true,
+			"dom": "Bfrtip",
 			"buttons": [
 				"excel"
-			]
+			],
 		});
 	});
 

@@ -643,6 +643,7 @@
 							$("select.select2").select2({
 								allowClear: true
 							}); // re-init to show default status
+							window.location.reload()
 						} else {
 							document.getElementById("formTambah").reset();
 							swalInputSuccess();
@@ -652,6 +653,7 @@
 							$("select.select2").select2({
 								allowClear: true
 							}); // re-init to show default status
+							window.location.reload()
 
 						}
 					}
@@ -779,6 +781,10 @@
 						"ordering": true,
 						"responsive": true,
 						"paging": true,
+						"dom": "Bfrtip",
+						"buttons": [
+							"excel"
+						],
 					});
 				}
 				/* END TABLETOOLS */
@@ -990,9 +996,10 @@
 			"ordering": true,
 			"responsive": true,
 			"paging": true,
+			"dom": "Bfrtip",
 			"buttons": [
 				"excel"
-			]
+			],
 		});
 	});
 

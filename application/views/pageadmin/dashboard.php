@@ -87,6 +87,85 @@
 					<!-- /.row -->
 
 					<div class="row">
+						<div class="col-md-3 col-sm-6 col-12">
+							<div class="info-box bg-gradient-success">
+								<span class="info-box-icon"><i class="far fa-user"></i></span>
+
+								<div class="info-box-content">
+									<span class="info-box-text">Pelanggan Corporate</span>
+									<span class="info-box-number"><?= $customercorporate
+																	?> Pelanggan Aktif</span>
+
+									<div class="progress">
+										<div class="progress-bar" style="width: 100%"></div>
+									</div>
+									<span class="progress-description">
+										<?= $customercorporate2
+										?> Pelanggan Tidak Aktif
+									</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<!-- /.col -->
+						<div class="col-md-3 col-sm-6 col-12">
+							<div class="info-box bg-gradient-info">
+								<span class="info-box-icon"><i class="fa fa-map-marked"></i></span>
+
+								<div class="info-box-content">
+									<span class="info-box-text">Zona Wilayah</span>
+									<span class="info-box-number"><?= $zona
+																	?> Jumlah Zona</span>
+
+									<div class="progress">
+										<div class="progress-bar" style="width: 100%"></div>
+									</div>
+
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<!-- /.col -->
+						<div class="col-md-3 col-sm-6 col-12">
+							<div class="info-box bg-gradient-danger">
+								<span class="info-box-icon"><i class="fas fa-phone-square"></i></span>
+
+								<div class="info-box-content">
+									<span class="info-box-text">Data Pengguna GSM</span>
+									<span class="info-box-number"><?= $gsm
+																	?> Terdaftar</span>
+									<div class="progress">
+										<div class="progress-bar" style="width: 70%"></div>
+									</div>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<!-- /.col -->
+						<div class="col-md-3 col-sm-6 col-12">
+							<div class="info-box bg-gradient-warning">
+								<span class="info-box-icon"><i class="fas fa-campground"></i></span>
+
+								<div class="info-box-content">
+									<span class="info-box-text">Data Vendor</span>
+									<span class="info-box-number"><?= $vendor ?> Terdaftar</span>
+
+									<div class="progress">
+										<div class="progress-bar" style="width: 70%"></div>
+									</div>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row --> 
+					
+					<div class="row">
 						<div class="col-lg-6">
 							<!-- /.card -->
 							<div class="card">

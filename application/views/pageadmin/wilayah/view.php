@@ -480,6 +480,10 @@
 				//                    $('#mydata').dataTable();
 				if (a) {
 					$('#table_id').dataTable({
+						"dom": "Bfrtip",
+						"buttons": [
+							"excel"
+						],
 						"searching": true,
 						"ordering": true,
 						"responsive": true,
@@ -588,6 +592,10 @@
 		show_data();
 		$('.select2').select2();
 		$('#table_id').DataTable({
+			"dom": "Bfrtip",
+						"buttons": [
+							"excel"
+						],
 			"searching": true,
 			"ordering": true,
 			"responsive": true,

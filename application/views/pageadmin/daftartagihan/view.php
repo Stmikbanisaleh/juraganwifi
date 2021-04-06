@@ -215,6 +215,10 @@
 				//                    $('#mydata').dataTable();
 				if (a) {
 					$('#table_id').dataTable({
+						"dom": "Bfrtip",
+						"buttons": [
+						 "excel"
+						],
 						"searching": true,
 						"ordering": true,
 						"responsive": true,
@@ -285,6 +289,10 @@
 			"ordering": true,
 			"responsive": true,
 			"paging": true,
+			"dom": "Bfrtip",
+						"buttons": [
+						 "excel"
+						],
 		});
 	});
 </script>

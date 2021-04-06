@@ -29,12 +29,23 @@ class Dashboard extends CI_Controller
             join customer b on a.no_services = b.no_services
             join invoice_detail c on a.id = c.invoice_id
             join package_item d on c.item_id = d.id where a.status != 0 order by a.updatedAt desc limit 10 ")->result_array();
+			//customer normal
             $totalcustomer = $this->db->query("select count(id) as total from customer where status = 1 ")->result_array();
             $totalcustomer2 = $this->db->query("select count(id) as total from customer where status = 0 ")->result_array();
+			//customer corporate
+			$totalcustomercorporate = $this->db->query("select count(id) as total from customer_corporate where status = 1 ")->result_array();
+            $totalcustomercorporate2 = $this->db->query("select count(id) as total from customer_corporate where status = 0 ")->result_array();
+
+            $gsm = $this->db->query("select count(id) as total from pengguna_gsm  ")->result_array();
+
+
             $totalcustomer3 = $this->db->query("select count(id) as total from data_pelanggan_voip")->result_array();
             $inet = $this->db->query("select count(id) as total from inet where status = 1")->result_array();
             $inet2 = $this->db->query("select count(id) as total from inet where status = 0")->result_array();
             $inventori = $this->db->query("select count(id) as total from data_inventori ")->result_array();
+            $zona = $this->db->query("select count(id) as total from wilayah ")->result_array();
+            $vendordetail = $this->db->query("select count(id) as total from vendor_detail ")->result_array();
+
             $totalpendapatan = $this->db->query("select CONCAT('Rp. ',FORMAT(sum(nominal_bayar),2)) total from invoice_detail a where year(a.updatedAt) = '$tahun' ")->result_array();
             $totalpendapatan =  $totalpendapatan[0];
             $datainv = $inventori[0];
@@ -68,11 +79,16 @@ class Dashboard extends CI_Controller
                 'customer'          => $totalcustomer['total'],
                 'customer2'         => $totalcustomer2['total'],
                 'customer3'         => $totalcustomer3['total'],
+				'customercorporate'			=> $totalcustomercorporate[0]['total'],
+				'customercorporate2'			=> $totalcustomercorporate2[0]['total'],
                 'inet'         => $inet['total'],
                 'inet2'         => $inet2['total'],
                 'datainv'       => $datainv['total'],
+				'gsm'		=> $gsm[0]['total'],
                 'bulan' => $bulan,
                 'harga' => $harga,
+				'vendor' => $vendordetail[0]['total'],
+				'zona' => $zona[0]['total'],
                 'totalpendapatan' =>  $totalpendapatan['total'],
                 'lastestpayment' =>  $latestpayment
             );

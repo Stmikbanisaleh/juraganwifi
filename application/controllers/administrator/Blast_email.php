@@ -75,7 +75,7 @@ class Blast_email extends CI_Controller
 			$mail->Username   = $configEmail['name'];                     // SMTP username
 			$mail->Password   = $configEmail['password'];                               // SMTP password
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-			$mail->Port       = $configEmail['post'];                                     // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+			$mail->Port       = $configEmail['port'];                                     // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 			//Recipients
 			$mail->setFrom($configEmail['setfrom']);
 			// $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient

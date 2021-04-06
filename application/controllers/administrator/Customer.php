@@ -203,16 +203,26 @@ class Customer extends CI_Controller
 	{
 		$wilayah = $this->input->post('id');
 		$kodewilayah = $this->model_customer->getkodewilayah($wilayah)->row();
-		$noreg = $this->db->query("SELECT
-		RIGHT(no_services+1,5)AS idservice FROM customer ORDER BY id DESC")->result_array();
-		if (count($noreg) < 1) {
-			$no = '00001';
+		$getmax = $this->db->query("select max(no_services) as nomor,count(no_services) tot from customer where left(no_services,4) = $kodewilayah->kode_wilayah")->result_array();
+		$tot = $getmax[0]['tot'];
+		$nomor = $getmax[0]['nomor'];
+		if ($tot > 0) {
+			$noreg = $this->db->query("SELECT
+				RIGHT(no_services+1,5)AS idservice FROM customer where no_services = $nomor ORDER BY id DESC")->result_array();
+			if (count($noreg) < 1) {
+				$no = '00001';
+			} else {
+				$no = $noreg[0]['idservice'];
+			}
+			$kodewilayah = $kodewilayah->kode_wilayah;
+			$idlayanan = $kodewilayah . $no;
+			echo json_encode($idlayanan);
 		} else {
-			$no = $noreg[0]['idservice'];
+			$no = '00001';
+			$kodewilayah = $kodewilayah->kode_wilayah;
+			$idlayanan = $kodewilayah . $no;
+			echo json_encode($idlayanan);
 		}
-		$kodewilayah = $kodewilayah->kode_wilayah;
-		$idlayanan = $kodewilayah.$no;
-		echo json_encode($idlayanan);
 	}
 
 
