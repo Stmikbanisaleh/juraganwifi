@@ -348,16 +348,6 @@
 										<input type="text" id="e_serial_number" name="e_serial_number" class="form-control" placeholder="Serial Number">
 									</div>
 
-									<!-- <div class="form-group">
-										<label>Nomor MSISDN 1</label>
-										<input type="text" id="e_nomor_1" name="e_nomor_1" class="form-control" placeholder="NOMOR MSISDN 1">
-									</div>
-
-									<div class="form-group">
-										<label>Nomor MSISDN 2</label>
-										<input type="text" id="e_nomor_2" name="e_nomor_2" class="form-control" placeholder="NOMOR MSISDN 2">
-									</div> -->
-
 									<div class="form-group">
 										<label>IMEI 1</label>
 										<input type="text" id="e_imei_1" name="e_imei_1" class="form-control" placeholder="IMEI-GSM 1">
@@ -431,6 +421,205 @@
 	</div>
 
 	<!-- Default box -->
+
+	<div id="modalEdit2" class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form" id="formEdit2">
+					<div class="card card-info">
+						<div class="modal-header">
+							<h4 class="modal-title">Edit Data Midi</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="card-body">
+									<b>DATA TOKO</b>
+									<hr>
+									<div class="form-group">
+										<label>Kode Toko</label>
+										<input required type="hidden" id="e_id" name="e_id" class="form-control" placeholder="Kode Toko">
+										<input readonly required type="text" id="e_kode2" name="e_kode2" class="form-control" placeholder="Kode Toko">
+									</div>
+
+									<div class="form-group">
+										<label>Nama Toko</label>
+										<input readonly required type="text" id="e_nama2" name="e_nama2" class="form-control" placeholder="Nama Toko">
+									</div>
+
+									<div class="form-group">
+										<label>Alamat Toko</label>
+										<textarea readonly type="text" id="e_alamat2" name="e_alamat2" class="form-control" placeholder="Alamat Toko"></textarea>
+									</div>
+
+
+									<div class="form-group">
+										<label>DC Midi</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_dcmidi2" id="e_dcmidi2">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($mydcmidi as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Titik Kordinat</label>
+										<input readonly type="text" id="e_titik_kordinat2" name="e_titik_kordinat2" class="form-control" placeholder="Titik Kordinat">
+									</div>
+
+									<div class="form-group">
+										<label>Nomor Telp Toko</label>
+										<input readonly type="text" id="e_telp_toko2" name="e_telp_toko2" class="form-control" placeholder="Nomor Telp Toko">
+									</div>
+
+									<div class="form-group">
+										<label>Nama Pejabat Toko</label>
+										<input readonly type="text" id="e_nama_pejabat_toko2" name="e_nama_pejabat_toko2" class="form-control" placeholder="Nama Pejabat Toko">
+									</div>
+
+									<div class="form-group">
+										<label>Telp Pejabat Toko</label>
+										<input readonly type="text" id="e_telp_pejabat2" name="e_telp_pejabat2" class="form-control" placeholder="Telp Pejabat Toko">
+									</div>
+
+									<div class="form-group">
+										<label>Nama IT Cabang</label>
+										<input readonly type="text" id="e_nama_it_cabang2" name="e_nama_it_cabang2" class="form-control" placeholder="Nama IT Cabang">
+									</div>
+
+									<div class="form-group">
+										<label>Telp IT Cabang</label>
+										<input readonly type="text" id="e_telp_it_cabang2" name="e_telp_it_cabang2" class="form-control" placeholder="Telp IT Cabang">
+									</div>
+
+									<div class="form-group">
+										<label>PIC Aktivasi</label>
+										<input readonly type="text" id="e_pic_aktivasi2" name="e_pic_aktivasi2" class="form-control" placeholder="PIC Aktivasi">
+									</div>
+
+									<div class="form-group">
+										<label>Tanggal Aktivasi</label>
+										<input readonly type="date" id="e_tgl_aktivasi2" name="e_tgl_aktivasi2" class="form-control" placeholder="Serial Number">
+									</div>
+								</div>
+								<!-- /.card-body -->
+							</div>
+							<div class="col-md-6">
+								<div class="card-body">
+									<b>PERANGKAT</b>
+									<hr>
+									<div class="form-group">
+										<label>Media Koneksi</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_media_koneksi2" id="e_media_koneksi2">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($mymediakoneksi as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Jenis Perangkat</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_jenis_perangkat2" id="e_jenis_perangkat2">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($myjenisperangkat as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Type Perangkat</label>
+										<input readonly type="text" id="e_type_perangkat2" name="e_type_perangkat2" class="form-control" placeholder="Type Perangkat">
+									</div>
+
+									<div class="form-group">
+										<label>Merek Perangkat</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_merek_perangkat2" id="e_merek_perangkat2">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($mymerekperangkat as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>MAC Address</label>
+										<input readonly type="text" id="e_macaddress2" name="e_macaddress2" class="form-control" placeholder="MAC Address">
+									</div>
+
+									<div class="form-group">
+										<label>Serial Number</label>
+										<input readonly type="text" id="e_serial_number2" name="e_serial_number2" class="form-control" placeholder="Serial Number">
+									</div>
+
+									<div class="form-group">
+										<label>IMEI 1</label>
+										<input readonly type="text" id="e_imei_12" name="e_imei_12" class="form-control" placeholder="IMEI-GSM 1">
+									</div>
+
+									<div class="form-group">
+										<label>IMEI 2</label>
+										<input readonly type="text" id="e_imei_22" name="e_imei_22" class="form-control" placeholder="IMEI-GSM 2">
+									</div>
+
+									<div class="form-group">
+										<label>Vendor</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_vendor2" id="e_vendor2">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($myvendor as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>INET</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_nomor_inet2" id="e_nomor_inet2">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($myinet as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nomor_inet'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Kapasitas</label>
+										<input readonly type="text" id="e_kapasitas2" name="e_kapasitas2" class="form-control" placeholder="Kapasitas">
+									</div>
+
+									<div class="form-group">
+										<label>Status</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_status2" id="e_status2">
+											<option value="" selected="selected">-- Pilih --</option>
+											<option value="1">-- Active --</option>
+											<option value="0">-- Inactive --</option>
+										</select>
+									</div>
+
+								
+
+									<div class="form-group">
+										<label>Keterangan</label>
+										<textarea readonly type="text" id="e_keterangan2" name="e_keterangan2" class="form-control" placeholder="Keterangan"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Kembali
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
 
 	<div class="card">
 		<div class="card-header">
@@ -689,6 +878,9 @@
 						foto+
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						'<td class="project-actions text-right">' +
+						'   <button  class="btn btn-info btn-sm item_edit2"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-search"> </i>  Preview </a>' +
+						'</button> ' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +
 						'</button> &nbsp' +
@@ -762,6 +954,54 @@
 			}
 		});
 	});
+
+	//get data for update record
+	$('#show_data').on('click', '.item_edit2', function() {
+		document.getElementById("formEdit2").reset();
+		var id = $(this).data('id');
+		$('#modalEdit2').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/datamidi/tampil_byid') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				$('#e_id2').val(data[0].id);
+				$('#e_nama2').val(data[0].nama);
+				$('#e_kode2').val(data[0].kode);
+				$('#e_alamat2').val(data[0].alamat);
+				$('#e_keterangan2').val(data[0].keterangan);
+				$('#e_titik_kordinat2').val(data[0].titik_kordinat);
+				$('#e_telp_toko2').val(data[0].telp_toko);
+				$('#e_nama_pejabat_toko2').val(data[0].pejabat_toko);
+				$('#e_telp_pejabat2').val(data[0].telp_pejabat_toko);
+				$('#e_nama_it_cabang2').val(data[0].nama_it_cabang);
+				$('#e_telp_it_cabang2').val(data[0].telp_it_cabang);
+				$('#e_pic_aktivasi2').val(data[0].pic_aktivasi);
+				$('#e_tgl_aktivasi2').val(data[0].tgl_aktivasi);
+				$('#e_media_koneksi2').val(data[0].media_koneksi).select2();
+				$('#e_jenis_perangkat2').val(data[0].jenis_perangkat).select2();
+				$('#e_merek_perangkat2').val(data[0].merek_perangkat).select2();
+				$('#e_keterangan2').val(data[0].keterangan);
+				$('#e_dcmidi2').val(data[0].dcmidi).select2();
+				$('#e_macaddress2').val(data[0].mac_address);
+				$('#e_serial_number2').val(data[0].serial_number);
+				$('#e_nomor_12').val(data[0].nomor_1);
+				$('#e_nomor_22').val(data[0].nomor_2);
+				$('#e_imei_12').val(data[0].imei1);
+				$('#e_imei_22').val(data[0].imei2);
+				$('#e_vendor2').val(data[0].vendor).select2();
+				$('#e_nomor_inet2').val(data[0].inet).select2();
+				$('#e_status2').val(data[0].status).select2();
+				$('#e_type_perangkat2').val(data[0].type_perangkat);
+				$('#e_kapasitas2').val(data[0].kapasitas);
+			}
+		});
+	});
+
 
 	if ($("#formEdit").length > 0) {
 		$("#formEdit").validate({

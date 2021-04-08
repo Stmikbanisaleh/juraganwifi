@@ -158,6 +158,80 @@
 		</div><!-- /.modal-dialog -->
 	</div>
 
+
+
+	<div id="modalEdit2" class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form" id="formEdit2">
+					<div class="card card-info">
+						<div class="modal-header">
+							<h4 class="modal-title">Edit Vendor</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label>Nama Vendor</label>
+								<input required type="hidden" id="e_id" name="e_id" >
+								<input readonly required type="text" id="e_nama2" name="e_nama2" class="form-control" placeholder="Nama Vendor">
+							</div>
+							<div class="form-group">
+								<label>Alamat</label>
+								<textarea readonly type="text" id="e_alamat2" name="e_alamat2" class="form-control" placeholder="Alamat"></textarea>
+							</div>
+							<div class="form-group">
+								<label>Telephone</label>
+								<input readonly  required type="text" id="e_telp2" name="e_telp2" class="form-control" placeholder="Telephone">
+							</div>
+							<div class="form-group">
+								<label>Jenis Layanan Vendor</label>
+								<select class="form-control select2" readonly style="width: 100%;" name="e_layanan2" id="e_layanan2">
+									<option selected="selected">-- Pilih --</option>
+									<?php foreach ($myvendor as $value) { ?>
+										<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+									<?php } ?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Nama PIC Vendor</label>
+								<input readonly required type="text" id="e_nmpic2" name="e_nmpic2" class="form-control" placeholder="Nama PIC Vendor">
+							</div>
+							<div class="form-group">
+								<label>Telp PIC Vendor</label>
+								<input readonly required type="text" id="e_telppic2" name="e_telppic2" class="form-control" placeholder="Telp PIC Vendor">
+							</div>
+							<div class="form-group">
+								<label>Email PIC Vendor</label>
+								<input readonly type="email" id="e_emailpic2" name="e_emailpic2" class="form-control" placeholder="Email PIC Vendor">
+							</div>
+							<div class="form-group">
+								<label>Alamat Website</label>
+								<input readonly type="text" id="e_website2" name="e_website2" class="form-control" placeholder="Alamat Website">
+							</div>
+							<div class="form-group">
+								<label>Nomor NPWP</label>
+								<input readonly type="text" id="e_npwp2" name="e_npwp2" class="form-control" placeholder="Nomor NPWP">
+							</div>
+						
+							<div class="form-group">
+								<label>Keterangan</label>
+								<textarea readonly type="text" id="e_keterangan2" name="e_keterangan2" class="form-control" placeholder="Keterangan"></textarea>
+							</div>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Kembali
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
 	<!-- Default box -->
 
 	<div class="card">
@@ -349,6 +423,9 @@
 						 '</td>' +
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						'<td class="project-actions text-right">' +
+						'   <button  class="btn btn-info btn-sm item_edit2"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-search"> </i>  Preview </a>' +
+						'</button> ' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +
 						'</button> &nbsp' +
@@ -401,6 +478,35 @@
 				$('#e_emailpic').val(data[0].email);
 				$('#e_nmpic').val(data[0].pic_vendor);
 				$('#e_telp').val(data[0].telp);
+			}
+		});
+	});
+
+	//get data for update record
+	$('#show_data').on('click', '.item_edit2', function() {
+		document.getElementById("formEdit2").reset();
+		var id = $(this).data('id');
+		$('#modalEdit2').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/datavendor/tampil_byid') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				$('#e_id2').val(data[0].id);
+				$('#e_alamat2').val(data[0].alamat);
+				$('#e_nama2').val(data[0].nama);
+				$('#e_keterangan2').val(data[0].keterangan);
+				$('#e_npwp2').val(data[0].npwp);
+				$('#e_website2').val(data[0].website);
+				$('#e_layanan2').val(data[0].jenis_layanan).select2();
+				$('#e_telppic2').val(data[0].telp_pic);
+				$('#e_emailpic2').val(data[0].email);
+				$('#e_nmpic2').val(data[0].pic_vendor);
+				$('#e_telp2').val(data[0].telp);
 			}
 		});
 	});

@@ -15,6 +15,40 @@ class Datavoip extends CI_Controller
 		$this->template->load('templateadmin', $data); //Display Page
 	}
 
+	public function aktif()
+	{
+		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+
+			$data_id = array(
+				'id'  => $this->input->post('id')
+			);
+			$data = array(
+				'status'  => 1
+			);
+			$action = $this->model_data_voip->update($data_id, $data, 'data_pelanggan_voip');
+			echo json_encode($action);
+		} else {
+			$this->load->view('pageadmin/login'); //Memanggil function render_view
+		}
+	}
+
+	public function nonaktif()
+	{
+		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+
+			$data_id = array(
+				'id'  => $this->input->post('id')
+			);
+			$data = array(
+				'status'  => 0
+			);
+			$action = $this->model_data_voip->update($data_id, $data, 'data_pelanggan_voip');
+			echo json_encode($action);
+		} else {
+			$this->load->view('pageadmin/login'); //Memanggil function render_view
+		}
+	}
+
 	public function index()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {

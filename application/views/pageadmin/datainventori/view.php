@@ -264,6 +264,131 @@
 
 	<!-- Default box -->
 
+	<div id="modalEdit2" class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form" id="formEdit2">
+					<div class="card card-info">
+						<div class="modal-header">
+							<h4 class="modal-title">Edit Data Inventori</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="card-body">
+									<div class="form-group">
+										<label>Nama Inventori</label>
+										<input required type="hidden" id="e_id" name="e_id" class="form-control">
+										<input readonly required type="text" id="e_nama2" name="e_nama2" class="form-control" placeholder="Nama Inventori">
+									</div>
+
+									<div class="form-group">
+										<label>Nomor Inventori</label>
+										<input readonly required type="text" id="e_nomor2" name="e_nomor2" class="form-control" placeholder="Nomor Inventori">
+									</div>
+
+									<div class="form-group">
+										<label>Label Inventori</label>
+										<input readonly type="text" id="e_label2" name="e_label2" class="form-control" placeholder="Label Inventori">
+									</div>
+
+									<div class="form-group">
+										<label>Kategori Inventori</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_kategori2" id="e_kategori2">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($mykategori as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Tanggal Pembelian</label>
+										<input readonly type="date" id="e_tglpembelian2" name="e_tglpembelian2" class="form-control" placeholder="Tanggal Pembelian"></input>
+									</div>
+
+									<div class="form-group">
+										<label>Fungsi</label>
+										<input readonly type="text" id="e_fungsi2" name="e_fungsi2" class="form-control" placeholder="Fungsi"></input>
+									</div>
+
+									<div class="form-group">
+										<label>Ukuran</label>
+										<input readonly type="text" id="e_ukuran2" name="e_ukuran2" class="form-control" placeholder="Ukuran"></input>
+									</div>
+
+									<div class="form-group">
+										<label>Merek Perangkat</label>
+										<select readonly required class="form-control select2" style="width: 100%;" name="e_merek2" id="e_merek2">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($mymerek as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Type</label>
+										<input readonly type="text" id="e_type2" name="e_type2" class="form-control" placeholder="Type"></input>
+									</div>
+								</div>
+								<!-- /.card-body -->
+							</div>
+							<div class="col-md-6">
+								<div class="card-body">
+									<div class="form-group">
+										<label>Status Kepemilikan</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_statuskepemilikan2" id="e_statuskepemilikan2">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($mystatuskepemilikan as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label>Serial Number</label>
+										<input readonly type="text" id="e_serialnumber2" name="e_serialnumber2" class="form-control" placeholder="Serial Number">
+									</div>
+
+									<div class="form-group">
+										<label>MAC Address</label>
+										<input readonly type="text" id="e_macaddress2" name="e_macaddress2" class="form-control" placeholder="MAC Address">
+									</div>
+
+									<div class="form-group">
+										<label>Alokasi</label>
+										<input readonly type="text" id="e_alokasi2" name="e_alokasi2" class="form-control" placeholder="Alokasi">
+									</div>
+
+									<div class="form-group">
+										<label>Penanggung Jawab</label>
+										<input readonly type="text" id="e_penanggungjawab2" name="e_penanggungjawab2" class="form-control" placeholder="Penanggung Jawab">
+									</div>
+
+							
+
+									<div class="form-group">
+										<label>Keterangan</label>
+										<textarea readonly type="text" id="e_keterangan2" name="e_keterangan2" class="form-control" placeholder="Keterangan"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Kembali
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+
 	<div class="card">
 		<div class="card-header">
 			<h3 class="card-title">Daftar Data Inventori</h3>
@@ -436,6 +561,9 @@
 						'<td class="text-left">' + data[i].penanggung_jawab + '</td>' +
 						foto+
 						'<td class="project-actions text-right">' +
+						'   <button  class="btn btn-info btn-sm item_edit2"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-search"> </i>  Preview </a>' +
+						'</button> ' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +
 						'</button> &nbsp' +
@@ -498,6 +626,42 @@
 				$('#e_alokasi').val(data[0].alokasi);
 				$('#e_penanggungjawab').val(data[0].penanggung_jawab);
 				$('#e_keterangan').val(data[0].keterangan);
+
+			}
+		});
+	});
+
+		//get data for update record
+		$('#show_data').on('click', '.item_edit2', function() {
+		document.getElementById("formEdit2").reset();
+		var id = $(this).data('id');
+		$('#modalEdit2').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/datainventori/tampil_byid') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				$('#e_id2').val(data[0].id);
+				$('#e_nama2').val(data[0].nama);
+				$('#e_nomor2').val(data[0].nomor);
+				$('#e_label2').val(data[0].label);
+				$('#e_keterangan2').val(data[0].keterangan);
+				$('#e_kategori2').val(data[0].kategori).select2();
+				$('#e_tglpembelian2').val(data[0].tgl_pembelian);
+				$('#e_fungsi2').val(data[0].fungsi);
+				$('#e_ukuran2').val(data[0].ukuran);
+				$('#e_merek2').val(data[0].merek).select2();
+				$('#e_type2').val(data[0].type);
+				$('#e_statuskepemilikan2').val(data[0].status_kepemilikan).select2();
+				$('#e_serialnumber2').val(data[0].serial_number);
+				$('#e_macaddress2').val(data[0].mac_address);
+				$('#e_alokasi2').val(data[0].alokasi);
+				$('#e_penanggungjawab2').val(data[0].penanggung_jawab);
+				$('#e_keterangan2').val(data[0].keterangan);
 
 			}
 		});

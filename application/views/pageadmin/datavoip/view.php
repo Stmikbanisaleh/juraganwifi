@@ -296,6 +296,155 @@
 
 	<!-- Default box -->
 
+
+	<div id="modalEdit2" class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form" id="formEdit2">
+					<div class="card card-info">
+						<div class="modal-header">
+							<h4 class="modal-title">Edit Data Voip</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="card-body">
+									<b>PELANGGAN</b>
+									<hr>
+									<div class="form-group">
+										<label>Nomor Voip</label>
+										<input required type="hidden" id="e_id2" name="e_id2" class="form-control" placeholder="Nomor Voip">
+										<input readonly required type="text" id="e_nomor2" name="e_nomor2" class="form-control" placeholder="Nomor Voip">
+									</div>
+
+									<div class="form-group">
+										<label>Nama Pelanggan</label>
+										<input readonly type="text" id="e_nama2" name="e_nama2" class="form-control" placeholder="Nama Pelanggan"></input>
+									</div>
+
+									<div class="form-group">
+										<label>Alamat Pelanggan</label>
+										<textarea readonly type="text" id="e_alamat2" name="e_alamat2" class="form-control" placeholder="Alamat"></textarea>
+									</div>
+
+									<div class="form-group">
+										<label>Limit Pemakaian</label>
+										<input readonly type="text" id="e_limit2" name="e_limit2" class="form-control" placeholder="Limit Pemakaian"></input>
+										<input type="hidden" id="e_limit_v2" required name="e_limit_v2" placeholder="total penerimaan" class="form-control" />
+										<script language="JavaScript">
+										var rupiah = document.getElementById('e_limit');
+										rupiah.addEventListener('keyup', function(e) {
+											rup = this.value.replace(/\D/g, '');
+											$('#e_limit_v').val(rup);
+											rupiah.value = formatRupiah(this.value, 'Rp. ');
+										});
+
+										function formatRupiah(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah = split[0].substr(0, sisa),
+												ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan) {
+												separator = sisa ? '.' : '';
+												rupiah += separator + ribuan.join('.');
+											}
+
+											rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+											return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+										}
+									</script>
+									</div>
+
+									<div class="form-group">
+										<label>Nama Vendor</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_vendor2" id="e_vendor2">
+											<option value="" selected="selected">-- Pilih --</option>
+											<?php foreach ($myvendor as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+
+								</div>
+							</div>
+
+							<div class="card-body">
+								<b>PERANGKAT</b>
+								<hr>
+								<div class="form-group">
+									<label>Media Koneksi</label>
+									<select readonly class="form-control select2" style="width: 100%;" name="e_media_koneksi2" id="e_media_koneksi2">
+										<option value="" selected="selected">-- Pilih --</option>
+										<?php foreach ($mymediakoneksi as $value) { ?>
+											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+										<?php } ?>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label>Jenis Perangkat VOIP</label>
+									<select readonly class="form-control select2" style="width: 100%;" name="e_jenis_perangkat2" id="e_jenis_perangkat2">
+										<option value="" selected="selected">-- Pilih --</option>
+										<?php foreach ($myjenisperangkat as $value) { ?>
+											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+										<?php } ?>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label>Merek Perangkat VOIP</label>
+									<select readonly class="form-control select2" style="width: 100%;" name="e_merek_perangkat2" id="e_merek_perangkat2">
+										<option value="" selected="selected">-- Pilih --</option>
+										<?php foreach ($mymerekperangkat as $value) { ?>
+											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+										<?php } ?>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label>Status Kepemilikan Perangkat</label>
+									<select readonly class="form-control select2" style="width: 100%;" name="e_status_kepemilikan2" id="e_status_kepemilikan2">
+										<option value="" selected="selected">-- Pilih --</option>
+										<?php foreach ($mystatuskepemilikanperangkat as $value) { ?>
+											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+										<?php } ?>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label>Serial Number</label>
+									<input readonly type="text" id="e_serialnumber2" name="e_serialnumber2" class="form-control" placeholder="Serial Number Perangkat"></input>
+								</div>
+
+								<div class="form-group">
+									<label>Keterangan</label>
+									<textarea readonly type="text" id="e_keterangan2" name="e_keterangan2" class="form-control" placeholder="Keterangan"></textarea>
+								</div>
+
+							</div>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<div class="modal-footer">
+					
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Kembali
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+
+	<!-- Default box -->
+
+
 	<div class="card">
 		<div class="card-header">
 			<h3 class="card-title">Daftar Data VOIP</h3>
@@ -490,6 +639,9 @@
 						'<td class="text-left">' + data[i].serialnumber + '</td>' +
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						'<td class="project-actions text-right">' +
+						'   <button  class="btn btn-info btn-sm item_edit2"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-search"> </i>  Preview </a>' +
+						'</button> ' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +
 						'</button> &nbsp' +
@@ -547,6 +699,41 @@
 				$('#e_status_kepemilikan').val(data[0].status_kepemilikan_perangkat).select2();
 				$('#e_serialnumber').val(data[0].serialnumber);
 				$('#e_keterangan').val(data[0].keterangan);
+
+			}
+		});
+	});
+
+	//get data for update record
+	$('#show_data').on('click', '.item_edit2', function() {
+		document.getElementById("formEdit2").reset();
+		var id = $(this).data('id');
+		$('#modalEdit2').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/datavoip/tampil_byid') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				$('#e_id2').val(data[0].id);
+				$('#e_nama2').val(data[0].nama);
+				$('#e_nomor2').val(data[0].nomor);
+				$('#e_alamat2').val(data[0].alamat);
+				$('#e_vendor2').val(data[0].vendor).select2();
+
+				var a = ConvertFormatRupiah(data[0].limit_pemakaian, 'Rp. ');
+				$('#e_limit2').val(a);
+				$('#e_limit_v2').val(data[0].limit_pemakaian);
+
+				$('#e_media_koneksi2').val(data[0].media_koneksi).select2();
+				$('#e_jenis_perangkat2').val(data[0].jenis_perangkat).select2();
+				$('#e_merek_perangkat2').val(data[0].merek_perangkat).select2();
+				$('#e_status_kepemilikan2').val(data[0].status_kepemilikan_perangkat).select2();
+				$('#e_serialnumber2').val(data[0].serialnumber);
+				$('#e_keterangan2').val(data[0].keterangan);
 
 			}
 		});

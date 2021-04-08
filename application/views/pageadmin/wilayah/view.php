@@ -247,6 +247,124 @@
 		</div><!-- /.modal-dialog -->
 	</div>
 
+
+	<div id="modalEdit2" class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form" id="formEdit2">
+					<div class="card card-info">
+						<div class="modal-header">
+							<h4 class="modal-title">Edit Data Wilayah</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="card-body">
+									<b>DATA WILAYAH</b>
+									<hr>
+									<div class="form-group">
+										<label>Kode Wilayah</label>
+										<input readonly required type="hidden" id="e_id" name="e_id" class="form-control" placeholder="Kode Wilayah">
+										<input readonly required type="text" id="e_kode2" name="e_kode2" class="form-control" placeholder="Kode Wilayah">
+									</div>
+									<div class="form-group">
+										<label>Nama WIlayah</label>
+										<input readonly required type="text" id="e_nama2" name="e_nama2" class="form-control" placeholder="Nama Wilayah">
+									</div>
+									<div class="form-group">
+										<label>Alamat Wilayah</label>
+										<textarea  readonly type="text" id="e_alamat2" name="e_alamat2" class="form-control" placeholder="Alamat Wilayah"></textarea>
+									</div>
+									<div class="form-group">
+										<label>Nomor MOU</label>
+										<input readonly type="text" id="e_mou2" name="e_mou2" class="form-control" placeholder="Nomor MOU"></input>
+									</div>
+									<div class="form-group">
+										<label>Titik Kordinat</label>
+										<input readonly type="text" id="e_kordinat2" name="e_kordinat2" class="form-control" placeholder="Titik Kordinat"></input>
+									</div>
+									<div class="form-group">
+										<label>Nama PIC Wilayah</label>
+										<input readonly type="text" id="e_pic2" name="e_pic2" class="form-control" placeholder="Nama PIC Wilayah"></input>
+									</div>
+									<div class="form-group">
+										<label>Jumlah Kepala Keluarga</label>
+										<input readonly type="number" id="e_jumlahkepalakeluarga2" name="e_jumlahkepalakeluarga2" class="form-control" placeholder="Jumlah Kepala Keluarga"></input>
+									</div>
+									<div class="form-group">
+										<label>Nama Ketua RW</label>
+										<input readonly type="text" id="e_rw2" name="e_rw2" class="form-control" placeholder="Nama Ketua RW"></input>
+									</div>
+									<div class="form-group">
+										<label>Telp Ketua RW</label>
+										<input readonly type="text" id="e_telprw2" name="e_telprw2" class="form-control" placeholder="Telp Ketua RW"></input>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="card-body">
+									<b>PERANGKAT</b>
+									<hr>
+									<div class="form-group">
+										<label>Jumlah Tiang Mandiri</label>
+										<input readonly type="number" id="e_tiangmandiri2" name="e_tiangmandiri2" class="form-control" placeholder="Jumlah Tiang Mandiri">
+									</div>
+									<div class="form-group">
+										<label>Jumlah Tiang Non Mandiri</label>
+										<input readonly type="number" id="e_tiangnonmandiri2" name="e_tiangnonmandiri2" class="form-control" placeholder="Jumlah Tiang Non Mandiri">
+									</div>
+									<div class="form-group">
+										<label>Jumlah ODC</label>
+										<input readonly type="number" id="e_odc2" name="e_odc2" class="form-control" placeholder="Jumlah ODC"></input>
+									</div>
+									<div class="form-group">
+										<label>Jumlah ODP</label>
+										<input readonly type="number" id="e_odp2" name="e_odp2" class="form-control" placeholder="Jumlah ODP"></input>
+									</div>
+									<div class="form-group">
+										<label>Status Kepemilikan Listrik</label>
+										<select readonly class="form-control select2" style="width: 100%;" name="e_status_listrik2" id="e_status_listrik2">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($mykepemilikanlistrik as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>ID Pelanggan PLN</label>
+										<input readonly type="number" id="e_idpelangganpln2" name="e_idpelangganpln2" class="form-control" placeholder="ID Pelanggan PLN"></input>
+									</div>
+									<div class="form-group">
+										<label>Jenis Pembayaran Listrik</label>
+										<select  readonly class="form-control select2" style="width: 100%;" name="e_jenis_pembayaran_listrik2" id="e_jenis_pembayaran_listrik2">
+											<option selected="selected">-- Pilih --</option>
+											<?php foreach ($myjenispembayaranlistrik as $value) { ?>
+												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+											<?php } ?>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Keterangan</label>
+										<textarea readonly type="text" id="e_keterangan2" name="e_keterangan2" class="form-control" placeholder="Keterangan"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Kembali
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+
+
 	<!-- Default box -->
 
 	<div class="card">
@@ -444,6 +562,12 @@
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
+					var doc = '';
+					if(data[i].dokumen_mou != null){
+						doc = '<td ><a href="<?php echo site_url('/assets/wilayah/') ?>' + data[i].dokumen_mou + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/wilayah/') ?>' + data[i].dokumen_mou + '""></a></td>'
+					} else {
+						doc = '<td class="text-left"> Dokumen tidak Tersedia</td>'
+					}
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
 						'<td class="text-left">' + data[i].kode_wilayah + '</td>' +
@@ -463,8 +587,11 @@
 						'<td class="text-left">' + data[i].nama_ketua_rw + '</td>' +
 						'<td class="text-left">' + data[i].telp_ketua_rw + '</td>' +
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
-						'<td ><a href="<?php echo site_url('/assets/wilayah/') ?>' + data[i].dokumen_mou + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/wilayah/') ?>' + data[i].dokumen_mou + '""></a></td>' +
+						doc+
 						'<td class="project-actions text-right">' +
+						'   <button  class="btn btn-info btn-sm item_edit2"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-search"> </i>  Preview </a>' +
+						'</button> ' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +
 						'</button> &nbsp' +
@@ -528,6 +655,42 @@
 				$('#e_idpelangganpln').val(data[0].id_pelanggan_pln);
 				$('#e_jenis_pembayaran_listrik').val(data[0].jenis_pembayaran_listrik).select2();
 				$('#e_keterangan').val(data[0].keterangan);
+			}
+		});
+	});
+
+	//get data for update record
+	$('#show_data').on('click', '.item_edit2', function() {
+		document.getElementById("formEdit2").reset();
+		var id = $(this).data('id');
+		$('#modalEdit2').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/wilayah/tampil_byid') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				$('#e_id2').val(data[0].id);
+				$('#e_nama2').val(data[0].nama);
+				$('#e_kode2').val(data[0].kode_wilayah);
+				$('#e_alamat2').val(data[0].alamat);
+				$('#e_mou2').val(data[0].nomor_mou);
+				$('#e_kordinat2').val(data[0].titik_kordinat);
+				$('#e_pic2').val(data[0].pic_wilayah);
+				$('#e_jumlahkepalakeluarga2').val(data[0].jumlah_kk);
+				$('#e_rw2').val(data[0].nama_ketua_rw);
+				$('#e_telprw2').val(data[0].telp_ketua_rw);
+				$('#e_tiangmandiri2').val(data[0].jumlah_tiang_mandiri);
+				$('#e_tiangnonmandiri2').val(data[0].jumlah_tiang_non);
+				$('#e_odc2').val(data[0].jumlah_odc);
+				$('#e_odp2').val(data[0].jumlah_odp);
+				$('#e_status_listrik2').val(data[0].status_kepemilikan_listrik).select2();
+				$('#e_idpelangganpln2').val(data[0].id_pelanggan_pln);
+				$('#e_jenis_pembayaran_listrik2').val(data[0].jenis_pembayaran_listrik).select2();
+				$('#e_keterangan2').val(data[0].keterangan);
 			}
 		});
 	});
