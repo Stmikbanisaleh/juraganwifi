@@ -163,6 +163,11 @@
 									</div>
 
 									<div class="form-group">
+										<label>IP Address</label>
+										<input type="text" id="e_ipaddress2" name="e_ipaddress2" class="form-control" placeholder="Ip Address">
+									</div>
+
+									<div class="form-group">
 										<label>INET</label>
 										<select class="form-control select2" style="width: 100%;" name="nomor_inet" id="nomor_inet">
 											<option selected="selected">-- Pilih --</option>
@@ -366,6 +371,11 @@
 												<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
 											<?php } ?>
 										</select>
+									</div>
+
+									<div class="form-group">
+										<label>IP Address</label>
+										<input  type="text" id="e_ipaddress" name="e_ipaddress" class="form-control" placeholder="IP Address">
 									</div>
 
 									<div class="form-group">
@@ -577,6 +587,11 @@
 									</div>
 
 									<div class="form-group">
+										<label>IP Address</label>
+										<input readonly type="text" id="e_ipaddress2" name="e_ipaddress2" class="form-control" placeholder="Ip Address">
+									</div>
+
+									<div class="form-group">
 										<label>INET</label>
 										<select readonly class="form-control select2" style="width: 100%;" name="e_nomor_inet2" id="e_nomor_inet2">
 											<option selected="selected">-- Pilih --</option>
@@ -697,6 +712,9 @@
 						</th>
 						<th class="text-center">
 							Nama Vendor
+						</th>
+						<th class="text-center">
+							IP Address
 						</th>
 						<th class="text-center">
 							Nomor Inet
@@ -872,6 +890,7 @@
 						'<td class="text-left">' + data[i].imei1 + '</td>' +
 						'<td class="text-left">' + data[i].imei2 + '</td>' +
 						'<td class="text-left">' + data[i].nama_vendor + '</td>' +
+						'<td class="text-left">' + data[i].ipaddress + '</td>' +
 						'<td class="text-left">' + data[i].nama_inet + '</td>' +
 						'<td class="text-left">' + data[i].kapasitas + '</td>' +
 						status+
@@ -946,6 +965,7 @@
 				$('#e_nomor_2').val(data[0].nomor_2);
 				$('#e_imei_1').val(data[0].imei1);
 				$('#e_imei_2').val(data[0].imei2);
+				$('#e_ipaddress').val(data[0].ipaddress);
 				$('#e_vendor').val(data[0].vendor).select2();
 				$('#e_nomor_inet').val(data[0].inet).select2();
 				$('#e_status').val(data[0].status).select2();
@@ -993,6 +1013,7 @@
 				$('#e_nomor_22').val(data[0].nomor_2);
 				$('#e_imei_12').val(data[0].imei1);
 				$('#e_imei_22').val(data[0].imei2);
+				$('#e_ipaddress2').val(data[0].ipaddress);
 				$('#e_vendor2').val(data[0].vendor).select2();
 				$('#e_nomor_inet2').val(data[0].inet).select2();
 				$('#e_status2').val(data[0].status).select2();

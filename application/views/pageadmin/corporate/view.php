@@ -168,6 +168,10 @@
 										<input type="text" id="p_ppoe" name="p_ppoe" class="form-control" placeholder="Password PPOE">
 									</div>
 
+									<div class="form-group">
+										<label>IP Addeess</label>
+										<input  type="text" id="ip_address" name="ip_address" class="form-control" placeholder="IP Address">
+									</div>
 
 									<div class="form-group">
 										<label>Jenis IP Address</label>
@@ -420,6 +424,11 @@
 
 
 									<div class="form-group">
+										<label>IP Addeess</label>
+										<input  type="text" id="e_ip_address" name="e_ip_address" class="form-control" placeholder="IP Address">
+									</div>
+
+									<div class="form-group">
 										<label>Jenis IP Address</label>
 										<select class="form-control select2" style="width: 100%;" name="e_jenisipaddress" id="e_jenisipaddress">
 											<option value="" selected="selected">-- Pilih --</option>
@@ -663,6 +672,10 @@
 										<input readonly type="text" id="e_p_ppoe2" name="e_p_ppoe2" class="form-control" placeholder="Password PPOE">
 									</div>
 
+									<div class="form-group">
+										<label>IP Addeess</label>
+										<input  readonly type="text" id="e_ip_address2" name="e_ip_address2" class="form-control" placeholder="IP Address">
+									</div>
 
 									<div class="form-group">
 										<label>Jenis IP Address</label>
@@ -826,6 +839,9 @@
 						</th>
 						<th style="width: 8%" class="text-center">
 							Password PPOE
+						</th>
+						<th style="width: 8%" class="text-center">
+							IP Address
 						</th>
 						<th style="width: 8%" class="text-center">
 							Jenis IP Address
@@ -1004,6 +1020,7 @@
 						'<td class="text-left">' + data[i].mac_address + '</td>' +
 						'<td class="text-left">' + data[i].usernamepoe + '</td>' +
 						'<td class="text-left">' + data[i].p_ppoe + '</td>' +
+						'<td class="text-left">' + data[i].ipaddress + '</td>' +
 						'<td class="text-left">' + data[i].jenis_ip + '</td>' +
 						'<td class="text-left">' + data[i].type_ip + '</td>' +
 						'<td class="text-left">' + data[i].tgl_registrasi + '</td>' +
@@ -1184,6 +1201,7 @@
 				$('#e_mediakoneksi').val(data[0].media_koneksi).select2();
 				$('#e_usernamepoe').val(data[0].usernamepoe);
 				$('#e_p_ppoe').val(data[0].p_ppoe);
+				$('#e_ip_address').val(data[0].ipaddress);
 				// $('#e_kodp').val(data[0].kodp);
 				// $('#e_kodc').val(data[0].kodc);
 				$('#e_jenisipaddress').val(data[0].jenis_ipaddress).select2();
@@ -1241,6 +1259,7 @@
 				$('#e_mediakoneksi2').val(data[0].media_koneksi).select2();
 				$('#e_usernamepoe').val(data[0].usernamepoe);
 				$('#e_p_ppoe2').val(data[0].p_ppoe);
+				$('#e_ip_address2').val(data[0].ipaddress);
 				// $('#e_kodp').val(data[0].kodp);
 				// $('#e_kodc').val(data[0].kodc);
 				$('#e_jenisipaddress2').val(data[0].jenis_ipaddress).select2();

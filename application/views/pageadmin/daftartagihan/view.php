@@ -110,6 +110,9 @@
                         <th class="text-center">
 							Status Pembayaran
 						</th>
+						<th class="text-center">
+							Invoice
+						</th>
 					</tr>
 				</thead>
 				<tbody id="show_data">
@@ -194,6 +197,13 @@
 							'</button> &nbsp' +
 							'</td>'
 					}
+					var invoice = '';
+
+					invoice = '<td class="text-center">' +
+						'   <a target=_blank href="<?= base_url().'administrator/tagihan_log/downloadTagihan/?invoice='?>' + data[i].id + '" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-download"> </i> Download  </a>' +
+						'</button> &nbsp' +
+						'</td>'
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
 						'<td class="text-left">' + data[i].invoice + '</td>' +
@@ -207,6 +217,7 @@
 						metode+
                         status+
 						tombol+
+						invoice +
 						'</tr>';
 					no++;
 				}

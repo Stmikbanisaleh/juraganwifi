@@ -102,6 +102,7 @@ class Tagihan_log extends CI_Controller
 							'invoice_id' => $id,
 							'price' => $val['price'],
 							'nominal_bayar' => 0,
+							'no_unik' => $no,
 							'item_id' => $val['item_id'],
 							'd_month' => $this->input->post('bulan'),
 							'd_year' => $this->input->post('tahun')
@@ -111,7 +112,7 @@ class Tagihan_log extends CI_Controller
 
 					//generate Inovice
 					// $this->generateTagihan($this->input->post('bulan'), $this->input->post('tahun') );
-					$token = $this->token($invoice);
+					$token = $this->token($invoice, $no);
 					$data_id = array(
 						'invoice'  => $invoice
 					);
@@ -153,40 +154,61 @@ class Tagihan_log extends CI_Controller
 		}
 	}
 
-	public function token($invoice)
+	public function downloadTagihan()
 	{
-		$dataBill = $this->db->query("select a.invoice,b.price,c.name as package, c.id as packageid,
+		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+			$this->load->library('dateutil');
+			$this->load->library('util');
+			$listInvoice = $this->model_generate_tagihan_log->viewWhereCustom($this->input->get('invoice'))->result_array();
+			foreach ($listInvoice as $value) {
+
+				$item_list = $this->model_generate_tagihan_log->viewCustomer($value['invoice'])->result_array();
+				$dataUser = $this->model_generate_tagihan_log->viewPelanggan($value['invoice'])->result_array();
+				$data = array(
+					'invoice' => $value['invoice'],
+					'monthname' => $this->dateutil->getMonthNameIndo($value['month']),
+					'createdAt' => date('d-m-Y'),
+					'due_date'  => date('d-m-Y', strtotime('today + 14 days')),
+					'item_list' => $item_list,
+					'kode_unik' => $item_list[0]['no_unik'],
+					'user' => $dataUser,
+				);
+				// $this->pdf->load_view('pageadmin/laporan/invoice', $data);
+				$mpdf = new \Mpdf\Mpdf();
+				$data = $this->load->view('pageadmin/laporan/invoiceV2', $data, TRUE);
+				$mpdf->WriteHTML($data);
+				// $mpdf->Output(APPPATH . "/public/" . $value['invoice'] . ".pdf", \Mpdf\Output\Destination::FILE);
+				$filename = $value['invoice'] . ".pdf";
+				$mpdf->Output($filename,"D");
+			}
+		} else {
+			$this->load->view('pageadmin/login'); //Memanggil function render_view
+		}
+	}
+
+	public function token($invoice, $no)
+	{
+		$dataBill = $this->db->query("select b.no_unik, a.invoice,b.price,c.name as package, c.id as packageid,
 		d.no_services as no_pelanggan, d.name as nama_customer,d.address,d.no_wa,d.email   from invoice a
-		join invoice_detail b on a.id = b.invoice_id 
-		join package_item c on b.item_id = c.id
-		join customer d on a.no_services = d.no_services
+		left join invoice_detail b on a.id = b.invoice_id 
+		left join package_item c on b.item_id = c.id
+		left join customer d on a.no_services = d.no_services
 		where a.invoice = '$invoice' group by a.invoice
 		")->result_array();
 		$dataBill = $dataBill[0];
 		// Required
 		$transaction_details = array(
 			'order_id' => $dataBill['invoice'],
-			'gross_amount' => $dataBill['price'], // no decimal allowed for creditcard
+			'gross_amount' => $dataBill['price']+$dataBill['no_unik'], // no decimal allowed for creditcard
 		);
 
 		// Optional
 		$item_details = array(
 			'id' => $dataBill['packageid'],
-			'price' => $dataBill['price'],
+			'price' => $dataBill['price']+$dataBill['no_unik'],
 			'quantity' => 1,
 			'name' => $dataBill['package']
 		);
-
-		// // Optional
-		// $item2_details = array(
-		//   'id' => 'a2',
-		//   'price' => 20000,
-		//   'quantity' => 2,
-		//   'name' => "Orange"
-		// );
-
-		// // Optional
-		// $item_details = array ($item1_details, $item2_details);
 
 		// Optional
 		$billing_address = array(
@@ -216,10 +238,7 @@ class Tagihan_log extends CI_Controller
 			'shipping_address' => $shipping_address
 		);
 
-		// Data yang akan dikirim untuk request redirect_url.
 		$credit_card['secure'] = true;
-		//ser save_card true to enable oneclick or 2click
-		//$credit_card['save_card'] = true;
 
 		$time = time();
 		$custom_expiry = array(

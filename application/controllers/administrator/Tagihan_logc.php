@@ -158,6 +158,7 @@ class Tagihan_logc extends CI_Controller
 			$this->load->view('pageadmin/login'); //Memanggil function render_view
 		}
 	}
+	
 	public function generateTagihan($bulan, $tahun)
 	{
 		$month = $bulan;

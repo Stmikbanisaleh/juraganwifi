@@ -93,10 +93,12 @@
 		.rtl table tr td:nth-child(2) {
 			text-align: left;
 		}
+
 		.invoice {
-			text-align: center;
-			font-size: 18px;
-			margin-bottom: 10px;
+			text-align: right;
+			font-size: 26px;
+			margin-bottom: 8px;
+			color: blue;
 		}
 	</style>
 </head>
@@ -113,10 +115,10 @@
 						<?php foreach ($user as $value) {
 							echo ' 			<tr>
 													<td>
-													 	<b>To : ' . strtoupper($value['name']) . '</b> <br>
-														Address : ' . $value['address'] . ' <br>
+													 	Kepada : <br> <b>' . strtoupper($value['name']) . '</b> <br>
+														' . $value['no_wa'] . ' <br>
+														' . $value['address'] . ' <br>
 														<br>
-														Up : 	 Finance <br>
 													 </td>
 											 </tr>';
 						} ?>
@@ -127,11 +129,9 @@
 						<?php
 						echo ' 			<tr>
 													<td>
-													 	<b>From : PT. Juragan Wifi Indonesia</b> <br>
-														No Invoice : ' . $invoice . ' <br>
-														Date   &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;: ' . $createdAt . ' <br>
-														Period   &nbsp; &nbsp; &nbsp;  &nbsp; : ' . $monthname . ' <br>
-														Due Date  &nbsp;&nbsp; :  ' . $due_date . '
+													 	<b>ID Pelanggan </b>&nbsp;&nbsp; &nbsp;&nbsp;: ' . $value['no_services'] . ' <br>
+														<b>Tanggal Invoice</b> &nbsp;: ' . $createdAt . ' <br>
+														<b>Jatuh Tempo</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :  ' . $due_date . '
 													 </td>
 											 </tr>';
 						?>
@@ -142,19 +142,13 @@
 		<table>
 			<tr class="heading">
 				<td>
-					No
+					Item
 				</td>
 				<td style="text-align:left">
-					Description
+					Status
 				</td>
 				<td>
-					Qty
-				</td>
-				<td>
-					Unit Price
-				</td>
-				<td>
-					Amount
+					Harga
 				</td>
 			</tr>
 
@@ -162,20 +156,21 @@
 			$no = 1;
 			$total = 0;
 			foreach ($item_list as $value) {
+				if($value['status'] == 0){
+					$status = '<td style="text-align:left">
+					<b><p style="color:red">BELUM BAYAR </p></b>
+			</td>';
+				} else {
+					$status = '<td style="text-align:left"><p style="color:green">
+					SUDAH BAYAR </p></b>
+			</td>';
+				}
 				echo '
 							<tr class="item">
-									<td style="width:10%">
-											' . $no . '
-									</td>
 									<td style="text-align:left">
-											' . $value['nama_layanan'] . '
-									</td>
-									<td>
-										 1.
-									</td>
-									<td>
-										Rp. ' . number_format($value['price'], 0, ',', '.') . '
-									</td>
+											Tagihan Paket Internet Periode ' . $monthname .' '.$value['year'].'
+									</td> '.
+									$status .'
 									<td>
 									Rp. ' . number_format($value['price'], 0, ',', '.') . '
 								</td>
@@ -188,45 +183,37 @@
 			?>
 		</table>
 		<br>
-							<br>
-							<br>
-							<br>
-		<br>
 		<table>
 			<tr class="total">
-				<td><b>Payment Should be Transfer : <br>
-						<p>Bank BCA </p>
-						<p>KCP DAAN MOGOT BARU</p>
-						<p>No. Rekening 8660265008</p>
-						<p>a.n PT. JURAGAN WIFI INDONESIA</p>
-					</b></td>
-				<td></td>
-				<td></td>
-				<td>SubTotal :
-					<br>
-					Tax :
-					<br>
-					Materai :
-					<br>
-					<b>Grand Total: <b>
-				</td>
 				<td>
-					<?php echo 'Rp.' . number_format($total, 0, ',', '.'); ?>
+					<p>* <i>Terbilang : <?php $tot = $total+$kode_unik; 
+					echo terbilang($tot); ?> </i></p><p style="color:red"><b>Catatan : </b></p> 
+						<p>Transfer tepat Rp. <b><?php echo number_format($tot, 0, ',', '.');?></b> (Tagihan + Kode Unik ) untuk meningkatkan pelayanan dan donasi. </p>
+						<br>
+						<p>Cara Pembayaran Bisa Transfer :</p>
+						<p>Bank Rakyat Indonesia (BRI) : 417901019831536 A/N Gigin Abdul Goni</p>
+						<p>Dompet Digital OVO / DANA : 082337481227 A/N Gigin Abdul Goni</p>
+					</td>
+				<td></td>
+				<td></td>
+				<td>
+					Kode Unik :
 					<br>
-					<?php echo 'Rp.' . number_format(($total * 0.1), 0, ',', '.'); ?>
+					<b>Total Tagihan: <b>
+				</td>
+				<td style="text-align: right;">
+					
+					<?php echo number_format(($kode_unik), 0, ',', '.'); ?>
 					<br>
-					<?php echo '-'; ?>
-					<br>
-					<b><?php echo 'Rp.' . number_format(($total * 0.1) + $total, 0, ',', '.'); ?></b>
+					<b><?php echo 'Rp.' . number_format(($total + $kode_unik), 0, ',', '.'); ?></b>
 				</td>
 			</tr>
 		</table>
 		<br>
 		<div class="footer">
 			<br>
-			Notes :
-			<br>
-			If you have any question concerning this Invoice, please email : finance@jwi.id
+			<b><p>Konfirmasi Pembayaran :</p></b>
+			<p>Email : 11duabelasproject@gmail.com</p>
 		</div>
 		<?php $date = date('d M Y'); ?>
 		<br>
@@ -254,3 +241,42 @@
 </body>
 
 </html>
+
+<?php
+function penyebut($nilai) {
+    $nilai = abs($nilai);
+    $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
+    $temp = "";
+    if ($nilai < 12) {
+        $temp = " ". $huruf[$nilai];
+    } else if ($nilai <20) {
+        $temp = penyebut($nilai - 10). " belas";
+    } else if ($nilai < 100) {
+        $temp = penyebut($nilai/10)." puluh". penyebut($nilai % 10);
+    } else if ($nilai < 200) {
+        $temp = " seratus" . penyebut($nilai - 100);
+    } else if ($nilai < 1000) {
+        $temp = penyebut($nilai/100) . " ratus" . penyebut($nilai % 100);
+    } else if ($nilai < 2000) {
+        $temp = " seribu" . penyebut($nilai - 1000);
+    } else if ($nilai < 1000000) {
+        $temp = penyebut($nilai/1000) . " ribu" . penyebut($nilai % 1000);
+    } else if ($nilai < 1000000000) {
+        $temp = penyebut($nilai/1000000) . " juta" . penyebut($nilai % 1000000);
+    } else if ($nilai < 1000000000000) {
+        $temp = penyebut($nilai/1000000000) . " milyar" . penyebut(fmod($nilai,1000000000));
+    } else if ($nilai < 1000000000000000) {
+        $temp = penyebut($nilai/1000000000000) . " triliun" . penyebut(fmod($nilai,1000000000000));
+    }     
+    return $temp;
+}
+ 
+function terbilang($nilai) {
+    if($nilai<0) {
+        $hasil = "minus ". trim(penyebut($nilai));
+    } else {
+        $hasil = trim(penyebut($nilai));
+    }     
+    return $hasil;
+} 
+?>

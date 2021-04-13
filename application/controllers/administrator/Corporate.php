@@ -129,6 +129,7 @@ class Corporate extends CI_Controller
 				'dokumen' => $file_name,
 				'jenis_perangkat'  => $this->input->post('e_jenisperangkat'),
 				'typeipaddress'  => $this->input->post('e_typeipaddress'),
+				'ipaddress'  => $this->input->post('e_ip_address'),
 				'merek_perangkat'  => $this->input->post('e_merekperangkat'),
 				'serial_number'  => $this->input->post('e_serialnumber'),
 				'mac_address'  => $this->input->post('e_macaddress'),
@@ -155,6 +156,7 @@ class Corporate extends CI_Controller
 				'email'  => $this->input->post('e_email'),
 				'status'  => $this->input->post('e_status'),
 				'no_wa'  => $this->input->post('e_telp'),
+				'ipaddress'  => $this->input->post('e_ip_address'),
 				'address'  => $this->input->post('e_alamat'),
 				'panjang_kabel'  => $this->input->post('e_panjangkabel'),
 				'odp'  => $this->input->post('e_odp'),
@@ -208,7 +210,6 @@ class Corporate extends CI_Controller
 		} else {
 			$no = $noreg[0]['maxno'];
 			$urutan =  substr($no, 3, 3);
-			print_r($urutan);exit;
 		}
 		$kodewilayah = $kodewilayah->kode_wilayah;
 		$idlayanan = $kodewilayah.$no;
@@ -234,7 +235,7 @@ class Corporate extends CI_Controller
 					'no_ktp'  => $this->input->post('ktp'),
 					'email'  => $this->input->post('email'),
 					'status'  => 0,
-					'no_services'  => str_replace('"', " ", $this->input->post('nomor_layanan')),
+					'no_services'  => str_replace('"', "", $this->input->post('nomor_layanan')),
 					'no_wa'  => $this->input->post('telp'),
 					'address'  => $this->input->post('alamat'),
 					'panjang_kabel'  => $this->input->post('panjangkabel'),
@@ -245,6 +246,7 @@ class Corporate extends CI_Controller
 					'merek_perangkat'  => $this->input->post('merekperangkat'),
 					'serial_number'  => $this->input->post('serialnumber'),
 					'mac_address'  => $this->input->post('macaddress'),
+					'ipaddress'  => $this->input->post('ip_address'),
 					'jenis_layanan'  => $this->input->post('jenislayanan'),
 					'media_koneksi'  => $this->input->post('mediakoneksi'),
 					'tgl_registrasi'  => $this->input->post('tglregistrasi'),
@@ -270,7 +272,7 @@ class Corporate extends CI_Controller
 					'no_ktp'  => $this->input->post('ktp'),
 					'email'  => $this->input->post('email'),
 					'status'  => 0,
-					'no_services'  => str_replace('"', " ", $this->input->post('nomor_layanan')),
+					'no_services'  => str_replace('"', "", $this->input->post('nomor_layanan')),
 					'no_wa'  => $this->input->post('telp'),
 					'address'  => $this->input->post('alamat'),
 					'panjang_kabel'  => $this->input->post('panjangkabel'),
@@ -282,6 +284,7 @@ class Corporate extends CI_Controller
 					'serial_number'  => $this->input->post('serialnumber'),
 					'mac_address'  => $this->input->post('macaddress'),
 					'jenis_layanan'  => $this->input->post('jenislayanan'),
+					'ipaddress'  => $this->input->post('ip_address'),
 					'media_koneksi'  => $this->input->post('mediakoneksi'),
 					'tgl_registrasi'  => $this->input->post('tglregistrasi'),
 					'kodp'  => $this->input->post('kodp'),
