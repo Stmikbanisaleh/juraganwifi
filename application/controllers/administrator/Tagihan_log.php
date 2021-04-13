@@ -90,7 +90,7 @@ class Tagihan_log extends CI_Controller
 						'invoice' => $invoice = str_replace(' ', '', $invoice),
 						'month' => $this->input->post('bulan'),
 						'year' => $this->input->post('tahun'),
-						'no_services' => str_replace(' ', '', $noVal['no_services']),
+						'no_services' => $noVal['no_services'],
 						'status' => 0,
 						'createdAt' => date('Y-m-d H:i:s'),
 						'due_date' => date('Y-m-d', strtotime('today + 30 days'))
