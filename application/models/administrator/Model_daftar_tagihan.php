@@ -8,8 +8,8 @@ class Model_daftar_tagihan extends CI_model
         return $this->db->query("Select a.metode_pembayaran, a.id , a.invoice,a.no_services, a.month, a.year, a.status, CONCAT('Rp. ',FORMAT(b.price,2)) Nominal,
         CONCAT('Rp. ',FORMAT(b.nominal_bayar,2)) Nominal_bayar
         ,c.name  , c.no_wa,d.name as nama_layanan from invoice a
-        join invoice_detail b on a.id = b.invoice_id
-        join customer c on a.no_services = c.no_services
+        left join invoice_detail b on a.id = b.invoice_id
+        left join customer c on a.no_services = c.no_services
         left join package_item d on c.jenis_layanan = d.id
         order by a.createdAt desc");
     }
