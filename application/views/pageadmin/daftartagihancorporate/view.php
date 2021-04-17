@@ -87,9 +87,6 @@
 							Nama
 						</th>
 						<th class="text-center">
-							Jenis Layanan
-						</th>
-						<th class="text-center">
 							Bulan
 						</th>
 						<th class="text-center">
@@ -248,7 +245,6 @@
 						'<td class="text-left">' + data[i].invoice + '</td>' +
 						'<td class="text-left">' + data[i].no_services + '</td>' +
 						'<td class="text-left">' + data[i].name + '</td>' +
-						'<td class="text-left">' + data[i].nama_layanan + '</td>' +
 						'<td class="text-left">' + data[i].month + '</td>' +
 						'<td class="text-left">' + data[i].year + '</td>' +
 						'<td class="text-left">' + data[i].Nominal + '</td>' +
