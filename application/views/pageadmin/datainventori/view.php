@@ -368,7 +368,7 @@
 										<input readonly type="text" id="e_penanggungjawab2" name="e_penanggungjawab2" class="form-control" placeholder="Penanggung Jawab">
 									</div>
 
-							
+
 
 									<div class="form-group">
 										<label>Keterangan</label>
@@ -394,9 +394,13 @@
 			<h3 class="card-title">Daftar Data Inventori</h3>
 		</div>
 		<br>
-		<div class="col-sm-2">
-			<button href="#modalTambah" id="modalTambah" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Data Inventori</button>
-		</div>
+		<?php
+		$session = $this->session->userdata('level');
+		if ($session == 1 || $session == 2 || $session == 3) { ?>
+			<div class="col-sm-2">
+				<button href="#modalTambah" id="modalTambah" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Data Inventori</button>
+			</div>
+		<?php } ?>
 		<br>
 		<div class="card-body p-0">
 			<table id="table_id" class="table table-bordered table-hover projects">
@@ -539,14 +543,68 @@
 			dataType: 'json',
 			success: function(data) {
 				var html = '';
+				var level = <?= $this->session->userdata('level'); ?>;
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
 					var foto = '';
-					if(data[i].foto != null){
+					var button ='';
+					if (data[i].foto != null) {
 						foto = '<td ><a href="<?php echo site_url('/assets/inventori/') ?>' + data[i].foto + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/inventori/') ?>' + data[i].foto + '""></a></td>'
 					} else {
 						foto = '<td >Foto Tidak Tersedia</td>'
+					}
+					if (level == 1) {
+						button = '<td class="project-actions text-right">' +
+							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-search"> </i>  Preview </a>' +
+							'</button> ' +
+							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-folder"> </i>  Edit </a>' +
+							'</button> &nbsp' +
+							'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+							'</button> ' +
+							'</td>'
+					} else if (level == 2) {
+						button = '<td class="project-actions text-right">' +
+							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-search"> </i>  Preview </a>' +
+							'</button> ' +
+							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-folder"> </i>  Edit </a>' +
+							'</button> &nbsp' +
+							'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+							'</button> ' +
+							'</td>'
+					} else if (level == 3) {
+						button = '<td class="project-actions text-right">' +
+							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-search"> </i>  Preview </a>' +
+							'</button> ' +
+							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-folder"> </i>  Edit </a>' +
+							'</button> &nbsp' +
+							'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+							'</button> ' +
+							'</td>'
+					} else if (level == 4) {
+						button = '<td class="project-actions text-right">' +
+							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-search"> </i>  Preview </a>' +
+							'</button> ' +
+							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-folder"> </i>  Edit </a>' +
+							'</button> &nbsp' +
+							'</td>'
+					} else if (level == 5) {
+						button = '<td class="project-actions text-right">' +
+							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-search"> </i>  Preview </a>' +
+							'</button> &nbsp' +
+							'</td>'
 					}
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
@@ -559,18 +617,8 @@
 						'<td class="text-left">' + data[i].serial_number + '</td>' +
 						'<td class="text-left">' + data[i].mac_address + '</td>' +
 						'<td class="text-left">' + data[i].penanggung_jawab + '</td>' +
-						foto+
-						'<td class="project-actions text-right">' +
-						'   <button  class="btn btn-info btn-sm item_edit2"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-search"> </i>  Preview </a>' +
-						'</button> ' +
-						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-folder"> </i>  Edit </a>' +
-						'</button> &nbsp' +
-						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
-						'</button> ' +
-						'</td>' +
+						foto +
+						button +
 						'</tr>';
 					no++;
 				}
@@ -585,7 +633,7 @@
 						"paging": true,
 						"dom": "Bfrtip",
 						"buttons": [
-						 "excel"
+							"excel"
 						],
 					});
 				}
@@ -631,8 +679,8 @@
 		});
 	});
 
-		//get data for update record
-		$('#show_data').on('click', '.item_edit2', function() {
+	//get data for update record
+	$('#show_data').on('click', '.item_edit2', function() {
 		document.getElementById("formEdit2").reset();
 		var id = $(this).data('id');
 		$('#modalEdit2').modal('show');
@@ -710,9 +758,9 @@
 		$('.select2').select2();
 		$('#table_id').DataTable({
 			"dom": "Bfrtip",
-						"buttons": [
-						 "excel"
-						],
+			"buttons": [
+				"excel"
+			],
 			"searching": true,
 			"ordering": true,
 			"responsive": true,

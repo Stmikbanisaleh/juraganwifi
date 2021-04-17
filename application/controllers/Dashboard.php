@@ -115,6 +115,7 @@ class Dashboard extends CI_Controller
                     'email' => $value['email'],
                     'name' => $value['name'],
                     'image' => $value['image'],
+                    'level' => $value['level'],
                     'last_login' => $value['last_login'],
                 ];
             }

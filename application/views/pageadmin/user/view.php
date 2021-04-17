@@ -28,6 +28,17 @@
 								<textarea type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat"></textarea>
 							</div>
 							<div class="form-group">
+								<label>Level</label>
+								<select class="form-control select2" style="width: 100%;" name="level" id="level">
+									<option selected="selected">-- Pilih --</option>
+										<option value="1">Super User</option>
+										<option value="2">Finance</option>
+										<option value="3">Admin</option>
+										<option value="4">NOC</option>
+										<option value="5">Support</option>
+								</select>
+							</div>
+							<div class="form-group">
 								<label>Password</label>
 								<input required type="password" id="password" name="password" class="form-control" placeholder="Password">
 							</div>
@@ -81,6 +92,17 @@
 							<div class="form-group">
 								<label>Alamat</label>
 								<textarea type="text" id="e_alamat" name="e_alamat" class="form-control" placeholder="Alamat"></textarea>
+							</div>
+							<div class="form-group">
+								<label>Level</label>
+								<select class="form-control select2" style="width: 100%;" name="e_level" id="e_level">
+									<option selected="selected">-- Pilih --</option>
+										<option value="1">Super User</option>
+										<option value="2">Finance</option>
+										<option value="3">Admin</option>
+										<option value="4">NOC</option>
+										<option value="5">Support</option>
+								</select>
 							</div>
 							<div class="form-group">
 								<label>Password</label>
@@ -141,6 +163,9 @@
 						</th>
 						<th class="text-center">
 							Nama
+						</th>
+						<th class="text-center">
+							Level
 						</th>
 						<th class="text-center">
 							Phone
@@ -263,6 +288,20 @@
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
+					var level = '';
+					if (data[i].level == 1) {
+						level = '<td class="project-state"><span class="badge badge-success"> Super Admin </span></td>'
+					} else if (data[i].level == 2) {
+						level = '<td class="project-state"><span class="badge badge-warning"> Finance </span></td>'
+					}else if (data[i].level == 3) {
+						level = '<td class="project-state"><span class="badge badge-info"> Admin </span></td>'
+					}else if (data[i].level == 4) {
+						level = '<td class="project-state"><span class="badge badge-default"> NOC </span></td>'
+					}else if (data[i].level == 5) {
+						level = '<td class="project-state"><span class="badge badge-danger"> Support </span></td>'
+					} else {
+						level = '<td class="project-state"><span class="badge badge-danger"> Kosong </span></td>'
+					}
 					var status = '';
 					if (data[i].is_active == 1) {
 						status = '<td class="project-state"><span class="badge badge-success"> Active </span></td>'
@@ -273,6 +312,7 @@
 						'<td class="text-left">' + no + '</td>' +
 						'<td class="text-left">' + data[i].email + '</td>' +
 						'<td class="text-left">' + data[i].name + '</td>' +
+						level+
 						'<td class="text-left">' + data[i].phone + '</td>' +
 						'<td class="text-left">' + data[i].address + '</td>' +
 						status +
@@ -323,6 +363,7 @@
 				$('#e_email').val(data[0].email);
 				$('#e_telp').val(data[0].phone);
 				$('#e_alamat').val(data[0].address);
+				$('#e_level').val(data[0].level).select2();
 				$('#e_status').val(data[0].is_active).select2();
 			}
 		});

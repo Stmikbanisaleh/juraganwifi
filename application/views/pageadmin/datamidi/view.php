@@ -640,11 +640,15 @@
 		<div class="card-header">
 			<h3 class="card-title">Daftar Data Midi</h3>
 		</div>
+		<?php
+		$session = $this->session->userdata('level');
+		if ($session == 1 || $session == 2 || $session == 3) { ?>
 		<br>
 		<div class="col-sm-2">
 			<button href="#modalTambah" type="button" role="button" data-toggle="modal"
 			 class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Data Midi</button>
 		</div>
+		<?php } ?>
 		<br>
 		<div class="card-body p-0">
 			<table id="table_id" class="table table-bordered table-hover projects">
@@ -858,6 +862,59 @@
 				var status = '';
 				for (i = 0; i < data.length; i++) {
 					var foto = '';
+					var level = <?= $this->session->userdata('level'); ?>;
+					if (level == 1) {
+						button = '<td class="project-actions text-right">' +
+							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-search"> </i>  Preview </a>' +
+							'</button> ' +
+							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-folder"> </i>  Edit </a>' +
+							'</button> &nbsp' +
+							'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+							'</button> ' +
+							'</td>'
+					} else if (level == 2) {
+						button = '<td class="project-actions text-right">' +
+							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-search"> </i>  Preview </a>' +
+							'</button> ' +
+							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-folder"> </i>  Edit </a>' +
+							'</button> &nbsp' +
+							'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+							'</button> ' +
+							'</td>'
+					} else if (level == 3) {
+						button = '<td class="project-actions text-right">' +
+							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-search"> </i>  Preview </a>' +
+							'</button> ' +
+							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-folder"> </i>  Edit </a>' +
+							'</button> &nbsp' +
+							'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+							'</button> ' +
+							'</td>'
+					} else if (level == 4) {
+						button = '<td class="project-actions text-right">' +
+							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-search"> </i>  Preview </a>' +
+							'</button> ' +
+							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-folder"> </i>  Edit </a>' +
+							'</button> &nbsp' +
+							'</td>'
+					} else if (level == 5) {
+						button = '<td class="project-actions text-right">' +
+							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-search"> </i>  Preview </a>' +
+							'</button> &nbsp' +
+							'</td>'
+					}
 					if (data[i].dokumen != null) {
 						foto = '<td ><a href="<?php echo site_url('/assets/datamidi/') ?>' + data[i].dokumen + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/datamidi/') ?>' + data[i].dokumen + '""></a></td>'
 					} else {
@@ -896,17 +953,7 @@
 						status+
 						foto+
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
-						'<td class="project-actions text-right">' +
-						'   <button  class="btn btn-info btn-sm item_edit2"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-search"> </i>  Preview </a>' +
-						'</button> ' +
-						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-folder"> </i>  Edit </a>' +
-						'</button> &nbsp' +
-						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
-						'</button> ' +
-						'</td>' +
+						button+
 						'</tr>';
 					no++;
 				}
@@ -976,7 +1023,7 @@
 	});
 
 	//get data for update record
-	$('#show_data').on('click', '.item_edit2', function() {
+	$('#show_data').on('click', '.item_prev', function() {
 		document.getElementById("formEdit2").reset();
 		var id = $(this).data('id');
 		$('#modalEdit2').modal('show');

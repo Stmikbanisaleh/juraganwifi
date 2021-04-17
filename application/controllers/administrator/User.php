@@ -60,16 +60,18 @@ class User extends CI_Controller
 				'id'  => $this->input->post('e_id')
 			);
 			$password = md5($this->input->post('e_password'));
+			$kata = strlen($this->input->post('e_password'));
 			$password = hash("sha512", $password);
 
 			$password2 = md5($this->input->post('e_passwordconfirm'));
 			$password2 = hash("sha512", $password2);
-			if ($password == null || $password == "" || $password2 == null || $password2 == "") {
+			if ($kata == 0) {
 				$data = array(
 					'name'  => $this->input->post('e_nama'),
 					'email'  => $this->input->post('e_email'),
 					'phone'  => $this->input->post('e_telp'),
 					'address'  => $this->input->post('e_alamat'),
+					'level'  => $this->input->post('e_level'),
 					'is_active'  => $this->input->post('e_status'),
 					'updatedAt' => date('Y-m-d H:i:s'),
 					'updatedBy'	=> $this->session->userdata('name')
@@ -84,6 +86,7 @@ class User extends CI_Controller
 						'phone'  => $this->input->post('e_telp'),
 						'address'  => $this->input->post('e_alamat'),
 						'is_active'  => $this->input->post('e_status'),
+						'level'  => $this->input->post('e_level'),
 						'password'	=> $password,
 						'updatedAt' => date('Y-m-d H:i:s'),
 						'updatedBy'	=> $this->session->userdata('name')
@@ -128,6 +131,7 @@ class User extends CI_Controller
 					'email'  => $this->input->post('email'),
 					'phone'  => $this->input->post('telp'),
 					'address'  => $this->input->post('alamat'),
+					'level'  => $this->input->post('level'),
 					'password'	=> $password,
 					'createdAt' => date('Y-m-d H:i:s'),
 					'createdBy'	=> $this->session->userdata('name')

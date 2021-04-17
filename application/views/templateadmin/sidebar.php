@@ -29,7 +29,11 @@
   						</p>
   					</a>
   				</li>
+  				<?php
+					$session = $this->session->userdata('level');
+					?>
   				<li class="nav-header">CUSTOMER RT/RW NET</li>
+
   				<li class="nav-item has-treeview">
   					<a href="<?php echo base_url() . 'administrator/customer'; ?>" class="nav-link">
   						<i class="nav-icon fas fa-users"></i>
@@ -38,38 +42,48 @@
   							<i class="fas fa-angle-left right"></i>
   						</p>
   					</a>
-  					<ul class="nav nav-treeview">
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/customer'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Daftar Pelanggan RT/RW Net</p>
-  							</a>
-  						</li>
-						  <li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/services'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Layanan Per Pelanggan</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/daftar_tagihan'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Daftar Tagihan</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/tagihan_log'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Generate Tagihan</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/blast_email'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Blast Email Tagihan</p>
-  							</a>
-  						</li>
-  					</ul>
+  					<?php
+						if ($session == 1 || $session == 2 || $session == 3 || $session == 4 || $session == 5) {
+						?>
+  						<ul class="nav nav-treeview">
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/customer'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Daftar Pelanggan RT/RW Net</p>
+  								</a>
+  							</li>
+  						<?php } ?>
+  						<?php
+							if ($session == 1 || $session == 2) {
+							?>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/services'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Layanan Per Pelanggan</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/daftar_tagihan'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Daftar Tagihan</p>
+  								</a>
+  							</li>
+
+
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/tagihan_log'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Generate Tagihan</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/blast_email'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Blast Email Tagihan</p>
+  								</a>
+  							</li>
+  						<?php } ?>
+  						</ul>
   				</li>
   				<li class="nav-header">CUSTOMER CORPORATE</li>
   				<li class="nav-item has-treeview">
@@ -80,33 +94,45 @@
   							<i class="fas fa-angle-left right"></i>
   						</p>
   					</a>
+
   					<ul class="nav nav-treeview">
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/corporate'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Daftar Pelanggan</p>
-  							</a>
-  						</li>
-						  <li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/services2'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Layanan Per Pelanggan</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/daftar_tagihanc'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Daftar Tagihan</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/tagihan_logc'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Generate Tagihan</p>
-  							</a>
-  						</li>
+  						<?php
+							if ($session == 1 || $session == 2 || $session == 3 || $session == 4 || $session == 5) {
+							?>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/corporate'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Daftar Pelanggan</p>
+  								</a>
+  							</li>
+  						<?php } ?>
+  						<?php
+							if ($session == 1 || $session == 2) {
+							?>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/services2'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Layanan Per Pelanggan</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/daftar_tagihanc'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Daftar Tagihan</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/tagihan_logc'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Generate Tagihan</p>
+  								</a>
+  							</li>
+  						<?php } ?>
   					</ul>
   				</li>
+				  <?php
+					if ($session == 1 || $session == 2 || $session == 3 ) {
+					?>
   				<li class="nav-item has-treeview">
   					<a href="<?php echo base_url() . 'administrator/datavoip'; ?>" class="nav-link">
   						<i class="nav-icon fas fa-users"></i>
@@ -115,143 +141,151 @@
   						</p>
   					</a>
   				</li>
-  				<li class="nav-header">MASTER</li>
-  				<li class="nav-item has-treeview">
-  					<a href="#" class="nav-link">
-  						<i class="nav-icon fas fa-chart-pie"></i>
-  						<p>
-  							Master Data
-  							<i class="right fas fa-angle-left"></i>
-  						</p>
-  					</a>
-  					<ul class="nav nav-treeview">
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/agama'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Agama</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/bank'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Bank</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/jenis_identitas'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Jenis Identitas</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/jenis_ipaddress'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Jenis IP</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/jenis_pelanggan'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Jenis Pelanggan</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/jenis_perangkat'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Jenis Perangkat</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/layanan'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Jenis Layanan</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/jenis_pembayaran'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Jenis Pembayaran</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/jenis_tempat'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Jenis Tempat</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/jenis_kepemilikan_perangkat'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Kepemilikan Perangkat</p>
-  							</a>
-  						</li>
+				 <?php } ?>
+  				<?php
+					if ($session == 1 || $session == 2 || $session == 3) {
+					?>
+  					<li class="nav-header">MASTER</li>
+  					<li class="nav-item has-treeview">
+  						<a href="#" class="nav-link">
+  							<i class="nav-icon fas fa-chart-pie"></i>
+  							<p>
+  								Master Data
+  								<i class="right fas fa-angle-left"></i>
+  							</p>
+  						</a>
+  						<ul class="nav nav-treeview">
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/agama'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Agama</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/bank'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Bank</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/jenis_identitas'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Jenis Identitas</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/jenis_ipaddress'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Jenis IP</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/jenis_pelanggan'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Jenis Pelanggan</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/jenis_perangkat'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Jenis Perangkat</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/layanan'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Jenis Layanan</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/jenis_pembayaran'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Jenis Pembayaran</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/jenis_tempat'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Jenis Tempat</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/jenis_kepemilikan_perangkat'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Kepemilikan Perangkat</p>
+  								</a>
+  							</li>
 
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/jenis_kepemilikan'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Kepemilikan Tempat</p>
-  							</a>
-  						</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/jenis_kepemilikan'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Kepemilikan Tempat</p>
+  								</a>
+  							</li>
 
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/media_koneksi'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Media Koneksi</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/merek_perangkat'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Merek Perangkat</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/metode_pembayaran'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Metode Pembayaran</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/odc'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master ODC</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/odp'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master ODP</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/operator'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Operator</p>
-  							</a>
-  						</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/media_koneksi'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Media Koneksi</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/merek_perangkat'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Merek Perangkat</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/metode_pembayaran'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Metode Pembayaran</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/odc'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master ODC</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/odp'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master ODP</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/operator'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Operator</p>
+  								</a>
+  							</li>
 
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/pendidikan_terakhir'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Pendidikan</p>
-  							</a>
-  						</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/pendidikan_terakhir'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Pendidikan</p>
+  								</a>
+  							</li>
 
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/status_sdm'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Status SDM</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/type_ipaddress'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Type IP Address</p>
-  							</a>
-  						</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/status_sdm'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Status SDM</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/type_ipaddress'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Type IP Address</p>
+  								</a>
+  							</li>
 
-  					</ul>
-  				</li>
+  						</ul>
+  					</li>
+  				<?php } ?>
+				  <?php
+					if ($session == 1 || $session == 2 || $session == 3 || $session == 5) {
+					?>
   				<li class="nav-header">WILAYAH</li>
   				<li class="nav-item has-treeview">
   					<a href="#" class="nav-link">
@@ -270,6 +304,7 @@
   						</li>
   					</ul>
   				</li>
+				  <?php } ?>
   				<li class="nav-header">GSM</li>
   				<li class="nav-item has-treeview">
   					<a href="#" class="nav-link">
@@ -295,6 +330,7 @@
 
   					</ul>
   				</li>
+				
   				<li class="nav-header">VENDOR</li>
   				<li class="nav-item has-treeview">
   					<a href="#" class="nav-link">
@@ -311,12 +347,16 @@
   								<p>Master Data Vendor</p>
   							</a>
   						</li>
+						  <?php
+					if ($session == 1 || $session == 2 || $session == 3) {
+					?>
   						<li class="nav-item">
   							<a href="<?php echo base_url() . 'administrator/vendor'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
   								<p>Master Layanan Vendor</p>
   							</a>
   						</li>
+						  <?php } ?>
   						<li class="nav-item">
   							<a href="<?php echo base_url() . 'administrator/inet'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
@@ -375,84 +415,65 @@
   						</li>
   					</ul>
   				</li>
-  				<!-- <li class="nav-header">KEUANGAN</li>
-  				<li class="nav-item has-treeview">
-  					<a href="#" class="nav-link">
-  						<i class="nav-icon far fa-envelope"></i>
-  						<p>
-  							Transaksi
-  							<i class="fas fa-angle-left right"></i>
-  						</p>
-  					</a>
-  					<ul class="nav nav-treeview">
-  						<li class="nav-item">
-  							<a href="pages/mailbox/mailbox.html" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Pemasukan</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="pages/mailbox/compose.html" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Pengeluaran</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="pages/mailbox/read-mail.html" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Read</p>
-  							</a>
-  						</li>
-  					</ul>
-  				</li> -->
-  				<li class="nav-header">PENGATURAN</li>
-  				<li class="nav-item has-treeview">
-  					<a href="#" class="nav-link">
-  						<i class="nav-icon fas fa-cogs"></i>
-  						<p>
-  							Konfigurasi
-  							<i class="fas fa-angle-left right"></i>
-  						</p>
-  					</a>
-  					<ul class="nav nav-treeview">
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/user'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Daftar User</p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/email'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p> Email </p>
-  							</a>
-  						</li>
-  					</ul>
-  				</li>
-  				<li class="nav-header">LAPORAN</li>
-  				<li class="nav-item has-treeview">
-  					<a href="#" class="nav-link">
-  						<i class="nav-icon fas fa-book"></i>
-  						<p>
-  							Jenis Laporan
-  							<i class="fas fa-angle-left right"></i>
-  						</p>
-  					</a>
-  					<ul class="nav nav-treeview">
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/laporanpembayaran'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Pembayaran </p>
-  							</a>
-  						</li>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/laporantagihan'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Tagihan</p>
-  							</a>
-  						</li>
-  					</ul>
-  				</li>
+
+  				<?php
+					if ($session == 1) {
+					?>
+  					<li class="nav-header">PENGATURAN</li>
+  					<li class="nav-item has-treeview">
+  						<a href="#" class="nav-link">
+  							<i class="nav-icon fas fa-cogs"></i>
+  							<p>
+  								Konfigurasi
+  								<i class="fas fa-angle-left right"></i>
+  							</p>
+  						</a>
+  						<ul class="nav nav-treeview">
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/user'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Daftar User</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/email'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p> Email </p>
+  								</a>
+  							</li>
+  						</ul>
+  					</li>
+  				<?php } ?>
+  				<?php
+					if ($session == 1 || $session == 2) {
+					?>
+  					<li class="nav-header">LAPORAN</li>
+  					<li class="nav-item has-treeview">
+  						<a href="#" class="nav-link">
+  							<i class="nav-icon fas fa-book"></i>
+  							<p>
+  								Jenis Laporan
+  								<i class="fas fa-angle-left right"></i>
+  							</p>
+  						</a>
+  						<ul class="nav nav-treeview">
+
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/laporanpembayaran'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Pembayaran </p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/laporantagihan'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Tagihan</p>
+  								</a>
+  							</li>
+
+  						</ul>
+  					</li>
+  				<?php } ?>
   			</ul>
   		</nav>
   		<!-- /.sidebar-menu -->
