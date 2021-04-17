@@ -127,11 +127,12 @@
 						<?php
 						echo ' 			<tr>
 													<td>
-													 	<b>From : PT. Juragan Wifi Indonesia</b> <br>
-														No Invoice : ' . $invoice . ' <br>
-														Date   &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;: ' . $createdAt . ' <br>
-														Period   &nbsp; &nbsp; &nbsp;  &nbsp; : ' . $monthname . ' <br>
-														Due Date  &nbsp;&nbsp; :  ' . $due_date . '
+													 	<b>From &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: PT. Juragan Wifi Indonesia</b> <br>
+														No Invoice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ' . $invoice . ' <br>
+														No PO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ' . $nopo . ' <br>
+														No Quotation : ' . $noqo . ' <br>
+														Date   &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;: ' . $createdAt . ' <br>
+														Due Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :  ' . $due_date . '
 													 </td>
 											 </tr>';
 						?>
@@ -171,7 +172,7 @@
 											' . $value['nama_layanan'] . '
 									</td>
 									<td>
-										 1.
+										 1
 									</td>
 									<td>
 										Rp. ' . number_format($value['price'], 0, ',', '.') . '
@@ -182,8 +183,9 @@
 							</tr>
 							
 						';
-
+				$no++;
 				$total += $value['price'];
+
 			}
 			?>
 		</table>

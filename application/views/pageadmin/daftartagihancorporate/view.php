@@ -113,6 +113,9 @@
 						<th class="text-center">
 							Invoice
 						</th>
+						<th class="text-center">
+							Action
+						</th>
 					</tr>
 				</thead>
 				<tbody id="show_data">
@@ -125,6 +128,40 @@
 </section>
 
 <script type="text/javascript">
+	$('#show_data').on('click', '.item_hapus', function() {
+		var id = $(this).data('id');
+		Swal.fire({
+			title: 'Apakah anda yakin?',
+			text: "Anda tidak akan dapat mengembalikan ini!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Ya, Hapus!',
+			cancelButtonText: 'Batal'
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('administrator/daftar_tagihanc/delete') ?>",
+					async: true,
+					dataType: "JSON",
+					data: {
+						id: id,
+					},
+					success: function(data) {
+						show_data();
+						Swal.fire(
+							'Terhapus!',
+							'Data sudah dihapus.',
+							'success'
+						)
+					}
+				});
+			}
+		})
+	})
+
 	$('#show_data').on('click', '.item_invoice', function() {
 		var id = $(this).data('id');
 		Swal.fire({
@@ -201,7 +238,7 @@
 					var invoice = '';
 
 					invoice = '<td class="text-center">' +
-						'   <a target=_blank href="<?= base_url().'administrator/tagihan_logc/downloadTagihan/?invoice='?>' + data[i].id + '" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
+						'   <a target=_blank href="<?= base_url() . 'administrator/tagihan_logc/downloadTagihan/?invoice=' ?>' + data[i].id + '" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-download"> </i> Download  </a>' +
 						'</button> &nbsp' +
 						'</td>'
@@ -220,6 +257,11 @@
 						status +
 						tombol +
 						invoice +
+						'<td class="project-actions text-right">' +
+						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+						'</button> ' +
+						'</td>' +
 						'</tr>';
 					no++;
 				}
@@ -230,7 +272,7 @@
 					$('#table_id').dataTable({
 						"dom": "Bfrtip",
 						"buttons": [
-						 "excel"
+							"excel"
 						],
 						"searching": true,
 						"ordering": true,

@@ -126,7 +126,7 @@
 								<div class="card-body">
 									<b>DATA LAYANAN</b>
 									<hr>
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label>Jenis Layanan</label>
 										<select required class="form-control select2" style="width: 100%;" name="jenislayanan" id="jenislayanan">
 											<option value="" selected="selected">-- Pilih --</option>
@@ -134,7 +134,7 @@
 												<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>
 											<?php } ?>
 										</select>
-									</div>
+									</div> -->
 
 									<div class="form-group">
 										<label>Media Koneksi</label>
@@ -381,7 +381,7 @@
 								<div class="card-body">
 									<b>DATA LAYANAN</b>
 									<hr>
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label>Jenis Layanan</label>
 										<select required class="form-control select2" style="width: 100%;" name="e_jenislayanan" id="e_jenislayanan">
 											<option value="" selected="selected">-- Pilih --</option>
@@ -389,7 +389,7 @@
 												<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>
 											<?php } ?>
 										</select>
-									</div>
+									</div> -->
 
 									<div class="form-group">
 										<label>Media Koneksi</label>
@@ -792,9 +792,6 @@
 							Foto
 						</th>
 						<th style="width: 8%" class="text-center">
-							Jenis Layanan
-						</th>
-						<th style="width: 8%" class="text-center">
 							Media Koneksi
 						</th>
 						<th style="width: 8%" class="text-center">
@@ -996,7 +993,6 @@
 						'<td class="text-left">' + data[i].address + '</td>' +
 						status +
 						foto +
-						'<td class="text-left">' + data[i].nama_jenis_layanan + '</td>' +
 						'<td class="text-left">' + data[i].nama_media_koneksi + '</td>' +
 						'<td class="text-left">' + data[i].nama_kepemilikan_tempat + '</td>' +
 						'<td class="text-left">' + data[i].nama_jenis_tempat + '</td>' +

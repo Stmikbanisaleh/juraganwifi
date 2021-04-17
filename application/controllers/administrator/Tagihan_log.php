@@ -84,6 +84,7 @@ class Tagihan_log extends CI_Controller
 			if ($cek->num_rows() == 0) {
 				$dataCek = $cek->result_array();
 				$generateTagihanData = $this->model_generate_tagihan_log->generateTagihan($noVal['no_services'])->result_array();
+
 				if ($generateTagihanData) {
 					$invoice = $this->generateInvoice();
 					$dataInvoice = array(
@@ -170,7 +171,7 @@ class Tagihan_log extends CI_Controller
 					'createdAt' => date('d-m-Y'),
 					'due_date'  => date('d-m-Y', strtotime('today + 14 days')),
 					'item_list' => $item_list,
-					'kode_unik' => $item_list[0]['no_unik'],
+					'kode_unik' => $dataUser[0]['id'],
 					'user' => $dataUser,
 				);
 				// $this->pdf->load_view('pageadmin/laporan/invoice', $data);
@@ -188,7 +189,7 @@ class Tagihan_log extends CI_Controller
 
 	public function token($invoice, $no)
 	{
-		$dataBill = $this->db->query("select b.no_unik, a.invoice,b.price,c.name as package, c.id as packageid,
+		$dataBill = $this->db->query("select b.no_unik, a.invoice,sum(b.price) as price,c.name as package, c.id as packageid,
 		d.no_services as no_pelanggan, d.name as nama_customer,d.address,d.no_wa,d.email   from invoice a
 		left join invoice_detail b on a.id = b.invoice_id 
 		left join package_item c on b.item_id = c.id
@@ -196,19 +197,31 @@ class Tagihan_log extends CI_Controller
 		where a.invoice = '$invoice' group by a.invoice
 		")->result_array();
 		$dataBill = $dataBill[0];
+		$dataBill2 = $this->db->query("select b.no_unik, a.invoice,b.price,c.name as package, c.id as packageid,
+		d.no_services as no_pelanggan, d.name as nama_customer,d.address,d.no_wa,d.email   from invoice a
+		left join invoice_detail b on a.id = b.invoice_id 
+		left join package_item c on b.item_id = c.id
+		left join customer d on a.no_services = d.no_services
+		where a.invoice = '$invoice' 
+		")->result_array();
+
 		// Required
 		$transaction_details = array(
 			'order_id' => $dataBill['invoice'],
-			'gross_amount' => $dataBill['price']+$dataBill['no_unik'], // no decimal allowed for creditcard
+			'gross_amount' => $dataBill['price'] // no decimal allowed for creditcard
 		);
-
-		// Optional
-		$item_details = array(
-			'id' => $dataBill['packageid'],
-			'price' => $dataBill['price']+$dataBill['no_unik'],
-			'quantity' => 1,
-			'name' => $dataBill['package']
-		);
+		$no = 1;
+		$item_details = array();
+		foreach($dataBill2 as $val){
+			// Optional
+			$item_details = array(
+				'id' => $val['packageid'],
+				'price' => $val['price'],
+				'quantity' => 1,
+				'name' => $dataBill['package']
+			);
+			$item_details = array_push($item_details, $item_details);
+		}
 
 		// Optional
 		$billing_address = array(

@@ -86,9 +86,6 @@
                         <th class="text-center">
 							Nama
 						</th>
-                        <th class="text-center">
-							Jenis Layanan
-						</th>
 						<th class="text-center">
 							Bulan
 						</th>
@@ -112,6 +109,12 @@
 						</th>
 						<th class="text-center">
 							Invoice
+						</th>
+						<th class="text-center">
+							Link Invoice
+						</th>
+						<th class="text-center">
+							Action
 						</th>
 					</tr>
 				</thead>
@@ -209,7 +212,6 @@
 						'<td class="text-left">' + data[i].invoice + '</td>' +
 						'<td class="text-left">' + data[i].no_services + '</td>' +
 						'<td class="text-left">' + data[i].name + '</td>' +
-						'<td class="text-left">' + data[i].nama_layanan + '</td>' +
 						'<td class="text-left">' + data[i].month + '</td>' +
 						'<td class="text-left">' + data[i].year + '</td>' +
 						'<td class="text-left">' + data[i].Nominal + '</td>' +
@@ -218,6 +220,12 @@
                         status+
 						tombol+
 						invoice +
+						'<td><?= base_url().'administrator/tagihan_log/downloadTagihan/?invoice='?>' + data[i].id + '</td>'+
+						'<td class="project-actions text-right">' +
+						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+						'</button> ' +
+						'</td>' +
 						'</tr>';
 					no++;
 				}

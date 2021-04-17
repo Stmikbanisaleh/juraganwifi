@@ -139,16 +139,6 @@
 									<b>DATA LAYANAN</b>
 									<hr>
 									<div class="form-group">
-										<label>Jenis Layanan</label>
-										<select class="form-control select2" style="width: 100%;" name="jenislayanan" id="jenislayanan">
-											<option value="" selected="selected">-- Pilih --</option>
-											<?php foreach ($myjenislayanan as $value) { ?>
-												<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>
-											<?php } ?>
-										</select>
-									</div>
-
-									<div class="form-group">
 										<label>Media Koneksi</label>
 										<select class="form-control select2" style="width: 100%;" name="mediakoneksi" id="mediakoneksi">
 											<option value="" selected="selected">-- Pilih --</option>
@@ -197,6 +187,14 @@
 									<hr>
 									<b>DATA ADMINISTRASI</b>
 									<hr>
+									<div class="form-group">
+										<label>NO PO</label>
+										<input type="text" id="nopo" name="nopo" class="form-control">
+									</div>
+									<div class="form-group">
+										<label>NO Quotation</label>
+										<input type="text" id="noqo" name="noqo" class="form-control" placeholder="No Quotation">
+									</div>
 									<div class="form-group">
 										<label>Tanggal Registrasi</label>
 										<input type="date" id="tglregistrasi" name="tglregistrasi" class="form-control">
@@ -393,16 +391,6 @@
 									<b>DATA LAYANAN</b>
 									<hr>
 									<div class="form-group">
-										<label>Jenis Layanan</label>
-										<select class="form-control select2" style="width: 100%;" name="e_jenislayanan" id="e_jenislayanan">
-											<option value="" selected="selected">-- Pilih --</option>
-											<?php foreach ($myjenislayanan as $value) { ?>
-												<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>
-											<?php } ?>
-										</select>
-									</div>
-
-									<div class="form-group">
 										<label>Media Koneksi</label>
 										<select class="form-control select2" style="width: 100%;" name="e_mediakoneksi" id="e_mediakoneksi">
 											<option value="" selected="selected">-- Pilih --</option>
@@ -450,6 +438,14 @@
 									<hr>
 									<b>DATA ADMINISTRASI</b>
 									<hr>
+									<div class="form-group">
+										<label>NO PO</label>
+										<input type="text" id="e_nopo" name="e_nopo" class="form-control">
+									</div>
+									<div class="form-group">
+										<label>NO Quotation</label>
+										<input type="text" id="e_noqo" name="e_noqo" class="form-control" placeholder="No Quotation">
+									</div>
 									<div class="form-group">
 										<label>Tanggal Registrasi</label>
 										<input type="date" id="e_tglregistrasi" name="e_tglregistrasi" class="form-control">
@@ -642,15 +638,6 @@
 								<div class="card-body">
 									<b>DATA LAYANAN</b>
 									<hr>
-									<div class="form-group">
-										<label>Jenis Layanan</label>
-										<select readonly class="form-control select2" style="width: 100%;" name="e_jenislayanan2" id="e_jenislayanan2">
-											<option value="" selected="selected">-- Pilih --</option>
-											<?php foreach ($myjenislayanan as $value) { ?>
-												<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>
-											<?php } ?>
-										</select>
-									</div>
 
 									<div class="form-group">
 										<label>Media Koneksi</label>
@@ -699,6 +686,15 @@
 									<hr>
 									<b>DATA ADMINISTRASI</b>
 									<hr>
+									<div class="form-group">
+										<label>NO PO</label>
+										<input type="text" id="e_nopo2" name="e_nopo2" class="form-control">
+									</div>
+									<div class="form-group">
+										<label>NO Quotation</label>
+										<input type="text" id="e_noqo2" name="e_noqo2" class="form-control" placeholder="No Quotation">
+									</div>
+
 									<div class="form-group">
 										<label>Tanggal Registrasi</label>
 										<input readonly type="date" id="e_tglregistrasi2" name="e_tglregistrasi2" class="form-control">
@@ -803,9 +799,6 @@
 						</th>
 						<th class="text-center">
 							Foto
-						</th>
-						<th style="width: 8%" class="text-center">
-							Jenis Layanan
 						</th>
 						<th style="width: 8%" class="text-center">
 							Media Koneksi
@@ -1008,7 +1001,6 @@
 						'<td class="text-left">' + data[i].address + '</td>' +
 						status +
 						foto +
-						'<td class="text-left">' + data[i].nama_jenis_layanan + '</td>' +
 						'<td class="text-left">' + data[i].nama_media_koneksi + '</td>' +
 						'<td class="text-left">' + data[i].nama_kepemilikan_tempat + '</td>' +
 						'<td class="text-left">' + data[i].nama_jenis_tempat + '</td>' +
@@ -1193,17 +1185,16 @@
 				$('#e_panjangkabel').val(data[0].panjang_kabel);
 				$('#e_odp').val(data[0].odp);
 				$('#e_olt').val(data[0].olt);
+				$('#e_nopo').val(data[0].nopo);
+				$('#e_noqo').val(data[0].noqo);
 				$('#e_jenisperangkat').val(data[0].jenis_perangkat).select2();
 				$('#e_merekperangkat').val(data[0].merek_perangkat).select2();
 				$('#e_serialnumber').val(data[0].serial_number);
 				$('#e_macaddress').val(data[0].mac_address);
-				$('#e_jenislayanan').val(data[0].jenis_layanan).select2();
 				$('#e_mediakoneksi').val(data[0].media_koneksi).select2();
 				$('#e_usernamepoe').val(data[0].usernamepoe);
 				$('#e_p_ppoe').val(data[0].p_ppoe);
 				$('#e_ip_address').val(data[0].ipaddress);
-				// $('#e_kodp').val(data[0].kodp);
-				// $('#e_kodc').val(data[0].kodc);
 				$('#e_jenisipaddress').val(data[0].jenis_ipaddress).select2();
 				$('#e_wilayah').val(data[0].wilayah).select2();
 				$('#e_tglregistrasi').val(data[0].tgl_registrasi);
@@ -1255,13 +1246,12 @@
 				$('#e_merekperangkat2').val(data[0].merek_perangkat).select2();
 				$('#e_serialnumber2').val(data[0].serial_number);
 				$('#e_macaddress2').val(data[0].mac_address);
-				$('#e_jenislayanan2').val(data[0].jenis_layanan).select2();
 				$('#e_mediakoneksi2').val(data[0].media_koneksi).select2();
 				$('#e_usernamepoe').val(data[0].usernamepoe);
 				$('#e_p_ppoe2').val(data[0].p_ppoe);
 				$('#e_ip_address2').val(data[0].ipaddress);
-				// $('#e_kodp').val(data[0].kodp);
-				// $('#e_kodc').val(data[0].kodc);
+				$('#e_nopo2').val(data[0].nopo);
+				$('#e_noqo2').val(data[0].noqo);
 				$('#e_jenisipaddress2').val(data[0].jenis_ipaddress).select2();
 				$('#e_wilayah2').val(data[0].wilayah).select2();
 				$('#e_tglregistrasi2').val(data[0].tgl_registrasi);

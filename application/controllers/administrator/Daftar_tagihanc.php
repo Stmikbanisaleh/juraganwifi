@@ -15,6 +15,26 @@ class Daftar_tagihanc extends CI_Controller
 		$this->template->load('templateadmin', $data); //Display Page
 	}
 
+	public function delete()
+	{
+		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+
+			$data_id = array(
+				'id'  => $this->input->post('id')
+			);
+			$action = $this->model_daftar_tagihanc->delete($data_id, 'invoice_corporate');
+
+			$data_id2 = array(
+				'invoice_id'  => $this->input->post('id')
+			);
+			$this->model_daftar_tagihanc->delete($data_id2, 'invoice_detail_corporate');
+
+			echo json_encode($action);
+		} else {
+			$this->load->view('pageadmin/login'); //Memanggil function render_view
+		}
+	}
+
 	public function index()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {

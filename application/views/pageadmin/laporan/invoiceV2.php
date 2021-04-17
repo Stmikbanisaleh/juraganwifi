@@ -168,7 +168,7 @@
 				echo '
 							<tr class="item">
 									<td style="text-align:left">
-											Tagihan Paket Internet Periode ' . $monthname .' '.$value['year'].'
+											'. $value['nama_layanan'].' Periode ' . $monthname .' '.$value['year'].'
 									</td> '.
 									$status .'
 									<td>
@@ -211,30 +211,19 @@
 		</table>
 		<br>
 		<div class="footer">
-			<br>
-			<b><p>Konfirmasi Pembayaran :</p></b>
-			<p>Email : 11duabelasproject@gmail.com</p>
+			
 		</div>
 		<?php $date = date('d M Y'); ?>
 		<br>
 		<div class="footer">
 			<table>
-				<tr>
-					<td style="text-align: right;"><?= date('l', strtotime($date)) . ', ' . date('d M Y'); ?></td>
-				</tr>
+				
 			</table>
 			<br>
 			<br>
 			<br>
 			<table>
-				<tr>
-					<td style="text-align: right;  margin-right:10%;">
-						<p><u>Rina Maria</u>
-							<br>
-							Finance
-						</p>
-					</td>
-				</tr>
+				
 			</table>
 		</div>
 	</div>

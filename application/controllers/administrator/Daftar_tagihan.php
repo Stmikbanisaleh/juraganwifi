@@ -80,6 +80,28 @@ class Daftar_tagihan extends CI_Controller
 		}
 	}
 
+	
+	public function delete()
+	{
+		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+
+			$data_id = array(
+				'id'  => $this->input->post('id')
+			);
+			$action = $this->model_daftar_tagihan->delete($data_id, 'invoice');
+
+			$data_id2 = array(
+				'invoice_id'  => $this->input->post('id')
+			);
+			$this->model_daftar_tagihan->delete($data_id2, 'invoice_detail');
+
+			echo json_encode($action);
+		} else {
+			$this->load->view('pageadmin/login'); //Memanggil function render_view
+		}
+	}
+
+
 	public function tampil_byid()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {

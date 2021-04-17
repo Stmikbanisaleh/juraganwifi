@@ -46,15 +46,17 @@ class Model_generate_tagihan_logc extends CI_model
 
 	function viewPelanggan($invoice)
     {
-		return $this->db->query("Select b.no_services,b.name,b.email,b.address from invoice_corporate a
+		return $this->db->query("Select b.nopo, b.noqo, b.no_services,b.name,b.email,b.address from invoice_corporate a
 		join customer_corporate b on a.no_services = b.no_services
 		where a.invoice ='".$invoice."'");
 	}
 
 	function generateTagihan($services)
     {
-		return $this->db->query("Select a.id as item_id , a.price from package_item a join customer_corporate b on a.id = b.jenis_layanan
-		where b.no_services ='".$services."' and b.status != 0");
+		return $this->db->query("Select b.id as item_id , b.price as price from service2 a
+		join package_item b on a.id_service = b.id
+		join customer_corporate c on c.no_services = a.id_customer
+		where a.id_customer = '".$services."' and b.status != 0");
 	}
 	
     public function viewOrdering($table, $order, $ordering)

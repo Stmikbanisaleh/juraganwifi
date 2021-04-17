@@ -81,6 +81,7 @@ class Tagihan_logc extends CI_Controller
 		$no = 1;
 		foreach ($listNoServices as $noVal) {
 			$cek = $this->model_generate_tagihan_logc->cek($this->input->post('bulan'), $this->input->post('tahun'), $noVal['no_services']);
+
 			if ($cek->num_rows() == 0) {
 				$dataCek = $cek->result_array();
 				$generateTagihanData = $this->model_generate_tagihan_logc->generateTagihan($noVal['no_services'])->result_array();
@@ -144,6 +145,8 @@ class Tagihan_logc extends CI_Controller
 					'createdAt' => date('d-m-Y'),
 					'due_date'  => date('d-m-Y', strtotime('today + 7 days')),
 					'item_list' => $item_list,
+					'nopo' => $dataUser[0]['nopo'],
+					'noqo' => $dataUser[0]['noqo'],
 					'user' => $dataUser,
 				);
 				// $this->pdf->load_view('pageadmin/laporan/invoice', $data);

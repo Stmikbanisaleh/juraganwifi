@@ -45,6 +45,12 @@
   								<p>Daftar Pelanggan RT/RW Net</p>
   							</a>
   						</li>
+						  <li class="nav-item">
+  							<a href="<?php echo base_url() . 'administrator/services'; ?>" class="nav-link">
+  								<i class="far fa-circle nav-icon"></i>
+  								<p>Layanan Per Pelanggan</p>
+  							</a>
+  						</li>
   						<li class="nav-item">
   							<a href="<?php echo base_url() . 'administrator/daftar_tagihan'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
@@ -79,6 +85,12 @@
   							<a href="<?php echo base_url() . 'administrator/corporate'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
   								<p>Daftar Pelanggan</p>
+  							</a>
+  						</li>
+						  <li class="nav-item">
+  							<a href="<?php echo base_url() . 'administrator/services2'; ?>" class="nav-link">
+  								<i class="far fa-circle nav-icon"></i>
+  								<p>Layanan Per Pelanggan</p>
   							</a>
   						</li>
   						<li class="nav-item">
