@@ -21,6 +21,9 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
+<!-- <div >	
+    <img src="<?= base_url() ?>assets/atas.png" width="365px">
+  </div> -->
   <div class="login-logo">
     <a href="../../index2.html"><b>Login</b>Administrator</a>
   </div>
@@ -72,7 +75,9 @@
   </div>
 </div>
 <!-- /.login-box -->
-
+<!-- <div >	
+    <img src="<?= base_url() ?>assets/bawah.jpeg" width="365px">
+  </div> -->
 <!-- jQuery -->
 <script src="<?= base_url() ?>assets/adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->

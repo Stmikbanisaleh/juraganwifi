@@ -36,10 +36,13 @@ class Dashboard extends CI_Controller
 			$totalcustomercorporate = $this->db->query("select count(id) as total from customer_corporate where status = 1 ")->result_array();
             $totalcustomercorporate2 = $this->db->query("select count(id) as total from customer_corporate where status = 0 ")->result_array();
 
-            $gsm = $this->db->query("select count(id) as total from pengguna_gsm  ")->result_array();
+            $gsm = $this->db->query("select count(id) as total from pengguna_gsm where status = 1 ")->result_array();
+            $gsm2 = $this->db->query("select count(id) as total from pengguna_gsm where status = 0 ")->result_array();
 
 
-            $totalcustomer3 = $this->db->query("select count(id) as total from data_pelanggan_voip")->result_array();
+            $totalcustomer3 = $this->db->query("select count(id) as total from data_pelanggan_voip where status = 1")->result_array();
+            $totalcustomer4 = $this->db->query("select count(id) as total from data_pelanggan_voip where status = 0")->result_array();
+
             $inet = $this->db->query("select count(id) as total from inet where status = 1")->result_array();
             $inet2 = $this->db->query("select count(id) as total from inet where status = 0")->result_array();
             $inventori = $this->db->query("select count(id) as total from data_inventori ")->result_array();
@@ -54,6 +57,8 @@ class Dashboard extends CI_Controller
             $totalcustomer = $totalcustomer[0];
             $totalcustomer2 =  $totalcustomer2[0];
             $totalcustomer3 = $totalcustomer3[0];
+            $totalcustomer4 = $totalcustomer4[0];
+
             $harga = array();
             $bulan = array();
             $mygraph = $this->db->query("select sum(a.nominal_bayar) as harga, monthname(a.updatedAt) as bulan
@@ -79,12 +84,15 @@ class Dashboard extends CI_Controller
                 'customer'          => $totalcustomer['total'],
                 'customer2'         => $totalcustomer2['total'],
                 'customer3'         => $totalcustomer3['total'],
+                'customer4'         => $totalcustomer4['total'],
+
 				'customercorporate'			=> $totalcustomercorporate[0]['total'],
 				'customercorporate2'			=> $totalcustomercorporate2[0]['total'],
                 'inet'         => $inet['total'],
                 'inet2'         => $inet2['total'],
                 'datainv'       => $datainv['total'],
 				'gsm'		=> $gsm[0]['total'],
+				'gsm2'		=> $gsm2[0]['total'],
                 'bulan' => $bulan,
                 'harga' => $harga,
 				'vendor' => $vendordetail[0]['total'],

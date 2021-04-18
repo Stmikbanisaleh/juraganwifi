@@ -38,7 +38,10 @@
 									<div class="progress">
 										<div class="progress-bar" style="width: 100%"></div>
 									</div>
-
+									<span class="progress-description">
+										<?= $customer4
+										?> Pelanggan Tidak Aktif
+									</span>
 								</div>
 								<!-- /.info-box-content -->
 							</div>
@@ -52,7 +55,7 @@
 								<div class="info-box-content">
 									<span class="info-box-text">Pelanggan Inet</span>
 									<span class="info-box-number"><?= $inet
-																	?>Pelanggan Aktif</span>
+																	?> Pelanggan Aktif</span>
 									<div class="progress">
 										<div class="progress-bar" style="width: 70%"></div>
 									</div>
@@ -139,6 +142,10 @@
 									<div class="progress">
 										<div class="progress-bar" style="width: 70%"></div>
 									</div>
+									<span class="progress-description">
+										<?= $gsm2
+										?>  Tidak Aktif
+									</span>
 								</div>
 								<!-- /.info-box-content -->
 							</div>

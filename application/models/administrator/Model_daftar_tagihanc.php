@@ -11,6 +11,7 @@ class Model_daftar_tagihanc extends CI_model
         left join invoice_detail_corporate b on a.id = b.invoice_id
         left join customer_corporate c on a.no_services = c.no_services
         left join package_item d on c.jenis_layanan = d.id
+		group by a.invoice
         order by a.createdAt desc");
     }
 

@@ -630,16 +630,6 @@
 									<b>DATA LAYANAN</b>
 									<hr>
 									<div class="form-group">
-										<label>Jenis Layanan</label>
-										<select readonly required class="form-control select2" style="width: 100%;" name="e_jenislayanan2" id="e_jenislayanan2">
-											<option value="" selected="selected">-- Pilih --</option>
-											<?php foreach ($myjenislayanan as $value) { ?>
-												<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>
-											<?php } ?>
-										</select>
-									</div>
-
-									<div class="form-group">
 										<label>Media Koneksi</label>
 										<select readonly class="form-control select2" style="width: 100%;" name="e_mediakoneksi2" id="e_mediakoneksi2">
 											<option value="" selected="selected">-- Pilih --</option>
