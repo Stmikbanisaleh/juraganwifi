@@ -297,7 +297,6 @@
 		$.ajax({
 			type: 'POST',
 			url: '<?php echo site_url('administrator/penggunagsm/tampil') ?>',
-			async: true,
 			dataType: 'json',
 			success: function(data) {
 				var html = '';
@@ -306,9 +305,6 @@
 				var button ='';
 				if (level == 1) {
 						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-search"> </i>  Preview </a>' +
-							'</button> ' +
 							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 							'      <i class="fas fa-folder"> </i>  Edit </a>' +
 							'</button> &nbsp' +
@@ -318,9 +314,6 @@
 							'</td>'
 					} else if (level == 2) {
 						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-search"> </i>  Preview </a>' +
-							'</button> ' +
 							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 							'      <i class="fas fa-folder"> </i>  Edit </a>' +
 							'</button> &nbsp' +
@@ -330,9 +323,6 @@
 							'</td>'
 					} else if (level == 3) {
 						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-search"> </i>  Preview </a>' +
-							'</button> ' +
 							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 							'      <i class="fas fa-folder"> </i>  Edit </a>' +
 							'</button> &nbsp' +
@@ -342,18 +332,12 @@
 							'</td>'
 					} else if (level == 4) {
 						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-search"> </i>  Preview </a>' +
-							'</button> ' +
 							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 							'      <i class="fas fa-folder"> </i>  Edit </a>' +
 							'</button> &nbsp' +
 							'</td>'
 					} else if (level == 5) {
 						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-search"> </i>  Preview </a>' +
-							'</button> &nbsp' +
 							'</td>'
 					}
 				var no = 1;
@@ -374,7 +358,14 @@
 						'<td class="text-left">' + data[i].alokasi + '</td>' +
 						status + 
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
-						button +
+						'<td class="project-actions text-right">' +
+							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-folder"> </i>  Edit </a>' +
+							'</button> &nbsp' +
+							'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+							'</button> ' +
+							'</td>'
 						'</tr>';
 					no++;
 				}
