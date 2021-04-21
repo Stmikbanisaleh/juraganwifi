@@ -173,6 +173,32 @@
 					<!-- /.row --> 
 					
 					<div class="row">
+						<div class="col-md-3 col-sm-6 col-12">
+							<div class="info-box bg-gradient-danger">
+								<span class="info-box-icon"><i class="fa fa-store-alt"></i></span>
+
+								<div class="info-box-content">
+									<span class="info-box-text">Data Midi</span>
+									<span class="info-box-number"><?= $datamidi
+																	?>  Aktif</span>
+
+									<div class="progress">
+										<div class="progress-bar" style="width: 100%"></div>
+									</div>
+									<span class="progress-description">
+										<?= $datamidi2
+										?>  Tidak Aktif
+									</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row --> 
+
+					<div class="row">
 						<div class="col-lg-6">
 							<!-- /.card -->
 							<div class="card">

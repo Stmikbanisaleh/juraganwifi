@@ -54,18 +54,63 @@ class Tagihan_logc extends CI_Controller
 	{
 		$noreg = $this->db->query("SELECT invoice as maxno from invoice_corporate order by id desc")->result_array();
 
-		$invoiceDate = date('mdY');
 		$kata = '/JWI/CRP/';
+		$bulan = date('n');
+		$tahun = date('Y');
+			$romawi = $this->getRomawi($bulan);
 		if (count($noreg) < 1) {
-			$urutan = 'INV000001' . $kata . $invoiceDate;
+			
+			$urutan = '000001/INV.JWI/' . $romawi .'/'. $tahun;
 		} else {
 			$no = $noreg[0]['maxno'];
 			$urutan =  (int)substr($no, 3, 9);
 			$urutan = $urutan + 1;
-			$urutan = 'INV' . sprintf("%05s", $urutan) . $kata . $invoiceDate;
+			$urutan =  sprintf("%05s", $urutan) . '/INV.JWI/'  . $romawi .'/'. $tahun;
 		}
 
 		return $urutan;
+	}
+
+	function getRomawi($bln)
+	{
+		switch ($bln) {
+			case 1:
+				return "I";
+				break;
+			case 2:
+				return "II";
+				break;
+			case 3:
+				return "III";
+				break;
+			case 4:
+				return "IV";
+				break;
+			case 5:
+				return "V";
+				break;
+			case 6:
+				return "VI";
+				break;
+			case 7:
+				return "VII";
+				break;
+			case 8:
+				return "VIII";
+				break;
+			case 9:
+				return "IX";
+				break;
+			case 10:
+				return "X";
+				break;
+			case 11:
+				return "XI";
+				break;
+			case 12:
+				return "XII";
+				break;
+		}
 	}
 
 	public function generate()
@@ -155,13 +200,13 @@ class Tagihan_logc extends CI_Controller
 				$mpdf->WriteHTML($data);
 				// $mpdf->Output(APPPATH . "/public/" . $value['invoice'] . ".pdf", \Mpdf\Output\Destination::FILE);
 				$filename = $value['invoice'] . ".pdf";
-				$mpdf->Output($filename,"D");
+				$mpdf->Output($filename, "D");
 			}
 		} else {
 			$this->load->view('pageadmin/login'); //Memanggil function render_view
 		}
 	}
-	
+
 	public function generateTagihan($bulan, $tahun)
 	{
 		$month = $bulan;

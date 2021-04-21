@@ -43,6 +43,9 @@ class Dashboard extends CI_Controller
             $totalcustomer3 = $this->db->query("select count(id) as total from data_pelanggan_voip where status = 1")->result_array();
             $totalcustomer4 = $this->db->query("select count(id) as total from data_pelanggan_voip where status = 0")->result_array();
 
+			$datamidi = $this->db->query("select count(id) as total from datamidi where status = 1")->result_array();
+            $datamidi2 = $this->db->query("select count(id) as total from datamidi where status = 0")->result_array();
+
             $inet = $this->db->query("select count(id) as total from inet where status = 1")->result_array();
             $inet2 = $this->db->query("select count(id) as total from inet where status = 0")->result_array();
             $inventori = $this->db->query("select count(id) as total from data_inventori ")->result_array();
@@ -93,6 +96,8 @@ class Dashboard extends CI_Controller
                 'datainv'       => $datainv['total'],
 				'gsm'		=> $gsm[0]['total'],
 				'gsm2'		=> $gsm2[0]['total'],
+				'datamidi'		=> $datamidi[0]['total'],
+				'datamidi2'		=> $datamidi2[0]['total'],
                 'bulan' => $bulan,
                 'harga' => $harga,
 				'vendor' => $vendordetail[0]['total'],

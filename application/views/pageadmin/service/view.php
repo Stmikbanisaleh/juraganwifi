@@ -60,7 +60,7 @@
 				<form class="form-horizontal" role="form" id="formEdit">
 					<div class="card card-info">
 						<div class="modal-header">
-							<h4 class="modal-title">Edit ODC</h4>
+							<h4 class="modal-title">Edit Layanan</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>

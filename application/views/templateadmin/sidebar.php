@@ -130,18 +130,18 @@
   						<?php } ?>
   					</ul>
   				</li>
-				  <?php
-					if ($session == 1 || $session == 2 || $session == 3 ) {
+  				<?php
+					if ($session == 1 || $session == 2 || $session == 3) {
 					?>
-  				<li class="nav-item has-treeview">
-  					<a href="<?php echo base_url() . 'administrator/datavoip'; ?>" class="nav-link">
-  						<i class="nav-icon fas fa-users"></i>
-  						<p>
-  							Daftar Pelanggan VOIP
-  						</p>
-  					</a>
-  				</li>
-				 <?php } ?>
+  					<li class="nav-item has-treeview">
+  						<a href="<?php echo base_url() . 'administrator/datavoip'; ?>" class="nav-link">
+  							<i class="nav-icon fas fa-users"></i>
+  							<p>
+  								Daftar Pelanggan VOIP
+  							</p>
+  						</a>
+  					</li>
+  				<?php } ?>
   				<?php
 					if ($session == 1 || $session == 2 || $session == 3) {
 					?>
@@ -283,28 +283,28 @@
   						</ul>
   					</li>
   				<?php } ?>
-				  <?php
+  				<?php
 					if ($session == 1 || $session == 2 || $session == 3 || $session == 5) {
 					?>
-  				<li class="nav-header">WILAYAH</li>
-  				<li class="nav-item has-treeview">
-  					<a href="#" class="nav-link">
-  						<i class="nav-icon fas fa-map-signs"></i>
-  						<p>
-  							DATA WILAYAH
-  							<i class="right fas fa-angle-left"></i>
-  						</p>
-  					</a>
-  					<ul class="nav nav-treeview">
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/wilayah'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Data Wilayah</p>
-  							</a>
-  						</li>
-  					</ul>
-  				</li>
-				  <?php } ?>
+  					<li class="nav-header">WILAYAH</li>
+  					<li class="nav-item has-treeview">
+  						<a href="#" class="nav-link">
+  							<i class="nav-icon fas fa-map-signs"></i>
+  							<p>
+  								DATA WILAYAH
+  								<i class="right fas fa-angle-left"></i>
+  							</p>
+  						</a>
+  						<ul class="nav nav-treeview">
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/wilayah'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Data Wilayah</p>
+  								</a>
+  							</li>
+  						</ul>
+  					</li>
+  				<?php } ?>
   				<li class="nav-header">GSM</li>
   				<li class="nav-item has-treeview">
   					<a href="#" class="nav-link">
@@ -330,7 +330,7 @@
 
   					</ul>
   				</li>
-				
+
   				<li class="nav-header">VENDOR</li>
   				<li class="nav-item has-treeview">
   					<a href="#" class="nav-link">
@@ -347,16 +347,16 @@
   								<p>Master Data Vendor</p>
   							</a>
   						</li>
-						  <?php
-					if ($session == 1 || $session == 2 || $session == 3) {
-					?>
-  						<li class="nav-item">
-  							<a href="<?php echo base_url() . 'administrator/vendor'; ?>" class="nav-link">
-  								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Layanan Vendor</p>
-  							</a>
-  						</li>
-						  <?php } ?>
+  						<?php
+							if ($session == 1 || $session == 2 || $session == 3) {
+							?>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/vendor'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Master Layanan Vendor</p>
+  								</a>
+  							</li>
+  						<?php } ?>
   						<li class="nav-item">
   							<a href="<?php echo base_url() . 'administrator/inet'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
@@ -439,6 +439,12 @@
   								<a href="<?php echo base_url() . 'administrator/email'; ?>" class="nav-link">
   									<i class="far fa-circle nav-icon"></i>
   									<p> Email </p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/template_invoice'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p> Template Invoice </p>
   								</a>
   							</li>
   						</ul>

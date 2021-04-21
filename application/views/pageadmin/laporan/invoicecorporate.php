@@ -196,12 +196,9 @@
 		<br>
 		<table>
 			<tr class="total">
-				<td><b>Payment Should be Transfer : <br>
-						<p>Bank BCA </p>
-						<p>KCP DAAN MOGOT BARU</p>
-						<p>No. Rekening 8660265008</p>
-						<p>a.n PT. JURAGAN WIFI INDONESIA</p>
-					</b></td>
+			<?php $kata = $this->db->query("select kata2 from template_invoice")->result_array();
+						echo $kata[0]['kata2']; ?>
+				
 				<td></td>
 				<td></td>
 				<td>SubTotal :

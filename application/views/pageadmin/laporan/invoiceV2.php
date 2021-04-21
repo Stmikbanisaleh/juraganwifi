@@ -190,9 +190,9 @@
 					echo terbilang($tot); ?> </i></p><p style="color:red"><b>Catatan : </b></p> 
 						<p>Transfer tepat Rp. <b><?php echo number_format($tot, 0, ',', '.');?></b> (Tagihan + Kode Unik ) untuk meningkatkan pelayanan dan donasi. </p>
 						<br>
-						<p>Cara Pembayaran Bisa Transfer :</p>
-						<p>Bank Rakyat Indonesia (BRI) : 417901019831536 A/N Gigin Abdul Goni</p>
-						<p>Dompet Digital OVO / DANA : 082337481227 A/N Gigin Abdul Goni</p>
+						<?php $kata = $this->db->query("select kata from template_invoice")->result_array();
+						echo $kata[0]['kata']; ?>
+
 					</td>
 				<td></td>
 				<td></td>

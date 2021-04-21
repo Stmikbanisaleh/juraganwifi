@@ -402,6 +402,10 @@
 						"ordering": true,
 						"responsive": true,
 						"paging": true,
+						"dom": "Bfrtip",
+			"buttons": [
+				"excel"
+			],
 					});
 				}
 				/* END TABLETOOLS */
@@ -496,6 +500,10 @@
 			"ordering": true,
 			"responsive": true,
 			"paging": true,
+			"dom": "Bfrtip",
+			"buttons": [
+				"excel"
+			],
 		});
 	});
 
