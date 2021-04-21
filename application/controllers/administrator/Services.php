@@ -49,8 +49,9 @@ class Services extends CI_Controller
 			$data_id = array(
 				'id'  => $this->input->post('e_id')
 			);
+			$cust = " ".$this->input->post('e_customer')." ";
 			$data = array(
-				'id_customer'  => $this->input->post('e_customer'),
+				'id_customer'  => $cust,
 				'id_service'  => $this->input->post('e_layanan'),
 				'keterangan'  => $this->input->post('e_keterangan'),
 				'createdAt' => date('Y-m-d H:i:s'),
@@ -69,7 +70,7 @@ class Services extends CI_Controller
 			$data = array(
 				'id'  => $this->input->post('id'),
 			);
-			$my_data = $this->model_service->viewWhere('service', $data)->result();
+			$my_data = $this->model_service->viewWhereCustom('service', $data)->result();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pageadmin/login'); //Memanggil function render_view

@@ -16,7 +16,7 @@
 								<select class="form-control select2" style="width: 100%;" name="customer" id="customer">
 									<option selected="selected">-- Pilih --</option>
 									<?php foreach ($mycustomer as $value) { ?>
-										<option value=<?= $value['no_services'] ?>><?= $value['no_services'] . '- [' . $value['name'] . ']' ?></option>
+										<option value=<?= " ".$value['no_services']." " ?>><?= $value['no_services'] . '- [' . $value['name'] . ']' ?></option>
 									<?php } ?>
 								</select>
 							</div>
@@ -303,7 +303,7 @@
 			},
 			success: function(data) {
 				$('#e_id').val(data[0].id);
-				$('#e_customer').val(data[0].id_customer).select2();
+				$('#e_customer').val(data[0].new_no_services).select2();
 				$('#e_layanan').val(data[0].id_service).select2();
 				$('#e_keterangan').val(data[0].keterangan);
 			}

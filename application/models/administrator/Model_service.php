@@ -37,6 +37,11 @@ class Model_service extends CI_model
         $this->db->where($data);
         return $this->db->get($table);
 	}
+
+	public function viewWhereCustom($table, $data)
+    {
+        return $this->db->query("select a.*, REPLACE(id_customer, ' ', '' ) as new_no_services from service a");
+	}
 	
     public function insert($data, $table)
     {

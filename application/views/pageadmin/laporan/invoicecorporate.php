@@ -196,10 +196,13 @@
 		<br>
 		<table>
 			<tr class="total">
+			<td>
 			<?php $kata = $this->db->query("select kata2 from template_invoice")->result_array();
 						echo $kata[0]['kata2']; ?>
+			</td>
+		
 				
-				<td></td>
+				<td?></td?>
 				<td></td>
 				<td>SubTotal :
 					<br>
