@@ -24,7 +24,7 @@ class Dashboard extends CI_Controller
             } else {
                 $tahun =date("Y");
             }
-            $latestpayment = $this->db->query("select   CONCAT('Rp. ',FORMAT(c.nominal_bayar,2)) nominal, DATE_FORMAT(a.updatedAt,'%d-%M-%Y') as tgl_pembayaran, b.name as nama_pelanggan
+            $latestpayment = $this->db->query("select   CONCAT('Rp. ',FORMAT(a.nominal_bayar,2)) nominal, DATE_FORMAT(a.updatedAt,'%d-%M-%Y') as tgl_pembayaran, b.name as nama_pelanggan
             ,d.name as nama_layanan , a.metode_pembayaran from invoice a
             join customer b on a.no_services = b.no_services
             join invoice_detail c on a.id = c.invoice_id
@@ -65,7 +65,7 @@ class Dashboard extends CI_Controller
             $harga = array();
             $bulan = array();
             $mygraph = $this->db->query("select sum(a.nominal_bayar) as harga, monthname(a.updatedAt) as bulan
-             from invoice_detail a where year(a.updatedAt) = '$tahun' group by monthname(a.updatedAt) ORDER by month(a.updatedAt) ")->result_array();
+             from invoice a where year(a.updatedAt) = '$tahun' group by monthname(a.updatedAt) ORDER by month(a.updatedAt) ")->result_array();
             foreach ($mygraph as $row) {
                 if ($row['harga'] == null) {
                     array_push($harga, 0);

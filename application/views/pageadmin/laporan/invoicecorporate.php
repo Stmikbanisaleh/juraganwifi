@@ -225,10 +225,10 @@
 		</table>
 		<br>
 		<div class="footer">
-			<br>
-			Notes :
-			<br>
-			If you have any question concerning this Invoice, please email : finance@jwi.id
+			<?php $kata = $this->db->query("select kata3 from template_invoice")->result_array();
+						echo $kata[0]['kata3']; ?>
+			</td>
+			
 		</div>
 		<?php $date = date('d M Y'); ?>
 		<br>

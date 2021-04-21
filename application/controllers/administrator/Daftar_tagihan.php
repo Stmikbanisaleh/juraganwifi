@@ -56,11 +56,13 @@ class Daftar_tagihan extends CI_Controller
                         'status'  => 1,
                         'updatedAt' => date('Y-m-d H:i:s'),
                         'updatedBy' => $this->session->userdata('name'),
+						'nominal_bayar'  => $this->input->post('e_nominal_v'),
                     );
                    $this->model_daftar_tagihan->update($data_id, $dataInvoce, 'invoice');
                 } else {
                     $dataInvoce = array(
                         'status'  => 0,
+						'nominal_bayar'  => $this->input->post('e_nominal_v'),
                         'updatedAt' => date('Y-m-d H:i:s'),
                         'updatedBy' => $this->session->userdata('name'),
                     );
