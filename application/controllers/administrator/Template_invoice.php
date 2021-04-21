@@ -50,6 +50,7 @@ class Template_invoice extends CI_Controller
 				'kata2'  => $this->input->post('e_kata2'),
 				'kata3'  => $this->input->post('e_kata3'),
 
+				'kata4'  => $this->input->post('e_kata4'),
 			);
 			$action = $this->model_template->update($data_id, $data, 'template_invoice');
 			echo json_encode($action);
