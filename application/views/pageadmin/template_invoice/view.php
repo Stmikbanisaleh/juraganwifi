@@ -26,6 +26,11 @@
 								<textarea required type="text" id="e_kata3" name="e_kata3" class="form-control" placeholder="Footer Corp"></textarea>
 
 							</div>
+							<div class="form-group">
+								<label>Finance Invoice Corp</label>
+								<textarea required type="text" id="e_kata4" name="e_kata4" class="form-control" placeholder="Finance Corp"></textarea>
+
+							</div>
 						</div>
 						<!-- /.card-body -->
 					</div>
@@ -68,6 +73,9 @@
 						<th class="text-center">
 							Footer Corp
 						</th>
+						<th class="text-center">
+							Finance Corp
+						</th>
 						<th style="width:16%" class="text-center">
 							Actions
 						</th>
@@ -100,6 +108,7 @@
 						'<td class="text-left">' + data[i].kata + '</td>' +
 						'<td class="text-left">' + data[i].kata2 + '</td>' +
 						'<td class="text-left">' + data[i].kata3 + '</td>' +
+						'<td class="text-left">' + data[i].kata4 + '</td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-folder"> </i>  Edit </a>' +
@@ -143,6 +152,8 @@
 				$('#e_kata').val(data[0].kata);
 				$('#e_kata2').val(data[0].kata2);
 				$('#e_kata3').val(data[0].kata3);
+				$('#e_kata4').val(data[0].kata4);
+
 			}
 		});
 	});

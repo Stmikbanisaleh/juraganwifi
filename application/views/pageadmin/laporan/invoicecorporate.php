@@ -244,10 +244,8 @@
 			<table>
 				<tr>
 					<td style="text-align: right;  margin-right:10%;">
-						<p><u>Rina Maria</u>
-							<br>
-							Finance
-						</p>
+					<?php $kata = $this->db->query("select kata4 from template_invoice")->result_array();
+						echo $kata[0]['kata4']; ?>
 					</td>
 				</tr>
 			</table>
