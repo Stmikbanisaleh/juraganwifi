@@ -740,7 +740,43 @@
 		</div><!-- /.modal-dialog -->
 	</div>
 	<!-- Default box -->
+	<div id="modalDetail" class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form" id="formDetail">
+					<div class="card card-info">
+						<div class="card-body">
+							<table id="table_id2" class="table table-bordered table-hover projects">
+								<thead>
+									<tr>
+										<th>
+											#
+										</th>
+										<th class="text-center">
+											Nama Layanan
+										</th>
+										<th class="text-center">
+											Description
+										</th>
+									</tr>
+								</thead>
+								<tbody id="show_data2">
+								</tbody>
+							</table>
 
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Kembali
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
 	<div class="card">
 		<div class="card-header">
 			<h3 class="card-title">Daftar Pelanggan</h3>
@@ -748,7 +784,7 @@
 		<br>
 		<?php
 		$session = $this->session->userdata('level');
-		if ($session == 1 || $session == 2 || $session == 3 ) { ?>
+		if ($session == 1 || $session == 2 || $session == 3) { ?>
 			<div class="col-sm-2">
 				<button href="#modalTambah" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Pelanggan</button>
 			</div>
@@ -784,6 +820,9 @@
 						</th>
 						<th class="text-center">
 							Foto
+						</th>
+						<th style="width: 8%" class="text-center">
+							Jenis Layanan
 						</th>
 						<th style="width: 8%" class="text-center">
 							Media Koneksi
@@ -1040,6 +1079,11 @@
 						'<td class="text-left">' + data[i].address + '</td>' +
 						status +
 						foto +
+						'<td class="text-center">' +
+						'   <button  class="btn btn-info btn-sm item_detail"  data-id="' + data[i].no_services + '">' +
+						'      <i class="fas fa-eye"> </i>  Detail </a>' +
+						'</button> &nbsp' +
+						'</td>' +
 						'<td class="text-left">' + data[i].nama_media_koneksi + '</td>' +
 						'<td class="text-left">' + data[i].nama_kepemilikan_tempat + '</td>' +
 						'<td class="text-left">' + data[i].nama_jenis_tempat + '</td>' +
@@ -1336,6 +1380,47 @@
 		})
 	}
 
+	//get data for update record
+	$('#show_data').on('click', '.item_detail', function() {
+		var id = $(this).data('id');
+		$('#id_p').val(id);
+		$('#modalDetail').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/customer/tampil_layanan_byid') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				var html = '';
+				var i = 0;
+				var no = 1;
+				for (i = 0; i < data.length; i++) {
+					html += '<tr>' +
+						'<td class="text-center">' + no + '</td>' +
+						'<td>' + data[i].name + '</td>' +
+						'<td>' + data[i].description + '</td>' +
+						'</tr>';
+					no++;
+
+				}
+				$("#table_id2").dataTable().fnDestroy();
+				var a = $('#show_data2').html(html);
+				//                    $('#mydata').dataTable();
+				if (a) {
+					$('#table_id2').dataTable({
+						"bPaginate": true,
+						"bLengthChange": false,
+						"bFilter": true,
+						"bInfo": false,
+						"bAutoWidth": false
+					});
+				}
+			}
+		});
+	});
 
 	$(document).ready(function() {
 		show_data();

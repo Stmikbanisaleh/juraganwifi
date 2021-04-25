@@ -13,11 +13,11 @@ class Model_data_voip extends CI_model
     {
         return $this->db->query("select a.*, CONCAT('Rp. ',FORMAT(a.limit_pemakaian,2)) Nominal  ,b.nama as nama_vendor,c.nama as nama_media_koneksi,
 		d.nama as nama_jenis_perangkat,e.nama as nama_merek,f.nama as nama_kepemilikan from data_pelanggan_voip a 
-		join vendor_detail b on a.vendor = b.id
-		join media_koneksi c on a.media_koneksi = c.id
-		join jenis_perangkat d on a.jenis_perangkat = d.id
-		join merek_perangkat e on a.merek_perangkat = e.id
-		join jenis_kepemilikan_perangkat f on a.status_kepemilikan_perangkat = f.id
+		left join vendor_detail b on a.vendor = b.id
+		left join media_koneksi c on a.media_koneksi = c.id
+		left join jenis_perangkat d on a.jenis_perangkat = d.id
+		left join merek_perangkat e on a.merek_perangkat = e.id
+		left join jenis_kepemilikan_perangkat f on a.status_kepemilikan_perangkat = f.id
 		");
     }
 

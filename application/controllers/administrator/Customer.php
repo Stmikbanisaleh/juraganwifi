@@ -120,7 +120,7 @@ class Customer extends CI_Controller
 				'email'  => $this->input->post('e_email'),
 				'ipaddress'  => $this->input->post('e_ip_address'),
 				'status'  => $this->input->post('e_status'),
-				'no_services'  => str_replace(' ', '', $this->input->post('e_nomor_layanan')),
+				'no_services'  => str_replace('"', '', $this->input->post('e_nomor_layanan')),
 				'no_wa'  => $this->input->post('e_telp'),
 				'address'  => $this->input->post('e_alamat'),
 				'panjang_kabel'  => $this->input->post('e_panjangkabel'),
@@ -156,7 +156,7 @@ class Customer extends CI_Controller
 				'no_ktp'  => $this->input->post('e_ktp'),
 				'email'  => $this->input->post('e_email'),
 				'status'  => $this->input->post('e_status'),
-				'no_services'  =>  str_replace(' ', '', $this->input->post('e_nomor_layanan')),
+				'no_services'  =>  str_replace('"', '', $this->input->post('e_nomor_layanan')),
 				'no_wa'  => $this->input->post('e_telp'),
 				'address'  => $this->input->post('e_alamat'),
 				'panjang_kabel'  => $this->input->post('e_panjangkabel'),
@@ -201,18 +201,25 @@ class Customer extends CI_Controller
 		echo json_encode($my_data);
 	}
 
+	public function tampil_layanan_byid()
+	{
+		$my_data = $this->db->query("select a.name , a.description from package_item a 
+		join service b on a.id = b.id_service where id_customer = '".$this->input->post('id')."' ")->result();
+		echo json_encode($my_data);
+	}
+
 	public function generate()
 	{
 		$wilayah = $this->input->post('id');
 		$kodewilayah = $this->model_customer->getkodewilayah($wilayah)->row();
-		$getmax = $this->db->query("select max(no_services) as nomor,count(no_services) tot from customer where left(no_services,4) = $kodewilayah->kode_wilayah")->result_array();
+		$getmax = $this->db->query("select max(no_services) as nomor,count(no_services) tot from customer where left(no_services,3) = $kodewilayah->kode_wilayah")->result_array();
 		$tot = $getmax[0]['tot'];
 		$nomor = $getmax[0]['nomor'];
 		if ($tot > 0) {
 			$noreg = $this->db->query("SELECT
-				RIGHT(no_services+1,5)AS idservice FROM customer where no_services = $nomor ORDER BY id DESC")->result_array();
+				RIGHT(no_services+1,4)AS idservice FROM customer where no_services = $nomor ORDER BY id DESC")->result_array();
 			if (count($noreg) < 1) {
-				$no = '00001';
+				$no = '0001';
 			} else {
 				$no = $noreg[0]['idservice'];
 			}
@@ -220,7 +227,7 @@ class Customer extends CI_Controller
 			$idlayanan = $kodewilayah . $no;
 			echo json_encode($idlayanan);
 		} else {
-			$no = '00001';
+			$no = '0001';
 			$kodewilayah = $kodewilayah->kode_wilayah;
 			$idlayanan = $kodewilayah . $no;
 			echo json_encode($idlayanan);
@@ -246,7 +253,7 @@ class Customer extends CI_Controller
 					'no_ktp'  => $this->input->post('ktp'),
 					'email'  => $this->input->post('email'),
 					'status'  => 0,
-					'no_services'  => str_replace('"', " ", $this->input->post('nomor_layanan')),
+					'no_services'  => str_replace('"', "", $this->input->post('nomor_layanan')),
 					'no_wa'  => $this->input->post('telp'),
 					'address'  => $this->input->post('alamat'),
 					'panjang_kabel'  => $this->input->post('panjangkabel'),
@@ -283,7 +290,7 @@ class Customer extends CI_Controller
 					'no_ktp'  => $this->input->post('ktp'),
 					'email'  => $this->input->post('email'),
 					'status'  => 0,
-					'no_services'  => str_replace('"', " ", $this->input->post('nomor_layanan')),
+					'no_services'  => str_replace('"', "", $this->input->post('nomor_layanan')),
 					'no_wa'  => $this->input->post('telp'),
 					'address'  => $this->input->post('alamat'),
 					'panjang_kabel'  => $this->input->post('panjangkabel'),

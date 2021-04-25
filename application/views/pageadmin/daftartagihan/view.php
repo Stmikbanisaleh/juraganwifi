@@ -13,10 +13,10 @@
 						<div class="card-body">
 							<div class="form-group">
 								<label>Nominal Bayar</label>
-								<input required type="hidden" id="e_id" name="e_id" >
+								<input required type="hidden" id="e_id" name="e_id">
 								<input required type="text" id="e_nominal" name="e_nominal" class="form-control" placeholder="Nominal Bayar">
 								<input required type="hidden" id="e_nominal_v" name="e_nominal_v" class="form-control" placeholder="Nominal Bayar">
-                                <script language="JavaScript">
+								<script language="JavaScript">
 									var rupiah3 = document.getElementById('e_nominal');
 									rupiah3.addEventListener('keyup', function(e) {
 										// tambahkan 'Rp.' pada saat form di ketik
@@ -43,7 +43,7 @@
 										return prefix == undefined ? rupiah3 : (rupiah3 ? 'Rp. ' + rupiah3 : '');
 									}
 								</script>
-                            </div>
+							</div>
 						</div>
 						<!-- /.card-body -->
 					</div>
@@ -80,31 +80,34 @@
 						<th class="text-center">
 							No Invoice / Tagihan
 						</th>
-                        <th class="text-center">
+						<th class="text-center">
 							No Pelanggan
 						</th>
-                        <th class="text-center">
+						<th class="text-center">
 							Nama
 						</th>
 						<th class="text-center">
 							Bulan
 						</th>
-                        <th class="text-center">
+						<th class="text-center">
 							Tahun
 						</th>
-                        <th class="text-center">
+						<th class="text-center">
 							Nominal Tagihan
 						</th>
-                        <th class="text-center">
+						<th class="text-center">
 							Nominal Bayar
+						</th>
+						<th class="text-center">
+							Link Pembayaran
 						</th>
 						<th class="text-center">
 							Metode Pembayaran
 						</th>
-                        <th class="text-center">
+						<th class="text-center">
 							No Telp / WhatsApp
 						</th>
-                        <th class="text-center">
+						<th class="text-center">
 							Status Pembayaran
 						</th>
 						<th class="text-center">
@@ -174,20 +177,20 @@
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
-                    var status = '';
+					var status = '';
 					var metode = '';
-                    if (data[i].no_wa != null) {
-						status = '<td ><a target="_blank" href="https://api.whatsapp.com/send/?phone=' + data[i].no_wa + '">'+data[i].no_wa+'</td>'
+					if (data[i].no_wa != null) {
+						status = '<td ><a target="_blank" href="https://api.whatsapp.com/send/?phone=' + data[i].no_wa + '">' + data[i].no_wa + '</td>'
 					} else {
 						status = '<td class="text-left"> No Telp Tidak Tersedia</td>'
 					}
 					if (data[i].metode_pembayaran != null) {
-						metode = 	'<td class="text-left">' + data[i].metode_pembayaran + '</td>' 
+						metode = '<td class="text-left">' + data[i].metode_pembayaran + '</td>'
 					} else {
 						metode = '<td class="text-left">- </td>'
 					}
-                    var tombol= '';
-                    if (data[i].status == '1') {
+					var tombol = '';
+					if (data[i].status == '1') {
 						tombol = '<td class="text-center">' +
 							'   <button  class="btn btn-success btn-sm item_non"  data-id="' + data[i].id + '">' +
 							'      <i class="fas fa-check"> </i>  Lunas </button>' +
@@ -203,7 +206,7 @@
 					var invoice = '';
 
 					invoice = '<td class="text-center">' +
-						'   <a target=_blank href="<?= base_url().'administrator/tagihan_log/downloadTagihan/?invoice='?>' + data[i].id + '" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
+						'   <a target=_blank href="<?= base_url() . 'administrator/tagihan_log/downloadTagihan/?invoice=' ?>' + data[i].id + '" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-download"> </i> Download  </a>' +
 						'</button> &nbsp' +
 						'</td>'
@@ -216,11 +219,12 @@
 						'<td class="text-left">' + data[i].year + '</td>' +
 						'<td class="text-left">' + data[i].Nominal + '</td>' +
 						'<td class="text-left">' + data[i].Nominal_bayar + '</td>' +
-						metode+
-                        status+
-						tombol+
+						'<td class="text-left">' + data[i].link + '</td>' +
+						metode +
+						status +
+						tombol +
 						invoice +
-						'<td><?= base_url().'administrator/tagihan_log/downloadTagihan/?invoice='?>' + data[i].id + '</td>'+
+						'<td><?= base_url() . 'administrator/tagihan_log/downloadTagihan/?invoice=' ?>' + data[i].id + '</td>' +
 						'<td class="project-actions text-right">' +
 						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
@@ -236,7 +240,7 @@
 					$('#table_id').dataTable({
 						"dom": "Bfrtip",
 						"buttons": [
-						 "excel"
+							"excel",
 						],
 						"searching": true,
 						"ordering": true,
@@ -248,6 +252,29 @@
 			}
 
 		});
+	}
+
+	function copyText(element) {
+		var range, selection, worked;
+
+		if (document.body.createTextRange) {
+			range = document.body.createTextRange();
+			range.moveToElementText(element);
+			range.select();
+		} else if (window.getSelection) {
+			selection = window.getSelection();
+			range = document.createRange();
+			range.selectNodeContents(element);
+			selection.removeAllRanges();
+			selection.addRange(range);
+		}
+
+		try {
+			document.execCommand('copy');
+			alert('text copied');
+		} catch (err) {
+			alert('unable to copy text');
+		}
 	}
 
 	//get data for update record
@@ -265,41 +292,41 @@
 			},
 			success: function(data) {
 				$('#e_id').val(data[0].id);
-                $('#e_nominal').val(formatRupiah3(data[0].Nominal_bayar, 'Rp. '));
-                $('#e_nominal_v').val(data[0].Nominal_bayar);
+				$('#e_nominal').val(formatRupiah3(data[0].Nominal_bayar, 'Rp. '));
+				$('#e_nominal_v').val(data[0].Nominal_bayar);
 			}
 		});
 	});
 
 	if ($("#formEdit").length > 0) {
-        $("#formEdit").validate({
-            errorClass: "my-error-class",
-            validClass: "my-valid-class",
-            submitHandler: function(form) {
-                $('#btn_edit').html('Sending..');
-                $.ajax({
-                    url: "<?php echo base_url('administrator/daftar_tagihan/update') ?>",
-                    type: "POST",
-                    data: $('#formEdit').serialize(),
-                    dataType: "json",
-                    success: function(response) {
-                        $('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
-                            'Ubah');
-                        if (response == true) {
-                            document.getElementById("formEdit").reset();
-                            swalEditSuccess();
-                            show_data();
-                            $('#modalEdit').modal('hide');
-                        } else if (response == 400) {
-                            swalOverBudget();
-                        } else {
-                            swalEditFailed();
-                        }
-                    }
-                });
-            }
-        })
-    }
+		$("#formEdit").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			submitHandler: function(form) {
+				$('#btn_edit').html('Sending..');
+				$.ajax({
+					url: "<?php echo base_url('administrator/daftar_tagihan/update') ?>",
+					type: "POST",
+					data: $('#formEdit').serialize(),
+					dataType: "json",
+					success: function(response) {
+						$('#btn_edit').html('<i class="ace-icon fa fa-save"></i>' +
+							'Ubah');
+						if (response == true) {
+							document.getElementById("formEdit").reset();
+							swalEditSuccess();
+							show_data();
+							$('#modalEdit').modal('hide');
+						} else if (response == 400) {
+							swalOverBudget();
+						} else {
+							swalEditFailed();
+						}
+					}
+				});
+			}
+		})
+	}
 
 	$(document).ready(function() {
 		show_data();
@@ -309,9 +336,9 @@
 			"responsive": true,
 			"paging": true,
 			"dom": "Bfrtip",
-						"buttons": [
-						 "excel"
-						],
+			"buttons": [
+				"excel"
+			],
 		});
 	});
 </script>

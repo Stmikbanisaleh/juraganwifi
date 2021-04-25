@@ -153,6 +153,79 @@
 
 	<!-- Default box -->
 
+	<div id="modalPreview" class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form" id="formEdit">
+					<div class="card card-info">
+						<div class="modal-header">
+							<h4 class="modal-title"> Pengguna GSM</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="card-body">
+
+							<div class="form-group">
+								<label>Operator</label>
+								<select readonly class="form-control select2" style="width: 100%;" name="e_operator2" id="e_operator2">
+									<option selected="selected">-- Pilih --</option>
+									<?php foreach ($myoperator as $value) { ?>
+										<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>
+									<?php } ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Nomor MSISDN</label>
+								<input readonly required type="hidden" id="e_id" name="e_id" class="form-control" placeholder="Nomor MSISDN">
+								<input readonly required type="text" id="e_nomor_msisdn2" name="e_nomor_msisdn2" class="form-control" placeholder="Nomor MSISDN">
+							</div>
+
+							<div class="form-group">
+								<label>Nomor ICCID</label>
+								<input readonly required type="text" id="e_nomor_iccid2" name="e_nomor_iccid2" class="form-control" placeholder="Nomor ICCID">
+							</div>
+
+							<div class="form-group">
+								<label>Quota</label>
+								<select readonly class="form-control select2" style="width: 100%;" name="e_quota2" id="e_quota2">
+									<option selected="selected">-- Pilih --</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Alokasi</label>
+								<input readonly required type="text" id="e_alokasi2" name="e_alokasi2" class="form-control" placeholder="Alokasi">
+							</div>
+
+							<div class="form-group">
+								<label>Status</label>
+								<select readonly required class="form-control select2" style="width: 100%;" name="e_status2" id="e_status2">
+									<option value="" selected="selected">-- Pilih --</option>
+									<option value="1">-- active --</option>
+									<option value="0">-- inactive --</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Keterangan</label>
+								<textarea readonly type="text" id="e_keterangan2" name="e_keterangan2" class="form-control" placeholder="Keterangan"></textarea>
+							</div>
+							<!-- /.card-body -->
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Kembali
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+
 	<div class="card">
 		<div class="card-header">
 			<h3 class="card-title">Daftar Pengguna GSM</h3>
@@ -161,9 +234,9 @@
 		<?php
 		$session = $this->session->userdata('level');
 		if ($session == 1 || $session == 2 || $session == 3) { ?>
-		<div class="col-sm-2">
-			<button href="#modalTambah" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Pengguna GSM</button>
-		</div>
+			<div class="col-sm-2">
+				<button href="#modalTambah" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add Pengguna GSM</button>
+			</div>
 		<?php } ?>
 		<br>
 		<div class="card-body p-0">
@@ -194,7 +267,7 @@
 						<th class="text-center">
 							Keterangan
 						</th>
-						<th style="width: 16%" class="text-center">
+						<th style="width: 20%" class="text-center">
 							Action
 						</th>
 					</tr>
@@ -302,48 +375,64 @@
 				var html = '';
 				var level = <?= $this->session->userdata('level'); ?>;
 				var i = 0;
-				var button ='';
+				var button = '';
 				if (level == 1) {
-						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-folder"> </i>  Edit </a>' +
-							'</button> &nbsp' +
-							'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-trash"> </i>  Hapus </a>' +
-							'</button> ' +
-							'</td>'
-					} else if (level == 2) {
-						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-folder"> </i>  Edit </a>' +
-							'</button> &nbsp' +
-							'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-trash"> </i>  Hapus </a>' +
-							'</button> ' +
-							'</td>'
-					} else if (level == 3) {
-						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-folder"> </i>  Edit </a>' +
-							'</button> &nbsp' +
-							'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-trash"> </i>  Hapus </a>' +
-							'</button> ' +
-							'</td>'
-					} else if (level == 4) {
-						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-folder"> </i>  Edit </a>' +
-							'</button> &nbsp' +
-							'</td>'
-					} else if (level == 5) {
-						button = '<td class="project-actions text-right">' +
-							'</td>'
-					}
+					button = '<td class="project-actions text-right">' +
+						'   <button  class="btn btn-primary btn-sm item_preview"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-search"> </i>  Preview </a>' +
+						'</button> &nbsp' +
+						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-folder"> </i>  Edit </a>' +
+						'</button> &nbsp' +
+						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+						'</button> ' +
+						'</td>'
+				} else if (level == 2) {
+					button = '<td class="project-actions text-right">' +
+						'   <button  class="btn btn-primary btn-sm item_preview"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-search"> </i>  Edit </a>' +
+						'</button> &nbsp' +
+						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-folder"> </i>  Edit </a>' +
+						'</button> &nbsp' +
+						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+						'</button> ' +
+						'</td>'
+				} else if (level == 3) {
+					button = '<td class="project-actions text-right">' +
+						'   <button  class="btn btn-primary btn-sm item_preview"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-search"> </i>  Edit </a>' +
+						'</button> &nbsp' +
+						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-folder"> </i>  Edit </a>' +
+						'</button> &nbsp' +
+						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+						'</button> ' +
+						'</td>'
+				} else if (level == 4) {
+					button = '<td class="project-actions text-right">' +
+						'   <button  class="btn btn-primary btn-sm item_preview"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-search"> </i>  Edit </a>' +
+						'</button> &nbsp' +
+						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-folder"> </i>  Edit </a>' +
+						'</button> &nbsp' +
+						'</td>'
+				} else if (level == 5) {
+
+					button = '<td class="project-actions text-right">' +
+						'   <button  class="btn btn-primary btn-sm item_preview"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-search"> </i>  Preview </a>' +
+						'</button> &nbsp' +
+						'</td>'
+				}
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
 					var status = '';
-					if (data[i].status == 1 ) {
+					if (data[i].status == 1) {
 						status = '<td class="project-state"><span class="badge badge-success"> Active </span></td>'
 					} else {
 						status = '<td class="project-state"><span class="badge badge-danger"> Inactive </span></td>'
@@ -356,17 +445,20 @@
 						'<td class="text-left">' + data[i].nomor_iccid + '</td>' +
 						'<td class="text-left">' + data[i].besar_quota_qty + '</td>' +
 						'<td class="text-left">' + data[i].alokasi + '</td>' +
-						status + 
+						status +
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
-						'<td class="project-actions text-right">' +
-							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-folder"> </i>  Edit </a>' +
-							'</button> &nbsp' +
-							'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-trash"> </i>  Hapus </a>' +
-							'</button> ' +
-							'</td>'
-						'</tr>';
+						'<td class="project-actions text-left">' +
+						'   <button  class="btn btn-primary btn-sm item_preview"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-search"> </i>  Preview </a>' +
+						'</button> &nbsp' +
+						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-folder"> </i>  Edit </a>' +
+						'</button> &nbsp' +
+						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+						'</button> ' +
+						'</td>'
+					'</tr>';
 					no++;
 				}
 				$("#table_id").dataTable().fnDestroy();
@@ -379,9 +471,9 @@
 						"responsive": true,
 						"paging": true,
 						"dom": "Bfrtip",
-			"buttons": [
-				"excel"
-			],
+						"buttons": [
+							"excel"
+						],
 					});
 				}
 				/* END TABLETOOLS */
@@ -411,9 +503,37 @@
 				$('#e_alokasi').val(data[0].alokasi);
 				$('#e_nomor_msisdn').val(data[0].nomor_msisdn);
 				$('#e_nomor_iccid').val(data[0].nomor_iccid);
-				show_data_quota(data[0].operator, function(a){
-                    $('#e_quota').val(data[0].besar_quota);
-                });
+				show_data_quota(data[0].operator, function(a) {
+					$('#e_quota').val(data[0].besar_quota);
+				});
+			}
+		});
+	});
+
+	//get data for update record
+	$('#show_data').on('click', '.item_preview', function() {
+		document.getElementById("formEdit").reset();
+		var id = $(this).data('id');
+		$('#modalPreview').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/penggunagsm/tampil_byid') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				$('#e_id2').val(data[0].id);
+				$('#e_operator2').val(data[0].operator).select2();
+				$('#e_keterangan2').val(data[0].keterangan);
+				$('#e_status2').val(data[0].status).select2();
+				$('#e_alokasi2').val(data[0].alokasi);
+				$('#e_nomor_msisdn2').val(data[0].nomor_msisdn);
+				$('#e_nomor_iccid2').val(data[0].nomor_iccid);
+				show_data_quota(data[0].operator, function(a) {
+					$('#e_quota2').val(data[0].besar_quota);
+				});
 			}
 		});
 	});
@@ -485,7 +605,7 @@
 				"excel"
 			],
 		});
-		
+
 	});
 
 	$("#operator").change(function() {
@@ -502,16 +622,16 @@
 	});
 
 	function show_data_quota(id, callback) {
-        var id = id;
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('administrator/penggunagsm/showquotaedit') ?>",
-            data: {
-                id: id
-            }
-        }).done(function(data) {
-            $("#e_quota").html(data);
-            callback()
-        });
-    }
+		var id = id;
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/penggunagsm/showquotaedit') ?>",
+			data: {
+				id: id
+			}
+		}).done(function(data) {
+			$("#e_quota2").html(data);
+			callback()
+		});
+	}
 </script>

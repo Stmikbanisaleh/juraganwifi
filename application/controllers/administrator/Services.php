@@ -49,9 +49,8 @@ class Services extends CI_Controller
 			$data_id = array(
 				'id'  => $this->input->post('e_id')
 			);
-			$cust = " ".$this->input->post('e_customer')." ";
 			$data = array(
-				'id_customer'  => $cust,
+				'id_customer'  => $this->input->post('e_customer'),
 				'id_service'  => $this->input->post('e_layanan'),
 				'keterangan'  => $this->input->post('e_keterangan'),
 				'createdAt' => date('Y-m-d H:i:s'),
@@ -95,9 +94,8 @@ class Services extends CI_Controller
 	public function simpan()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
-$cust = " ".$this->input->post('customer')." ";
 			$data = array(
-				'id_customer'  => $cust,
+				'id_customer'  => $this->input->post('customer'),
 				'id_service'  => $this->input->post('layanan'),
 				'keterangan'  => $this->input->post('keterangan'),
 				'createdAt' => date('Y-m-d H:i:s'),
