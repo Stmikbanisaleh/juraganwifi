@@ -18,7 +18,7 @@ class Datavendor extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
-			$myvendor = $this->model_datavendor->viewOrdering('vendor', 'id', 'asc')->result_array();
+			$myvendor = $this->model_datavendor->viewOrdering('vendor', 'id', 'desc')->result_array();
 			$data = array(
 				'page_content'      => '../pageadmin/datavendor/view',
 				'ribbon'            => '<li class="active">Daftar Vendor </li>',
@@ -34,7 +34,7 @@ class Datavendor extends CI_Controller
 	public function tampil()
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
-			$my_data = $this->model_datavendor->viewOrdering('vendor_detail', 'id', 'desc')->result_array();
+			$my_data = $this->model_datavendor->viewOrdering('vendor_detail', 'id', 'asc')->result_array();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pageadmin/login'); //Memanggil function render_view
