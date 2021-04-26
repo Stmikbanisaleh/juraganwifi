@@ -38,8 +38,8 @@
 									</div>
 
 									<div class="form-group">
-										<label>NIK KTP</label>
-										<input required type="number" id="ktp" name="ktp" class="form-control" placeholder="NIK KTP">
+										<label>NO. NPWP</label>
+										<input required type="number" id="ktp" name="ktp" class="form-control" placeholder="NO NPWP">
 									</div>
 
 									<div class="form-group">
@@ -290,8 +290,8 @@
 										<input required type="text" id="e_nama" name="e_nama" class="form-control" placeholder="Nama Customer">
 									</div>
 									<div class="form-group">
-										<label>NIK KTP</label>
-										<input required type="number" id="e_ktp" name="e_ktp" class="form-control" placeholder="NIK KTP">
+										<label>NO NPWP</label>
+										<input required type="number" id="e_ktp" name="e_ktp" class="form-control" placeholder="NO NPWP">
 									</div>
 
 									<div class="form-group">
@@ -542,7 +542,7 @@
 										<input readonly required type="text" id="e_nama2" name="e_nama2" class="form-control" placeholder="Nama Customer">
 									</div>
 									<div class="form-group">
-										<label>NIK KTP</label>
+										<label>NO NPWP</label>
 										<input readonly required type="number" id="e_ktp2" name="e_ktp2" class="form-control" placeholder="NIK KTP">
 									</div>
 
