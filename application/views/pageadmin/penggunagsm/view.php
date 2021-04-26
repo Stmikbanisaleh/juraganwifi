@@ -267,7 +267,7 @@
 						<th class="text-center">
 							Keterangan
 						</th>
-						<th style="width: 20%" class="text-center">
+						<th style="width: 23%" class="text-center">
 							Action
 						</th>
 					</tr>
@@ -447,8 +447,8 @@
 						'<td class="text-left">' + data[i].alokasi + '</td>' +
 						status +
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
-						'<td class="project-actions text-left">' +
-						'   <button  class="btn btn-primary btn-sm item_preview"  data-id="' + data[i].id + '">' +
+						'<td class="project-actions ">' +
+						'   <button  class="btn btn-info btn-sm item_preview"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-search"> </i>  Preview </a>' +
 						'</button> &nbsp' +
 						'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
@@ -531,7 +531,7 @@
 				$('#e_alokasi2').val(data[0].alokasi);
 				$('#e_nomor_msisdn2').val(data[0].nomor_msisdn);
 				$('#e_nomor_iccid2').val(data[0].nomor_iccid);
-				show_data_quota(data[0].operator, function(a) {
+				show_data_quota2(data[0].operator, function(a) {
 					$('#e_quota2').val(data[0].besar_quota);
 				});
 			}
@@ -622,6 +622,20 @@
 	});
 
 	function show_data_quota(id, callback) {
+		var id = id;
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/penggunagsm/showquotaedit') ?>",
+			data: {
+				id: id
+			}
+		}).done(function(data) {
+			$("#e_quota").html(data);
+			callback()
+		});
+	}
+
+	function show_data_quota2(id, callback) {
 		var id = id;
 		$.ajax({
 			type: "POST",
