@@ -789,7 +789,7 @@
 							No WhatsApp
 						</th>
 						<th style="width: 8%" class="text-center">
-							NIK KTP
+							NO NPWP
 						</th>
 						<th style="width: 8%" class="text-center">
 							Alamat
