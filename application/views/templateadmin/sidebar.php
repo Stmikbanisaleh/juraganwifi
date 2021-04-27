@@ -467,13 +467,26 @@
   							<li class="nav-item">
   								<a href="<?php echo base_url() . 'administrator/laporanpembayaran'; ?>" class="nav-link">
   									<i class="far fa-circle nav-icon"></i>
-  									<p>Pembayaran </p>
+  									<p>Pembayaran Retail</p>
   								</a>
   							</li>
   							<li class="nav-item">
   								<a href="<?php echo base_url() . 'administrator/laporantagihan'; ?>" class="nav-link">
   									<i class="far fa-circle nav-icon"></i>
-  									<p>Tagihan</p>
+  									<p>Tagihan Retail</p>
+  								</a>
+  							</li>
+
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/laporanpembayaran'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Pembayaran Corporate</p>
+  								</a>
+  							</li>
+  							<li class="nav-item">
+  								<a href="<?php echo base_url() . 'administrator/laporantagihan'; ?>" class="nav-link">
+  									<i class="far fa-circle nav-icon"></i>
+  									<p>Tagihan Corporate</p>
   								</a>
   							</li>
 
