@@ -217,9 +217,9 @@ class Customer extends CI_Controller
 		$nomor = $getmax[0]['nomor'];
 		if ($tot > 0) {
 			$noreg = $this->db->query("SELECT
-				RIGHT(no_services+1,4)AS idservice FROM customer where no_services = $nomor ORDER BY id DESC")->result_array();
+				RIGHT(no_services+1,5)AS idservice FROM customer where no_services = $nomor ORDER BY id DESC")->result_array();
 			if (count($noreg) < 1) {
-				$no = '0001';
+				$no = '00001';
 			} else {
 				$no = $noreg[0]['idservice'];
 			}
@@ -227,7 +227,7 @@ class Customer extends CI_Controller
 			$idlayanan = $kodewilayah . $no;
 			echo json_encode($idlayanan);
 		} else {
-			$no = '0001';
+			$no = '00001';
 			$kodewilayah = $kodewilayah->kode_wilayah;
 			$idlayanan = $kodewilayah . $no;
 			echo json_encode($idlayanan);
