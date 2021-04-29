@@ -99,6 +99,14 @@ class Corporate extends CI_Controller
 		}
 	}
 
+
+	public function tampil_layanan_byid()
+	{
+		$my_data = $this->db->query("select a.name , a.description from package_item a 
+		join service2 b on a.id = b.id_service where id_customer = '".$this->input->post('id')."' ")->result();
+		echo json_encode($my_data);
+	}
+
 	public function update()
 	{
 		$data_id = array(
@@ -117,6 +125,8 @@ class Corporate extends CI_Controller
 			$data = array(
 				'name'  => $this->input->post('e_nama'),
 				'no_ktp'  => $this->input->post('e_ktp'),
+				'pic'  => $this->input->post('e_pic'),
+
 				'email'  => $this->input->post('e_email'),
 				'status'  => $this->input->post('e_status'),
 				'no_wa'  => $this->input->post('e_telp'),
@@ -142,7 +152,6 @@ class Corporate extends CI_Controller
 				'kepemilikan_perangkat'  => $this->input->post('e_kepemilikanperangkat'),
 				'jenis_ipaddress'  => $this->input->post('e_jenisipaddress'),
 				'tgl_aktivasi'  => $this->input->post('e_tglaktivasi'),
-				'wilayah'  => $this->input->post('e_wilayah'),
 				'jenis_tempat'  => $this->input->post('e_jenistempat'),
 				'kepemilikan_tempat'  => $this->input->post('e_kepemilikantempat'),
 				'nama_teknisi'  => $this->input->post('e_nama_teknisi'),
@@ -157,6 +166,8 @@ class Corporate extends CI_Controller
 				'email'  => $this->input->post('e_email'),
 				'status'  => $this->input->post('e_status'),
 				'no_wa'  => $this->input->post('e_telp'),
+				'pic'  => $this->input->post('e_pic'),
+				
 				'ipaddress'  => $this->input->post('e_ip_address'),
 				'address'  => $this->input->post('e_alamat'),
 				'panjang_kabel'  => $this->input->post('e_panjangkabel'),
@@ -178,7 +189,6 @@ class Corporate extends CI_Controller
 				'kepemilikan_perangkat'  => $this->input->post('e_kepemilikanperangkat'),
 				'jenis_ipaddress'  => $this->input->post('e_jenisipaddress'),
 				'tgl_aktivasi'  => $this->input->post('e_tglaktivasi'),
-				'wilayah'  => $this->input->post('e_wilayah'),
 				'jenis_tempat'  => $this->input->post('e_jenistempat'),
 				'kepemilikan_tempat'  => $this->input->post('e_kepemilikantempat'),
 				'nama_teknisi'  => $this->input->post('e_nama_teknisi'),
@@ -235,6 +245,7 @@ class Corporate extends CI_Controller
 				$data = array(
 					'name'  => $this->input->post('nama'),
 					'no_ktp'  => $this->input->post('ktp'),
+					'pic'  => $this->input->post('pic'),
 					'email'  => $this->input->post('email'),
 					'status'  => 0,
 					'no_services'  => str_replace('"', "", $this->input->post('nomor_layanan')),
@@ -261,7 +272,6 @@ class Corporate extends CI_Controller
 					'kepemilikan_perangkat'  => $this->input->post('kepemilikanperangkat'),
 					'jenis_ipaddress'  => $this->input->post('jenisipaddress'),
 					'tgl_aktivasi'  => $this->input->post('tglaktivasi'),
-					'wilayah'  => $this->input->post('wilayah'),
 					'jenis_tempat'  => $this->input->post('jenistempat'),
 					'kepemilikan_tempat'  => $this->input->post('kepemilikantempat'),
 					'nama_teknisi'  => $this->input->post('nama_teknisi'),
@@ -274,6 +284,7 @@ class Corporate extends CI_Controller
 					'name'  => $this->input->post('nama'),
 					'no_ktp'  => $this->input->post('ktp'),
 					'email'  => $this->input->post('email'),
+					'pic'  => $this->input->post('pic'),
 					'status'  => 0,
 					'no_services'  => str_replace('"', "", $this->input->post('nomor_layanan')),
 					'no_wa'  => $this->input->post('telp'),
@@ -298,7 +309,6 @@ class Corporate extends CI_Controller
 					'kepemilikan_perangkat'  => $this->input->post('kepemilikanperangkat'),
 					'jenis_ipaddress'  => $this->input->post('jenisipaddress'),
 					'tgl_aktivasi'  => $this->input->post('tglaktivasi'),
-					'wilayah'  => $this->input->post('wilayah'),
 					'jenis_tempat'  => $this->input->post('jenistempat'),
 					'kepemilikan_tempat'  => $this->input->post('kepemilikantempat'),
 					'nama_teknisi'  => $this->input->post('nama_teknisi'),

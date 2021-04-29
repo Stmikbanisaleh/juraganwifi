@@ -173,12 +173,14 @@
 			async: true,
 			dataType: 'json',
 			success: function(data) {
+				var level = <?= $this->session->userdata('level'); ?>;
 				var html = '';
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
 					var status = '';
 					var metode = '';
+					var hapus = '';
 					if (data[i].no_wa != null) {
 						status = '<td ><a target="_blank" href="https://api.whatsapp.com/send/?phone=' + data[i].no_wa + '">' + data[i].no_wa + '</td>'
 					} else {
@@ -204,6 +206,17 @@
 							'</td>'
 					}
 					var invoice = '';
+					if(level == 1){
+						hapus = '<td class="project-actions text-right">' +
+						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+						'</button> ' +
+						'</td>' 
+					} else {
+						hapus = '<td class="project-actions text-right">' +
+						'</td>' 
+					}
+				
 
 					invoice = '<td class="text-center">' +
 						'   <a target=_blank href="<?= base_url() . 'administrator/tagihan_log/downloadTagihan/?invoice=' ?>' + data[i].id + '" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
@@ -225,11 +238,7 @@
 						tombol +
 						invoice +
 						'<td><?= base_url() . 'administrator/tagihan_log/downloadTagihan/?invoice=' ?>' + data[i].id + '</td>' +
-						'<td class="project-actions text-right">' +
-						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
-						'</button> ' +
-						'</td>' +
+						hapus+
 						'</tr>';
 					no++;
 				}

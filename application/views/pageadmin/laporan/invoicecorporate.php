@@ -93,10 +93,15 @@
 		.rtl table tr td:nth-child(2) {
 			text-align: left;
 		}
+
 		.invoice {
 			text-align: center;
 			font-size: 18px;
 			margin-bottom: 10px;
+		}
+
+		.ass {
+			border: 1px solid #eee;
 		}
 	</style>
 </head>
@@ -109,7 +114,7 @@
 		<table cellpadding="0" cellspacing="0">
 			<tr class="information">
 				<td colspan="2">
-					<table>
+					<table style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size:13px;">
 						<?php foreach ($user as $value) {
 							echo ' 			<tr>
 													<td>
@@ -123,7 +128,7 @@
 					</table>
 				</td>
 				<td colspan="2">
-					<table>
+					<table style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size:13px;">
 						<?php
 						echo ' 			<tr>
 													<td>
@@ -185,23 +190,41 @@
 						';
 				$no++;
 				$total += $value['price'];
-
 			}
+			echo '
+			<tr class="item">
+					<td style="width:10%">
+					' . $no . '
+					</td>
+					<td style="text-align:left">
+							
+					</td>
+					<td>
+					</td>
+					<td>
+						
+					</td>
+					<td>
+				
+				</td>
+			</tr>
+			
+		';
 			?>
 		</table>
 		<br>
-							<br>
-							<br>
-							<br>
 		<br>
-		<table>
+		<br>
+		<br>
+		<br>
+		<table class="ass">
 			<tr class="total">
-			<td>
-			<?php $kata = $this->db->query("select kata2 from template_invoice")->result_array();
-						echo $kata[0]['kata2']; ?>
-			</td>
-		
-				
+				<td>
+					<?php $kata = $this->db->query("select kata2 from template_invoice")->result_array();
+					echo $kata[0]['kata2']; ?>
+				</td>
+
+
 				<td?></td?>
 				<td></td>
 				<td>SubTotal :
@@ -226,9 +249,9 @@
 		<br>
 		<div class="footer">
 			<?php $kata = $this->db->query("select kata3 from template_invoice")->result_array();
-						echo $kata[0]['kata3']; ?>
+			echo $kata[0]['kata3']; ?>
 			</td>
-			
+
 		</div>
 		<?php $date = date('d M Y'); ?>
 		<br>
@@ -244,7 +267,7 @@
 			<table>
 				<tr>
 					<td style="text-align: right;  margin-right:10%;">
-					<?php $kata = $this->db->query("select kata4 from template_invoice")->result_array();
+						<?php $kata = $this->db->query("select kata4 from template_invoice")->result_array();
 						echo $kata[0]['kata4']; ?>
 					</td>
 				</tr>

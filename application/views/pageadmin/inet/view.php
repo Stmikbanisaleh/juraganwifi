@@ -56,8 +56,13 @@
 							</div>
 
 							<div class="form-group">
+								<label>Alamat</label>
+								<textarea type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Alamat"></textarea>
+							</div>
+
+							<div class="form-group">
 								<label>Keterangan</label>
-								<textarea type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Keterangan"></textarea>
+								<textarea type="text" id="alamat" name="alamat" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 
 						</div>
@@ -136,8 +141,13 @@
 							</div>
 
 							<div class="form-group">
-								<label>Keterangan</label>
+								<label>Alamat</label>
 								<textarea type="text" id="e_keterangan" name="e_keterangan" class="form-control" placeholder="Keterangan"></textarea>
+							</div>
+
+							<div class="form-group">
+								<label>Keterangan</label>
+								<textarea type="text" id="e_alamat" name="e_alamat" class="form-control" placeholder="Keterangan"></textarea>
 							</div>
 
 						</div>
@@ -201,6 +211,9 @@
 						</th>
 						<th class="text-center">
 							Status
+						</th>
+						<th class="text-center">
+							Alamat
 						</th>
 						<th class="text-center">
 							Keterangan
@@ -323,9 +336,6 @@
 				for (i = 0; i < data.length; i++) {
 					if (level == 1) {
 						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-search"> </i>  Preview </a>' +
-							'</button> ' +
 							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 							'      <i class="fas fa-folder"> </i>  Edit </a>' +
 							'</button> &nbsp' +
@@ -335,9 +345,6 @@
 							'</td>'
 					} else if (level == 2) {
 						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-search"> </i>  Preview </a>' +
-							'</button> ' +
 							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 							'      <i class="fas fa-folder"> </i>  Edit </a>' +
 							'</button> &nbsp' +
@@ -347,9 +354,6 @@
 							'</td>'
 					} else if (level == 3) {
 						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-search"> </i>  Preview </a>' +
-							'</button> ' +
 							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 							'      <i class="fas fa-folder"> </i>  Edit </a>' +
 							'</button> &nbsp' +
@@ -359,18 +363,12 @@
 							'</td>'
 					} else if (level == 4) {
 						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-search"> </i>  Preview </a>' +
-							'</button> ' +
 							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
 							'      <i class="fas fa-folder"> </i>  Edit </a>' +
 							'</button> &nbsp' +
 							'</td>'
 					} else if (level == 5) {
 						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
-							'      <i class="fas fa-search"> </i>  Preview </a>' +
-							'</button> &nbsp' +
 							'</td>'
 					}
 					var status = '';
@@ -389,6 +387,7 @@
 						'<td class="text-left">' + data[i].alokasi + '</td>' +
 						status+
 						'<td class="text-left">' + data[i].keterangan + '</td>' +
+						'<td class="text-left">' + data[i].alamat + '</td>' +
 						button +
 						'</tr>';
 					no++;
@@ -431,6 +430,7 @@
 				$('#e_id').val(data[0].id);
 				$('#e_nama').val(data[0].nama).select2();
 				$('#e_keterangan').val(data[0].keterangan);
+				$('#e_alamat').val(data[0].alamat);
 				$('#e_nomor_pstn').val(data[0].nomor_pstn);
 				$('#e_nomor_inet').val(data[0].nomor_inet);
 				$('#e_password_inet').val(data[0].password_inet);

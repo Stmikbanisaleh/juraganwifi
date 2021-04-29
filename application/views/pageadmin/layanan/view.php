@@ -12,6 +12,11 @@
 						</div>
 						<div class="card-body">
 							<div class="form-group">
+								<label>Kode Layanan</label>
+								<input required type="text" id="kode" name="kode" class="form-control" placeholder="Kode Layanan">
+							</div>
+
+							<div class="form-group">
 								<label>Nama Layanan</label>
 								<input required type="text" id="nama" name="nama" class="form-control" placeholder="Nama Layanan">
 							</div>
@@ -95,6 +100,10 @@
 							</button>
 						</div>
 						<div class="card-body">
+							<div class="form-group">
+								<label>Kode Layanan</label>
+								<input required type="text" id="e_kode" name="e_kode" class="form-control" placeholder="Kode Layanan">
+							</div>
 							<div class="form-group">
 								<label>Nama Layanan</label>
 								<input required type="hidden" id="e_id" name="e_id" class="form-control">
@@ -181,6 +190,9 @@
 					<tr>
 						<th>
 							#
+						</th>
+						<th class="text-center">
+							Kode Layanan
 						</th>
 						<th class="text-center">
 							Nama Layanan
@@ -322,6 +334,7 @@
 					}
 					html += '<tr>' +
 						'<td class="text-left">' + no + '</td>' +
+						'<td class="text-left">' + data[i].kode + '</td>' +
 						'<td class="text-left">' + data[i].name + '</td>' +
 						'<td class="text-right">' + ConvertFormatRupiah(data[i].price, 'Rp.') + '</td>' +
 						status +
@@ -447,6 +460,7 @@
 			},
 			success: function(data) {
 				$('#e_id').val(data[0].id);
+				$('#e_kode').val(data[0].kode);
 				$('#e_nama').val(data[0].name);
 				$('#e_description').val(data[0].description);
 				$('#e_status').val(data[0].status);

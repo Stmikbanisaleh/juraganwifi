@@ -5,7 +5,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-class Laporanpembayaran extends CI_Controller
+class Laporanpembayaranc extends CI_Controller
 {
     function __construct()
     {
@@ -23,7 +23,7 @@ class Laporanpembayaran extends CI_Controller
     {
         if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
             $data = array(
-                'page_content'      => '../pageadmin/laporanpembayaran/view',
+                'page_content'      => '../pageadmin/laporanpembayaranc/view',
                 'ribbon'            => '<li class="active">Cetak Laporan Pembayaran</li>',
                 'page_name'         => 'Laporan Pembayaran',
             );
@@ -39,7 +39,7 @@ class Laporanpembayaran extends CI_Controller
             $awal = $this->input->post('awal');
             $akhir = $this->input->post('akhir');
             $filename = "Laporan_pembayaran_periode-$awal sampai $akhir.xlsx";
-            $data = $this->Model_laporanpembayaran->getAllStatus($awal, $akhir)->result_array();
+            $data = $this->Model_laporanpembayaran->getAllStatusc($awal, $akhir)->result_array();
             if ($data != null) {
                 $spreadsheet = new Spreadsheet();
                 $sheet = $spreadsheet->getActiveSheet();
@@ -54,9 +54,7 @@ class Laporanpembayaran extends CI_Controller
                 $sheet->setCellValue('I1', 'Nominal Tagihan');
                 $sheet->setCellValue('J1', 'Nominal Bayar');
                 $sheet->setCellValue('K1', 'Metode Pembayaran');
-
                 $sheet->setCellValue('L1', 'Tanggal Pembayaran');
-
                 $no = 1;
                 $x = 2;
                 foreach ($data as $value) {
@@ -72,7 +70,6 @@ class Laporanpembayaran extends CI_Controller
                     $sheet->setCellValue('J' . $x, $value['Nominal_bayar']);
                     $sheet->setCellValue('K' . $x, $value['metode_pembayaran']);
 					$sheet->setCellValue('L' . $x, $value['tgl_bayar']);
-
                     $x++;
                 }
 

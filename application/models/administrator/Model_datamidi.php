@@ -28,7 +28,7 @@ class Model_datamidi extends CI_model
 
 	public function checkDuplicate($data, $table)
     {
-        $this->db->where('nama',$data['nama']);
+        $this->db->where('kode',$data['kode']);
         return $this->db->get($table)->num_rows();
     }
 

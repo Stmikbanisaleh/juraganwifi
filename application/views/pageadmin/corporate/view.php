@@ -56,6 +56,12 @@
 										<label>Alamat</label>
 										<textarea type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat"></textarea>
 									</div>
+
+									<div class="form-group">
+										<label>PIC Corporate</label>
+										<input type="text" id="pic" name="pic" class="form-control" placeholder="PIC Corporate">
+									</div>
+
 									<div class="form-group">
 										<label>Foto</label>
 										<input type="file" id="foto" name="foto" class="form-control" placeholder="Foto"></input>
@@ -63,15 +69,6 @@
 									<hr>
 									<b>DATA TEKNIS</b>
 									<hr>
-									<div class="form-group">
-										<label>Wilayah / Coverage Area</label>
-										<select class="form-control select2" style="width: 100%;" name="wilayah" id="wilayah">
-											<option value="" selected="selected">-- Pilih --</option>
-											<?php foreach ($mywilayah as $value) { ?>
-												<option value=<?= $value['id'] ?>><?= $value['nama'] . ' - ( ' . $value['kode_wilayah'] . ')' ?></option>
-											<?php } ?>
-										</select>
-									</div>
 
 									<div class="form-group">
 										<label>Nomor Port OLT</label>
@@ -310,21 +307,17 @@
 									</div>
 
 									<div class="form-group">
+										<label>PIC Corporate</label>
+										<input type="text" id="e_pic" name="e_pic" class="form-control" placeholder="PIC Corporate">
+									</div>
+
+									<div class="form-group">
 										<label>Foto</label>
 										<input type="file" id="e_foto" name="e_foto" class="form-control" placeholder="Alamat"></input>
 									</div>
 									<hr>
 									<b>DATA TEKNIS</b>
 									<hr>
-									<div class="form-group">
-										<label>Wilayah / Coverage Area</label>
-										<select class="form-control select2" style="width: 100%;" name="e_wilayah" id="e_wilayah">
-											<option value="" selected="selected">-- Pilih --</option>
-											<?php foreach ($mywilayah as $value) { ?>
-												<option value=<?= $value['id'] ?>><?= $value['nama'] . ' - ( ' . $value['kode_wilayah'] . ')' ?></option>
-											<?php } ?>
-										</select>
-									</div>
 
 									<div class="form-group">
 										<label>Nomor Port OLT</label>
@@ -561,18 +554,14 @@
 										<textarea  readonly type="text" id="e_alamat2" name="e_alamat2" class="form-control" placeholder="Alamat"></textarea>
 									</div>
 
+									<div class="form-group">
+										<label>PIC Corporate</label>
+										<input type="text" id="e_pic2" name="e_pic2" class="form-control" placeholder="PIC Corporate">
+									</div>
+
 									<hr>
 									<b>DATA TEKNIS</b>
 									<hr>
-									<div class="form-group">
-										<label>Wilayah / Coverage Area</label>
-										<select readonly class="form-control select2" style="width: 100%;" name="e_wilayah2" id="e_wilayah2">
-											<option value="" selected="selected">-- Pilih --</option>
-											<?php foreach ($mywilayah as $value) { ?>
-												<option value=<?= $value['id'] ?>><?= $value['nama'] . ' - ( ' . $value['kode_wilayah'] . ')' ?></option>
-											<?php } ?>
-										</select>
-									</div>
 
 									<div class="form-group">
 										<label>Nomor Port OLT</label>
@@ -760,6 +749,45 @@
 	</div>
 	<!-- Default box -->
 
+		<!-- Default box -->
+		<div id="modalDetail" class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form" id="formDetail">
+					<div class="card card-info">
+						<div class="card-body">
+							<table id="table_id2" class="table table-bordered table-hover projects">
+								<thead>
+									<tr>
+										<th>
+											#
+										</th>
+										<th class="text-center">
+											Nama Layanan
+										</th>
+										<th class="text-center">
+											Description
+										</th>
+									</tr>
+								</thead>
+								<tbody id="show_data2">
+								</tbody>
+							</table>
+
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Kembali
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+
 	<div class="card">
 		<div class="card-header">
 			<h3 class="card-title">Daftar Pelanggan</h3>
@@ -786,7 +814,7 @@
 							Email
 						</th>
 						<th class="text-center">
-							No WhatsApp
+							No Telp
 						</th>
 						<th style="width: 8%" class="text-center">
 							NO NPWP
@@ -794,11 +822,17 @@
 						<th style="width: 8%" class="text-center">
 							Alamat
 						</th>
+						<th style="width: 8%" class="text-center">
+							PIC 
+						</th>
 						<th style="width: 15%" class="text-center">
 							Status User
 						</th>
 						<th class="text-center">
 							Foto
+						</th>
+						<th class="text-center">
+							Jenis Layanan
 						</th>
 						<th style="width: 8%" class="text-center">
 							Media Koneksi
@@ -999,8 +1033,14 @@
 						'<td class="text-left">' + data[i].no_wa + '</td>' +
 						'<td class="text-left">' + data[i].no_ktp + '</td>' +
 						'<td class="text-left">' + data[i].address + '</td>' +
+						'<td class="text-left">' + data[i].pic + '</td>' +
 						status +
 						foto +
+						'<td class="text-center">' +
+						'   <button  class="btn btn-info btn-sm item_detail"  data-id="' + data[i].no_services + '">' +
+						'      <i class="fas fa-eye"> </i>  Detail </a>' +
+						'</button> &nbsp' +
+						'</td>' +
 						'<td class="text-left">' + data[i].nama_media_koneksi + '</td>' +
 						'<td class="text-left">' + data[i].nama_kepemilikan_tempat + '</td>' +
 						'<td class="text-left">' + data[i].nama_jenis_tempat + '</td>' +
@@ -1092,6 +1132,48 @@
 		})
 	})
 
+		//get data for update record
+		$('#show_data').on('click', '.item_detail', function() {
+		var id = $(this).data('id');
+		$('#id_p').val(id);
+		$('#modalDetail').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/corporate/tampil_layanan_byid') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				var html = '';
+				var i = 0;
+				var no = 1;
+				for (i = 0; i < data.length; i++) {
+					html += '<tr>' +
+						'<td class="text-center">' + no + '</td>' +
+						'<td>' + data[i].name + '</td>' +
+						'<td>' + data[i].description + '</td>' +
+						'</tr>';
+					no++;
+
+				}
+				$("#table_id2").dataTable().fnDestroy();
+				var a = $('#show_data2').html(html);
+				//                    $('#mydata').dataTable();
+				if (a) {
+					$('#table_id2').dataTable({
+						"bPaginate": true,
+						"bLengthChange": false,
+						"bFilter": true,
+						"bInfo": false,
+						"bAutoWidth": false
+					});
+				}
+			}
+		});
+	});
+
 	$('#show_data').on('click', '.item_approve', function() {
 		var id = $(this).data('id');
 		Swal.fire({
@@ -1182,6 +1264,7 @@
 				$('#e_keterangan').val(data[0].keterangan);
 				$('#e_telp').val(data[0].no_wa);
 				$('#e_alamat').val(data[0].address);
+				$('#e_pic').val(data[0].pic);
 				$('#e_panjangkabel').val(data[0].panjang_kabel);
 				$('#e_odp').val(data[0].odp);
 				$('#e_olt').val(data[0].olt);
@@ -1239,6 +1322,7 @@
 				$('#e_keterangan2').val(data[0].keterangan);
 				$('#e_telp2').val(data[0].no_wa);
 				$('#e_alamat2').val(data[0].address);
+				$('#e_pic2').val(data[0].pic);
 				$('#e_panjangkabel2').val(data[0].panjang_kabel);
 				$('#e_odp2').val(data[0].odp);
 				$('#e_olt2').val(data[0].olt);

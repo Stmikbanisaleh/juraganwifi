@@ -76,6 +76,7 @@ class Daftar_tagihanc extends CI_Controller
                         'status'  => 1,
                         'updatedAt' => date('Y-m-d H:i:s'),
                         'updatedBy' => $this->session->userdata('name'),
+						'nominal_bayar'  => $this->input->post('e_nominal_v'),
                     );
                    $this->model_daftar_tagihanc->update($data_id, $dataInvoce, 'invoice_corporate');
                 } else {
@@ -83,6 +84,7 @@ class Daftar_tagihanc extends CI_Controller
                         'status'  => 0,
                         'updatedAt' => date('Y-m-d H:i:s'),
                         'updatedBy' => $this->session->userdata('name'),
+						'nominal_bayar'  => $this->input->post('e_nominal_v'),
                     );
                    $this->model_daftar_tagihanc->update($data_id, $dataInvoce, 'invoice_corporate');
                 }
@@ -104,7 +106,7 @@ class Daftar_tagihanc extends CI_Controller
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
 
-			$my_data = $this->model_daftar_tagihanc->viewWhere('invoice', $this->input->post('id'))->result();
+			$my_data = $this->model_daftar_tagihanc->viewWhere($this->input->post('id'))->result();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pageadmin/login'); //Memanggil function render_view

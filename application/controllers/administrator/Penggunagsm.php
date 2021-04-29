@@ -52,7 +52,7 @@ class Penggunagsm extends CI_Controller
 			echo "<option value='" . $value['id'] . "'> [" . $value['besar_quota'] . "] </option>";
 		}
 	}
-	
+
 	public function showquotaedit()
 	{
 		$operator = $this->input->post('id');
@@ -131,8 +131,13 @@ class Penggunagsm extends CI_Controller
 				'createdAt' => date('Y-m-d H:i:s'),
 				'createdBy'	=> $this->session->userdata('name')
 			);
-			$action = $this->model_penggunagsm->insert($data, 'pengguna_gsm');
-			echo json_encode($action);
+			$cek = $this->model_penggunagsm->checkDuplicate($data, 'pengguna_gsm');
+			if ($cek > 0) {
+				echo json_encode(401);
+			} else {
+				$action = $this->model_penggunagsm->insert($data, 'pengguna_gsm');
+				echo json_encode($action);
+			}
 		} else {
 			$this->load->view('pageadmin/login'); //Memanggil function render_view
 		}

@@ -47,6 +47,7 @@ class Layanan extends CI_Controller
 			);
 			$data = array(
 				'name'  => $this->input->post('e_nama'),
+				'kode'  => $this->input->post('e_kode'),
 				'description'  => $this->input->post('e_description'),
 				'price'  => $this->input->post('e_harga_v'),
 				'status'  => $this->input->post('e_status'),
@@ -95,6 +96,7 @@ class Layanan extends CI_Controller
 
             $data = array(
                 'name'  => $this->input->post('nama'),
+				'kode'  => $this->input->post('kode'),
 				'description'  => $this->input->post('description'),
 				'price'  => $this->input->post('harga_v'),
 				'status'  => $this->input->post('status'),

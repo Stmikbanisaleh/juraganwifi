@@ -379,13 +379,13 @@
   						<li class="nav-item">
   							<a href="<?php echo base_url() . 'administrator/dcmidi'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
-  								<p>Master DC MIDI</p>
+  								<p>Store DC MIDI</p>
   							</a>
   						</li>
   						<li class="nav-item">
   							<a href="<?php echo base_url() . 'administrator/datamidi'; ?>" class="nav-link">
   								<i class="far fa-circle nav-icon"></i>
-  								<p>Master Toko AlfaMidi</p>
+  								<p>Store AlfaMidi</p>
   							</a>
   						</li>
 
@@ -478,13 +478,13 @@
   							</li>
 
   							<li class="nav-item">
-  								<a href="<?php echo base_url() . 'administrator/laporanpembayaran'; ?>" class="nav-link">
+  								<a href="<?php echo base_url() . 'administrator/laporanpembayaranc'; ?>" class="nav-link">
   									<i class="far fa-circle nav-icon"></i>
   									<p>Pembayaran Corporate</p>
   								</a>
   							</li>
   							<li class="nav-item">
-  								<a href="<?php echo base_url() . 'administrator/laporantagihan'; ?>" class="nav-link">
+  								<a href="<?php echo base_url() . 'administrator/laporantagihanc'; ?>" class="nav-link">
   									<i class="far fa-circle nav-icon"></i>
   									<p>Tagihan Corporate</p>
   								</a>

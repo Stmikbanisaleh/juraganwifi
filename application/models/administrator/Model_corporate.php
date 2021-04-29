@@ -26,7 +26,7 @@ class Model_corporate extends CI_model
 		left join odp j on a.kodp = j.id
 		left join type_ipaddress k on a.typeipaddress = k.id
 		left join jenis_ipaddress l on a.jenis_ipaddress = l.id
-		order by a.id desc");
+		order by a.id asc");
     }
 
 	public function viewWhereCustomODCV2($a)

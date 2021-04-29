@@ -56,6 +56,7 @@ class Inet extends CI_Controller
 				'alokasi'  => $this->input->post('e_alokasi'),
 				'status'  => $this->input->post('e_status'),
 				'keterangan'  => $this->input->post('e_keterangan'),
+				'alamat'  => $this->input->post('e_alamat'),
 				'createdAt' => date('Y-m-d H:i:s'),
 				'createdBy'	=> $this->session->userdata('name')
             );
@@ -108,6 +109,7 @@ class Inet extends CI_Controller
 				'alokasi'  => $this->input->post('alokasi'),
 				'status'  => $this->input->post('status'),
 				'keterangan'  => $this->input->post('keterangan'),
+				'alamat'  => $this->input->post('alamat'),
 				'createdAt' => date('Y-m-d H:i:s'),
 				'createdBy'	=> $this->session->userdata('name')
             );

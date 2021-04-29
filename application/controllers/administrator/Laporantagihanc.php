@@ -5,13 +5,13 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-class Laporanpembayaran extends CI_Controller
+class Laporantagihanc extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
         $this->load->library('form_validation');
-        $this->load->model('administrator/Model_laporanpembayaran');
+        $this->load->model('administrator/Model_laporantagihan');
     }
 
     function render_view($data)
@@ -23,9 +23,9 @@ class Laporanpembayaran extends CI_Controller
     {
         if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
             $data = array(
-                'page_content'      => '../pageadmin/laporanpembayaran/view',
-                'ribbon'            => '<li class="active">Cetak Laporan Pembayaran</li>',
-                'page_name'         => 'Laporan Pembayaran',
+                'page_content'      => '../pageadmin/laporantagihanc/view',
+                'ribbon'            => '<li class="active">Cetak Laporan Tagihan</li>',
+                'page_name'         => 'Laporan Tagihan',
             );
             $this->render_view($data); //Memanggil function render_view
         } else {
@@ -33,13 +33,13 @@ class Laporanpembayaran extends CI_Controller
         }
     }
 
-    public function laporanpembayaran()
+    public function laporantagihan()
     {
         if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
             $awal = $this->input->post('awal');
             $akhir = $this->input->post('akhir');
-            $filename = "Laporan_pembayaran_periode-$awal sampai $akhir.xlsx";
-            $data = $this->Model_laporanpembayaran->getAllStatus($awal, $akhir)->result_array();
+            $filename = "Laporan_Tagihan_periode-$awal sampai $akhir.xlsx";
+            $data = $this->Model_laporantagihan->getAllStatusc($awal, $akhir)->result_array();
             if ($data != null) {
                 $spreadsheet = new Spreadsheet();
                 $sheet = $spreadsheet->getActiveSheet();
@@ -54,9 +54,6 @@ class Laporanpembayaran extends CI_Controller
                 $sheet->setCellValue('I1', 'Nominal Tagihan');
                 $sheet->setCellValue('J1', 'Nominal Bayar');
                 $sheet->setCellValue('K1', 'Metode Pembayaran');
-
-                $sheet->setCellValue('L1', 'Tanggal Pembayaran');
-
                 $no = 1;
                 $x = 2;
                 foreach ($data as $value) {
@@ -71,8 +68,6 @@ class Laporanpembayaran extends CI_Controller
                     $sheet->setCellValue('I' . $x, $value['Nominal']);
                     $sheet->setCellValue('J' . $x, $value['Nominal_bayar']);
                     $sheet->setCellValue('K' . $x, $value['metode_pembayaran']);
-					$sheet->setCellValue('L' . $x, $value['tgl_bayar']);
-
                     $x++;
                 }
 

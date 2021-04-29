@@ -27,13 +27,27 @@ class Model_laporantagihan extends CI_model
 
     public function getAllStatus($awal, $akhir)
     {
-        return $this->db->query("Select a.metode_pembayaran, a.id , a.invoice,a.no_services, a.month, a.year, a.status, CONCAT('Rp. ',FORMAT(b.price,2)) Nominal,
-        CONCAT('Rp. ',FORMAT(b.nominal_bayar,2)) Nominal_bayar
+		return $this->db->query("Select a.metode_pembayaran, a.id , a.invoice,a.no_services, a.month, a.year, a.status, CONCAT('Rp. ',FORMAT(sum(b.price),2)) Nominal,a.updatedAt as tgl_bayar,
+        CONCAT('Rp. ',FORMAT(a.nominal_bayar,2)) Nominal_bayar
         ,c.name  , c.no_wa,d.name as nama_layanan from invoice a
         left join invoice_detail b on a.id = b.invoice_id
         left join customer c on a.no_services = c.no_services
         left join package_item d on c.jenis_layanan = d.id
-        where a.createdAt between '$awal' and '$akhir' and a.status = 0
+        where a.updatedAt between '$awal' and '$akhir' and a.nominal_bayar > 1 and a.status = 0
+		group by a.invoice
+        order by a.createdAt desc ");
+    }
+
+	public function getAllStatusc($awal, $akhir)
+    {
+		return $this->db->query("Select a.metode_pembayaran, a.id , a.invoice,a.no_services, a.month, a.year, a.status, CONCAT('Rp. ',FORMAT(sum(b.price),2)) Nominal,a.updatedAt as tgl_bayar,
+        CONCAT('Rp. ',FORMAT(a.nominal_bayar,2)) Nominal_bayar
+        ,c.name  , c.no_wa,d.name as nama_layanan from invoice_corporate a
+        left join invoice_detail_corporate b on a.id = b.invoice_id
+        left join customer_corporate c on a.no_services = c.no_services
+        left join package_item d on c.jenis_layanan = d.id
+        where a.updatedAt between '$awal' and '$akhir' and a.nominal_bayar > 1 and a.status = 0
+		group by a.invoice
         order by a.createdAt desc ");
     }
 

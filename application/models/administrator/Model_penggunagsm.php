@@ -13,7 +13,7 @@ class Model_penggunagsm extends CI_model
 	public function viewOrderingCustomV2($table, $order, $ordering)
     {
         return $this->db->query("select a.*,b.name as nama_operator,c.besar_quota as besar_quota_qty from pengguna_gsm a join operator b on a.operator = b.id
-		join quota c on a.besar_quota = c.id ");
+		left join quota c on a.besar_quota = c.id ");
     }
 
 	public function viewWhereCustom($operator)
@@ -28,7 +28,7 @@ class Model_penggunagsm extends CI_model
 
 	public function checkDuplicate($data, $table)
     {
-        $this->db->where('id',$data['nama']);
+        $this->db->where('nomor_msisdn',$data['nomor_msisdn']);
         return $this->db->get($table)->num_rows();
     }
 

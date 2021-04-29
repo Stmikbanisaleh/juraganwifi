@@ -13,7 +13,7 @@
 						<div class="card-body">
 							<div class="form-group">
 								<label>Nominal Bayar</label>
-								<input required type="hidden" id="e_id" name="e_id">
+								<input required type="text" id="e_id" name="e_id">
 								<input required type="text" id="e_nominal" name="e_nominal" class="form-control" placeholder="Nominal Bayar">
 								<input required type="hidden" id="e_nominal_v" name="e_nominal_v" class="form-control" placeholder="Nominal Bayar">
 								<script language="JavaScript">
@@ -201,11 +201,13 @@
 			async: true,
 			dataType: 'json',
 			success: function(data) {
+				var level = <?= $this->session->userdata('level'); ?>;
 				var html = '';
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
 					var status = '';
+					var hapus = '';
 					var metode = '';
 					if (data[i].no_wa != null) {
 						status = '<td ><a target="_blank" href="https://api.whatsapp.com/send/?phone=' + data[i].no_wa + '">' + data[i].no_wa + '</td>'
@@ -231,7 +233,16 @@
 							'</button> &nbsp' +
 							'</td>'
 					}
-
+					if(level == 1){
+						hapus = '<td class="project-actions text-right">' +
+						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+						'</button> ' +
+						'</td>' 
+					} else {
+						hapus = '<td class="project-actions text-right">' +
+						'</td>' 
+					}
 					var invoice = '';
 
 					invoice = '<td class="text-center">' +
@@ -253,10 +264,7 @@
 						status +
 						tombol +
 						invoice +
-						'<td class="project-actions text-right">' +
-						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
-						'</button> ' +
+						hapus+
 						'</td>' +
 						'</tr>';
 					no++;
