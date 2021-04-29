@@ -39,9 +39,19 @@
 
 									<div class="form-group">
 										<label>NO. NPWP</label>
-										<input required type="number" id="ktp" name="ktp" class="form-control" placeholder="NO NPWP">
-									</div>
+										<input required type="text" maxlength="20" id="ktp" name="ktp" class="form-control" placeholder="NO NPWP">
 
+									</div>
+									<script language="JavaScript">
+										var ktp = document.getElementById('ktp');
+										ktp.addEventListener('keyup', function(e) {
+											// tambahkan 'Rp.' pada saat form di ketik
+											// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+											ktp = this.value.replace(/(\d{2})(\d{3})(\d{3})(\d{1})(\d{3})(\d{3})/, '$1.$2.$3.$4-$5.$6');
+											$('#ktp').val(ktp);
+										});
+
+									</script>
 									<div class="form-group">
 										<label>Email</label>
 										<input type="email" id="email" name="email" class="form-control" placeholder="Email">
@@ -157,7 +167,7 @@
 
 									<div class="form-group">
 										<label>IP Addeess</label>
-										<input  type="text" id="ip_address" name="ip_address" class="form-control" placeholder="IP Address">
+										<input type="text" id="ip_address" name="ip_address" class="form-control" placeholder="IP Address">
 									</div>
 
 									<div class="form-group">
@@ -288,7 +298,17 @@
 									</div>
 									<div class="form-group">
 										<label>NO NPWP</label>
-										<input required type="number" id="e_ktp" name="e_ktp" class="form-control" placeholder="NO NPWP">
+										<input required maxlength="20" type="text" id="e_ktp" name="e_ktp" class="form-control" placeholder="NO NPWP">
+										<script language="JavaScript">
+										var ktp2 = document.getElementById('e_ktp');
+										ktp2.addEventListener('keyup', function(e) {
+											// tambahkan 'Rp.' pada saat form di ketik
+											// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+											ktp2 = this.value.replace(/(\d{2})(\d{3})(\d{3})(\d{1})(\d{3})(\d{3})/, '$1.$2.$3.$4-$5.$6');
+											$('#e_ktp').val(ktp2);
+										});
+
+									</script>
 									</div>
 
 									<div class="form-group">
@@ -406,7 +426,7 @@
 
 									<div class="form-group">
 										<label>IP Addeess</label>
-										<input  type="text" id="e_ip_address" name="e_ip_address" class="form-control" placeholder="IP Address">
+										<input type="text" id="e_ip_address" name="e_ip_address" class="form-control" placeholder="IP Address">
 									</div>
 
 									<div class="form-group">
@@ -536,7 +556,7 @@
 									</div>
 									<div class="form-group">
 										<label>NO NPWP</label>
-										<input readonly required type="number" id="e_ktp2" name="e_ktp2" class="form-control" placeholder="NIK KTP">
+										<input readonly required type="text" id="e_ktp2" name="e_ktp2" class="form-control" placeholder="NIK KTP">
 									</div>
 
 									<div class="form-group">
@@ -551,7 +571,7 @@
 
 									<div class="form-group">
 										<label>Alamat</label>
-										<textarea  readonly type="text" id="e_alamat2" name="e_alamat2" class="form-control" placeholder="Alamat"></textarea>
+										<textarea readonly type="text" id="e_alamat2" name="e_alamat2" class="form-control" placeholder="Alamat"></textarea>
 									</div>
 
 									<div class="form-group">
@@ -650,7 +670,7 @@
 
 									<div class="form-group">
 										<label>IP Addeess</label>
-										<input  readonly type="text" id="e_ip_address2" name="e_ip_address2" class="form-control" placeholder="IP Address">
+										<input readonly type="text" id="e_ip_address2" name="e_ip_address2" class="form-control" placeholder="IP Address">
 									</div>
 
 									<div class="form-group">
@@ -749,8 +769,8 @@
 	</div>
 	<!-- Default box -->
 
-		<!-- Default box -->
-		<div id="modalDetail" class="modal fade" tabindex="-1">
+	<!-- Default box -->
+	<div id="modalDetail" class="modal fade" tabindex="-1">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<form class="form-horizontal" role="form" id="formDetail">
@@ -823,7 +843,7 @@
 							Alamat
 						</th>
 						<th style="width: 8%" class="text-center">
-							PIC 
+							PIC
 						</th>
 						<th style="width: 15%" class="text-center">
 							Status User
@@ -1072,7 +1092,7 @@
 						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
 						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
 						'</button> ' +
-					
+
 						'</td>' +
 						'</tr>';
 					no++;
@@ -1132,8 +1152,8 @@
 		})
 	})
 
-		//get data for update record
-		$('#show_data').on('click', '.item_detail', function() {
+	//get data for update record
+	$('#show_data').on('click', '.item_detail', function() {
 		var id = $(this).data('id');
 		$('#id_p').val(id);
 		$('#modalDetail').modal('show');
@@ -1287,20 +1307,20 @@
 				$('#e_kepemilikantempat').val(data[0].kepemilikan_tempat).select2();
 				$('#e_typeipaddress').val(data[0].typeipaddress).select2();
 				$('#e_nama_teknisi').val(data[0].nama_teknisi);
-				console.log(data[0].kode_odc)
-				show_data_eodc(data[0].wilayah, function(a) {
-					$('#e_kodc').val(data[0].kodc);
-				});
-				show_data_eodp(data[0].wilayah, function(a) {
-					$('#e_kodp').val(data[0].kodp);
-				});
+				// console.log(data[0].kode_odc)
+				// show_data_eodc(data[0].wilayah, function(a) {
+				// 	$('#e_kodc').val(data[0].kodc);
+				// });
+				// show_data_eodp(data[0].wilayah, function(a) {
+				// 	$('#e_kodp').val(data[0].kodp);
+				// });
 			}
 		});
 	});
 
-		//get data for update record
-		$('#show_data').on('click', '.item_prev', function() {
-			$('select').select2().prop('readonly',true);
+	//get data for update record
+	$('#show_data').on('click', '.item_prev', function() {
+		$('select').select2().prop('readonly', true);
 		document.getElementById("formPrev").reset();
 		var id = $(this).data('id');
 		$('#modalPrev').modal('show');
@@ -1357,7 +1377,7 @@
 	});
 
 	if ($("#formEdit").length > 0) {
-		$('select').prop('readonly',false);
+		$('select').prop('readonly', false);
 		$("#formEdit").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
