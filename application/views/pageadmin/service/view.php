@@ -26,7 +26,7 @@
 								<select class="form-control select2" style="width: 100%;" name="layanan" id="layanan">
 									<option selected="selected">-- Pilih --</option>
 									<?php foreach ($mylayanan as $value) { ?>
-										<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>
+										<option value=<?= $value['id'] ?>><?=  "[" .$value['kode'] ."]" ?> - <?= $value['name'] ?></option>
 									<?php } ?>
 								</select>
 							</div>
@@ -82,7 +82,7 @@
 								<select class="form-control select2" style="width: 100%;" name="e_layanan" id="e_layanan">
 									<option selected="selected">-- Pilih --</option>
 									<?php foreach ($mylayanan as $value) { ?>
-										<option value=<?= $value['id'] ?>><?= $value['name'] ?></option>
+										<option value=<?= $value['id'] ?>><?=  "[" .$value['kode'] ."]" ?> - <?= $value['name'] ?></option>
 									<?php } ?>
 								</select>
 							</div>

@@ -44,6 +44,11 @@
 									}
 								</script>
 							</div>
+							<div class="form-group">
+								<label>Keterangan</label>
+								<textarea type="text" id="e_keterangan" name="e_keterangan" class="form-control" placeholder="Keterangan"></textarea>
+							</div>
+
 						</div>
 						<!-- /.card-body -->
 					</div>
@@ -103,6 +108,9 @@
 						</th>
 						<th class="text-center">
 							Metode Pembayaran
+						</th>
+						<th class="text-center">
+							Keterangan
 						</th>
 						<th class="text-center">
 							No Telp / WhatsApp
@@ -234,6 +242,7 @@
 						'<td class="text-left">' + data[i].Nominal_bayar + '</td>' +
 						'<td class="text-left">' + data[i].link + '</td>' +
 						metode +
+						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						status +
 						tombol +
 						invoice +

@@ -56,6 +56,8 @@ class Daftar_tagihan extends CI_Controller
                         'status'  => 1,
                         'updatedAt' => date('Y-m-d H:i:s'),
                         'updatedBy' => $this->session->userdata('name'),
+                        'keterangan' => $this->input->post('e_keterangan'),
+                        'metode_pembayaran' => "CASH",
 						'nominal_bayar'  => $this->input->post('e_nominal_v'),
                     );
                    $this->model_daftar_tagihan->update($data_id, $dataInvoce, 'invoice');
@@ -64,6 +66,8 @@ class Daftar_tagihan extends CI_Controller
                         'status'  => 0,
 						'nominal_bayar'  => $this->input->post('e_nominal_v'),
                         'updatedAt' => date('Y-m-d H:i:s'),
+                        'metode_pembayaran' => "CASH",
+                        'keterangan' => $this->input->post('e_keterangan'),
                         'updatedBy' => $this->session->userdata('name'),
                     );
                    $this->model_daftar_tagihan->update($data_id, $dataInvoce, 'invoice');

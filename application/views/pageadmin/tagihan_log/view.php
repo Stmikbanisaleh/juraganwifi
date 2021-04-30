@@ -24,7 +24,7 @@
 						<!-- /.card-body -->
 					</div>
 					<div class="modal-footer">
-						<button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
+						<button type="submit" id="btn_simpan" class="btn btn-sm btn-success pull-left">
 							<i class="ace-icon fa fa-save"></i>
 							Simpan
 						</button>
@@ -113,6 +113,7 @@
 			},
 			submitHandler: function(form) {
 				$('#btn_simpan').html('Sending..');
+				$("#btn_simpan").attr('disabled', true);
 				$.ajax({
 					url: "<?php echo base_url('administrator/tagihan_log/generate') ?>",
 					type: "POST",
@@ -121,6 +122,7 @@
 					success: function(response) {
 						$('#btn_simpan').html('<i class="ace-icon fa fa-save"></i>' +
 							'Simpan');
+							$("#btn_simpan").removeAttr('disabled');
 							document.getElementById("formTambah").reset();
 							swalInputSuccess();
 							show_data();
