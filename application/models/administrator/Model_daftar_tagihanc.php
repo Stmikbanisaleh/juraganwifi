@@ -5,7 +5,7 @@ class Model_daftar_tagihanc extends CI_model
 
     public function viewOrderingCustom()
     {
-        return $this->db->query("Select a.metode_pembayaran, a.id , a.invoice,a.no_services, a.month, a.year, a.status, CONCAT('Rp. ',FORMAT(sum(b.price),2)) Nominal,
+        return $this->db->query("Select a.keterangan,a.metode_pembayaran, a.id , a.invoice,a.no_services, a.month, a.year, a.status, CONCAT('Rp. ',FORMAT(sum(b.price),2)) Nominal,
         CONCAT('Rp. ',FORMAT(a.nominal_bayar,2)) Nominal_bayar
         ,c.name  , c.no_wa,d.name as nama_layanan from invoice_corporate a
         left join invoice_detail_corporate b on a.id = b.invoice_id
@@ -29,7 +29,7 @@ class Model_daftar_tagihanc extends CI_model
 
     public function gettagihan($id)
     {
-        return $this->db->query("select b.price from invoice_corporate a join invoice_detail_corporate b 
+        return $this->db->query("select sum(b.price) as price from invoice_corporate a join invoice_detail_corporate b 
         on a.id = b.invoice_id where a.id = $id");
 	}
 	

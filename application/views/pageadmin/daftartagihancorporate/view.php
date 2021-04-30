@@ -13,7 +13,7 @@
 						<div class="card-body">
 							<div class="form-group">
 								<label>Nominal Bayar</label>
-								<input required type="text" id="e_id" name="e_id">
+								<input required type="hidden" id="e_id" name="e_id">
 								<input required type="text" id="e_nominal" name="e_nominal" class="form-control" placeholder="Nominal Bayar">
 								<input required type="hidden" id="e_nominal_v" name="e_nominal_v" class="form-control" placeholder="Nominal Bayar">
 								<script language="JavaScript">
@@ -44,8 +44,13 @@
 									}
 								</script>
 							</div>
+							<!-- /.card-body -->
+							<div class="form-group">
+								<label>Keterangan</label>
+								<textarea type="text" id="e_keterangan" name="e_keterangan" class="form-control" placeholder="Keterangan"></textarea>
+							</div>
 						</div>
-						<!-- /.card-body -->
+
 					</div>
 					<div class="modal-footer">
 						<button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
@@ -100,6 +105,9 @@
 						</th>
 						<th class="text-center">
 							Metode Pembayaran
+						</th>
+						<th class="text-center">
+							Keterangan
 						</th>
 						<th class="text-center">
 							No Telp / WhatsApp
@@ -233,15 +241,15 @@
 							'</button> &nbsp' +
 							'</td>'
 					}
-					if(level == 1){
+					if (level == 1) {
 						hapus = '<td class="project-actions text-right">' +
-						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
-						'</button> ' +
-						'</td>' 
+							'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+							'</button> ' +
+							'</td>'
 					} else {
 						hapus = '<td class="project-actions text-right">' +
-						'</td>' 
+							'</td>'
 					}
 					var invoice = '';
 
@@ -261,10 +269,11 @@
 						'<td class="text-left">' + data[i].Nominal + '</td>' +
 						'<td class="text-left">' + data[i].Nominal_bayar + '</td>' +
 						metode +
+						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						status +
 						tombol +
 						invoice +
-						hapus+
+						hapus +
 						'</td>' +
 						'</tr>';
 					no++;
