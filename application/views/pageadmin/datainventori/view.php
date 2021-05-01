@@ -367,9 +367,6 @@
 										<label>Penanggung Jawab</label>
 										<input readonly type="text" id="e_penanggungjawab2" name="e_penanggungjawab2" class="form-control" placeholder="Penanggung Jawab">
 									</div>
-
-
-
 									<div class="form-group">
 										<label>Keterangan</label>
 										<textarea readonly type="text" id="e_keterangan2" name="e_keterangan2" class="form-control" placeholder="Keterangan"></textarea>
@@ -556,7 +553,7 @@
 					}
 					if (level == 1) {
 						button = '<td class="project-actions text-right">' +
-							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+							'   <button  class="btn btn-info btn-sm item_edit2"  data-id="' + data[i].id + '">' +
 							'      <i class="fas fa-search"> </i>  Preview </a>' +
 							'</button> ' +
 							'   <button  class="btn btn-primary btn-sm item_edit"  data-id="' + data[i].id + '">' +
