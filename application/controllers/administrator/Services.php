@@ -69,7 +69,7 @@ class Services extends CI_Controller
 			$data = array(
 				'id'  => $this->input->post('id'),
 			);
-			$my_data = $this->model_service->viewWhereCustom('service', $data)->result();
+			$my_data = $this->model_service->viewWhereCustom($this->input->post('id'))->result();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pageadmin/login'); //Memanggil function render_view
