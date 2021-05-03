@@ -194,7 +194,7 @@
 			echo '
 			<tr class="item">
 					<td style="width:10%">
-					' . '
+					.
 					</td>
 					<td style="text-align:left">
 							
