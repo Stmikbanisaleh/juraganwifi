@@ -72,7 +72,6 @@ class Laporanpembayaran extends CI_Controller
                     $sheet->setCellValue('J' . $x, $value['Nominal_bayar']);
                     $sheet->setCellValue('K' . $x, $value['metode_pembayaran']);
 					$sheet->setCellValue('L' . $x, $value['tgl_bayar']);
-
                     $x++;
                 }
 

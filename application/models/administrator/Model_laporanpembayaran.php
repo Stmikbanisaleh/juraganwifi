@@ -27,7 +27,7 @@ class Model_laporanpembayaran extends CI_model
 
     public function getAllStatus($awal, $akhir)
     {
-        return $this->db->query("Select a.metode_pembayaran, a.id , a.invoice,a.no_services, a.month, a.year, a.status, CONCAT('Rp. ',FORMAT(sum(b.price),2)) Nominal,a.updatedAt as tgl_bayar,
+        return $this->db->query("Select a.metode_pembayaran, a.id , a.invoice,a.no_services, a.month, a.year, a.status, CONCAT('Rp. ',FORMAT(sum(b.price),2)) Nominal, DATE_FORMAT(a.updatedAt,'%d-%m-%Y') as tgl_bayar,
         CONCAT('Rp. ',FORMAT(a.nominal_bayar,2)) Nominal_bayar
         ,c.name  , c.no_wa,d.name as nama_layanan from invoice a
         left join invoice_detail b on a.id = b.invoice_id
@@ -40,7 +40,7 @@ class Model_laporanpembayaran extends CI_model
 
 	public function getAllStatusc($awal, $akhir)
     {
-        return $this->db->query("Select a.metode_pembayaran, a.id , a.invoice,a.no_services, a.month, a.year, a.status, CONCAT('Rp. ',FORMAT(sum(b.price),2)) Nominal,a.updatedAt as tgl_bayar,
+        return $this->db->query("Select a.metode_pembayaran, a.id , a.invoice,a.no_services, a.month, a.year, a.status, CONCAT('Rp. ',FORMAT(sum(b.price),2)) Nominal, DATE_FORMAT(a.updatedAt,'%d-%m-%Y') as tgl_bayar,
         CONCAT('Rp. ',FORMAT(a.nominal_bayar,2)) Nominal_bayar
         ,c.name  , c.no_wa,d.name as nama_layanan from invoice_corporate a
         left join invoice_detail_corporate b on a.id = b.invoice_id
