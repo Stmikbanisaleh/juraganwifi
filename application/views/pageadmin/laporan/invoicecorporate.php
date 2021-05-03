@@ -194,7 +194,7 @@
 			echo '
 			<tr class="item">
 					<td style="width:10%">
-					
+
 					</td>
 					<td style="text-align:left">
 							
@@ -227,11 +227,11 @@
 
 				<td?></td?>
 				<td></td>
-				<td>SubTotal :
+				<td>SubTotal      :
 					<br>
-					Tax :
+					Tax           :
 					<br>
-					Materai :
+					Materai       :
 					<br>
 					<b>Grand Total: <b>
 				</td>
