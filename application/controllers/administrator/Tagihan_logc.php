@@ -176,7 +176,7 @@ class Tagihan_logc extends CI_Controller
 
 	public function downloadTagihan()
 	{
-		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+		// if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
 			$this->load->library('dateutil');
 			$listInvoice = $this->model_generate_tagihan_logc->viewWhereCustom($this->input->get('invoice'))->result_array();
 			foreach ($listInvoice as $value) {
@@ -202,9 +202,9 @@ class Tagihan_logc extends CI_Controller
 				$filename = $value['invoice'] . ".pdf";
 				$mpdf->Output($filename, "I");
 			}
-		} else {
-			$this->load->view('pageadmin/login'); //Memanggil function render_view
-		}
+		// } else {
+		// 	$this->load->view('pageadmin/login'); //Memanggil function render_view
+		// }
 	}
 
 	public function generateTagihan($bulan, $tahun)
