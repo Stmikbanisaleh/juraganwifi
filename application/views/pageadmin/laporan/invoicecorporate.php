@@ -132,12 +132,12 @@
 						<?php
 						echo ' 			<tr>
 													<td>
-													 	<b>From &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: PT. Juragan Wifi Indonesia</b> <br>
+													 	<b>From &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: PT. Juragan Wifi Indonesia</b> <br>
 														No Invoice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ' . $invoice . ' <br>
 														No PO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ' . $nopo . ' <br>
 														No Quotation : ' . $noqo . ' <br>
-														Date   &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;: ' . $createdAt . ' <br>
-														Due Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :  ' . $due_date . '
+														Date   &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  : ' . $createdAt . ' <br>
+														Due Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:  ' . $due_date . '
 													 </td>
 											 </tr>';
 						?>
