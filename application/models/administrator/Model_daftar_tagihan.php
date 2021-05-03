@@ -15,6 +15,19 @@ class Model_daftar_tagihan extends CI_model
         order by a.createdAt desc");
     }
 
+	public function viewOrderingCustomv2($id)
+    {
+        return $this->db->query("Select a.keterangan,a.token as link,a.metode_pembayaran, a.id , a.invoice,a.no_services, a.month, a.year, a.status, CONCAT('Rp. ',FORMAT(sum(b.price),2)) Nominal,
+        CONCAT('Rp. ',FORMAT(a.nominal_bayar,2)) Nominal_bayar
+        ,c.name  , c.no_wa,d.name as nama_layanan from invoice a
+        left join invoice_detail b on a.id = b.invoice_id
+        left join customer c on a.no_services = c.no_services
+        left join package_item d on c.jenis_layanan = d.id
+		where a.id = $id
+		group by a.invoice
+        order by a.createdAt desc");
+    }
+
     public function viewOrdering($table, $order, $ordering)
     {
         $this->db->order_by($order, $ordering);

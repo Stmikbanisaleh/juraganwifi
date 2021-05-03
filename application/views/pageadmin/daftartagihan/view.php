@@ -67,6 +67,64 @@
 		</div><!-- /.modal-dialog -->
 	</div>
 
+	<div id="modalEdit2" class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form" id="formEdit2">
+					<div class="card card-info">
+						<div class="modal-header">
+							<h4 class="modal-title">Edit Status Tagihan</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label>No Invoice</label>
+								<input required readonly type="text" id="invoice" name="invoice" class="form-control" placeholder="Nominal Bayar">
+							</div>
+							<div class="form-group">
+								<label>No Pelanggan</label>
+								<input required readonly type="text" id="no" name="no" class="form-control" placeholder="Nominal Bayar">
+							</div>
+							<div class="form-group">
+								<label>Nama Pelanggan</label>
+								<input required readonly type="text" id="nama" name="nama" class="form-control" placeholder="Nominal Bayar">
+							</div>
+
+							<div class="form-group">
+								<label>Bulan Ke</label>
+								<input required readonly type="text" id="bulan" name="bulan" class="form-control" placeholder="Nominal Bayar">
+							</div>
+							<div class="form-group">
+								<label>Tahun</label>
+								<input required readonly type="text" id="tahun" name="tahun" class="form-control" placeholder="Nominal Bayar">
+							</div>
+							<div class="form-group">
+								<label>Nominal Tagihan</label>
+								<input required readonly type="text" id="tagihan" name="tagihan" class="form-control" placeholder="Nominal Bayar">
+							</div>
+							<div class="form-group">
+								<label>Nominal Bayar</label>
+								<input required readonly type="text" id="bayar" name="bayar" class="form-control" placeholder="Nominal Bayar">
+							</div>
+							<div class="form-group">
+								<label>Metode Pembayaran</label>
+								<input required readonly type="text" id="metode" name="metode" class="form-control" placeholder="Nominal Bayar">
+							</div>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Batal
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
 	<!-- Default box -->
 
 	<div class="card">
@@ -214,17 +272,23 @@
 							'</td>'
 					}
 					var invoice = '';
-					if(level == 1){
+					if (level == 1) {
 						hapus = '<td class="project-actions text-right">' +
-						'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
-						'      <i class="fas fa-trash"> </i>  Hapus </a>' +
-						'</button> ' +
-						'</td>' 
+							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-search"> </i>  Preview </a>' +
+							'</button> ' +
+							'   <button  class="btn btn-danger btn-sm item_hapus"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-trash"> </i>  Hapus </a>' +
+							'</button> ' +
+							'</td>'
 					} else {
 						hapus = '<td class="project-actions text-right">' +
-						'</td>' 
+							'   <button  class="btn btn-info btn-sm item_prev"  data-id="' + data[i].id + '">' +
+							'      <i class="fas fa-search"> </i>  Preview </a>' +
+							'</button> ' +
+							'</td>'
 					}
-				
+
 
 					invoice = '<td class="text-center">' +
 						'   <a target=_blank href="<?= base_url() . 'administrator/tagihan_log/downloadTagihan/?invoice=' ?>' + data[i].id + '" class="btn btn-success btn-sm"  data-id="' + data[i].id + '">' +
@@ -247,7 +311,7 @@
 						tombol +
 						invoice +
 						'<td><?= base_url() . 'administrator/tagihan_log/downloadTagihan/?invoice=' ?>' + data[i].id + '</td>' +
-						hapus+
+						hapus +
 						'</tr>';
 					no++;
 				}
@@ -271,6 +335,32 @@
 
 		});
 	}
+
+	$('#show_data').on('click', '.item_prev', function() {
+		document.getElementById("formEdit2").reset();
+		var id = $(this).data('id');
+		$('#modalEdit2').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/daftar_tagihan/tampil_byid') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				$('#invoice').val(data[0].invoice);
+				$('#no').val(data[0].no_services);
+				$('#nama').val(data[0].name);
+				$('#bulan').val(data[0].month);
+				$('#tahun').val(data[0].year);
+				$('#tagihan').val(data[0].Nominal);
+				$('#bayar').val(data[0].Nominal_bayar);
+				$('#metode').val(data[0].metode_pembayaran);
+
+			}
+		});
+	});
 
 	function copyText(element) {
 		var range, selection, worked;

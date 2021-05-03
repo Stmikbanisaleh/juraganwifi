@@ -112,7 +112,7 @@ class Daftar_tagihan extends CI_Controller
 	{
 		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
 
-			$my_data = $this->model_daftar_tagihan->viewWhere('invoice', $this->input->post('id'))->result();
+			$my_data = $this->model_daftar_tagihan->viewOrderingCustomv2($this->input->post('id'))->result();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('pageadmin/login'); //Memanggil function render_view
