@@ -40,7 +40,6 @@ class Laporantagihan extends CI_Controller
             $akhir = $this->input->post('akhir');
             $filename = "Laporan_Tagihan_periode-$awal sampai $akhir.xlsx";
             $data = $this->Model_laporantagihan->getAllStatus($awal, $akhir)->result_array();
-			print_r($this->db->last_query());exit;
 
             if ($data != null) {
                 $spreadsheet = new Spreadsheet();
