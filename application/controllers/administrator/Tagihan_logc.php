@@ -200,7 +200,7 @@ class Tagihan_logc extends CI_Controller
 				$mpdf->WriteHTML($data);
 				// $mpdf->Output(APPPATH . "/public/" . $value['invoice'] . ".pdf", \Mpdf\Output\Destination::FILE);
 				$filename = $value['invoice'] . ".pdf";
-				$mpdf->Output($filename, "D");
+				$mpdf->Output($filename, "I");
 			}
 		} else {
 			$this->load->view('pageadmin/login'); //Memanggil function render_view

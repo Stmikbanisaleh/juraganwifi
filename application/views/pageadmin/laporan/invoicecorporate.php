@@ -227,11 +227,11 @@
 
 				<td?></td?>
 				<td></td>
-				<td>SubTotal      :
+				<td>SubTotal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 					<br>
-					Tax           :
+					Tax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 					<br>
-					Materai       :
+					Materai&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 					<br>
 					<b>Grand Total: <b>
 				</td>
