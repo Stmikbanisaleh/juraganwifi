@@ -73,7 +73,7 @@
 				<form class="form-horizontal" role="form" id="formEdit2">
 					<div class="card card-info">
 						<div class="modal-header">
-							<h4 class="modal-title">Edit Status Tagihan</h4>
+							<h4 class="modal-title">Preview Tagihan</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -106,11 +106,11 @@
 							</div>
 							<div class="form-group">
 								<label>Nominal Bayar</label>
-								<input required readonly type="text" id="bayar" name="bayar" class="form-control" placeholder="Nominal Bayar">
+								<input required readonly type="text" id="bayar" name="bayar" class="form-control" placeholder="">
 							</div>
 							<div class="form-group">
 								<label>Metode Pembayaran</label>
-								<input required readonly type="text" id="metode" name="metode" class="form-control" placeholder="Nominal Bayar">
+								<input required readonly type="text" id="metode" name="metode" class="form-control" placeholder="">
 							</div>
 						</div>
 						<!-- /.card-body -->
