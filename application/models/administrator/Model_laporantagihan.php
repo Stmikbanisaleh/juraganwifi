@@ -33,7 +33,7 @@ class Model_laporantagihan extends CI_model
         left join invoice_detail b on a.id = b.invoice_id
         left join customer c on a.no_services = c.no_services
         left join package_item d on c.jenis_layanan = d.id
-        where a.updatedAt between '$awal' and '$akhir' and a.nominal_bayar > 1 and a.status = 0
+        where a.createdAt between '$awal' and '$akhir' and a.status = 0
 		group by a.invoice
         order by a.createdAt desc ");
     }
@@ -46,7 +46,7 @@ class Model_laporantagihan extends CI_model
         left join invoice_detail_corporate b on a.id = b.invoice_id
         left join customer_corporate c on a.no_services = c.no_services
         left join package_item d on c.jenis_layanan = d.id
-        where a.updatedAt between '$awal' and '$akhir' and a.nominal_bayar > 1 and a.status = 0
+        where a.createdAt between '$awal' and '$akhir' and a.status = 0
 		group by a.invoice
         order by a.createdAt desc ");
     }
