@@ -176,6 +176,7 @@ class Tagihan_log extends CI_Controller
 				);
 				// $this->pdf->load_view('pageadmin/laporan/invoice', $data);
 				$mpdf = new \Mpdf\Mpdf();
+				
 				$mpdf->SetDisplayMode('fullwidth');
 				$data = $this->load->view('pageadmin/laporan/invoiceV2', $data, TRUE);
 				$mpdf->WriteHTML($data);

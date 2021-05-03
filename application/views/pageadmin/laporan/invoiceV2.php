@@ -107,27 +107,14 @@
 	<div class="invoice-box">
 
 
-
-		<table cellpadding="0" cellspacing="0">
-			<tr class="information">
-				<td colspan="2">
-					<img src="<?= base_url() ?>assets/bawah.png" width="150px">&nbsp;
-				</td>
-				<td colspan="2">
-					<div class="invoice">
+<div class="invoice">
 						<br>
 						<p><b>INVOICE</b> &nbsp;
 							&nbsp;
 							&nbsp;
 						</p>
 					</div>
-				</td>
-
-				<td colspan="2">
-					<img src="<?= base_url() ?>assets/atas.png" width="150px">
-				</td>
-			</tr>
-		</table>
+		
 
 		<table cellpadding="0" cellspacing="0">
 			<tr class="information">
