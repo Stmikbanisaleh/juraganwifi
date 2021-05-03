@@ -118,7 +118,7 @@
 						<?php foreach ($user as $value) {
 							echo ' 			<tr>
 													<td>
-													 	<b>To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ' . strtoupper($value['name']) . '</b> <br>
+													 	<b>To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ' . $value['name'] . '</b> <br>
 														 <a>Customer ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ' . strtoupper($value['no_services']) . '</a> <br>
 														Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ' . $value['address'] . ' <br>
 														<br>
