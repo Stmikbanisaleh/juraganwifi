@@ -157,7 +157,7 @@ class Tagihan_log extends CI_Controller
 
 	public function downloadTagihan()
 	{
-		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+		// if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
 			$this->load->library('dateutil');
 			$this->load->library('util');
 			$listInvoice = $this->model_generate_tagihan_log->viewWhereCustom($this->input->get('invoice'))->result_array();
@@ -183,9 +183,9 @@ class Tagihan_log extends CI_Controller
 				$filename = $value['invoice'] . ".pdf";
 				$mpdf->Output($filename,"I");
 			}
-		} else {
-			$this->load->view('pageadmin/login'); //Memanggil function render_view
-		}
+		// } else {
+		// 	$this->load->view('pageadmin/login'); //Memanggil function render_view
+		// }
 	}
 
 	public function token($invoice, $no)
