@@ -2,7 +2,7 @@
 
 <head>
 	<style>
-		.invoice-box {
+		.invoice-box2 {
 			max-width: 800px;
 			margin: auto;
 			padding: 30px;
@@ -123,7 +123,7 @@
 						<?php foreach ($user as $value) {
 							echo ' 			<tr>
 													<td>
-													 	Kepada : <br> <b>' . strtoupper($value['name']) . '</b> <br>
+													 	Kepada : <b>' . strtoupper($value['name']) . '</b> <br>
 														' . $value['no_wa'] . ' <br>
 														' . $value['address'] . ' <br>
 														<br>
@@ -208,9 +208,9 @@
 				<td></td>
 				<td></td>
 				<td>
-					Kode Unik :
+					Kode Unik 
 					<br>
-					<b>Total Tagihan: <b>
+					<b>Total Tagihan <b>
 				</td>
 				<td style="text-align: right;">
 
