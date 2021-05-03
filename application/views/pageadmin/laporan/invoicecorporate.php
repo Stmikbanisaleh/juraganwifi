@@ -2,7 +2,7 @@
 
 <head>
 	<style>
-		.invoice-box {
+		.invoice-box2 {
 			max-width: 800px;
 			margin: auto;
 			padding: 30px;
@@ -118,10 +118,10 @@
 						<?php foreach ($user as $value) {
 							echo ' 			<tr>
 													<td>
-													 	<b>To : ' . strtoupper($value['name']) . '</b> <br>
-														Address : ' . $value['address'] . ' <br>
+													 	<b>To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ' . strtoupper($value['name']) . '</b> <br>
+														Address&nbsp;: ' . $value['address'] . ' <br>
 														<br>
-														Up : 	 Finance <br>
+														Up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 	 Finance <br>
 													 </td>
 											 </tr>';
 						} ?>
