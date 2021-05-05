@@ -118,10 +118,10 @@ class Veritrans {
 	    }
 	    else {
 	      $result_array = json_decode($result);
-	      if (!in_array($result_array->status, array(200, 201, 202, 407))) {
-	        $message = 'Veritrans Error (' . $result_array->status . '): '
-	            . $result_array->message;
-	        throw new Exception($message, $result_array->status);
+	      if (!in_array($result_array->status_code, array(200, 201, 202, 407))) {
+	        $message = 'Veritrans Error (' . $result_array->status_code . '): '
+	            . $result_array->status_message;
+	        throw new Exception($message, $result_array->status_code);
 	      }
 	      else {
 	        return $result_array;
