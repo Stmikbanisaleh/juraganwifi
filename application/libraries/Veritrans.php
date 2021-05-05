@@ -120,7 +120,7 @@ class Veritrans {
 	      $result_array = json_decode($result);
 	      if (!in_array($result_array->status, array(200, 201, 202, 407))) {
 	        $message = 'Veritrans Error (' . $result_array->status . '): '
-	            . $result_array->status_message;
+	            . $result_array->message;
 	        throw new Exception($message, $result_array->status);
 	      }
 	      else {
