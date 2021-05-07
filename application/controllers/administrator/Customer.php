@@ -204,8 +204,30 @@ class Customer extends CI_Controller
 	public function tampil_layanan_byid()
 	{
 		$my_data = $this->db->query("select a.name , a.description from package_item a 
-		join service b on a.id = b.id_service where id_customer = '".$this->input->post('id')."' ")->result();
+		join service b on a.id = b.id_service where id_customer = '" . $this->input->post('id') . "' ")->result();
 		echo json_encode($my_data);
+	}
+
+	public function tampil_gambar_byid()
+	{
+		$my_data = $this->db->query("select a.id,a.image , a.keterangan from image_user a 
+		join customer b on a.customer_id = b.no_services where b.no_services = '" . $this->input->post('id') . "' ")->result();
+		
+		echo json_encode($my_data);
+	}
+
+	public function delete2()
+	{
+		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+
+			$data_id = array(
+				'id'  => $this->input->post('id')
+			);
+			$action = $this->model_customer->delete($data_id, 'image_user');
+			echo json_encode($action);
+		} else {
+			$this->load->view('pageadmin/login'); //Memanggil function render_view
+		}
 	}
 
 	public function generate()
@@ -234,6 +256,41 @@ class Customer extends CI_Controller
 		}
 	}
 
+
+	public function simpangambar()
+	{
+		if ($this->session->userdata('email') != null && $this->session->userdata('name') != null) {
+			$config['upload_path'] = './assets/customer';
+			$config['overwrite'] = TRUE;
+			$config['encrypt_name'] = TRUE;
+			$config["allowed_types"] = 'jpg|jpeg|png|gif|pdf';
+			$config["max_size"] = 4096;
+			$this->load->library('upload', $config);
+			$do_upload = $this->upload->do_upload("fotos");
+			if ($do_upload) {
+				$upload_data = $this->upload->data();
+				$file_name = $upload_data['file_name'];
+				$data = array(
+					'image' => $file_name,
+					'customer_id'  => $this->input->post('id_user'),
+					'keterangan'  => $this->input->post('keterangan'),
+					'createdAt' => date('Y-m-d H:i:s'),
+					'createdBy'	=> $this->session->userdata('name')
+				);
+			} else {
+				$data = array(
+					'customer_id'  => $this->input->post('id_user'),
+					'keterangan'  => $this->input->post('keterangan'),
+					'createdAt' => date('Y-m-d H:i:s'),
+					'createdBy'	=> $this->session->userdata('name')
+				);
+			}
+			$action = $this->model_customer->insert($data, 'image_user');
+			echo json_encode($action);
+		} else {
+			$this->load->view('pageadmin/login'); //Memanggil function render_view
+		}
+	}
 
 	public function simpan()
 	{
