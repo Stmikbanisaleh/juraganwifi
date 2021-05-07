@@ -21,13 +21,13 @@ class Veritrans {
    	*/
   	public static $curlOptions = array();	
 
-  	const SANDBOX_BASE_URL = 'https://api.sandbox.veritrans.co.id/v2';
+  	const SANDBOX_BASE_URL = 'https://api.veritrans.co.id/v2';
   	const PRODUCTION_BASE_URL = 'https://api.veritrans.co.id/v2';
 
     public function config($params)
     {
-        Veritrans::$serverKey = $params['server_key'];
-        Veritrans::$isProduction = $params['production'];
+        Veritrans::$serverKey = "Mid-server-bZaYQrhSiFwmKleeDJIa1egv";
+        Veritrans::$isProduction = true;
     }
 
     /**
@@ -118,10 +118,10 @@ class Veritrans {
 	    }
 	    else {
 	      $result_array = json_decode($result);
-	      if (!in_array($result_array->status, array(200, 201, 202, 407))) {
-	        $message = 'Veritrans Error (' . $result_array->status . '): '
-	            . $result_array->message;
-	        throw new Exception($message, $result_array->status);
+	      if (!in_array($result_array->status_code, array(200, 201, 202, 407))) {
+	        $message = 'Veritrans Error (' . $result_array->status_code . '): '
+	            . $result_array->status_message;
+	        throw new Exception($message, $result_array->status_code);
 	      }
 	      else {
 	        return $result_array;

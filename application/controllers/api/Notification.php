@@ -34,25 +34,23 @@ class Notification extends CI_Controller
 	{
 		$json_result = file_get_contents('php://input');
 		$result = json_decode($json_result);
-
-		if ($result) {
-			$notif = $this->veritrans->status($result->order_id);
-		}
+		
+		
 		$data = array(
 			'invoice' => $result->order_id,
 			'log'  => json_encode($result),
-			'message' => json_encode($notif),
+			'message' => json_encode($result),
 			'createdAt' => date('Y-m-d H:i:s'),
 		);
 		$this->model_generate_tagihan_log->insert($data, 'veritrans_log');
 		error_log(print_r($result, TRUE));
 
 		//notification handler sample
-		$transaction = $notif->transaction_status;
-		$type = $notif->payment_type;
-		$nominal = $notif->gross_amount;
-		$order_id = $notif->order_id;
-		$fraud = $notif->fraud_status;
+		$transaction = $result->transaction_status;
+		$type = $result->payment_type;
+		$nominal = $result->gross_amount;
+		$order_id = $result->order_id;
+		$fraud = $result->fraud_status;
 		if ($transaction == 'capture') {
 			// For credit card transaction, we need to check whether transaction is challenge by FDS or not
 			if ($type == 'credit_card') {
@@ -73,11 +71,12 @@ class Notification extends CI_Controller
 			$data = array(
 				'status'  => 1,
 				'metode_pembayaran'  => $type,
+				'nominal_bayar'  => $nominal,
 				'updatedAt' => date('Y-m-d H:i:s'),
 				'updatedBy' => 'Midtrans System Notification',
 			);
 			$this->model_generate_tagihan_log->update($data_id, $data, 'invoice');
-			$id = $this->db->query("select a.id from invoice_detail a join invoice b on a.invoice_id = b.id where b.invoice = $order_id ")->result_array();
+			$id = $this->db->query("select a.id from invoice_detail a join invoice b on a.invoice_id = b.id where b.invoice = '".$order_id ."'")->result_array();
 			$id = $id[0];
 			$data_id2 = array(
 				'id'  => $id['id']
