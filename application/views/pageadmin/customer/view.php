@@ -1,4 +1,45 @@
 <section class="content">
+	<div id="modalTambah2" class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form" id="formTambah2">
+					<div class="card card-info">
+						<div class="modal-header">
+							<h4 class="modal-title">Add Gambar</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label>Keterangan</label>
+								<input type="hidden" id="id_user" name="id_user" class="form-control">
+								<input required type="text" id="keterangan" name="keterangan" class="form-control" placeholder="KTP /KK / NPWP">
+							</div>
+
+							<div class="form-group">
+								<label>Gambar</label>
+								<input type="file" id="fotos" name="fotos" class="form-control" placeholder=""></input>
+							</div>
+
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<div class="modal-footer">
+						<button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
+							<i class="ace-icon fa fa-save"></i>
+							Simpan
+						</button>
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Batal
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+
 	<div id="modalTambah" class="modal fade" tabindex="-1">
 		<div class="modal-dialog modal-xl">
 			<div class="modal-content">
@@ -43,10 +84,6 @@
 									<div class="form-group">
 										<label>Alamat</label>
 										<textarea type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat"></textarea>
-									</div>
-									<div class="form-group">
-										<label>Foto</label>
-										<input type="file" id="foto" name="foto" class="form-control" placeholder="Foto"></input>
 									</div>
 									<hr>
 									<b>DATA TEKNIS</b>
@@ -298,11 +335,6 @@
 									<div class="form-group">
 										<label>Alamat</label>
 										<textarea type="text" id="e_alamat" name="e_alamat" class="form-control" placeholder="Alamat"></textarea>
-									</div>
-
-									<div class="form-group">
-										<label>Foto</label>
-										<input type="file" id="e_foto" name="e_foto" class="form-control" placeholder="Alamat"></input>
 									</div>
 									<hr>
 									<b>DATA TEKNIS</b>
@@ -777,6 +809,51 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div>
+
+	<!-- Default box -->
+	<div id="modalDetail2" class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form" id="formDetail2">
+					<div class="card card-info">
+						<div class="card-body">
+							<div class="col-sm-2">
+								<button href="#modalTambah2" id ="item-tambah" type="button" role="button" data-toggle="modal" class="btn btn-block btn-primary"><a class="ace-icon fa fa-plus bigger-120"></a> Add</button>
+							</div>
+							<input required type="hidden" id="id_p" name="id_p">
+							<table id="table_id3" class="table table-bordered table-hover projects">
+								<thead>
+									<tr>
+										<th>
+											#
+										</th>
+										<th class="text-center">
+											Keterangan
+										</th>
+										<th class="text-center">
+											Foto
+										</th>
+										<th class="text-center">
+											Action
+										</th>
+									</tr>
+								</thead>
+								<tbody id="show_data3">
+								</tbody>
+							</table>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+							<i class="ace-icon fa fa-times"></i>
+							Kembali
+						</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
 	<div class="card">
 		<div class="card-header">
 			<h3 class="card-title">Daftar Pelanggan</h3>
@@ -818,11 +895,11 @@
 						<th style="width: 15%" class="text-center">
 							Status User
 						</th>
-						<th class="text-center">
-							Foto
-						</th>
 						<th style="width: 8%" class="text-center">
 							Jenis Layanan
+						</th>
+						<th style="width: 8%" class="text-center">
+							Foto
 						</th>
 						<th style="width: 8%" class="text-center">
 							Media Koneksi
@@ -947,6 +1024,57 @@
 			}
 		})
 	}
+
+	if ($("#formTambah2").length > 0) {
+		$("#formTambah2").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			submitHandler: function(form) {
+				$('#btn_simpan').html('Sending..');
+				formdata = new FormData(form);
+				$.ajax({
+					url: "<?php echo base_url('administrator/customer/simpangambar') ?>",
+					type: "POST",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
+					success: function(response) {
+						$('#btn_simpan').html('<i class="ace-icon fa fa-save"></i>' +
+							'Simpan');
+						if (response == true) {
+							document.getElementById("formTambah2").reset();
+							swalInputSuccess();
+							show_data();
+							$('#modalTambah2').modal('hide');
+							$("select.select2").select2('data', {}); // clear out values selected
+							$("select.select2").select2({
+								allowClear: true
+							}); // re-init to show default status
+							window.location.reload()
+						} else {
+							document.getElementById("formTambah2").reset();
+							swalInputSuccess();
+							show_data();
+							$('#modalTambah2').modal('hide');
+							$("select.select2").select2('data', {}); // clear out values selected
+							$("select.select2").select2({
+								allowClear: true
+							}); // re-init to show default status
+							window.location.reload()
+
+						}
+					}
+				});
+			}
+		})
+	}
+
+	$('#item-tambah').on('click', function() {
+			$('#modalDetail2').modal('hide');
+			$("#id_user").val($("#id_p").val());
+		});
 
 	$('#show_data').on('click', '.item_hapus', function() {
 		var id = $(this).data('id');
@@ -1078,9 +1206,13 @@
 						'<td class="text-left">' + data[i].no_ktp + '</td>' +
 						'<td class="text-left">' + data[i].address + '</td>' +
 						status +
-						foto +
 						'<td class="text-center">' +
 						'   <button  class="btn btn-info btn-sm item_detail"  data-id="' + data[i].no_services + '">' +
+						'      <i class="fas fa-eye"> </i>  Detail </a>' +
+						'</button> &nbsp' +
+						'</td>' +
+						'<td class="text-center">' +
+						'   <button  class="btn btn-info btn-sm item_detail2"  data-id="' + data[i].no_services + '">' +
 						'      <i class="fas fa-eye"> </i>  Detail </a>' +
 						'</button> &nbsp' +
 						'</td>' +
@@ -1421,6 +1553,69 @@
 			}
 		});
 	});
+
+	//get data for update record
+	$('#show_data').on('click', '.item_detail2', function() {
+		var id = $(this).data('id');
+		$('#id_p').val(id);
+		$('#modalDetail2').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/customer/tampil_gambar_byid') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				var html = '';
+				var i = 0;
+				var no = 1;
+				for (i = 0; i < data.length; i++) {
+					html += '<tr>' +
+						'<td class="text-center">' + no + '</td>' +
+						'<td>' + data[i].keterangan + '</td>' +
+						'<td><a href="<?php echo site_url('/assets/customer/') ?>' + data[i].image + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/customer/') ?>' + data[i].image + '""></a></td>' +
+						'<td class="text-center">' +
+						'<button class="btn btn-xs btn-danger item_hapus2"  data-id="' + data[i].id + '">' +
+						' <i class="fas fa-trash"> </i>' +
+						'</button>' +
+						'</td>' +
+						'</tr>';
+					no++;
+
+				}
+				$("#table_id3").dataTable().fnDestroy();
+				var a = $('#show_data3').html(html);
+				//                    $('#mydata').dataTable();
+				if (a) {
+					$('#table_id3').dataTable({
+						"bPaginate": true,
+						"bLengthChange": false,
+						"bFilter": true,
+						"bInfo": false,
+						"bAutoWidth": false
+					});
+				}
+			}
+		});
+	});
+
+	$('#show_data3').on('click', '.item_hapus2', function() {
+		var id = $(this).data('id');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('administrator/customer/delete2') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				swalDeleteSuccess();
+			}
+		});
+	})
 
 	$(document).ready(function() {
 		show_data();
