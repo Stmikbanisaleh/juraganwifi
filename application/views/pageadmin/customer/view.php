@@ -892,6 +892,9 @@
 						<th style="width: 8%" class="text-center">
 							Alamat
 						</th>
+						<th style="width: 8%" class="text-center">
+							Keterangan
+						</th>
 						<th style="width: 15%" class="text-center">
 							Status User
 						</th>
@@ -1205,6 +1208,7 @@
 						'<td class="text-left">' + data[i].no_wa + '</td>' +
 						'<td class="text-left">' + data[i].no_ktp + '</td>' +
 						'<td class="text-left">' + data[i].address + '</td>' +
+						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						status +
 						'<td class="text-center">' +
 						'   <button  class="btn btn-info btn-sm item_detail"  data-id="' + data[i].no_services + '">' +

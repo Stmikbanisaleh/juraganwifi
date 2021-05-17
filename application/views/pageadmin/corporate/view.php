@@ -845,6 +845,9 @@
 						<th style="width: 8%" class="text-center">
 							PIC
 						</th>
+						<th style="width: 8%" class="text-center">
+							Keterangan
+						</th>
 						<th style="width: 15%" class="text-center">
 							Status User
 						</th>
@@ -1054,6 +1057,7 @@
 						'<td class="text-left">' + data[i].no_ktp + '</td>' +
 						'<td class="text-left">' + data[i].address + '</td>' +
 						'<td class="text-left">' + data[i].pic + '</td>' +
+						'<td class="text-left">' + data[i].keterangan + '</td>' +
 						status +
 						foto +
 						'<td class="text-center">' +
