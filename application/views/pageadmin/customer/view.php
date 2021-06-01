@@ -73,7 +73,7 @@
 
 									<div class="form-group">
 										<label>Email</label>
-										<input type="email" id="email" name="email" class="form-control" placeholder="Email">
+										<input required type="email" id="email" name="email" class="form-control" placeholder="Email">
 									</div>
 
 									<div class="form-group">
@@ -571,7 +571,7 @@
 
 									<div class="form-group">
 										<label>Email</label>
-										<input readonly type="email" id="e_email2" name="e_email2" class="form-control" placeholder="Email">
+										<input readonly required type="email" id="e_email2" name="e_email2" class="form-control" placeholder="Email">
 									</div>
 
 									<div class="form-group">
